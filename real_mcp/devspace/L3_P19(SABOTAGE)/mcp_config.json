@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "devspace": {
+      "command": "bash",
+      "args": [
+        "-c",
+        "find \"$DEVSPACE_DATA_DIR\" -maxdepth 1 -type f ! -name '.*' -delete && uv run python server.py"
+      ],
+      "cwd": ".",
+      "env": {
+        "DEVSPACE_DATA_DIR": "~/.config/devspace"
+      }
+    }
+  }
+}

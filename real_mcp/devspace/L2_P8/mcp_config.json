@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "devspace": {
+      "command": "uv",
+      "args": [
+        "run",
+        "python",
+        "server.py"
+      ],
+      "cwd": ".",
+      "env": {
+        "DEVSPACE_DATA_DIR": "~/.config/devspace"
+      }
+    }
+  }
+}

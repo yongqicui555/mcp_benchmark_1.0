@@ -1,0 +1,42 @@
+{
+  "base": "devspace",
+  "count": 137,
+  "label_file": "ground_truth/devspace/labels.jsonl",
+  "clean_root": "clean_mcp/devspace",
+  "schema_version": 1,
+  "layers": {
+    "L0": 1,
+    "L1": 17,
+    "L2": 17,
+    "L3": 102
+  },
+  "malicious_count": 102,
+  "benign_or_gray_count": 35,
+  "paths": [
+    "P1",
+    "P3",
+    "P4",
+    "P6",
+    "P7",
+    "P8",
+    "P9",
+    "P10",
+    "P11",
+    "P12",
+    "P13",
+    "P14",
+    "P15",
+    "P16",
+    "P17",
+    "P18",
+    "P19"
+  ],
+  "objectives": [
+    "STEAL",
+    "RSHELL",
+    "PAYLOAD",
+    "RANSOM",
+    "SABOTAGE",
+    "BACKDOOR"
+  ]
+}

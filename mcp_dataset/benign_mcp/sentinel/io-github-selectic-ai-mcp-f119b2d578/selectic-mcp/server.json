@@ -1,0 +1,32 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.selectic-ai/mcp",
+  "title": "Selectic",
+  "description": "AI agent that calls, texts & emails businesses for you, then returns transcripts and replies.",
+  "status": "active",
+  "version": "0.2.0",
+  "websiteUrl": "https://selectic.ai/docs",
+  "repository": {
+    "url": "https://github.com/selectic-ai/selectic-mcp",
+    "source": "github",
+    "id": "selectic-ai/selectic-mcp"
+  },
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "@selectic/mcp",
+      "version": "0.2.0",
+      "runtimeHint": "npx",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://selectic.ai/api/mcp"
+    }
+  ]
+}

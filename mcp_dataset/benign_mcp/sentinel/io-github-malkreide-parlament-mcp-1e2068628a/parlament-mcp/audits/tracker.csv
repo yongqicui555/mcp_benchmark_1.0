@@ -1,0 +1,2 @@
+server_name,audit_status,findings,last_audit_run,last_audit_at,production_ready,released_version,notes
+parlament-mcp,Abgeschlossen,0,2026-05-30T115128-Z-parlament-mcp,2026-05-30,True,,

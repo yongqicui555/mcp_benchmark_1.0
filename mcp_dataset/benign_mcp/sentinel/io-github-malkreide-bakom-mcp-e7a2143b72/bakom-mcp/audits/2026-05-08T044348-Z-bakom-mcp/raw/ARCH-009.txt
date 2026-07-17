@@ -1,0 +1,51 @@
+=== readOnlyHint, destructiveHint, idempotentHint, openWorldHint ===
+14:from __future__ import annotations
+410:    annotations={
+412:        "readOnlyHint": True,
+413:        "destructiveHint": False,
+414:        "idempotentHint": True,
+415:        "openWorldHint": True,
+492:    annotations={
+494:        "readOnlyHint": True,
+495:        "destructiveHint": False,
+496:        "idempotentHint": True,
+497:        "openWorldHint": True,
+557:    annotations={
+559:        "readOnlyHint": True,
+560:        "destructiveHint": False,
+561:        "idempotentHint": True,
+562:        "openWorldHint": True,
+687:    annotations={
+689:        "readOnlyHint": True,
+690:        "destructiveHint": False,
+691:        "idempotentHint": True,
+692:        "openWorldHint": True,
+761:    annotations={
+763:        "readOnlyHint": True,
+764:        "destructiveHint": False,
+765:        "idempotentHint": True,
+766:        "openWorldHint": True,
+893:    annotations={
+895:        "readOnlyHint": True,
+896:        "destructiveHint": False,
+897:        "idempotentHint": True,
+898:        "openWorldHint": True,
+1007:    annotations={
+1009:        "readOnlyHint": True,
+1010:        "destructiveHint": False,
+1011:        "idempotentHint": True,
+1012:        "openWorldHint": True,
+1135:    annotations={
+1137:        "readOnlyHint": True,
+1138:        "destructiveHint": False,
+1139:        "idempotentHint": True,
+1140:        "openWorldHint": True,
+1238:    annotations={
+1240:        "readOnlyHint": True,
+1241:        "destructiveHint": False,
+1242:        "idempotentHint": False,
+1243:        "openWorldHint": True,
+1393:    annotations={
+1395:        "readOnlyHint": True,
+1396:        "destructiveHint": False,
+1397:        "idempotentHint": True,

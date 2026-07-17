@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-selectic-ai-mcp-f119b2d578": {
+      "args": [
+        "/app/io-github-selectic-ai-mcp-f119b2d578/selectic-mcp/bin.mjs"
+      ],
+      "command": "node"
+    }
+  }
+}

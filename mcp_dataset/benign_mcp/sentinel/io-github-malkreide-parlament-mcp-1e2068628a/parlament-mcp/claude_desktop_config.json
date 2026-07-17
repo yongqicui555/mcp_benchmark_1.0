@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "parlament": {
+      "command": "python",
+      "args": ["-m", "parlament_mcp.server"]
+    }
+  }
+}

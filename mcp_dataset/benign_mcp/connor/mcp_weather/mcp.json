@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "mcp_weather": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/mcp_weather/Initialize_MCP_Server_using_Cursor_IDE",
+        "run",
+        "weather.py"
+      ]
+    }
+  }
+}

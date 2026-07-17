@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "xfa": {
+      "command": "xlsx-for-ai-mcp"
+    }
+  }
+}

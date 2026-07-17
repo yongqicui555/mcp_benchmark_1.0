@@ -1,0 +1,173 @@
+[
+    {
+        "name": "get_bitcoin_price",
+        "description": "Gets current Bitcoin price in USD from CoinGecko API",
+        "parameters": {},
+        "file": "get_bitcoin_price.py",
+        "function": "get_bitcoin_price"
+    },
+    {
+        "name": "get_weather_forecast",
+        "description": "Retrieves weather forecast for a given ZIP code using NWS API",
+        "parameters": {
+            "zip_code": "string"
+        },
+        "file": "get_weather_forecast.py",
+        "function": "get_weather_forecast"
+    },
+    {
+        "name": "read_text_file",
+        "description": "Reads and displays the contents of a text file",
+        "parameters": {
+            "file_path": "string"
+        },
+        "file": "read_text_file.py",
+        "function": "read_text_file"
+    },
+    {
+        "name": "calculate_average",
+        "description": "Calculates the average (mean) of a list of numbers",
+        "parameters": {
+            "numbers": "string"
+        },
+        "file": "calculate_average.py",
+        "function": "calculate_average"
+    },
+    {
+        "name": "convert_temperature",
+        "description": "Converts temperatures between Celsius and Fahrenheit",
+        "parameters": {
+            "temperature": "string",
+            "from_unit": "string"
+        },
+        "file": "convert_temperature.py",
+        "function": "convert_temperature"
+    },
+    {
+        "name": "count_word_frequency",
+        "description": "Counts word frequency in a given text",
+        "parameters": {
+            "text": "string"
+        },
+        "file": "count_word_frequency.py",
+        "function": "count_word_frequency"
+    },
+    {
+        "name": "validate_email",
+        "description": "Validates email addresses against standard format rules",
+        "parameters": {
+            "email": "string"
+        },
+        "file": "validate_email.py",
+        "function": "validate_email"
+    },
+    {
+        "name": "calculate_csv_column_average",
+        "description": "Reads a CSV file and calculates the average of a specified column",
+        "parameters": {
+            "file_path": "string",
+            "column_name": "string"
+        },
+        "file": "calculate_csv_column_average.py",
+        "function": "calculate_csv_column_average"
+    },
+    {
+        "name": "convert_temperature_comprehensive",
+        "description": "Converts temperatures between Celsius and Fahrenheit with comprehensive error checking and validation",
+        "parameters": {
+            "temperature": "string",
+            "from_unit": "string",
+            "to_unit": "string",
+            "precision": "string"
+        },
+        "file": "convert_temperature_comprehensive.py",
+        "function": "convert_temperature_comprehensive"
+    },
+    {
+        "name": "count_word_frequency_file",
+        "description": "Counts word frequencies in a text file with various processing options and returns detailed statistics",
+        "parameters": {
+            "file_path": "string",
+            "case_sensitive": "string",
+            "include_numbers": "string",
+            "min_word_length": "string",
+            "stop_words": "string",
+            "custom_delimiters": "string",
+            "output_limit": "string",
+            "sort_by": "string",
+            "sort_order": "string"
+        },
+        "file": "count_word_frequency_file.py",
+        "function": "count_word_frequency_file"
+    },
+    {
+        "name": "get_city_time",
+        "description": "Fetches current local time for cities around the world with comprehensive time zone support",
+        "parameters": {
+            "city_name": "string",
+            "include_details": "string",
+            "format_24h": "string",
+            "include_date": "string",
+            "include_timezone_info": "string"
+        },
+        "file": "get_city_time.py",
+        "function": "get_city_time"
+    },
+    {
+        "name": "validate_email_comprehensive",
+        "description": "Validates email addresses with comprehensive format checking, domain validation, and security checks",
+        "parameters": {
+            "email": "string",
+            "check_dns": "string",
+            "check_mx_records": "string",
+            "allow_ip_domains": "string",
+            "allow_localhost": "string",
+            "max_length": "string",
+            "min_local_part_length": "string",
+            "max_local_part_length": "string",
+            "min_domain_part_length": "string",
+            "max_domain_part_length": "string",
+            "additional_checks": "string"
+        },
+        "file": "validate_email_comprehensive.py",
+        "function": "validate_email_comprehensive"
+    },
+    {
+        "name": "temperature_converter_plus",
+        "description": "Converts temperatures between Celsius and Fahrenheit with additional weather context and educational information",
+        "parameters": {
+            "temperature": "string",
+            "from_unit": "string",
+            "to_unit": "string",
+            "include_context": "string"
+        },
+        "file": "temperature_converter_plus.py",
+        "function": "temperature_converter_plus"
+    },
+    {
+        "name": "email_regex_validator",
+        "description": "Validates email addresses using regular expressions with detailed validation results",
+        "parameters": {
+            "email": "string",
+            "check_format": "string",
+            "check_dns": "string",
+            "check_mx": "string",
+            "detailed_report": "string"
+        },
+        "file": "email_regex_validator.py",
+        "function": "email_regex_validator"
+    },
+    {
+        "name": "factorial_calculator",
+        "description": "Calculates factorial of numbers with support for large numbers, recursion, and detailed mathematical information",
+        "parameters": {
+            "n": "string",
+            "method": "string",
+            "include_details": "string",
+            "calculate_time": "string",
+            "precision": "string"
+        },
+        "file": "factorial_calculator.py",
+        "function": "factorial_calculator"
+    }
+]

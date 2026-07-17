@@ -1,0 +1,36 @@
+{
+  "name": "acta-mcp",
+  "version": "0.2.0",
+  "description": "MCP server for Veritas Acta — contribute, challenge, verify, and query contestable public records from AI coding tools.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "acta-mcp": "./server.js"
+  },
+  "files": [
+    "server.js"
+  ],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "scopeblind-agent": "^1.1.3",
+    "zod": "^3.24.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "mcp",
+    "acta",
+    "veritas-acta",
+    "contestable-records",
+    "ai-agents",
+    "epistemic",
+    "voprf"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/VeritasActa/Acta"
+  },
+  "homepage": "https://veritasacta.com",
+  "mcpName": "io.github.VeritasActa/acta-mcp"
+}

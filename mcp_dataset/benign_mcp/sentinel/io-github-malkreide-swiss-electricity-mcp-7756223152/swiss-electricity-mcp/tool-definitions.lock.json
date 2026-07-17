@@ -1,0 +1,543 @@
+{
+  "version": 1,
+  "tool_count": 12,
+  "sha256": "5bfc99366df53854d7fff81eef79760bb2dda76d7ed16a995acfc280427cc2ea",
+  "tools": [
+    {
+      "name": "consumption_search_bfe_datasets",
+      "description": "Search opendata.swiss CKAN for energy / electricity datasets. Filter by BFE organisation. Use to find raw datasets not covered by other tools.",
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": true
+      },
+      "input_schema": {
+        "properties": {
+          "query": {
+            "description": "Free-text search",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Query",
+            "type": "string"
+          },
+          "bfe_only": {
+            "default": true,
+            "title": "Bfe Only",
+            "type": "boolean"
+          },
+          "limit": {
+            "default": 20,
+            "maximum": 50,
+            "minimum": 1,
+            "title": "Limit",
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "minimum": 0,
+            "title": "Offset",
+            "type": "integer"
+          },
+          "response_format": {
+            "default": "markdown",
+            "enum": [
+              "json",
+              "markdown"
+            ],
+            "title": "Response Format",
+            "type": "string"
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "title": "consumption_search_bfe_datasetsArguments",
+        "type": "object"
+      }
+    },
+    {
+      "name": "consumption_search_zurich",
+      "description": "Search the Stadt Zuerich OGD catalogue for energy datasets, including the quarter-hour consumption time series for grid levels NE5 and NE7.",
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": true
+      },
+      "input_schema": {
+        "properties": {
+          "query": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Query",
+            "type": "string"
+          },
+          "limit": {
+            "default": 10,
+            "maximum": 50,
+            "minimum": 1,
+            "title": "Limit",
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "minimum": 0,
+            "title": "Offset",
+            "type": "integer"
+          },
+          "response_format": {
+            "default": "markdown",
+            "enum": [
+              "json",
+              "markdown"
+            ],
+            "title": "Response Format",
+            "type": "string"
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "title": "consumption_search_zurichArguments",
+        "type": "object"
+      }
+    },
+    {
+      "name": "dashboard_get_consumer_price_index",
+      "description": "Get the Endverbraucher-Strompreis-Index (consumer electricity price index, indexed to 2020-01-01 = 100). Monthly time series.",
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": true
+      },
+      "input_schema": {
+        "properties": {
+          "limit_months": {
+            "default": 60,
+            "maximum": 200,
+            "minimum": 1,
+            "title": "Limit Months",
+            "type": "integer"
+          },
+          "response_format": {
+            "default": "markdown",
+            "enum": [
+              "json",
+              "markdown"
+            ],
+            "title": "Response Format",
+            "type": "string"
+          }
+        },
+        "title": "dashboard_get_consumer_price_indexArguments",
+        "type": "object"
+      }
+    },
+    {
+      "name": "dashboard_get_consumption_forecast",
+      "description": "Get current Swiss national electricity consumption forecast: today's value, 5-day-ahead forecast, trend signal, and 5-year-window comparison series. Source: Energiedashboard.ch (BFE).",
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": true
+      },
+      "input_schema": {
+        "properties": {
+          "limit_days": {
+            "default": 90,
+            "maximum": 400,
+            "minimum": 1,
+            "title": "Limit Days",
+            "type": "integer"
+          },
+          "response_format": {
+            "default": "markdown",
+            "enum": [
+              "json",
+              "markdown"
+            ],
+            "title": "Response Format",
+            "type": "string"
+          }
+        },
+        "title": "dashboard_get_consumption_forecastArguments",
+        "type": "object"
+      }
+    },
+    {
+      "name": "dashboard_get_production_mix",
+      "description": "Get the Swiss electricity production mix (Kernkraft, Wasserkraft, PV, Wind ...) by year, with absolute TWh and percentage shares. Source: Energiedashboard.ch (BFE).",
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": true
+      },
+      "input_schema": {
+        "properties": {
+          "response_format": {
+            "default": "markdown",
+            "description": "Output format. 'json' for processing, 'markdown' for display.",
+            "enum": [
+              "json",
+              "markdown"
+            ],
+            "title": "Response Format",
+            "type": "string"
+          }
+        },
+        "title": "dashboard_get_production_mixArguments",
+        "type": "object"
+      }
+    },
+    {
+      "name": "dashboard_get_storage_lakes",
+      "description": "Get storage-lake (Speichersee) fill level for Switzerland or a region: current fill in % and GWh, 5-year envelope, full time series. Critical indicator for winter supply security.",
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": true
+      },
+      "input_schema": {
+        "properties": {
+          "region": {
+            "default": "totalCH",
+            "description": "Region selector.",
+            "enum": [
+              "totalCH",
+              "Wallis",
+              "Tessin",
+              "Graubuenden",
+              "ZentralOst"
+            ],
+            "title": "Region",
+            "type": "string"
+          },
+          "limit_weeks": {
+            "default": 52,
+            "maximum": 300,
+            "minimum": 1,
+            "title": "Limit Weeks",
+            "type": "integer"
+          },
+          "response_format": {
+            "default": "markdown",
+            "enum": [
+              "json",
+              "markdown"
+            ],
+            "title": "Response Format",
+            "type": "string"
+          }
+        },
+        "title": "dashboard_get_storage_lakesArguments",
+        "type": "object"
+      }
+    },
+    {
+      "name": "electricity_check_status",
+      "description": "Check liveness of all four upstream sources. Returns HTTP status, latency, and an overall-healthy flag.",
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": true
+      },
+      "input_schema": {
+        "properties": {},
+        "title": "electricity_check_statusArguments",
+        "type": "object"
+      }
+    },
+    {
+      "name": "tariff_compare_municipalities",
+      "description": "Compare electricity tariffs across multiple municipalities (BFS-Nrs) for one category and year. One row per (municipality, operator). Useful for procurement, benchmarking, school-network analysis.",
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": true
+      },
+      "input_schema": {
+        "properties": {
+          "bfs_numbers": {
+            "items": {
+              "type": "integer"
+            },
+            "maxItems": 20,
+            "minItems": 1,
+            "title": "Bfs Numbers",
+            "type": "array"
+          },
+          "category": {
+            "description": "Verbrauchskategorie (e.g. C3)",
+            "maxLength": 4,
+            "minLength": 1,
+            "title": "Category",
+            "type": "string"
+          },
+          "period": {
+            "maximum": 2100,
+            "minimum": 2009,
+            "title": "Period",
+            "type": "integer"
+          },
+          "response_format": {
+            "default": "markdown",
+            "enum": [
+              "json",
+              "markdown"
+            ],
+            "title": "Response Format",
+            "type": "string"
+          }
+        },
+        "required": [
+          "bfs_numbers",
+          "category",
+          "period"
+        ],
+        "title": "tariff_compare_municipalitiesArguments",
+        "type": "object"
+      }
+    },
+    {
+      "name": "tariff_get_by_municipality",
+      "description": "Get ElCom tariff observations for a Swiss municipality (BFS-Nr). Returns total rate in Rp./kWh broken down by energy, grid usage, public charges (KEV, Abgaben). Filterable by category (e.g. C3 for schools) and year range. Example: bfs_nr=261 for Zuerich, category='C3', period_from=2019.",
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": true
+      },
+      "input_schema": {
+        "properties": {
+          "bfs_nr": {
+            "description": "BFS-Gemeindenummer (e.g. 261=Zuerich)",
+            "minimum": 1,
+            "title": "Bfs Nr",
+            "type": "integer"
+          },
+          "category": {
+            "anyOf": [
+              {
+                "maxLength": 4,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Verbrauchskategorie",
+            "title": "Category"
+          },
+          "period_from": {
+            "anyOf": [
+              {
+                "minimum": 2009,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Period From"
+          },
+          "period_to": {
+            "anyOf": [
+              {
+                "maximum": 2100,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Period To"
+          },
+          "limit": {
+            "default": 100,
+            "maximum": 500,
+            "minimum": 1,
+            "title": "Limit",
+            "type": "integer"
+          },
+          "response_format": {
+            "default": "markdown",
+            "enum": [
+              "json",
+              "markdown"
+            ],
+            "title": "Response Format",
+            "type": "string"
+          }
+        },
+        "required": [
+          "bfs_nr"
+        ],
+        "title": "tariff_get_by_municipalityArguments",
+        "type": "object"
+      }
+    },
+    {
+      "name": "tariff_get_median_canton",
+      "description": "Get cantonal median electricity tariff. Useful to position a municipality against its canton. Pass canton name in German (e.g. 'Zuerich', 'Bern').",
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": true
+      },
+      "input_schema": {
+        "properties": {
+          "canton": {
+            "description": "Canton name in German",
+            "maxLength": 40,
+            "minLength": 1,
+            "title": "Canton",
+            "type": "string"
+          },
+          "category": {
+            "anyOf": [
+              {
+                "maxLength": 4,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Category"
+          },
+          "period_from": {
+            "anyOf": [
+              {
+                "minimum": 2009,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Period From"
+          },
+          "period_to": {
+            "anyOf": [
+              {
+                "maximum": 2100,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Period To"
+          },
+          "limit": {
+            "default": 200,
+            "maximum": 500,
+            "minimum": 1,
+            "title": "Limit",
+            "type": "integer"
+          },
+          "response_format": {
+            "default": "markdown",
+            "enum": [
+              "json",
+              "markdown"
+            ],
+            "title": "Response Format",
+            "type": "string"
+          }
+        },
+        "required": [
+          "canton"
+        ],
+        "title": "tariff_get_median_cantonArguments",
+        "type": "object"
+      }
+    },
+    {
+      "name": "tariff_get_median_swiss",
+      "description": "Get Swiss median electricity tariff (across all distribution operators) by year and category. Useful as benchmark for individual municipality tariffs.",
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": true
+      },
+      "input_schema": {
+        "properties": {
+          "category": {
+            "anyOf": [
+              {
+                "maxLength": 4,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Category"
+          },
+          "period_from": {
+            "anyOf": [
+              {
+                "minimum": 2009,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Period From"
+          },
+          "period_to": {
+            "anyOf": [
+              {
+                "maximum": 2100,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Period To"
+          },
+          "limit": {
+            "default": 200,
+            "maximum": 500,
+            "minimum": 1,
+            "title": "Limit",
+            "type": "integer"
+          },
+          "response_format": {
+            "default": "markdown",
+            "enum": [
+              "json",
+              "markdown"
+            ],
+            "title": "Response Format",
+            "type": "string"
+          }
+        },
+        "title": "tariff_get_median_swissArguments",
+        "type": "object"
+      }
+    },
+    {
+      "name": "tariff_list_categories",
+      "description": "List the standard ElCom Verbrauchskategorien (H1-H8 households, C1-C7 commercial). Use C3 for typical school buildings (~150'000 kWh/year). Static data, no upstream call.",
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": false
+      },
+      "input_schema": {
+        "properties": {
+          "response_format": {
+            "default": "markdown",
+            "enum": [
+              "json",
+              "markdown"
+            ],
+            "title": "Response Format",
+            "type": "string"
+          }
+        },
+        "title": "tariff_list_categoriesArguments",
+        "type": "object"
+      }
+    }
+  ]
+}

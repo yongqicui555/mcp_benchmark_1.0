@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "json-handler": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/json_handler_server/json_tools",
+        "run",
+        "python",
+        "server.py"
+      ]
+    }
+  }
+}

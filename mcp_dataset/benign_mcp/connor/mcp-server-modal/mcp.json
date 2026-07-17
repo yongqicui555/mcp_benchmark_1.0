@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "mcp-server-modal": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/mcp-server-modal/src",
+        "run",
+        "modal-server"
+      ]
+    }
+  }
+}

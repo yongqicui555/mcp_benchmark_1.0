@@ -1,0 +1,75 @@
+{
+  "name": "@apitier/mcp-server",
+  "version": "1.2.0",
+  "mcpName": "io.github.apitier/mcp-server",
+  "description": "MCP server for UK KYC onboarding, address verification, business validation, EU/UK VAT compliance, and global identity checks",
+  "main": "dist/index.js",
+  "bin": {
+    "apitier-mcp-server": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/index.js",
+    "prepare": "npm run build",
+    "deploy:dev": "npm run build && npx serverless deploy --config serverless_dev.yml --stage dev",
+    "deploy:prod": "npm run build && npx serverless deploy --config serverless.yml"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "apitier",
+    "ai-agent",
+    "tools",
+    "validation",
+    "email-validation",
+    "phone-validation",
+    "vat-validation",
+    "uk-postcode",
+    "india-pincode",
+    "barcode",
+    "qrcode",
+    "data-conversion",
+    "uk-company",
+    "companies-house",
+    "kyc",
+    "sort-code",
+    "bank-validation",
+    "uk-address",
+    "uprn",
+    "kyc-onboarding",
+    "uk-kyc",
+    "business-verification",
+    "vat-compliance",
+    "eu-vat",
+    "beneficial-owner",
+    "psc",
+    "claude",
+    "anthropic"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/apitier/apitier-mcp-server.git"
+  },
+  "homepage": "https://apitier.com",
+  "bugs": {
+    "url": "https://github.com/apitier/apitier-mcp-server/issues"
+  },
+  "author": "APITier <support@apitier.com>",
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.4.0",
+    "serverless-domain-manager": "^10.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

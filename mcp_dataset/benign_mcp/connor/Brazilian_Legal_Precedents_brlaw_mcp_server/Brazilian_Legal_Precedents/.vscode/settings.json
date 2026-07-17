@@ -1,0 +1,23 @@
+{
+    "editor.formatOnSave": true,
+    "files.associations": {
+        "*.toml": "toml",
+        "*.py": "python",
+        "*.yaml": "yaml"
+    },
+    "[toml]": {
+        "editor.defaultFormatter": "tamasfe.even-better-toml",
+    },
+    "[yaml]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml",
+        "editor.codeActionsOnSave": {
+            "source.fixAll": "explicit",
+        }
+    },
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.codeActionsOnSave": {
+            "source.fixAll": "explicit",
+        }
+    },
+}

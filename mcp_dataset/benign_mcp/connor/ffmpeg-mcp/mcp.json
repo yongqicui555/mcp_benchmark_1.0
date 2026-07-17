@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "ffmpeg-mcp": {
+      "autoApprove": [],
+      "disabled": false,
+      "timeout": 60,
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/ffmpeg-mcp/FFmpeg-MCP/src",
+        "run",
+        "ffmpeg-mcp"
+      ],
+      "transportType": "stdio"
+    }
+  }
+}

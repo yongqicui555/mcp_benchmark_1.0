@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "world_bank": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/world_bank/World_Bank_Data",
+        "run",
+        "world_bank_mcp_server"
+      ]
+    }
+  }
+}

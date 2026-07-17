@@ -1,0 +1,182 @@
+[
+    {
+        "name": "get_bitcoin_price",
+        "description": "Gets current Bitcoin price in USD from CoinGecko API",
+        "parameters": {},
+        "file": "get_bitcoin_price.py",
+        "function": "get_bitcoin_price"
+    },
+    {
+        "name": "get_weather_forecast",
+        "description": "Retrieves weather forecast for a given ZIP code using NWS API",
+        "parameters": {
+            "zip_code": "string"
+        },
+        "file": "get_weather_forecast.py",
+        "function": "get_weather_forecast"
+    },
+    {
+        "name": "temperature_converter",
+        "description": "Convert temperatures between Celsius and Fahrenheit",
+        "parameters": {
+            "value": "string",
+            "from_unit": "string",
+            "to_unit": "string"
+        },
+        "file": "temperature_converter.py",
+        "function": "temperature_converter"
+    },
+    {
+        "name": "calculate_factorial",
+        "description": "Calculate the factorial of a given non-negative integer",
+        "parameters": {
+            "n": "string"
+        },
+        "file": "calculate_factorial.py",
+        "function": "calculate_factorial"
+    },
+    {
+        "name": "word_frequency_counter",
+        "description": "Read a text file and count word frequencies",
+        "parameters": {
+            "file_path": "string"
+        },
+        "file": "word_frequency_counter.py",
+        "function": "word_frequency_counter"
+    },
+    {
+        "name": "email_validator",
+        "description": "Validate email addresses against standard format rules",
+        "parameters": {
+            "email": "string",
+            "check_dns": "string"
+        },
+        "file": "email_validator.py",
+        "function": "email_validator"
+    },
+    {
+        "name": "password_generator",
+        "description": "Generate secure random passwords with specified length and character sets",
+        "parameters": {
+            "length": "string",
+            "include_uppercase": "string",
+            "include_lowercase": "string",
+            "include_digits": "string",
+            "include_symbols": "string",
+            "exclude_similar": "string",
+            "exclude_ambiguous": "string"
+        },
+        "file": "password_generator.py",
+        "function": "password_generator"
+    },
+    {
+        "name": "calculate_average",
+        "description": "Calculate the average (mean) of a list of numbers",
+        "parameters": {
+            "numbers": "string"
+        },
+        "file": "calculate_average.py",
+        "function": "calculate_average"
+    },
+    {
+        "name": "temperature_converter_enhanced",
+        "description": "Enhanced temperature converter with multiple units and better error handling",
+        "parameters": {
+            "value": "string",
+            "from_unit": "string",
+            "to_unit": "string"
+        },
+        "file": "temperature_converter_enhanced.py",
+        "function": "temperature_converter_enhanced"
+    },
+    {
+        "name": "word_frequency_analyzer",
+        "description": "Enhanced word frequency analyzer with text cleaning, stop word filtering, and detailed statistics",
+        "parameters": {
+            "file_path": "string",
+            "ignore_stopwords": "string",
+            "case_sensitive": "string",
+            "min_word_length": "string"
+        },
+        "file": "word_frequency_analyzer.py",
+        "function": "word_frequency_analyzer"
+    },
+    {
+        "name": "password_generator_enhanced",
+        "description": "Enhanced password generator with multiple character sets, strength analysis, and security features",
+        "parameters": {
+            "length": "string",
+            "include_uppercase": "string",
+            "include_lowercase": "string",
+            "include_digits": "string",
+            "include_symbols": "string",
+            "exclude_similar": "string",
+            "exclude_ambiguous": "string",
+            "custom_symbols": "string",
+            "num_passwords": "string",
+            "strength_analysis": "string"
+        },
+        "file": "password_generator_enhanced.py",
+        "function": "password_generator_enhanced"
+    },
+    {
+        "name": "temperature_converter_tool",
+        "description": "A Python tool to convert temperatures between Celsius, Fahrenheit, and Kelvin with proper error handling",
+        "parameters": {
+            "value": "string",
+            "from_unit": "string",
+            "to_unit": "string"
+        },
+        "file": "temperature_converter_tool.py",
+        "function": "temperature_converter_tool"
+    },
+    {
+        "name": "advanced_word_frequency_counter",
+        "description": "Advanced word frequency counter with text cleaning, stop word filtering, and detailed statistics",
+        "parameters": {
+            "file_path": "string",
+            "ignore_stopwords": "string",
+            "case_sensitive": "string",
+            "min_word_length": "string",
+            "top_n": "string"
+        },
+        "file": "advanced_word_frequency_counter.py",
+        "function": "advanced_word_frequency_counter"
+    },
+    {
+        "name": "sum_and_average_calculator",
+        "description": "Calculate both sum and average of a list of numbers with detailed statistics",
+        "parameters": {
+            "numbers_input": "string",
+            "precision": "string"
+        },
+        "file": "sum_and_average_calculator.py",
+        "function": "sum_and_average_calculator"
+    },
+    {
+        "name": "enhanced_email_validator",
+        "description": "Enhanced email validator with comprehensive format checking, disposable email detection, and domain validation",
+        "parameters": {
+            "email": "string",
+            "check_disposable": "string",
+            "check_common_domains": "string",
+            "suggest_corrections": "string"
+        },
+        "file": "enhanced_email_validator.py",
+        "function": "enhanced_email_validator"
+    },
+    {
+        "name": "data_report_generator",
+        "description": "Generate readable text reports from dictionary data with various formatting options",
+        "parameters": {
+            "data": "string",
+            "report_title": "string",
+            "format_type": "string",
+            "include_summary": "string",
+            "include_percentages": "string",
+            "sort_by_value": "string"
+        },
+        "file": "data_report_generator.py",
+        "function": "data_report_generator"
+    }
+]

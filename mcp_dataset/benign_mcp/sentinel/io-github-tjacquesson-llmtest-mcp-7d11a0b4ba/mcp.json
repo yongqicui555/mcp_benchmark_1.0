@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-tjacquesson-llmtest-mcp-7d11a0b4ba": {
+      "args": [
+        "/app/io-github-tjacquesson-llmtest-mcp-7d11a0b4ba/llmtest-mcp/bin.js"
+      ],
+      "command": "node"
+    }
+  }
+}

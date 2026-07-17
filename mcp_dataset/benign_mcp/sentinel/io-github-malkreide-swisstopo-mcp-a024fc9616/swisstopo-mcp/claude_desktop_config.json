@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "swisstopo": {
+      "command": "python",
+      "args": ["-m", "swisstopo_mcp.server"]
+    }
+  }
+}

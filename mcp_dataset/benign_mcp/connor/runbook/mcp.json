@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "runbook": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/runbook/runbook-mcp-server",
+        "run",
+        "runbook_server.py"
+      ]
+    }
+  }
+}

@@ -1,0 +1,37 @@
+[project]
+name = "asuswrt-mcp"
+version = "0.1.0"
+description = "Local MCP server for controlled AsusWRT and AsusWRT-Merlin router administration."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Codex" }]
+dependencies = [
+    "mcp>=1.27,<2",
+    "asusrouter>=1.21,<2",
+    "paramiko>=4,<5",
+    "pydantic-settings>=2.14,<3",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.24",
+]
+
+[project.scripts]
+asuswrt-mcp = "asuswrt_mcp.server:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+

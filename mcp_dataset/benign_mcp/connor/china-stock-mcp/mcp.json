@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "china-stock-mcp": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/china-stock-mcp/China_Stock/src",
+        "run",
+        "china-stock-mcp"
+      ]
+    }
+  }
+}

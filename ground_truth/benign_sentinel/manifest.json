@@ -1,0 +1,11 @@
+{
+  "admission_policy": "source_scan_only_no_confirmed_malicious_behavior",
+  "base": "benign_sentinel",
+  "benign_count": 210,
+  "count": 210,
+  "label_file": "ground_truth/benign_sentinel/labels.jsonl",
+  "malicious_count": 0,
+  "sample_root": "benign_mcp/sentinel",
+  "schema_version": 1,
+  "source": "sentinel"
+}

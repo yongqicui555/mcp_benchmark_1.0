@@ -1,0 +1,24 @@
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+*.egg-info/
+dist/
+build/
+.eggs/
+.idea/
+
+# Local Claude Code settings (contains project-specific permissions with personal IDs)
+.claude/settings.local.json
+
+# MCP registry auth tokens
+.mcpregistry_*
+
+# macOS resource forks
+._*
+
+# Windows reserved name phantom
+nul
+
+# Cygwin/MSYS crash dumps
+*.stackdump

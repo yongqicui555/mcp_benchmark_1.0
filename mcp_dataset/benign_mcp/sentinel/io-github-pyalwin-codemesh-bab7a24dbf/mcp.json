@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-pyalwin-codemesh-bab7a24dbf": {
+      "args": [
+        "/app/io-github-pyalwin-codemesh-bab7a24dbf/codemesh/dist/cli.js"
+      ],
+      "command": "node"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "mcp-github-trending": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/mcp-github-trending/mcp-github-trendin/src",
+        "run",
+        "mcp-github-trending"
+      ]
+    }
+  }
+}

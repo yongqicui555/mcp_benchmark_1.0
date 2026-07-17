@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "tecton": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/tecton/tecton-mcp",
+        "run",
+        "mcp",
+        "run",
+        "src/tecton_mcp/mcp_server/server.py"
+      ]
+    }
+  }
+}

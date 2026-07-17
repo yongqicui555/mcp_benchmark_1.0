@@ -1,0 +1,17 @@
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    properties:
+      MERIDIAN_EDGE_API_KEY:
+        type: string
+        description: "Free API key from meridianedge.io (100 calls/day, no credit card)"
+    required: []
+  commandFunction: |
+    (config) => ({
+      command: "uvx",
+      args: ["meridian-edge-mcp"],
+      env: config.MERIDIAN_EDGE_API_KEY ? {
+        MERIDIAN_EDGE_API_KEY: config.MERIDIAN_EDGE_API_KEY
+      } : {}
+    })

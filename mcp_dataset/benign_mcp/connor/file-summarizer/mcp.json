@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "file-summarizer": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/file-summarizer/File_Summarizer_MCP_Server/file_summarizer",
+        "run",
+        "file_summarizer.py"
+      ]
+    }
+  }
+}

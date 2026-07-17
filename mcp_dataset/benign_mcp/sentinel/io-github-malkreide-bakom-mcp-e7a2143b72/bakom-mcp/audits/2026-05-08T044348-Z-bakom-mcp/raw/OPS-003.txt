@@ -1,0 +1,14 @@
+=== read-only first / write tools ===
+412:        "readOnlyHint": True,
+494:        "readOnlyHint": True,
+559:        "readOnlyHint": True,
+689:        "readOnlyHint": True,
+763:        "readOnlyHint": True,
+895:        "readOnlyHint": True,
+1009:        "readOnlyHint": True,
+1137:        "readOnlyHint": True,
+1240:        "readOnlyHint": True,
+1395:        "readOnlyHint": True,
+1514:        "readOnlyHint": True,
+=== README phase mentions ===
+176:| **Access** | Read-only (`readOnlyHint: true`) — the server cannot modify or delete any data |

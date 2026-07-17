@@ -1,0 +1,25 @@
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    properties:
+      apiKey:
+        type: string
+        title: API Key
+        description: "Optional API key for authenticated access (bypasses x402 payment)"
+      apiBase:
+        type: string
+        title: API Base URL
+        default: "https://cryptorugmunch.app/api/agent/v1"
+        description: "Base URL for the Rug Munch Intelligence API"
+    required: []
+  commandFunction:
+    |-
+    (config) => ({
+      command: "python3",
+      args: ["-m", "rug_munch_mcp"],
+      env: {
+        RUG_MUNCH_API_BASE: config.apiBase || "https://cryptorugmunch.app/api/agent/v1",
+        RUG_MUNCH_API_KEY: config.apiKey || ""
+      }
+    })

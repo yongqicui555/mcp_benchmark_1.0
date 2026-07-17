@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "e_gonghun_mcp": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/e_gonghun_mcp/E-Gonghun_Korean_Military_Service_Records/src",
+        "run",
+        "gonghun-mcp"
+      ]
+    }
+  }
+}

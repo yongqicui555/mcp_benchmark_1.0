@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "tool-builder": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/tool-builder/WORK_IN_PROGRESS_-_USE_WITH_CAUTION_-_Windows",
+        "run",
+        "tool-builder"
+      ]
+    }
+  }
+}

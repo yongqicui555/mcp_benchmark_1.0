@@ -1,0 +1,56 @@
+2026-01-16 12:50:26,132 - gonghun-server - INFO - 로그 레벨이 INFO로 설정되었습니다.
+2026-01-16 12:50:26,132 - gonghun-server - INFO - 독립유공자 공훈록 MCP 서버를 시작합니다...
+2026-01-16 12:50:26,163 - mcp.server.lowlevel.server - INFO - Processing request of type ListResourcesRequest
+2026-01-16 12:50:26,166 - mcp.server.lowlevel.server - INFO - Processing request of type SubscribeRequest
+2026-01-16 12:50:26,167 - mcp.server.lowlevel.server - INFO - Processing request of type SubscribeRequest
+2026-01-16 12:50:26,168 - mcp.server.lowlevel.server - INFO - Processing request of type SubscribeRequest
+2026-01-16 12:50:26,169 - mcp.server.lowlevel.server - INFO - Processing request of type SubscribeRequest
+2026-01-16 13:19:06,361 - mcp.server.lowlevel.server - INFO - Processing request of type ListToolsRequest
+2026-01-16 13:19:06,365 - mcp.server.lowlevel.server - INFO - Processing request of type ListPromptsRequest
+2026-01-16 13:19:06,367 - mcp.server.lowlevel.server - INFO - Processing request of type ListResourcesRequest
+2026-01-16 13:20:18,830 - mcp.server.lowlevel.server - INFO - Processing request of type ListToolsRequest
+2026-01-16 13:20:18,833 - mcp.server.lowlevel.server - INFO - Processing request of type ListPromptsRequest
+2026-01-16 13:20:18,834 - mcp.server.lowlevel.server - INFO - Processing request of type ListResourcesRequest
+2026-01-16 13:23:26,033 - mcp.server.lowlevel.server - INFO - Processing request of type ListToolsRequest
+2026-01-16 13:23:26,037 - mcp.server.lowlevel.server - INFO - Processing request of type ListPromptsRequest
+2026-01-16 13:23:26,038 - mcp.server.lowlevel.server - INFO - Processing request of type ListResourcesRequest
+2026-01-16 13:24:22,325 - mcp.server.lowlevel.server - INFO - Processing request of type ListToolsRequest
+2026-01-16 13:24:22,582 - gonghun-server - INFO - 독립유공자 공훈록 MCP 서버를 종료합니다.
+2026-01-16 13:24:26,154 - gonghun-server - INFO - 로그 레벨이 INFO로 설정되었습니다.
+2026-01-16 13:24:26,156 - gonghun-server - INFO - 독립유공자 공훈록 MCP 서버를 시작합니다...
+2026-01-16 13:24:26,164 - mcp.server.lowlevel.server - INFO - Processing request of type ListResourcesRequest
+2026-01-16 13:24:26,167 - mcp.server.lowlevel.server - INFO - Processing request of type SubscribeRequest
+2026-01-16 13:24:26,169 - mcp.server.lowlevel.server - INFO - Processing request of type SubscribeRequest
+2026-01-16 13:24:26,170 - mcp.server.lowlevel.server - INFO - Processing request of type SubscribeRequest
+2026-01-16 13:24:26,171 - mcp.server.lowlevel.server - INFO - Processing request of type SubscribeRequest
+2026-01-16 13:24:32,109 - mcp.server.lowlevel.server - INFO - Processing request of type ListToolsRequest
+2026-01-16 13:24:32,111 - mcp.server.lowlevel.server - INFO - Processing request of type ListPromptsRequest
+2026-01-16 13:24:32,112 - mcp.server.lowlevel.server - INFO - Processing request of type ListResourcesRequest
+2026-01-16 13:24:32,877 - mcp.server.lowlevel.server - INFO - Processing request of type ListToolsRequest
+2026-01-16 13:24:32,880 - mcp.server.lowlevel.server - INFO - Processing request of type ListPromptsRequest
+2026-01-16 13:24:32,881 - mcp.server.lowlevel.server - INFO - Processing request of type ListResourcesRequest
+2026-01-16 13:24:42,334 - mcp.server.lowlevel.server - INFO - Processing request of type ListToolsRequest
+2026-01-16 13:24:42,337 - mcp.server.lowlevel.server - INFO - Processing request of type ListPromptsRequest
+2026-01-16 13:24:42,338 - mcp.server.lowlevel.server - INFO - Processing request of type ListResourcesRequest
+2026-01-16 13:24:52,460 - mcp.server.lowlevel.server - INFO - Processing request of type ListToolsRequest
+2026-01-16 13:24:52,463 - mcp.server.lowlevel.server - INFO - Processing request of type ListPromptsRequest
+2026-01-16 13:24:52,464 - mcp.server.lowlevel.server - INFO - Processing request of type ListResourcesRequest
+2026-01-16 13:24:53,109 - mcp.server.lowlevel.server - INFO - Processing request of type ListToolsRequest
+2026-01-16 13:24:53,113 - mcp.server.lowlevel.server - INFO - Processing request of type ListPromptsRequest
+2026-01-16 13:24:53,114 - mcp.server.lowlevel.server - INFO - Processing request of type ListResourcesRequest
+2026-01-16 13:26:47,221 - mcp.server.lowlevel.server - INFO - Processing request of type ListToolsRequest
+2026-01-16 13:26:47,423 - gonghun-server - INFO - 독립유공자 공훈록 MCP 서버를 종료합니다.
+2026-01-19 11:53:14,211 - gonghun-server - INFO - 로그 레벨이 INFO로 설정되었습니다.
+2026-01-19 11:53:14,212 - gonghun-server - INFO - 독립유공자 공훈록 MCP 서버를 시작합니다...
+2026-01-19 11:53:14,219 - mcp.server.lowlevel.server - INFO - Processing request of type ListPromptsRequest
+2026-01-19 11:53:14,224 - mcp.server.lowlevel.server - INFO - Processing request of type ListResourcesRequest
+2026-01-19 11:53:14,226 - mcp.server.lowlevel.server - INFO - Processing request of type ListResourceTemplatesRequest
+2026-01-19 11:53:14,227 - mcp.server.lowlevel.server - INFO - Processing request of type ListToolsRequest
+2026-01-19 11:53:14,230 - gonghun-server - INFO - 독립유공자 공훈록 MCP 서버를 종료합니다.
+2026-01-19 12:28:52,333 - gonghun-server - INFO - 로그 레벨이 INFO로 설정되었습니다.
+2026-01-19 12:28:52,335 - gonghun-server - INFO - 독립유공자 공훈록 MCP 서버를 시작합니다...
+2026-01-19 12:28:52,343 - mcp.server.lowlevel.server - INFO - Processing request of type ListPromptsRequest
+2026-01-19 12:28:52,345 - mcp.server.lowlevel.server - INFO - Processing request of type ListResourcesRequest
+2026-01-19 12:28:52,347 - mcp.server.lowlevel.server - INFO - Processing request of type ListResourceTemplatesRequest
+2026-01-19 12:28:52,347 - mcp.server.lowlevel.server - INFO - Processing request of type ListToolsRequest
+2026-01-19 12:28:52,350 - gonghun-server - INFO - 독립유공자 공훈록 MCP 서버를 종료합니다.

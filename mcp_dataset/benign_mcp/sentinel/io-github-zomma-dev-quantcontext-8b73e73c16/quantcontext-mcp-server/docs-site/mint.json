@@ -1,0 +1,87 @@
+{
+  "$schema": "https://mintlify.com/schema.json",
+  "name": "QuantContext",
+  "logo": {
+    "light": "/logo.png",
+    "dark": "/reverted.png"
+  },
+  "favicon": "/favicon.ico",
+  "colors": {
+    "primary": "#2563eb",
+    "light": "#3b82f6",
+    "dark": "#1d4ed8",
+    "background": {
+      "light": "#fafafa",
+      "dark": "#0f172a"
+    }
+  },
+  "theme": "venus",
+  "font": {
+    "headings": {
+      "family": "Instrument Serif"
+    },
+    "body": {
+      "family": "Inter",
+      "weight": 400
+    }
+  },
+  "css": "/custom.css",
+  "topbarCtaButton": {
+    "name": "Get started",
+    "url": "https://quantcontext.ai#install"
+  },
+  "topbarLinks": [
+    {
+      "name": "GitHub",
+      "url": "https://github.com/zomma-dev/quantcontext-mcp-server"
+    }
+  ],
+  "navigation": [
+    {
+      "group": "Get Started",
+      "pages": ["introduction", "quickstart"]
+    },
+    {
+      "group": "Tools",
+      "pages": [
+        "tools/screen-stocks",
+        "tools/backtest-strategy",
+        "tools/factor-analysis"
+      ]
+    },
+    {
+      "group": "Examples",
+      "pages": [
+        "examples/value-stocks",
+        "examples/momentum-strategy",
+        "examples/full-workflow"
+      ]
+    },
+    {
+      "group": "Reference",
+      "pages": ["architecture", "methodology"]
+    }
+  ],
+  "footerSocials": {
+    "github": "https://github.com/zomma-dev/quantcontext-mcp-server",
+    "x": "https://x.com/ZommaLabs"
+  },
+  "anchors": [
+    {
+      "name": "PyPI",
+      "icon": "python",
+      "url": "https://pypi.org/project/quantcontext-mcp/"
+    },
+    {
+      "name": "GitHub",
+      "icon": "github",
+      "url": "https://github.com/zomma-dev/quantcontext-mcp-server"
+    }
+  ],
+  "feedback": {
+    "thumbsRating": true
+  },
+  "search": {
+    "prompt": "Search QuantContext docs..."
+  }
+}

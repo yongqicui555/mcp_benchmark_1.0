@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "powerpoint-automation": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--directory",
+        "/app/powerpoint-automation/powerpoint-automation-mcp/src",
+        "mcp-ppt-server"
+      ]
+    }
+  }
+}

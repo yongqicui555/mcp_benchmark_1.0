@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "system-info": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/system_info_server/system_utils",
+        "run",
+        "python",
+        "server.py"
+      ]
+    }
+  }
+}

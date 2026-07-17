@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "ikb-mcp-server": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/ikb-mcp-server/InsightsLibrary",
+        "run",
+        "ikb_mcp_server.py"
+      ]
+    }
+  }
+}

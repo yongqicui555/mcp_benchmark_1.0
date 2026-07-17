@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "zh-education": {
+      "command": "python",
+      "args": ["-m", "zh_education_mcp.server"]
+    }
+  }
+}

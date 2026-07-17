@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "canvas-local-mcp"
+version = "0.1.1"
+description = "Local-first MCP server for Canvas LMS. Stdio transport, no third-party broker."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "AGENTE 404 S.L.", email = "admin@agente404.com" }]
+requires-python = ">=3.10"
+keywords = ["mcp", "canvas", "lms", "canvas-lms", "model-context-protocol", "education"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Education",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Education",
+]
+dependencies = [
+    "httpx>=0.27,<1.0",
+    "mcp>=1.0,<2.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/admin978/canvas-mcp"
+Repository = "https://github.com/admin978/canvas-mcp"
+Issues = "https://github.com/admin978/canvas-mcp/issues"
+
+[project.scripts]
+canvas-local-mcp = "canvas_local_mcp.server:main"
+canvas-local-mcp-dump = "canvas_local_mcp.dump:main"
+
+[tool.setuptools.packages.find]
+include = ["canvas_local_mcp*"]

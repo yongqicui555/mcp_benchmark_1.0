@@ -1,0 +1,136 @@
+# changelogai
+
+> AI-powered changelog generator from git history
+
+changelogai generates professional changelogs from git commit history. It parses conventional commits, groups them by type, and outputs markdown, JSON, or plain text. Optional AI mode uses Claude to rewrite technical commit messages into user-facing release notes.
+
+## Install
+
+npm install -g changelogai
+
+Requires Node.js >= 18.
+
+## CLI Usage
+
+Run inside a git repository:
+
+  changelogai                              Generate changelog since last tag
+  changelogai --group                      Group commits by type (Features, Bug Fixes, etc.)
+  changelogai --ai --group                 AI-enhanced descriptions (requires ANTHROPIC_API_KEY)
+  changelogai --format json                JSON output for CI/CD pipelines
+  changelogai --output CHANGELOG.md        Write to file
+  changelogai --prepend --output CHANGELOG.md   Prepend new release to existing file
+  changelogai --version-bump               Suggest next semver bump (major/minor/patch)
+  changelogai --from v1.0.0 --to v2.0.0   Specify commit range
+
+## CLI Options
+
+--from <ref>        Start ref (tag, commit, branch). Default: latest git tag
+--to <ref>          End ref. Default: HEAD
+--output <file>     Write output to file. Default: stdout
+--format <fmt>      Output format: markdown, json, plain. Default: markdown
+--group             Group commits by type (feat, fix, perf, refactor, docs, test, style, chore, ci, build, other)
+--ai                Use Claude API for intelligent summaries. Requires ANTHROPIC_API_KEY env var
+--model <model>     AI model to use. Default: claude-haiku-4-5-20251001
+--prepend           Prepend to existing file instead of overwriting
+--version-bump      Analyze changes and suggest major/minor/patch bump based on semver
+--repo <path>       Path to git repository. Default: current directory
+--max-commits <n>   Maximum commits to process. Default: 500
+--help              Show help
+--version           Show version
+
+## Output Formats
+
+markdown: Grouped or flat changelog with commit links, breaking changes section, scope labels.
+json: Structured object with range, commits array (hash, type, scope, breaking, subject, author, date), and optional suggestedBump.
+plain: One line per commit: date hash subject (author).
+
+## Commit Type Detection
+
+Parses conventional commits format: type(scope)!: description
+Also detects types from commit message keywords when conventional format is not used.
+
+Recognized types: feat, fix, docs, refactor, test, chore, style, perf, ci, build, other.
+Breaking changes detected from "!" marker or "BREAKING CHANGE" in message.
+
+## Version Bump Logic
+
+major: if any commit has a breaking change
+minor: if any commit is type "feat"
+patch: all other cases (fixes, maintenance, etc.)
+
+## AI Mode
+
+Set ANTHROPIC_API_KEY environment variable. Run with --ai flag.
+Uses Claude to rewrite commit messages into clear, user-facing descriptions.
+Processes up to 100 commits per AI call for token efficiency.
+Default model: claude-haiku-4-5-20251001 (fast, cost ~$0.001 per changelog).
+Override with --model flag.
+
+## MCP Server
+
+changelogai includes a Model Context Protocol (MCP) server for integration with AI agents, IDEs, and tools that support MCP (Claude Desktop, Claude Code, Cursor, VS Code, etc.).
+
+Binary: changelogai-mcp
+Protocol: JSON-RPC over stdio
+Protocol version: 2024-11-05
+
+### MCP Configuration
+
+Add to your MCP client config:
+
+{
+  "mcpServers": {
+    "changelogai": {
+      "command": "npx",
+      "args": ["-y", "-p", "changelogai", "changelogai-mcp"]
+    }
+  }
+}
+
+Or if installed globally:
+
+{
+  "mcpServers": {
+    "changelogai": {
+      "command": "changelogai-mcp"
+    }
+  }
+}
+
+### MCP Tools
+
+changelogai_generate
+  Generate a changelog from git history. Returns markdown, JSON, or plain text.
+  Parameters:
+    repo (string) - Path to git repository. Default: "."
+    from (string) - Start ref (tag/commit). Default: latest tag
+    to (string) - End ref. Default: "HEAD"
+    format (string) - "markdown", "json", or "plain". Default: "markdown"
+    group (boolean) - Group commits by type. Default: true
+    maxCommits (number) - Max commits to process. Default: 500
+
+changelogai_version_bump
+  Analyze git commits and suggest next semver bump (major/minor/patch).
+  Parameters:
+    repo (string) - Path to git repository. Default: "."
+    from (string) - Start ref (tag/commit). Default: latest tag
+    to (string) - End ref. Default: "HEAD"
+
+## Programmatic API
+
+const { generateChangelog, suggestVersionBump, getGitLog, getLatestTag, getTags, getRemoteUrl, parseConventionalCommit } = require("changelogai");
+
+generateChangelog(commits, options) - Generate changelog from commit array. Returns string.
+suggestVersionBump(commits) - Returns "major", "minor", or "patch".
+getGitLog(repoPath, fromRef, toRef, maxCommits) - Get parsed commits from git log.
+getLatestTag(repoPath) - Get latest semver tag or first commit hash.
+getTags(repoPath) - Get all tags sorted by version.
+getRemoteUrl(repoPath) - Get remote origin URL (normalized to https).
+parseConventionalCommit(subject) - Parse commit subject into type, scope, breaking, description.
+
+## Source
+
+Repository: https://github.com/ura-dev/changelogai
+License: MIT
+Author: ura <ura@nonwall.dev>

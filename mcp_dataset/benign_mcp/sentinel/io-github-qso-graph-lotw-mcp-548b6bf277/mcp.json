@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-qso-graph-lotw-mcp-548b6bf277": {
+      "args": [
+        "/app/io-github-qso-graph-lotw-mcp-548b6bf277/lotw-mcp/src/lotw_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

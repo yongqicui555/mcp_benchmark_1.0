@@ -1,0 +1,51 @@
+{
+  "name": "@maraventano/map",
+  "version": "1.0.4",
+  "mcpName": "io.github.maraventano/map",
+  "homepage": "https://www.lisa-maraventano.com/map",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "MAP (Maraventano Agent Protocol): a subtractive MCP server for agent commerce \u2014 read (find any merchant: decode any product URL into one CleanRead), pay (use the wallet you already have), and publish (be found: serve your own catalog). Teacher, not butler \u2014 it reads, explains, persists, and serves; it never signs, pays, or holds keys.",
+  "type": "module",
+  "main": "index.js",
+  "bin": {
+    "map": "index.js"
+  },
+  "files": [
+    "index.js",
+    "src",
+    "docs",
+    "README.md",
+    "LICENSE",
+    "server.json",
+    "manifest.json",
+    "smithery.yaml",
+    "glama.json"
+  ],
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js",
+    "smoke": "node test/smoke.mjs",
+    "smoke:publish": "node test/smoke-publish.mjs"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "agentic-commerce",
+    "x402",
+    "agent",
+    "merchant",
+    "shopping",
+    "decoder",
+    "agent-literacy"
+  ],
+  "author": "Lisa Maraventano, with Claude",
+  "license": "SEE LICENSE IN LICENSE",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  }
+}

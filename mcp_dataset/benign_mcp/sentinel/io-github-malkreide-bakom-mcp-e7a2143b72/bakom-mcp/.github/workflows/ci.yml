@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Python ${{ matrix.python-version }} einrichten
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: uv installieren
+        run: pip install uv
+
+      - name: Abhängigkeiten installieren
+        run: uv pip install -e ".[dev]" --system
+
+      - name: Linting mit ruff
+        run: ruff check src/
+
+      - name: Syntax-Prüfung
+        run: python -m py_compile src/bakom_mcp/server.py
+
+      - name: Import-Test
+        run: python -c "from bakom_mcp.server import mcp; print('Import OK')"
+
+      - name: Unit-Tests
+        run: pytest tests/ -m "not live"
+        env:
+          PYTHONPATH: src
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install ruff
+      - run: ruff check src/
+      - run: ruff format --check src/

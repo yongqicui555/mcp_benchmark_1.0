@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "git-helper": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/git_helper_server/git_tools",
+        "run",
+        "python",
+        "server.py"
+      ]
+    }
+  }
+}

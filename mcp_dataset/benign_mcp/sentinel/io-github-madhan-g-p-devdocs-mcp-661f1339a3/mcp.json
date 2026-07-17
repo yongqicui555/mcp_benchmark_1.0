@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-madhan-g-p-devdocs-mcp-661f1339a3": {
+      "args": [
+        "/app/io-github-madhan-g-p-devdocs-mcp-661f1339a3/DevDocs-MCP/dist/main.js"
+      ],
+      "command": "node"
+    }
+  }
+}

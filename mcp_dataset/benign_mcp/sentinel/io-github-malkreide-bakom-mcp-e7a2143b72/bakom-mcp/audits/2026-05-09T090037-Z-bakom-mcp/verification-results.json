@@ -1,0 +1,251 @@
+{
+  "audit_meta": {
+    "server_name": "bakom-mcp",
+    "audit_date": "2026-05-09",
+    "skill_version": "1.0.0",
+    "catalog_version": "v0.5.0",
+    "applies_when_dsl_version": "1.0",
+    "policy": "fail-or-partial",
+    "previous_run": "2026-05-09T045315-Z-bakom-mcp",
+    "phase4_prs": [
+      "#24 ARCH-012 + CH-004 + SEC-008",
+      "#25 OBS-003 + SDK-003",
+      "#26 ARCH-008",
+      "#27 ARCH-003 + CC-BY-Doppel-Footer-Hotfix"
+    ],
+    "accepted_risks": ["SEC-005 DNS-Pinning", "SDK-002 Pydantic-Output-Modelle"]
+  },
+  "results": {
+    "ARCH-001": {"status": "pass", "category": "ARCH", "severity": "medium", "evidence": ["11 Tools snake_case + bakom_-Praefix"], "gaps": []},
+    "ARCH-002": {"status": "pass", "category": "ARCH", "severity": "medium", "evidence": ["Use-Case-Docstrings + Annotations.title pro Tool"], "gaps": []},
+    "ARCH-003": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "medium",
+      "evidence": [
+        "bakom_sendeanlagen_suche: Empty-Result Heuristik schlaegt verdoppelten Radius vor (max 5000m), oder 'abgelegen'-Hinweis bei Maximum (PR #27)",
+        "bakom_rtv_suche: gezielte Filter-Lockerungen (kanton, media_type, query) als Empfehlung bei 0 Treffern",
+        "Hinweise erscheinen sowohl in JSON-output als output['hinweis'] als auch als '> **Hinweis:**'-Block im Markdown",
+        "4 TestNotFoundHeuristics Unit-Tests"
+      ],
+      "gaps": []
+    },
+    "ARCH-004": {"status": "pass", "category": "ARCH", "severity": "high", "evidence": ["Transport-agnostische Server-Logik"], "gaps": []},
+    "ARCH-005": {"status": "pass", "category": "ARCH", "severity": "critical", "evidence": [".gitignore mit Secrets-Block, .env.example, Gitleaks-CI (PR #13)"], "gaps": []},
+    "ARCH-006": {"status": "pass", "category": "ARCH", "severity": "high", "evidence": ["11 High-Level Use-Case-Tools"], "gaps": []},
+    "ARCH-007": {"status": "pass", "category": "ARCH", "severity": "medium", "evidence": ["Private Helper mit _-Praefix"], "gaps": []},
+    "ARCH-008": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "medium",
+      "evidence": [
+        "Tools: 11, Resources: 2, Prompts: 3 (PR #26)",
+        "schulhaus_konnektivitaet (Anchor-Demo), rtv_kanton_uebersicht, standort_konnektivitaet_vergleich",
+        "Alle drei MCP-Primitive jetzt genutzt",
+        "5 TestPromptTemplates Unit-Tests"
+      ],
+      "gaps": []
+    },
+    "ARCH-009": {"status": "pass", "category": "ARCH", "severity": "high", "evidence": ["11 Tools mit vollstaendigen Annotations"], "gaps": []},
+    "ARCH-011": {"status": "pass", "category": "ARCH", "severity": "medium", "evidence": ["src-Layout, tests/, README.md+README.de.md, CHANGELOG.md"], "gaps": []},
+    "ARCH-012": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "medium",
+      "evidence": [
+        "mcp[cli]>=1.10.0,<2.0 mit explizitem Upper-Bound (PR #24)",
+        "httpx<1.0, pydantic<3.0, dev-Tools auch gepinnt",
+        "Inline-Kommentar dokumentiert den 1.3 -> 1.10 Breaking-Change (von PR #15 aufgefangen)"
+      ],
+      "gaps": []
+    },
+    "CH-004": {
+      "status": "pass",
+      "category": "CH",
+      "severity": "medium",
+      "evidence": [
+        "ATTRIBUTION_FOOTER_MD Konstante mit CC BY 4.0 Lizenz-Link (PR #24)",
+        "11 Markdown-Outputs enden mit Quelle/Lizenz-Footer",
+        "README + README.de.md mit eigener 'Data Licence'/'Datenlizenz'-Sektion",
+        "Doppel-Footer-Regression aus initial PR #24 in PR #27 gefixt",
+        "Unit-Test test_markdown_output_includes_cc_by_attribution"
+      ],
+      "gaps": []
+    },
+    "OBS-001": {
+      "status": "pass",
+      "category": "OBS",
+      "severity": "high",
+      "evidence": [
+        "_raise_api_error -> ToolError (CallToolResult isError=True wire) (PR #22)",
+        "8 Tools migriert, multi_standort/aktuell als Sonderfall behalten",
+        "6 TestRaiseApiError Unit-Tests"
+      ],
+      "gaps": []
+    },
+    "OBS-002": {
+      "status": "pass",
+      "category": "OBS",
+      "severity": "high",
+      "evidence": [
+        "_handle_api_error generic-catch ohne {e}-Leak (PR #17)",
+        "Multi-Standort: Generic-String statt str(e)[:100]",
+        "logger.exception fuer Server-seitige Diagnose",
+        "5 TestErrorMasking Unit-Tests"
+      ],
+      "gaps": []
+    },
+    "OBS-003": {
+      "status": "pass",
+      "category": "OBS",
+      "severity": "medium",
+      "evidence": [
+        "_log_tool_call Decorator auf alle 11 Tools (PR #25)",
+        "tool_call_start (INFO), tool_call_ok (INFO mit duration_ms), tool_call_failed (WARNING mit error_class+duration)",
+        "functools.wraps erhaelt FastMCP-Introspection",
+        "logger.exception (OBS-002) + logger.warning (SEC-021 egress) + Decorator = 6 Logger-Calls in src/",
+        "2 TestToolCallLogging Unit-Tests"
+      ],
+      "gaps": []
+    },
+    "OBS-004": {
+      "status": "pass",
+      "category": "OBS",
+      "severity": "critical",
+      "evidence": [
+        "AST-Scan: 0 print()-Calls ohne file=-Kwarg (PR #14)",
+        "Alle 4 prints im --http-Pfad mit file=sys.stderr"
+      ],
+      "gaps": []
+    },
+    "OPS-001": {
+      "status": "pass",
+      "category": "OPS",
+      "severity": "high",
+      "evidence": [
+        "pytest markers + conftest.py auto-tagging (PR #20)",
+        "60 Unit-Tests in test_unit.py (vorher 0)",
+        "78 Live-Tests werden automatisch als @pytest.mark.live deselektiert",
+        "CI-Default 'pytest -m \"not live\"' laeuft <1s, ohne externe API-Calls"
+      ],
+      "gaps": []
+    },
+    "OPS-002": {"status": "pass", "category": "OPS", "severity": "medium", "evidence": ["Bilingualer README + ASCII-Tree + Limits + Docker-Sektion + Scope-Sektion"], "gaps": []},
+    "OPS-003": {"status": "pass", "category": "OPS", "severity": "high", "evidence": ["Alle Tools readOnly"], "gaps": []},
+    "SCALE-002": {
+      "status": "todo",
+      "category": "SCALE",
+      "severity": "high",
+      "evidence": ["is_cloud_deployed=false, HTTP-Modus mit eigenem uvicorn"],
+      "gaps": ["Mcp-Session-Id Sticky-LB nicht relevant fuer aktuelles Profil"]
+    },
+    "SDK-001": {
+      "status": "pass",
+      "category": "SDK",
+      "severity": "high",
+      "evidence": [
+        "FastMCP lifespan + AppContext + _shared_client (PR #18)",
+        "Ein httpx.AsyncClient fuer ganze Server-Lebenszeit",
+        "10 Tools nutzen shared client via ctx",
+        "3 TestLifespan Unit-Tests"
+      ],
+      "gaps": []
+    },
+    "SDK-002": {
+      "status": "pass",
+      "category": "SDK",
+      "severity": "medium",
+      "evidence": [
+        "accepted-risk dokumentiert in Tracker #8 (Comment 4412085247)",
+        "String-Outputs mit response_format-Toggle bleiben fuer den Use-Case angemessen",
+        "isError=True via OBS-001 (#22) deckt das Hauptbeduerfnis",
+        "Hochzustufen erst falls Multi-Tool-Pipelines oder Drittanbieter-Konsumenten"
+      ],
+      "gaps": []
+    },
+    "SDK-003": {
+      "status": "pass",
+      "category": "SDK",
+      "severity": "medium",
+      "evidence": [
+        "ctx.info beim Multi-Standort-Start (PR #25)",
+        "ctx.report_progress(index, total) pro Iteration (3 calls fuer 3 Locations)",
+        "ctx.report_progress(total, total) als 'fertig'-Signal",
+        "TestProgressReports Unit-Test"
+      ],
+      "gaps": []
+    },
+    "SDK-004": {
+      "status": "pass",
+      "category": "SDK",
+      "severity": "high",
+      "evidence": [
+        "Eigener uvicorn.run mit CORSMiddleware-Setup (PR #17)",
+        "BAKOM_MCP_CORS_ORIGINS opt-in, expose_headers=Mcp-Session-Id",
+        ".env.example dokumentiert"
+      ],
+      "gaps": []
+    },
+    "SEC-004": {"status": "pass", "category": "SEC", "severity": "critical", "evidence": ["HTTPS-only Konstanten + Pydantic-Bounds + Egress-Allowlist"], "gaps": []},
+    "SEC-005": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "high",
+      "evidence": [
+        "ALLOWED_EGRESS_HOSTS via httpx event_hook (PR #21) wirkt als Code-Layer-Schutz",
+        "DNS-Pinning explizit als accepted-risk dokumentiert (Tracker #8 comment 4411476485)",
+        "Bei kuenftigem User-controlled-Host oder Cloud-Deploy zu re-evaluieren"
+      ],
+      "gaps": []
+    },
+    "SEC-006": {"status": "pass", "category": "SEC", "severity": "high", "evidence": ["stdio-Default in mcp.run()"], "gaps": []},
+    "SEC-007": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "high",
+      "evidence": [
+        "Multi-Stage Dockerfile (slim-bullseye, non-root UID 10001) (PR #19)",
+        "docker-compose.yml: read_only, cap_drop, no-new-privileges, mem 256m",
+        ".dockerignore mit Secret-Patterns",
+        "docker.yml CI-Workflow: build, UID-Check, Live-Smoke",
+        "README + README.de.md mit Docker-Sektion"
+      ],
+      "gaps": []
+    },
+    "SEC-008": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "medium",
+      "evidence": [
+        "README.md 'Scope'-Sektion + 'What this server does (not)' (PR #24)",
+        "README.de.md analog 'Geltungsbereich'",
+        "Klare Auflistung der drei API-Quellen, Egress-Allowlist, fehlender Filesystem-Access etc."
+      ],
+      "gaps": []
+    },
+    "SEC-009": {
+      "status": "todo",
+      "category": "SEC",
+      "severity": "critical",
+      "evidence": ["FastMCP managed Mcp-Session-Id intern; auth_model=none — kein Cryptographic Binding noetig"],
+      "gaps": ["Bei kuenftigem auth_model-Upgrade zu pruefen"]
+    },
+    "SEC-013": {"status": "pass", "category": "SEC", "severity": "high", "evidence": ["auth_model=none, keine API-Keys"], "gaps": []},
+    "SEC-016": {"status": "pass", "category": "SEC", "severity": "critical", "evidence": ["BAKOM_MCP_HOST default 127.0.0.1, opt-in 0.0.0.0 mit stderr-Warnung (PR #15)"], "gaps": []},
+    "SEC-018": {"status": "pass", "category": "SEC", "severity": "high", "evidence": ["Pydantic-Field-Constraints + extra='forbid' + 13 TestInputValidation Tests"], "gaps": []},
+    "SEC-019": {"status": "pass", "category": "SEC", "severity": "critical", "evidence": ["Alle Tools readOnly"], "gaps": []},
+    "SEC-020": {"status": "pass", "category": "SEC", "severity": "critical", "evidence": ["Kein subprocess/eval/exec"], "gaps": []},
+    "SEC-021": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "high",
+      "evidence": [
+        "ALLOWED_EGRESS_HOSTS frozenset mit 6 Hosts (PR #21)",
+        "_enforce_egress_allowlist als httpx event_hook am Lifespan-Client",
+        "EgressNotAllowedError wird sauber durch Tool-Catch -> ToolError gefuehrt",
+        "5 TestEgressAllowlist Unit-Tests"
+      ],
+      "gaps": []
+    }
+  }
+}

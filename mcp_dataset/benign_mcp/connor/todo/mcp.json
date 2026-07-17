@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "todo": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--with",
+        "mcp[cli]",
+        "mcp",
+        "run",
+        "/app/todo/todo-mcp-server/server.py"
+      ]
+    }
+  }
+}

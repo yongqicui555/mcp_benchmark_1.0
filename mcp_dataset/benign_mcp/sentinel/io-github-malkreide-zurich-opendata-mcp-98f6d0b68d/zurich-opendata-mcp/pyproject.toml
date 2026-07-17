@@ -1,0 +1,86 @@
+[build-system]
+requires      = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name        = "zurich-opendata-mcp"
+version     = "0.5.0"
+description = "MCP Server for City of Zurich Open Data — 23 tools for CKAN, geodata, parliament, council resolutions, tourism, and real-time data across 6 APIs"
+readme      = "README.md"
+license     = { file = "LICENSE" }
+requires-python = ">=3.11"
+
+keywords = [
+    "mcp", "model-context-protocol", "open-data", "zurich",
+    "ckan", "stadt-zuerich", "geodata", "wfs", "sparql",
+    "linked-data", "smart-city",
+]
+
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: GIS",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+]
+
+dependencies = [
+    "mcp[cli]>=1.27.1",
+    "httpx>=0.28.1",
+    "pydantic>=2.13.4",
+    "uvicorn>=0.46.0",
+    "sqlparse>=0.5.5",
+    "defusedxml>=0.7.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=9.0.3",
+    "pytest-asyncio>=1.3.0",
+    "pytest-cov>=7.1.0",
+    "respx>=0.23.1",
+    "ruff>=0.15.12",
+    "mypy>=1.18.2",
+]
+
+[project.scripts]
+zurich-opendata-mcp = "zurich_opendata_mcp.server:main"
+
+[project.urls]
+Homepage   = "https://github.com/malkreide/zurich-opendata-mcp"
+Repository = "https://github.com/malkreide/zurich-opendata-mcp"
+Issues     = "https://github.com/malkreide/zurich-opendata-mcp/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/zurich_opendata_mcp"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths    = ["tests"]
+# Coverage gate (audit M-7): freeze the current floor and ratchet it upward
+# as `respx` round-trip coverage grows. Measured on the non-live suite, so it
+# excludes the `live`-marked API tests.
+addopts      = "-v --tb=short -m 'not live' --cov=zurich_opendata_mcp --cov-report=term-missing --cov-fail-under=100"
+markers      = [
+    "live: live API tests (skipped in CI by default)",
+]
+
+[tool.mypy]
+python_version       = "3.11"
+files                = ["src", "tests"]
+ignore_missing_imports = true
+# Non-strict gate over the whole surface (no per-module exemptions).
+# Tighten (disallow_untyped_defs, strict, …) in a follow-up.
+
+[tool.ruff]
+line-length    = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP"]
+ignore = ["E501"]

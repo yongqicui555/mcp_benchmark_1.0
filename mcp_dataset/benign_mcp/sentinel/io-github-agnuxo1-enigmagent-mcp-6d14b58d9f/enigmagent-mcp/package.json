@@ -1,0 +1,57 @@
+{
+  "name": "enigmagent-mcp",
+  "version": "1.0.5",
+  "mcpName": "io.github.Agnuxo1/enigmagent-mcp",
+  "private": false,
+  "files": [
+    "index.js",
+    "vault-core.js",
+    "README.md"
+  ],
+  "description": "Local encrypted vault MCP server. AES-256-GCM + Argon2id. Resolves {{PLACEHOLDER}} secrets at runtime so LLMs never see real API keys. Works with Claude Desktop, Cursor, Continue.dev, Cline, Open WebUI.",
+  "type": "module",
+  "bin": {
+    "enigmagent-mcp": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "start:rest": "node index.js --mode rest --port 3737",
+    "start:mcp": "node index.js --mode mcp"
+  },
+  "dependencies": {
+    "@noble/hashes": "1.4.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "ai-agents",
+    "llm",
+    "claude-desktop",
+    "cursor",
+    "vault",
+    "secrets",
+    "secrets-management",
+    "credentials",
+    "encryption",
+    "aes-256-gcm",
+    "argon2id",
+    "security",
+    "enigmagent",
+    "openclaw",
+    "p2pclaw"
+  ],
+  "author": "Francisco Angulo de Lafuente <agnuxo1@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/Agnuxo1/EnigmAgent#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Agnuxo1/enigmagent-mcp"
+  },
+  "bugs": {
+    "url": "https://github.com/Agnuxo1/enigmagent-mcp/issues"
+  }
+}

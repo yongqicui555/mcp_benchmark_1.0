@@ -1,0 +1,18 @@
+# Render.com Blueprint — bag-epl-mcp (Streamable HTTP)
+# Docs: https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: bag-epl-mcp
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: starter            # SCALE-006: definiert Memory/CPU-Limit (kein Default)
+    healthCheckPath: /healthz
+    autoDeploy: false
+    envVars:
+      - key: MCP_TRANSPORT
+        value: streamable-http
+      - key: MCP_HOST
+        value: 0.0.0.0       # SEC-016: nur im Container auf 0.0.0.0 binden
+      # MCP_PORT faellt automatisch auf Renders $PORT zurueck (AliasChoices).
+      - key: MCP_CORS_ORIGINS
+        value: '["https://claude.ai"]'

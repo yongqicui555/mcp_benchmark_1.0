@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "nortal_coding_standards": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--with",
+        "mcp[cli]",
+        "mcp",
+        "run",
+        "/app/nortal_coding_standards/coding-standards-mcp/server.py"
+      ]
+    }
+  }
+}

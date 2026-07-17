@@ -1,0 +1,85 @@
+{
+  "note": "Fictional sample data used to demonstrate the kind of operational summary OpsConduit can produce after a customer connects their own Jobber account.",
+  "currency": "USD",
+  "estimates": [
+    {
+      "id": "est_1001",
+      "client": "Blue Spruce HOA",
+      "title": "Spring cleanup",
+      "status": "sent",
+      "value": 4200,
+      "sentDaysAgo": 12,
+      "lastActivityDaysAgo": 8
+    },
+    {
+      "id": "est_1002",
+      "client": "Northline Books",
+      "title": "Backflow repair",
+      "status": "draft",
+      "value": 780,
+      "sentDaysAgo": null,
+      "lastActivityDaysAgo": 5
+    },
+    {
+      "id": "est_1003",
+      "client": "Mason Dental",
+      "title": "Irrigation controller upgrade",
+      "status": "sent",
+      "value": 1350,
+      "sentDaysAgo": 3,
+      "lastActivityDaysAgo": 3
+    }
+  ],
+  "invoices": [
+    {
+      "id": "inv_2001",
+      "client": "Harbor View Market",
+      "title": "Emergency service call",
+      "status": "overdue",
+      "balance": 640,
+      "dueDaysAgo": 18
+    },
+    {
+      "id": "inv_2002",
+      "client": "Mason Dental",
+      "title": "Monthly maintenance",
+      "status": "open",
+      "balance": 390,
+      "dueDaysAgo": -6
+    },
+    {
+      "id": "inv_2003",
+      "client": "Blue Spruce HOA",
+      "title": "Winterization closeout",
+      "status": "overdue",
+      "balance": 1250,
+      "dueDaysAgo": 4
+    }
+  ],
+  "jobs": [
+    {
+      "id": "job_3001",
+      "client": "Northline Books",
+      "title": "Backflow repair",
+      "status": "unscheduled",
+      "daysSinceLastVisit": null,
+      "nextVisitDays": null
+    },
+    {
+      "id": "job_3002",
+      "client": "Harbor View Market",
+      "title": "Filter replacement",
+      "status": "active",
+      "daysSinceLastVisit": 21,
+      "nextVisitDays": 9
+    },
+    {
+      "id": "job_3003",
+      "client": "Mason Dental",
+      "title": "Controller upgrade",
+      "status": "scheduled",
+      "daysSinceLastVisit": 2,
+      "nextVisitDays": 1
+    }
+  ]
+}

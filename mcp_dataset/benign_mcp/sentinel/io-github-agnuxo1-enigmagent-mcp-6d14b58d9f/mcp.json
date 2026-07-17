@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-agnuxo1-enigmagent-mcp-6d14b58d9f": {
+      "args": [
+        "/app/io-github-agnuxo1-enigmagent-mcp-6d14b58d9f/enigmagent-mcp/index.js"
+      ],
+      "command": "node"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "title": "Toolstem Financial Data",
+  "description": "Curated financial data MCP for AI agents — 3 tools: stock snapshot, deep company metrics, side-by-side company comparison. Pre-computed signals (UNDERVALUED, STRONG, ACCELERATING), DCF valuations, and CAGRs ready for agent prompts.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "tool": {
+      "title": "Tool",
+      "type": "string",
+      "description": "Which tool to run. If omitted, the actor runs a default demonstration (get_stock_snapshot for AAPL) so first-time evaluators see real output. Real usage should always specify a tool.",
+      "enum": ["get_stock_snapshot", "get_company_metrics", "compare_companies"],
+      "default": "get_stock_snapshot",
+      "editor": "select"
+    },
+    "symbol": {
+      "title": "Stock Symbol",
+      "type": "string",
+      "description": "Stock ticker symbol for get_stock_snapshot and get_company_metrics (e.g., AAPL, MSFT, TSLA)",
+      "editor": "textfield",
+      "prefill": "AAPL"
+    },
+    "period": {
+      "title": "Period",
+      "type": "string",
+      "description": "Reporting period (for get_company_metrics only)",
+      "enum": ["annual", "quarter"],
+      "default": "annual",
+      "editor": "select"
+    },
+    "symbols": {
+      "title": "Symbols to Compare",
+      "type": "array",
+      "description": "2-5 stock ticker symbols for compare_companies (e.g., [\"AAPL\", \"MSFT\", \"GOOGL\"])",
+      "editor": "stringList",
+      "items": { "type": "string" }
+    }
+  },
+  "required": []
+}

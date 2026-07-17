@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-arpe-io-migratorxpress-mcp-4797a637a4": {
+      "args": [
+        "/app/io-github-arpe-io-migratorxpress-mcp-4797a637a4/migratorxpress-mcp/src/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

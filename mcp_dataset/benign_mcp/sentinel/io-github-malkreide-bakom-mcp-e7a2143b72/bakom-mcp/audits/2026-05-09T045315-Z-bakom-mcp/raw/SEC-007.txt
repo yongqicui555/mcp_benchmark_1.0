@@ -1,0 +1,13 @@
+=== Dockerfile ===
+.dockerignore
+Dockerfile
+docker-compose.yml
+=== non-root user ===
+    useradd --system --uid 10001 --gid bakom --no-create-home --shell /sbin/nologin bakom
+USER bakom
+=== sandbox compose ===
+    read_only: true
+    cap_drop: [ALL]
+      - no-new-privileges:true
+=== docker CI workflow ===
+.github/workflows/docker.yml

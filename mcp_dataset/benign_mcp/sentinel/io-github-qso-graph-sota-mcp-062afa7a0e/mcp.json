@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-qso-graph-sota-mcp-062afa7a0e": {
+      "args": [
+        "/app/io-github-qso-graph-sota-mcp-062afa7a0e/sota-mcp/src/sota_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

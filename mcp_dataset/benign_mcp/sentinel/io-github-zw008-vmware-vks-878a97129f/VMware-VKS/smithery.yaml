@@ -1,0 +1,15 @@
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    properties:
+      config_path:
+        type: string
+        description: "Path to vmware-vks config.yaml (default: ~/.vmware-vks/config.yaml)"
+    required: []
+  commandFunction: |
+    (config) => ({
+      command: "python",
+      args: ["-m", "mcp_server"],
+      env: config.config_path ? { VMWARE_VKS_CONFIG: config.config_path } : {}
+    })

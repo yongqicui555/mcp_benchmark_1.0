@@ -1,0 +1,22 @@
+# 原始规则
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+.venv/
+*.log
+.env
+.idea/
+*.iml
+modules.xml
+test.py
+.query_db.py
+.python-version
+library_pages/
+library_files/
+
+# 补充虚拟环境别名（可选）
+venv/
+env/

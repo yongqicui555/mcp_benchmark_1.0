@@ -1,0 +1,14 @@
+{
+    "mcpServers": {
+        "photographi": {
+            "command": "/path/to/project/venv/bin/python",
+            "args": [
+                "-m",
+                "server"
+            ],
+            "env": {
+                "PYTHONPATH": "/path/to/project"
+            }
+        }
+    }
+}

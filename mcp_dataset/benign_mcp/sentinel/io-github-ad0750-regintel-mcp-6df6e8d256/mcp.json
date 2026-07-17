@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-ad0750-regintel-mcp-6df6e8d256": {
+      "args": [
+        "/app/io-github-ad0750-regintel-mcp-6df6e8d256/regintel-mcp/src/regintel_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

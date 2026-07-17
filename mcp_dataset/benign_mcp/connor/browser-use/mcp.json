@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "browser-use": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/browser-use/Browser_Automation",
+        "run",
+        "browser-use.py"
+      ]
+    }
+  }
+}

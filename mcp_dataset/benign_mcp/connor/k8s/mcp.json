@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "k8s": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/k8s/mcp-server-k8s",
+        "run",
+        "main.py"
+      ]
+    }
+  }
+}

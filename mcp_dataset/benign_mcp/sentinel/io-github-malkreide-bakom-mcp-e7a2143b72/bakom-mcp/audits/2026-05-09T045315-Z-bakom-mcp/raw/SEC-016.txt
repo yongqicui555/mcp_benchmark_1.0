@@ -1,0 +1,10 @@
+=== host config ===
+70:    host = request.url.host
+1858:        host = os.environ.get("BAKOM_MCP_HOST", "127.0.0.1")
+1863:        if host == "0.0.0.0":  # noqa: S104
+1892:        uvicorn.run(app, host=host, port=port, log_level="info")
+=== warning on 0.0.0.0 ===
+
+        if host == "0.0.0.0":  # noqa: S104
+            print(
+                "WARNUNG: Server bindet auf 0.0.0.0 (alle Interfaces). "

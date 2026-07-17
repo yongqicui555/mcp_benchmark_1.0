@@ -1,0 +1,882 @@
+{
+  "info": {
+    "name": "APITier MCP Server",
+    "description": "Model Context Protocol (MCP) server at mcp.apitier.com. Exposes all APITier tools over Streamable HTTP (stateless, JSON response mode). All requests: POST /mcp?x-api-key=YOUR_KEY with JSON-RPC 2.0 body.",
+    "_postman_id": "apitier-mcp-server-v1",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "mcp_base_url",
+      "value": "https://mcp.apitier.com",
+      "type": "string"
+    },
+    {
+      "key": "mcp_api_key",
+      "value": "YOUR_KEY",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "GET /health",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{mcp_base_url}}/health",
+              "host": [
+                "{{mcp_base_url}}"
+              ],
+              "path": [
+                "health"
+              ]
+            },
+            "header": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "MCP Protocol",
+      "item": [
+        {
+          "name": "initialize \u2014 handshake",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json, text/event-stream"
+              }
+            ],
+            "url": {
+              "raw": "{{mcp_base_url}}/mcp?x-api-key={{mcp_api_key}}",
+              "host": [
+                "{{mcp_base_url}}"
+              ],
+              "path": [
+                "mcp"
+              ],
+              "query": [
+                {
+                  "key": "x-api-key",
+                  "value": "{{mcp_api_key}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"initialize\",\n  \"params\": {\n    \"protocolVersion\": \"2025-03-26\",\n    \"capabilities\": {},\n    \"clientInfo\": {\n      \"name\": \"postman\",\n      \"version\": \"1.0.0\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "tools/list \u2014 list available tools",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json, text/event-stream"
+              }
+            ],
+            "url": {
+              "raw": "{{mcp_base_url}}/mcp?x-api-key={{mcp_api_key}}",
+              "host": [
+                "{{mcp_base_url}}"
+              ],
+              "path": [
+                "mcp"
+              ],
+              "query": [
+                {
+                  "key": "x-api-key",
+                  "value": "{{mcp_api_key}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"tools/list\",\n  \"params\": {}\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Validation Tools",
+      "item": [
+        {
+          "name": "validate_email",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json, text/event-stream"
+              }
+            ],
+            "url": {
+              "raw": "{{mcp_base_url}}/mcp?x-api-key={{mcp_api_key}}",
+              "host": [
+                "{{mcp_base_url}}"
+              ],
+              "path": [
+                "mcp"
+              ],
+              "query": [
+                {
+                  "key": "x-api-key",
+                  "value": "{{mcp_api_key}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"tools/call\",\n  \"params\": {\n    \"name\": \"validate_email\",\n    \"arguments\": {\n      \"email\": \"support@apitier.com\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "validate_phone",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json, text/event-stream"
+              }
+            ],
+            "url": {
+              "raw": "{{mcp_base_url}}/mcp?x-api-key={{mcp_api_key}}",
+              "host": [
+                "{{mcp_base_url}}"
+              ],
+              "path": [
+                "mcp"
+              ],
+              "query": [
+                {
+                  "key": "x-api-key",
+                  "value": "{{mcp_api_key}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"tools/call\",\n  \"params\": {\n    \"name\": \"validate_phone\",\n    \"arguments\": {\n      \"phone\": \"+447911123456\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "validate_vat",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json, text/event-stream"
+              }
+            ],
+            "url": {
+              "raw": "{{mcp_base_url}}/mcp?x-api-key={{mcp_api_key}}",
+              "host": [
+                "{{mcp_base_url}}"
+              ],
+              "path": [
+                "mcp"
+              ],
+              "query": [
+                {
+                  "key": "x-api-key",
+                  "value": "{{mcp_api_key}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"tools/call\",\n  \"params\": {\n    \"name\": \"validate_vat\",\n    \"arguments\": {\n      \"vatNumber\": \"GB927065390\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "validate_sort_code \u2014 sort code only",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json, text/event-stream"
+              }
+            ],
+            "url": {
+              "raw": "{{mcp_base_url}}/mcp?x-api-key={{mcp_api_key}}",
+              "host": [
+                "{{mcp_base_url}}"
+              ],
+              "path": [
+                "mcp"
+              ],
+              "query": [
+                {
+                  "key": "x-api-key",
+                  "value": "{{mcp_api_key}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"tools/call\",\n  \"params\": {\n    \"name\": \"validate_sort_code\",\n    \"arguments\": {\n      \"sortCode\": \"60-16-13\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "validate_sort_code \u2014 with account number (modulus check)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json, text/event-stream"
+              }
+            ],
+            "url": {
+              "raw": "{{mcp_base_url}}/mcp?x-api-key={{mcp_api_key}}",
+              "host": [
+                "{{mcp_base_url}}"
+              ],
+              "path": [
+                "mcp"
+              ],
+              "query": [
+                {
+                  "key": "x-api-key",
+                  "value": "{{mcp_api_key}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"tools/call\",\n  \"params\": {\n    \"name\": \"validate_sort_code\",\n    \"arguments\": {\n      \"sortCode\": \"60-16-13\",\n      \"accountNumber\": \"31926819\"\n    }\n  }\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "UK Address & Postcode",
+      "item": [
+        {
+          "name": "lookup_uk_postcode",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json, text/event-stream"
+              }
+            ],
+            "url": {
+              "raw": "{{mcp_base_url}}/mcp?x-api-key={{mcp_api_key}}",
+              "host": [
+                "{{mcp_base_url}}"
+              ],
+              "path": [
+                "mcp"
+              ],
+              "query": [
+                {
+                  "key": "x-api-key",
+                  "value": "{{mcp_api_key}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"tools/call\",\n  \"params\": {\n    \"name\": \"lookup_uk_postcode\",\n    \"arguments\": {\n      \"postcode\": \"SW1A 2AA\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "verify_uk_address \u2014 by postcode",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json, text/event-stream"
+              }
+            ],
+            "url": {
+              "raw": "{{mcp_base_url}}/mcp?x-api-key={{mcp_api_key}}",
+              "host": [
+                "{{mcp_base_url}}"
+              ],
+              "path": [
+                "mcp"
+              ],
+              "query": [
+                {
+                  "key": "x-api-key",
+                  "value": "{{mcp_api_key}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"tools/call\",\n  \"params\": {\n    \"name\": \"verify_uk_address\",\n    \"arguments\": {\n      \"postcode\": \"SW1A 2AA\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "verify_uk_address \u2014 postcode + query",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json, text/event-stream"
+              }
+            ],
+            "url": {
+              "raw": "{{mcp_base_url}}/mcp?x-api-key={{mcp_api_key}}",
+              "host": [
+                "{{mcp_base_url}}"
+              ],
+              "path": [
+                "mcp"
+              ],
+              "query": [
+                {
+                  "key": "x-api-key",
+                  "value": "{{mcp_api_key}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"tools/call\",\n  \"params\": {\n    \"name\": \"verify_uk_address\",\n    \"arguments\": {\n      \"postcode\": \"SW1A 2AA\",\n      \"query\": \"10 Downing Street\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "lookup_uprn \u2014 by UDPRN",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json, text/event-stream"
+              }
+            ],
+            "url": {
+              "raw": "{{mcp_base_url}}/mcp?x-api-key={{mcp_api_key}}",
+              "host": [
+                "{{mcp_base_url}}"
+              ],
+              "path": [
+                "mcp"
+              ],
+              "query": [
+                {
+                  "key": "x-api-key",
+                  "value": "{{mcp_api_key}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"tools/call\",\n  \"params\": {\n    \"name\": \"lookup_uprn\",\n    \"arguments\": {\n      \"udprn\": \"52179358\"\n    }\n  }\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "UK Company (Companies House)",
+      "item": [
+        {
+          "name": "verify_uk_company \u2014 by number",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json, text/event-stream"
+              }
+            ],
+            "url": {
+              "raw": "{{mcp_base_url}}/mcp?x-api-key={{mcp_api_key}}",
+              "host": [
+                "{{mcp_base_url}}"
+              ],
+              "path": [
+                "mcp"
+              ],
+              "query": [
+                {
+                  "key": "x-api-key",
+                  "value": "{{mcp_api_key}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"tools/call\",\n  \"params\": {\n    \"name\": \"verify_uk_company\",\n    \"arguments\": {\n      \"q\": \"03977902\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "verify_uk_company \u2014 by name",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json, text/event-stream"
+              }
+            ],
+            "url": {
+              "raw": "{{mcp_base_url}}/mcp?x-api-key={{mcp_api_key}}",
+              "host": [
+                "{{mcp_base_url}}"
+              ],
+              "path": [
+                "mcp"
+              ],
+              "query": [
+                {
+                  "key": "x-api-key",
+                  "value": "{{mcp_api_key}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"tools/call\",\n  \"params\": {\n    \"name\": \"verify_uk_company\",\n    \"arguments\": {\n      \"q\": \"Google UK Limited\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "get_company_psc",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json, text/event-stream"
+              }
+            ],
+            "url": {
+              "raw": "{{mcp_base_url}}/mcp?x-api-key={{mcp_api_key}}",
+              "host": [
+                "{{mcp_base_url}}"
+              ],
+              "path": [
+                "mcp"
+              ],
+              "query": [
+                {
+                  "key": "x-api-key",
+                  "value": "{{mcp_api_key}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"tools/call\",\n  \"params\": {\n    \"name\": \"get_company_psc\",\n    \"arguments\": {\n      \"company_number\": \"03977902\"\n    }\n  }\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "India Pincode",
+      "item": [
+        {
+          "name": "lookup_india_pincode",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json, text/event-stream"
+              }
+            ],
+            "url": {
+              "raw": "{{mcp_base_url}}/mcp?x-api-key={{mcp_api_key}}",
+              "host": [
+                "{{mcp_base_url}}"
+              ],
+              "path": [
+                "mcp"
+              ],
+              "query": [
+                {
+                  "key": "x-api-key",
+                  "value": "{{mcp_api_key}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"tools/call\",\n  \"params\": {\n    \"name\": \"lookup_india_pincode\",\n    \"arguments\": {\n      \"pincode\": \"110001\"\n    }\n  }\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Barcode & QR Code",
+      "item": [
+        {
+          "name": "generate_barcode \u2014 Code128",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json, text/event-stream"
+              }
+            ],
+            "url": {
+              "raw": "{{mcp_base_url}}/mcp?x-api-key={{mcp_api_key}}",
+              "host": [
+                "{{mcp_base_url}}"
+              ],
+              "path": [
+                "mcp"
+              ],
+              "query": [
+                {
+                  "key": "x-api-key",
+                  "value": "{{mcp_api_key}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"tools/call\",\n  \"params\": {\n    \"name\": \"generate_barcode\",\n    \"arguments\": {\n      \"text\": \"APITIER-12345\",\n      \"format\": \"Code128\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "generate_barcode \u2014 EAN-13",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json, text/event-stream"
+              }
+            ],
+            "url": {
+              "raw": "{{mcp_base_url}}/mcp?x-api-key={{mcp_api_key}}",
+              "host": [
+                "{{mcp_base_url}}"
+              ],
+              "path": [
+                "mcp"
+              ],
+              "query": [
+                {
+                  "key": "x-api-key",
+                  "value": "{{mcp_api_key}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"tools/call\",\n  \"params\": {\n    \"name\": \"generate_barcode\",\n    \"arguments\": {\n      \"text\": \"5901234123457\",\n      \"format\": \"EAN13\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "generate_qrcode \u2014 URL",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json, text/event-stream"
+              }
+            ],
+            "url": {
+              "raw": "{{mcp_base_url}}/mcp?x-api-key={{mcp_api_key}}",
+              "host": [
+                "{{mcp_base_url}}"
+              ],
+              "path": [
+                "mcp"
+              ],
+              "query": [
+                {
+                  "key": "x-api-key",
+                  "value": "{{mcp_api_key}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"tools/call\",\n  \"params\": {\n    \"name\": \"generate_qrcode\",\n    \"arguments\": {\n      \"data\": \"https://apitier.com\"\n    }\n  }\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Data Conversion",
+      "item": [
+        {
+          "name": "convert_data \u2014 CSV to JSON",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json, text/event-stream"
+              }
+            ],
+            "url": {
+              "raw": "{{mcp_base_url}}/mcp?x-api-key={{mcp_api_key}}",
+              "host": [
+                "{{mcp_base_url}}"
+              ],
+              "path": [
+                "mcp"
+              ],
+              "query": [
+                {
+                  "key": "x-api-key",
+                  "value": "{{mcp_api_key}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"tools/call\",\n  \"params\": {\n    \"name\": \"convert_data\",\n    \"arguments\": {\n      \"data\": \"name,email\\nAlice,alice@example.com\\nBob,bob@example.com\",\n      \"from\": \"csv\",\n      \"to\": \"json\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "convert_data \u2014 JSON to XML",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json, text/event-stream"
+              }
+            ],
+            "url": {
+              "raw": "{{mcp_base_url}}/mcp?x-api-key={{mcp_api_key}}",
+              "host": [
+                "{{mcp_base_url}}"
+              ],
+              "path": [
+                "mcp"
+              ],
+              "query": [
+                {
+                  "key": "x-api-key",
+                  "value": "{{mcp_api_key}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"tools/call\",\n  \"params\": {\n    \"name\": \"convert_data\",\n    \"arguments\": {\n      \"data\": \"{\\\"name\\\": \\\"Alice\\\", \\\"email\\\": \\\"alice@example.com\\\"}\",\n      \"from\": \"json\",\n      \"to\": \"xml\"\n    }\n  }\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Error Cases",
+      "item": [
+        {
+          "name": "missing x-api-key \u2014 expect 401",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json, text/event-stream"
+              }
+            ],
+            "url": {
+              "raw": "{{mcp_base_url}}/mcp",
+              "host": [
+                "{{mcp_base_url}}"
+              ],
+              "path": [
+                "mcp"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"tools/list\",\n  \"params\": {}\n}"
+            }
+          }
+        },
+        {
+          "name": "invalid api key \u2014 expect 403",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json, text/event-stream"
+              }
+            ],
+            "url": {
+              "raw": "{{mcp_base_url}}/mcp?x-api-key=invalid-key",
+              "host": [
+                "{{mcp_base_url}}"
+              ],
+              "path": [
+                "mcp"
+              ],
+              "query": [
+                {
+                  "key": "x-api-key",
+                  "value": "invalid-key"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"tools/list\",\n  \"params\": {}\n}"
+            }
+          }
+        },
+        {
+          "name": "unknown tool \u2014 expect isError",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json, text/event-stream"
+              }
+            ],
+            "url": {
+              "raw": "{{mcp_base_url}}/mcp?x-api-key={{mcp_api_key}}",
+              "host": [
+                "{{mcp_base_url}}"
+              ],
+              "path": [
+                "mcp"
+              ],
+              "query": [
+                {
+                  "key": "x-api-key",
+                  "value": "{{mcp_api_key}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"tools/call\",\n  \"params\": {\n    \"name\": \"nonexistent_tool\",\n    \"arguments\": {}\n  }\n}"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

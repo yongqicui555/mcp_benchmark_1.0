@@ -1,0 +1,13 @@
+[project]
+name = "places-mcp-server"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "beautifulsoup4>=4.13.4",
+    "google-maps-places>=0.1.25",
+    "googlemaps>=4.10.0",
+    "httpx>=0.28.1",
+    "mcp[cli]>=1.6.0",
+]

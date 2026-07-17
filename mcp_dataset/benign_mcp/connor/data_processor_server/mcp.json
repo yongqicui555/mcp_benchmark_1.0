@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "data-processor": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/data_processor_server/data_tools",
+        "run",
+        "python",
+        "server.py"
+      ]
+    }
+  }
+}

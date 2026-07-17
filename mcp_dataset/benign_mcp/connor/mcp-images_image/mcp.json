@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "mcp-images_image": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/mcp-images_image/mcp-images",
+        "run",
+        "mcp_image.py"
+      ]
+    }
+  }
+}

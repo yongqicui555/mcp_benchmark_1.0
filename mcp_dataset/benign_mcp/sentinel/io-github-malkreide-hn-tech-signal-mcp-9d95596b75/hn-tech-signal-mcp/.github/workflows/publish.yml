@@ -1,0 +1,54 @@
+name: Publish to PyPI
+
+# Wird ausgelöst wenn du auf GitHub ein neues Release erstellst
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    name: Build distribution
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Install build tools
+        run: pip install build
+
+      - name: Build package (wheel + sdist)
+        run: python -m build
+
+      - name: Store built packages
+        uses: actions/upload-artifact@v7
+        with:
+          name: dist
+          path: dist/
+
+  publish:
+    name: Upload to PyPI
+    needs: build
+    runs-on: ubuntu-latest
+
+    # Trusted Publisher: kein API-Token nötig — GitHub <-> PyPI via OIDC
+    environment:
+      name: pypi
+      url: https://pypi.org/project/hn-tech-signal-mcp/
+
+    permissions:
+      id-token: write   # OIDC-Token für Trusted Publisher
+
+    steps:
+      - name: Download built packages
+        uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist/
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1

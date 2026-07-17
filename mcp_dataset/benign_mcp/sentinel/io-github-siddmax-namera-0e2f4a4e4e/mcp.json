@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-siddmax-namera-0e2f4a4e4e": {
+      "args": [
+        "/app/io-github-siddmax-namera-0e2f4a4e4e/Namera/src/namera/mcp_server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

@@ -1,0 +1,351 @@
+<!-- mcp-name: io.github.pghdma/callrail-mcp -->
+
+# callrail-mcp
+
+[![PyPI version](https://img.shields.io/pypi/v/callrail-mcp.svg)](https://pypi.org/project/callrail-mcp/)
+[![Python versions](https://img.shields.io/pypi/pyversions/callrail-mcp.svg)](https://pypi.org/project/callrail-mcp/)
+[![CI](https://github.com/pghdma/callrail-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/pghdma/callrail-mcp/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![MCP](https://img.shields.io/badge/MCP-compatible-blue)](https://modelcontextprotocol.io/)
+[![Available on CodeGuilds](https://img.shields.io/badge/Available_on-CodeGuilds-6366f1)](https://codeguilds.dev/packages/callrail-mcp)
+
+A [Model Context Protocol](https://modelcontextprotocol.io/) server that exposes the [CallRail REST API v3](https://apidocs.callrail.com/) to any MCP-compatible client (Claude Code, Claude Desktop, Cursor, etc.).
+
+Created by **[Steve Japalucci](https://github.com/pghdma)** — Founder of [Pittsburgh Digital Marketing Agency (PGHDMA)](https://pghdma.com).
+
+## What you can ask Claude to do
+
+Once installed, any MCP-aware assistant can answer things like:
+
+**Reporting**
+- *"Pull last week's calls for Alan Construction, grouped by source"*
+- *"Show me every missed call from Google Ads this month"*
+- *"Find any calls from 412-555-1234 across all clients in the last 90 days"*
+- *"Get the transcript for call CAL019abc..."*
+
+**Agency cost attribution** *(new in v0.4)*
+- *"Why is my CallRail bill $174? Break it down by client"*
+- *"Which client is the biggest minute user this cycle?"*
+
+**Conversion debugging** *(new in v0.4)*
+- *"Why didn't this call convert in Google Ads? CAL019..."*
+- *"Is this 58-second call eligible to count as a Google Ads conversion?"*
+
+**Tag + tracker management**
+- *"Tag this call as 'lead' and add a note"*
+- *"Provision a new Google Ads call-extension tracker for Renaissance in area code 412"* *(requires `confirm_billing=True` — costs ~$3/mo)*
+
+## Installation
+
+```bash
+# Recommended: pipx for isolated CLI install
+pipx install callrail-mcp
+
+# Or with pip
+pip install callrail-mcp
+```
+
+To install from source (latest unreleased):
+
+```bash
+pipx install git+https://github.com/pghdma/callrail-mcp.git
+```
+
+## Auth
+
+Get an API key at **Settings → API Keys** in your CallRail account. You need Account Admin permission to create one.
+
+Provide it one of two ways:
+
+### Option 1: environment variable (recommended for most setups)
+
+```bash
+export CALLRAIL_API_KEY="your_key_here"
+```
+
+### Option 2: key file
+
+```bash
+mkdir -p ~/.config/callrail
+echo "your_key_here" > ~/.config/callrail/api-key.txt
+chmod 600 ~/.config/callrail/api-key.txt
+```
+
+Or override with `CALLRAIL_API_KEY_FILE=/path/to/key.txt`.
+
+## Configure your MCP client
+
+### Claude Code / Claude Desktop (`~/.claude.json` or `claude_desktop_config.json`)
+
+```json
+{
+  "mcpServers": {
+    "callrail": {
+      "command": "callrail-mcp",
+      "env": {
+        "CALLRAIL_API_KEY": "your_key_here"
+      }
+    }
+  }
+}
+```
+
+If you installed via pipx, `callrail-mcp` will be on your PATH automatically. Otherwise, point `command` at the full path to the executable.
+
+### Cursor / other clients
+
+The server speaks standard MCP stdio. Any client that supports stdio MCP servers will work — just run `callrail-mcp` as the command.
+
+## Available tools
+
+**59 tools total** — ~95% of CallRail's REST API v3 surface. Read tools, write tools, tracker provisioning, agency aggregation, account management (Companies/Users CRUD), notifications, integrations discovery, outbound calls, offline-lead backfill via `create_form_submission`, and (new in v1.1) leads, SMS-thread lead management, server-side analytics, and per-call page views.
+
+### Read tools
+
+| Tool | Purpose |
+|---|---|
+| `list_accounts` | List accessible CallRail accounts |
+| `list_companies` | List companies (clients) under an account. Optional `status="active"` filter |
+| `list_trackers` | List tracking phone numbers + their source mapping. Optional `status="active"` filter |
+| `get_tracker` | Full detail for one tracker |
+| `list_calls` | Paginated call list — filter by company / date / source / answered |
+| `get_call` | Full detail for a specific call |
+| `call_summary` | Aggregate stats (total, answered, by source, duration) for a window |
+| `list_form_submissions` | CallRail Form Tracking submissions |
+| `list_text_messages` | SMS conversations |
+| `list_users` | Account users |
+| `get_call_recording` | Recording URL (if recording enabled) |
+| `get_call_transcript` | Conversation Intelligence transcript |
+| `search_calls_by_number` | Find calls by phone number across a window |
+| `list_tags` | List tags in account or filtered to one company |
+
+### Write tools *(v0.2+)*
+
+| Tool | Purpose |
+|---|---|
+| `update_call` | Update note, tags, spam flag, customer name, lead status |
+| `add_call_tags` / `remove_call_tags` | Additive/subtractive tag changes (preserves existing) |
+| `update_form_submission` | Same field surface as `update_call`, **plus** `value` (numeric, supported on form submissions but NOT on calls — CallRail returns 500) |
+| `create_tag` / `update_tag` / `delete_tag` | Full CRUD on the per-company tag taxonomy |
+
+### Tracker provisioning *(v0.3+)*
+
+| Tool | Purpose |
+|---|---|
+| `create_tracker` | Provision a new tracking number. **Requires `confirm_billing=True`** as a safety guard against accidental AI provisioning |
+| `update_tracker` | Update mutable settings: name, destination, whisper, greeting, SMS |
+| `delete_tracker` | Soft-delete a tracker (releases the phone number, preserves history) |
+
+### Account management *(v0.6+)*
+
+| Tool | Purpose |
+|---|---|
+| `get_company` / `create_company` / `update_company` / `delete_company` | Full company (client) CRUD. Free — CallRail bills per number, not per company. Soft-delete semantics |
+| `get_user` / `create_user` / `update_user` / `delete_user` | Full user CRUD. `create_user` invites by email; common roles: admin / manager / reporting / analyst |
+| `get_tag` | Single tag detail (completes tag CRUD) |
+| `get_form_submission` | Single form-submission detail (was list+update only) |
+| `get_text_message` | Single SMS conversation detail with all messages |
+| `create_form_submission` *(v0.7)* | Manually create a form submission (backfill walk-in / paper-form / offline leads) |
+
+### Notifications + Integrations *(v0.7+)*
+
+| Tool | Purpose |
+|---|---|
+| `list_notifications` / `create_notification` / `update_notification` / `delete_notification` | Full per-user alert-rule CRUD (who gets pinged on which call/text/form event) |
+| `list_integrations(company_id)` / `get_integration` | Discover GMB / Google Ads / Facebook / Slack / Webhook integrations attached to a company |
+| `list_webhooks` / `get_webhook` | Read webhook subscriptions (write CRUD blocked by CallRail account permissions — see "Out of scope" below) |
+
+### Outbound calling *(v0.7+)*
+
+| Tool | Purpose |
+|---|---|
+| `create_outbound_call` | Place an outbound call (CallRail dials your tracker first, then bridges to recipient). **Requires `confirm_dialing=True`** as a safety guard — actually dials a real phone, costs minutes, has legal implications |
+
+Validation is strict: phone-number format, area code (`^\d{3}$`), `pool_size` ∈ [1, 50] (safety cap to prevent accidental 5-figure provisioning bills), name/whisper/greeting length caps, source-type enum (12 values: the 10 documented at apidocs.callrail.com plus `facebook_all` / `bing_all` which are proven in production but still absent from the docs). Tag colors validate against the full documented 24-color set.
+
+### Leads & server-side analytics *(v1.1+)*
+
+| Tool | Purpose |
+|---|---|
+| `list_leads` / `get_lead_timeline` | CallRail's deduplicated person records + full cross-channel history (calls + forms + texts) per lead, with first/last-touch attribution |
+| `list_sms_threads` / `get_sms_thread` / `update_sms_thread` | SMS-thread lead management — tag / note / qualify texting leads like calls (`update_sms_thread` closes the texting write gap) |
+| `call_stats` | Server-side call aggregation (`/calls/summary.json`) — grouped totals by source / keywords / campaign / referrer / landing_page / company in ONE request instead of paginating every call |
+| `call_timeseries` | Per-day call-volume trend line (`/calls/timeseries.json`) |
+| `form_stats` | Server-side form-submission totals |
+| `get_call_page_views` | The visitor's page-view journey behind a call — pairs with `call_eligibility_check` for conversion debugging |
+
+### Agency aggregation *(v0.4+)*
+
+| Tool | Purpose |
+|---|---|
+| `usage_summary` | Per-company cost-attribution breakdown for the cycle. Returns minutes used, active numbers, estimated $ cost share — sorted by biggest cost driver. Useful for "which client is burning my CallRail budget" |
+| `call_eligibility_check` | Audit whether a specific call qualifies as a Google Ads conversion. Checks `gclid` presence, answered-status, duration vs. Google's threshold (default 60s), and source. Useful for "where did my conversion go" debugging |
+| `compare_periods` *(v0.5)* | Compare current N-day window vs previous N-day window. Per-company minute/call deltas + biggest mover. Catches traffic trends before they hit the invoice |
+| `bulk_update_calls` *(v0.5)* | Apply a single update (tag / note / lead_status / spam) to every call matching a filter. `dry_run=True` by default; surfaces truncation at 500-cap. Replaces dozens of sequential `update_call` invocations |
+| `spam_detector` *(v0.5)* | Heuristically flag likely-spam calls (short duration, unanswered, repeat-caller patterns). Optional `auto_tag=True` adds `auto_detected_spam` tag. Deliberately does NOT set `spam=True` (that would hide the call from default GETs) |
+
+All tools accept `account_id` optionally — if omitted, the first accessible account is auto-resolved. Most accept `company_id` to filter to a single client.
+
+## How this compares to CallRail's official MCP server
+
+CallRail now offers an official hosted MCP server (documented at
+[apidocs.callrail.com](https://apidocs.callrail.com/#mcp)) — OAuth 2.0,
+~30 tools, with the server URL "provided by your CallRail account team."
+It's a good option if you want a fully managed remote server.
+
+This project remains different on purpose:
+
+| | callrail-mcp (this project) | Official CallRail MCP |
+|---|---|---|
+| Install | `pip install callrail-mcp` — running in 2 minutes | URL provisioned by your CallRail account team |
+| Hosting | Local stdio (your API key never leaves your machine) | Hosted remote (OAuth) |
+| Tools | 59 | ~30 |
+| Agency tooling | `usage_summary` cost attribution, `compare_periods`, `spam_detector`, `bulk_update_calls`, `call_eligibility_check` | Not offered |
+| Safety guards | `confirm_billing` / `confirm_dialing` / `dry_run` defaults, strict input validation | — |
+| Source | MIT, open, auditable | Closed |
+
+Both speak the same underlying REST API v3. If you're an agency running
+Claude against multiple client accounts and want cost attribution and
+bulk workflows, this project is built for exactly that.
+
+## Out of scope (deliberately not implemented)
+
+The following CallRail capabilities are **NOT in this MCP**, by design.
+PRs welcome if you have an account that supports them — or open an
+issue and we'll prioritize.
+
+### Blocked by CallRail account permissions (returns 403)
+
+These endpoints exist but require account upgrades / additional
+permissions our standard CallRail account doesn't have. Verified live
+2026-04-24:
+
+- **Send SMS** (`POST /text-messages.json`) — needs A2P SMS
+  registration / dedicated SMS API permission. CallRail enforces
+  TCPA-compliance keywords (STOP / CANCEL / UNSUBSCRIBE) on outbound
+  text messages.
+- **Webhook integration create / update / delete** (`POST /integrations.json`
+  with `type=Webhook`) — needs Integration-Admin permission. CallRail
+  manages webhooks via the Integrations framework, not a standalone
+  endpoint.
+
+### Not exposed by CallRail's REST API (UI-only on standard plans)
+
+These have no API equivalent at all — managed exclusively via the
+CallRail web UI:
+
+- **Outbound Caller IDs** — verification flow for outbound caller
+  identification.
+- **Numbers** — account-level number ownership, porting, transfers.
+- **Call Flows** — IVR builder / call routing tree configuration.
+- **Custom Fields CRUD** — custom data columns are readable as part
+  of call/form responses but the schema management endpoint isn't
+  exposed.
+- **Do Not Call list** — DNC number management.
+
+### Will work on if/when
+
+Either CallRail upgrades the API or the user upgrades their account
+permissions, the above can be added without breaking changes — we'd
+just expose them as new MCP tools.
+
+### Rich field selection
+
+The CallRail API returns a lean default payload. Ask for more fields on `list_calls` / `get_call` / `list_form_submissions` via the `fields` parameter:
+
+```
+fields=company_name,source_name,keywords,landing_page_url,device,first_call,value,tags,note,gclid,fbclid,utm_source,utm_medium,utm_campaign,utm_content,utm_term,referrer_domain
+```
+
+See the [CallRail API docs](https://apidocs.callrail.com/) for the full field catalog per resource.
+
+## Examples
+
+### Claude Code
+
+```
+> List companies under our CallRail account.
+
+(Claude calls list_companies → returns clients with IDs and primary numbers)
+
+> Pull today's calls for company COM019ab... — include source and keyword.
+
+(Claude calls list_calls with company_id, days=1, fields="source,keywords,landing_page_url")
+
+> Why is my CallRail bill $174 this month? Break it down by client.
+
+(Claude calls usage_summary → returns per-company cost share, sorted by biggest user)
+
+> Why didn't this call show up as a conversion in Google Ads? CAL019dbf79...
+
+(Claude calls call_eligibility_check → returns gclid/duration/answered checks
+ + targeted reason like "duration 58s under Google Ads minimum (60s)")
+
+> Provision a new Google-Ads-call-extension tracker for Alan Construction in 412.
+
+(Claude calls create_tracker — refuses unless you also pass confirm_billing=True
+ since it incurs a ~$3/mo charge)
+```
+
+### Direct Python usage
+
+The `CallRailClient` is also usable as a library:
+
+```python
+from callrail_mcp.client import CallRailClient
+
+cr = CallRailClient()  # picks up CALLRAIL_API_KEY
+aid = cr.resolve_account_id()
+for call in cr.paginate(f"a/{aid}/calls.json", {"per_page": 250}, items_key="calls"):
+    print(call["id"], call.get("source"), call.get("customer_name"))
+```
+
+## Running the server directly
+
+For debugging or to verify your key works:
+
+```bash
+python -m callrail_mcp
+```
+
+The server speaks MCP stdio. It will wait for JSON-RPC messages on stdin. Ctrl-C to exit.
+
+To smoke-test the API key without running the MCP loop:
+
+```python
+python -c "from callrail_mcp.client import CallRailClient; c=CallRailClient(); print(c.get('a.json'))"
+```
+
+## Rate limits
+
+CallRail allows 60 requests/minute per API key. The client retries 429 responses using the `Retry-After` header, and 5xx responses with exponential backoff (max 3 retries by default). For heavy pagination, prefer the built-in `paginate()` helper which uses `per_page=100` by default.
+
+## Development
+
+```bash
+git clone https://github.com/pghdma/callrail-mcp
+cd callrail-mcp
+python -m venv .venv && source .venv/bin/activate
+pip install -e ".[dev]"
+pytest
+```
+
+## Contributing
+
+Contributions welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for dev setup, test conventions, and release flow. Please file issues via [GitHub Issues](https://github.com/pghdma/callrail-mcp/issues) and follow the [Code of Conduct](CODE_OF_CONDUCT.md).
+
+## Security
+
+If you discover a security vulnerability, please report it privately per [SECURITY.md](SECURITY.md) instead of opening a public issue.
+
+## Author
+
+**[Steve Japalucci](https://github.com/pghdma)** — Founder of [Pittsburgh Digital Marketing Agency](https://pghdma.com). Reach out at [s@pghdma.com](mailto:s@pghdma.com).
+
+## License
+
+MIT — see [LICENSE](LICENSE). Copyright © 2026 Steve Japalucci / Pittsburgh Digital Marketing Agency.
+
+## Disclaimer
+
+This project is an independent open-source integration and is **not affiliated with, endorsed by, or officially supported by CallRail**. "CallRail" is a trademark of CallRail, Inc. All product names, logos, and brands are property of their respective owners.

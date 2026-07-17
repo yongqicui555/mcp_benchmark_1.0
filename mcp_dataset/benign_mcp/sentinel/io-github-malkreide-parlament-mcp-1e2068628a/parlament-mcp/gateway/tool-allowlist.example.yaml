@@ -1,0 +1,29 @@
+# Beispiel-Konfiguration für ein vorgelagertes MCP-Gateway (SEC-014).
+# Default-Deny: nur explizit gelistete Tools werden dem LLM-Client exponiert.
+# Verwendbar mit parlament_mcp.gateway.filter_allowed_tools() bzw. einem
+# Gateway, das tools/list vor dem Forward filtert.
+#
+# Pre-Flight Tool-Poisoning-Detection (SEC-015) läuft via
+# parlament_mcp.gateway.filter_tool_list() zusätzlich auf jeder tools/list-Antwort.
+
+team: schulamt
+team_oauth_groups:
+  - schulamt-mitarbeiter
+  - schulamt-leitung
+
+allowed_servers:
+  parlament-mcp:
+    allowed_tools:
+      - parlament_search_business
+      - parlament_get_business
+      - parlament_search_members
+      - parlament_get_votes
+      - parlament_get_sessions
+      - parlament_get_transcripts
+    denied_tools: []   # explizit leer für Audit-Klarheit
+
+audit:
+  log_all_calls: true
+  alert_on_denied: true
+  # Tool-Poisoning-Findings ins SIEM (OBS-005).
+  alert_on_poisoning: true

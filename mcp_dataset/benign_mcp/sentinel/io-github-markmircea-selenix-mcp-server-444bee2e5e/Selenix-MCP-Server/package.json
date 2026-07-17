@@ -1,0 +1,41 @@
+{
+  "name": "@selenix/mcp-server",
+  "version": "1.0.7",
+  "mcpName": "io.github.markmircea/Selenix-MCP-Server",
+  "description": "MCP server that bridges Claude Desktop (or any other local app supporting MCP) with Selenix for browser automation and testing. Enables creating, running, debugging, and managing browser automation tests through natural language.",
+  "main": "dist/bundle.js",
+  "bin": {
+    "selenix-mcp-server": "dist/bundle.js"
+  },
+  "files": [
+    "dist/bundle.js"
+  ],
+  "scripts": {
+    "build": "tsc && node esbuild.config.js",
+    "prepublishOnly": "npm run build",
+    "start": "node dist/bundle.js"
+  },
+  "keywords": [
+    "selenix",
+    "selenium",
+    "mcp",
+    "model-context-protocol",
+    "claude",
+    "claude-desktop",
+    "browser-automation",
+    "testing"
+  ],
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/markmircea/selenix-mcp-server"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1"
+  },
+  "devDependencies": {
+    "esbuild": "^0.20.0",
+    "typescript": "^5.2.2",
+    "@types/node": "^18.0.0"
+  }
+}

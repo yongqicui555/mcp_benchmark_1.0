@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "toio-mcp": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/toio-mcp/toio-mcp",
+        "run",
+        "server.py"
+      ],
+      "alwaysAllow": [
+        "add"
+      ],
+      "disabled": false
+    }
+  }
+}

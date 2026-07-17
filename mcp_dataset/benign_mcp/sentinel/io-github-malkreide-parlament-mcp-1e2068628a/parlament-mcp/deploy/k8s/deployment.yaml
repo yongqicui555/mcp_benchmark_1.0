@@ -1,0 +1,61 @@
+# Gehärtetes Deployment (SEC-007 Container-Sandboxing, SCALE-006 Resource-Limits).
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: parlament-mcp
+  labels:
+    app: parlament-mcp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: parlament-mcp
+  template:
+    metadata:
+      labels:
+        app: parlament-mcp
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        fsGroup: 10001
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: parlament-mcp
+          image: malkreide/parlament-mcp:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: MCP_TRANSPORT
+              value: "streamable-http"
+            - name: MCP_HOST
+              value: "0.0.0.0"        # im Container korrekt
+            - name: MCP_PORT
+              value: "8080"
+            - name: OTEL_SERVICE_NAME
+              value: "parlament-mcp"
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          volumeMounts:
+            - name: tmp
+              mountPath: /tmp
+          readinessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 15
+      volumes:
+        - name: tmp
+          emptyDir:
+            sizeLimit: 64Mi

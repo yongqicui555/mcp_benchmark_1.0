@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "tku-mcp": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/tku-mcp/TKU_Academic_Systems_TronClass_TKU-ilife",
+        "run",
+        "server.py"
+      ]
+    }
+  }
+}

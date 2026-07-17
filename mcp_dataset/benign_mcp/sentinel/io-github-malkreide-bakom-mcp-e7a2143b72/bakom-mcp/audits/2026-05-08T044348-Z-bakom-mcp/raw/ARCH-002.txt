@@ -1,0 +1,124 @@
+=== Docstrings of tool functions ===
+TOOL: bakom_broadband_coverage
+  decorators: ["mcp.tool(name='bakom_broadband_coverage', annotations={'title': 'Breitbandversorgung für einen Standort', 'readOnlyHint': True, 'destructiveHint': False, 'idempotentHint': True, 'openWorldHint': True})"]
+  docstring (first 300 chars): Breitbandversorgung (Festnetz) für einen Standort in der Schweiz abfragen.
+
+Zeigt, ob ein Gebäude am angegebenen Standort mit einer bestimmten
+Downloadgeschwindigkeit versorgt wird. Nutzt den BAKOM Breitbandatlas
+via geo.admin.ch API (Rasterauflösung: 250×250 Meter).
+
+Args:
+    params (BroadbandCove
+
+TOOL: bakom_glasfaser_verfuegbarkeit
+  decorators: ["mcp.tool(name='bakom_glasfaser_verfuegbarkeit', annotations={'title': 'Glasfasernetz-Verfügbarkeit (FTTB/FTTH)', 'readOnlyHint': True, 'destructiveHint': False, 'idempotentHint': True, 'openWorldHint': True})"]
+  docstring (first 300 chars): Glasfaserverfügbarkeit (FTTB/FTTH) für einen Schweizer Standort prüfen.
+
+Zeigt, ob Glasfaseranschluss bis zum Gebäude (FTTB) oder in die
+Wohnung/das Büro (FTTH) verfügbar ist. Nutzt BAKOM Breitbandatlas
+via geo.admin.ch (Rasterauflösung: 250×250 Meter).
+
+Args:
+    params (CoordinateInput): Standortk
+
+TOOL: bakom_multi_standort_konnektivitaet
+  decorators: ["mcp.tool(name='bakom_multi_standort_konnektivitaet', annotations={'title': 'Konnektivitätsvergleich mehrerer Standorte', 'readOnlyHint': True, 'destructiveHint': False, 'idempotentHint': True, 'openWorldHint': True})"]
+  docstring (first 300 chars): Breitband- und Mobilfunkversorgung für mehrere Standorte gleichzeitig vergleichen.
+
+Ideal für Schulhausvergleiche, Standortentscheide oder
+Digitale-Chancengleichheit-Analysen im Schulamt-/Stadtverwaltungskontext.
+Pro Standort werden 5G-Abdeckung und Glasfaserstatus abgefragt.
+
+Args:
+    params (Mult
+
+TOOL: bakom_mobilfunk_abdeckung
+  decorators: ["mcp.tool(name='bakom_mobilfunk_abdeckung', annotations={'title': 'Mobilfunkabdeckung für einen Standort', 'readOnlyHint': True, 'destructiveHint': False, 'idempotentHint': True, 'openWorldHint': True})"]
+  docstring (first 300 chars): Mobilfunkabdeckung (5G/4G/3G) für einen Schweizer Standort abfragen.
+
+Zeigt, wie viele Anbieter den angegebenen Standort mit der gewählten
+Mobilfunkgeneration versorgen (Aussenbereich/Outdoor).
+Rastergrösse: 100×100 Meter.
+
+Args:
+    params (MobileCoverageInput): Koordinaten WGS84, Generation, Forma
+
+TOOL: bakom_sendeanlagen_suche
+  decorators: ["mcp.tool(name='bakom_sendeanlagen_suche', annotations={'title': 'Mobilfunkanlagen und Sendeanlagen in der Nähe', 'readOnlyHint': True, 'destructiveHint': False, 'idempotentHint': True, 'openWorldHint': True})"]
+  docstring (first 300 chars): Mobilfunkanlagen und Sendeanlagen in einem Umkreis suchen.
+
+Findet Antennenstandorte (Mobilfunk und Rundfunk) in der Nähe eines
+Standorts. Nützlich für Schulhäuser (Strahlungsquellen), Medienplanung
+oder technische Infrastrukturanalysen.
+
+Args:
+    params (AntennaSearchInput): Koordinaten WGS84, Suc
+
+TOOL: bakom_frequenzdaten
+  decorators: ["mcp.tool(name='bakom_frequenzdaten', annotations={'title': 'Frequenzdaten und Sendeanlagen-Standorte', 'readOnlyHint': True, 'destructiveHint': False, 'idempotentHint': True, 'openWorldHint': True})"]
+  docstring (first 300 chars): UKW-Radio- und TV-Sendeanlagen für einen Standort abfragen.
+
+Zeigt Radio- und Fernsehsendeanlagen in der Nähe mit Frequenz-
+und Betreiberinformationen. Nutzt den BAKOM-Layer
+ch.bakom.radio-fernsehsender via geo.admin.ch.
+
+Args:
+    params (CoordinateInput): Standortkoordinaten WGS84 + Format.
+
+Retur
+
+TOOL: bakom_rtv_suche
+  decorators: ["mcp.tool(name='bakom_rtv_suche', annotations={'title': 'Radio- und Fernsehsender in der Schweiz suchen', 'readOnlyHint': True, 'destructiveHint': False, 'idempotentHint': True, 'openWorldHint': True})"]
+  docstring (first 300 chars): Konzessionierte und gemeldete Radio- und TV-Sender in der Schweiz suchen.
+
+Durchsucht die BAKOM RTV-Datenbank nach lizenzierten Rundfunkveranstaltern.
+Filtermöglichkeiten nach Name, Medientyp (Radio/TV) und Kanton.
+
+Args:
+    params (RTVSearchInput): Suchbegriff, Medientyp, Kanton, Limit, Format.
+
+R
+
+TOOL: bakom_medienstruktur_info
+  decorators: ["mcp.tool(name='bakom_medienstruktur_info', annotations={'title': 'Schweizer Medienlandschaft – Strukturberichte und Statistiken', 'readOnlyHint': True, 'destructiveHint': False, 'idempotentHint': True, 'openWorldHint': True})"]
+  docstring (first 300 chars): Informationen zur Schweizer Medienlandschaft aus BAKOM-Berichten.
+
+Gibt strukturierte Informationen zu Mediensektoren (Radio, TV, Online,
+Print) basierend auf BAKOM-Medienstrukturberichten und opendata.swiss-
+Metadaten zurück. Ideal für Medienbildung und strategische Analysen.
+
+Args:
+    params (Tel
+
+TOOL: bakom_aktuell
+  decorators: ["mcp.tool(name='bakom_aktuell', annotations={'title': 'Aktuelle BAKOM-Medienmitteilungen und Themen', 'readOnlyHint': True, 'destructiveHint': False, 'idempotentHint': False, 'openWorldHint': True})"]
+  docstring (first 300 chars): Aktuelle Themen, News und Regulierungen des BAKOM abrufen.
+
+Gibt aktuelle Informationen zu BAKOM-Tätigkeitsbereichen zurück:
+Telekommunikation, Frequenzvergabe, Medienregulierung, Post.
+Nützlich für strategische Lageberichte und Regulierungsmonitoring.
+
+Args:
+    params (TelekomStatInput): Thema (z.
+
+TOOL: bakom_telekomstatistik_uebersicht
+  decorators: ["mcp.tool(name='bakom_telekomstatistik_uebersicht', annotations={'title': 'Schweizer Telekommunikationsstatistik – Übersicht', 'readOnlyHint': True, 'destructiveHint': False, 'idempotentHint': True, 'openWorldHint': True})"]
+  docstring (first 300 chars): Schweizer Telekommunikationsstatistiken aus BAKOM-Datensätzen abrufen.
+
+Gibt Übersichten zu Telekommunikationsstatistiken (Festnetz, Mobilfunk,
+Breitband, Marktanteile) via opendata.swiss CKAN API zurück.
+Nützlich für Marktanalysen, politische Berichte und KI-Fachgruppe-Demos.
+
+Args:
+    params (Tel
+
+TOOL: bakom_breitbandatlas_datensaetze
+  decorators: ["mcp.tool(name='bakom_breitbandatlas_datensaetze', annotations={'title': 'Alle Breitbandatlas-Datensätze auflisten', 'readOnlyHint': True, 'destructiveHint': False, 'idempotentHint': True, 'openWorldHint': True})"]
+  docstring (first 300 chars): Alle verfügbaren BAKOM Breitbandatlas-Datensätze auf opendata.swiss auflisten.
+
+Gibt eine vollständige Übersicht aller Datensätze des BAKOM-Breitbandatlas
+zurück – Festnetz, Mobilfunk, Glasfaser, verschiedene Geschwindigkeitsstufen.
+Nützlich für Datenauswahl vor dem Download oder der API-Abfrage.
+
+A
+

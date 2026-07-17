@@ -1,0 +1,12 @@
+=== src layout ===
+src/bakom_mcp/
+=== tests dir ===
+test_20_neue_szenarien.py
+test_20_szenarien.py
+test_integration.py
+test_scenarios_20.py
+=== README.de.md ===
+README.de.md
+README.md
+=== CHANGELOG ===
+CHANGELOG.md

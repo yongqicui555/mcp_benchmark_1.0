@@ -1,0 +1,55 @@
+{
+  "name": "@summit53/mcp-server",
+  "version": "1.0.2",
+  "mcpName": "io.summit53/mcp-server",
+  "description": "Connect AI assistants to Summit53's Revenue Engine for scoped pipeline diagnosis, action planning, and value evidence via MCP.",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "crm",
+    "sales",
+    "revenue-intelligence",
+    "revenue-engine",
+    "figure-eight",
+    "pipeline",
+    "forecast",
+    "meddpic",
+    "outreach",
+    "ai-tools",
+    "claude",
+    "cursor",
+    "windsurf"
+  ],
+  "author": {
+    "name": "Summit53",
+    "email": "support@summit53.io",
+    "url": "https://www.summit53.com"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "homepage": "https://www.summit53.com/founding-50?utm_source=npm&utm_medium=package&utm_campaign=mcp_server",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Summit53/mcp-server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/summit53/mcp-server/issues"
+  },
+  "bin": {
+    "summit53-mcp-server": "bin/cli.mjs",
+    "summit53-mcp": "bin/cli.mjs"
+  },
+  "type": "module",
+  "files": [
+    "bin/",
+    "README.md",
+    "server.json",
+    "tool-catalog.json",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "mcp-remote": "^0.1.0"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "Kubernetes_Kubernetes": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/Kubernetes_Kubernetes/Kubernetes",
+        "run",
+        "kubernetes.py"
+      ]
+    }
+  }
+}

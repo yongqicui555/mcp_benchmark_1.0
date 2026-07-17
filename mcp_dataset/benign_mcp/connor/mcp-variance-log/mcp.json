@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "mcp-variance-log": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/mcp-variance-log/Variance_Log",
+        "run",
+        "mcp-variance-log"
+      ]
+    }
+  }
+}

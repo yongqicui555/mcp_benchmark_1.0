@@ -1,0 +1,47 @@
+=== Lizenz-Erwähnungen im Output / Source ===
+src/bakom_mcp/server.py:5:Breitband- und Mediendaten via geo.admin.ch, opendata.swiss und BAKOM-APIs.
+src/bakom_mcp/server.py:37:OPENDATA_SWISS_API = "https://ckan.opendata.swiss/api/3/action"
+src/bakom_mcp/server.py:333:    """Metadaten eines opendata.swiss-Datensatzes abrufen."""
+src/bakom_mcp/server.py:348:    Quelle: swisstopo approximation.
+src/bakom_mcp/server.py:532:                "opendata_swiss": "https://opendata.swiss/de/dataset/verfugbare-anschlussarten-glasfaser-fttb-ftth",
+src/bakom_mcp/server.py:1066:                # Fallback: opendata.swiss CKAN für RTV-Metadaten
+src/bakom_mcp/server.py:1084:                        "url": f"https://opendata.swiss/de/dataset/{ds.get('name', '')}",
+src/bakom_mcp/server.py:1147:    Print) basierend auf BAKOM-Medienstrukturberichten und opendata.swiss-
+src/bakom_mcp/server.py:1168:            # Suche auf opendata.swiss nach BAKOM-Medien-Datensätzen
+src/bakom_mcp/server.py:1193:                        "url": f"https://opendata.swiss/de/dataset/{ds.get('name', '')}",
+src/bakom_mcp/server.py:1203:                "opendata_bakom": "https://opendata.swiss/de/organization/bundesamt-fur-kommunikation-bakom",
+src/bakom_mcp/server.py:1211:                "datenquelle": "opendata.swiss – BAKOM",
+src/bakom_mcp/server.py:1218:            md += f"**{len(datensaetze)} Datensätze** auf opendata.swiss gefunden.\n\n"
+src/bakom_mcp/server.py:1327:    # Ergänzend: opendata.swiss-Suche
+src/bakom_mcp/server.py:1350:                        "url": f"https://opendata.swiss/de/dataset/{ds.get('name', '')}",
+src/bakom_mcp/server.py:1361:        "opendata_swiss_bakom": "https://opendata.swiss/de/organization/bundesamt-fur-kommunikation-bakom",
+src/bakom_mcp/server.py:1362:        "datenquelle": "BAKOM + opendata.swiss",
+src/bakom_mcp/server.py:1382:    md += "**Open Data:** https://opendata.swiss/de/organization/bundesamt-fur-kommunikation-bakom"
+src/bakom_mcp/server.py:1405:    Breitband, Marktanteile) via opendata.swiss CKAN API zurück.
+src/bakom_mcp/server.py:1469:                        "url": f"https://opendata.swiss/de/dataset/{ds.get('name', '')}",
+src/bakom_mcp/server.py:1478:                "total_auf_opendata_swiss": total,
+src/bakom_mcp/server.py:1479:                "datenquelle": "opendata.swiss – BAKOM",
+src/bakom_mcp/server.py:1487:            md += f"**{total} Datensätze** auf opendata.swiss (zeige {len(datensaetze)}).\n\n"
+src/bakom_mcp/server.py:1521:    """Alle verfügbaren BAKOM Breitbandatlas-Datensätze auf opendata.swiss auflisten.
+src/bakom_mcp/server.py:1546:            "url": "https://opendata.swiss/de/dataset/5g-nr-verfugbarkeit",
+src/bakom_mcp/server.py:1553:            "url": "https://opendata.swiss/de/dataset/4g-lte-lte-a-verfugbarkeit",
+src/bakom_mcp/server.py:1560:            "url": "https://opendata.swiss/de/dataset/3g-umts-hspa-verfugbarkeit",
+src/bakom_mcp/server.py:1567:            "url": "https://opendata.swiss/de/dataset/internet-verfugbarkeit-via-festnetz-download-geschwindigkeit-30-mbit-s",
+src/bakom_mcp/server.py:1574:            "url": "https://opendata.swiss/de/dataset/internet-verfugbarkeit-via-festnetz-download-geschwindigkeit-100-mbit-s",
+src/bakom_mcp/server.py:1581:            "url": "https://opendata.swiss/de/dataset/internet-verfugbarkeit-via-festnetz-download-geschwindigkeit-300-mbit-s",
+=== README license info ===
+6:[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+9:[![Auth](https://img.shields.io/badge/auth-none%20required-brightgreen)](https://www.bakom.admin.ch/bakom/en/home/digital-switzerland-and-internet/open-data.html)
+12:> MCP server for BAKOM open data – broadband, mobile coverage, media and Swiss telecom statistics.
+24:**bakom-mcp** connects AI assistants like Claude to the Swiss Federal Office of Communications (BAKOM) open data infrastructure. It enables natural-language queries about broadband availability, 5G/4G coverage, mobile antenna locations, licensed broadcasters (RTV database), and telecommunications statistics — all without API keys.
+43:- 📺 **RTV database** – Search licensed radio and TV broadcasters by name, type, canton
+142:| `bakom_rtv_suche` | Search licensed broadcasters (RTV database) |
+163:Which radio stations are licensed in canton Zurich?
+177:| **Personal data** | No personal data — all sources are aggregated, public open data |
+192:| [rtvdb.ofcomnet.ch](https://rtvdb.ofcomnet.ch) | Licensed radio/TV broadcasters | None |
+236:├── LICENSE
+267:## License
+269:MIT License — see [LICENSE](LICENSE)
+281:- **Data:** [BAKOM Open Data](https://www.bakom.admin.ch/bakom/en/home/digital-switzerland-and-internet/open-data.html) – Federal Office of Communications (OFCOM/BAKOM)
+284:- **Related:** [zurich-opendata-mcp](https://github.com/malkreide/zurich-opendata-mcp) – MCP server for Zurich city open data
+290:*Part of the Swiss Open Data MCP portfolio — public data deserves public interfaces.*

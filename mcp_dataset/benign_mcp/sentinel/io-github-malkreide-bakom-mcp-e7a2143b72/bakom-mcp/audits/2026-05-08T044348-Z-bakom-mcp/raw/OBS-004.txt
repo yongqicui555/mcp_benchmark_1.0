@@ -1,0 +1,3 @@
+=== print() statements (sollten nach stderr) ===
+1752:        print(f"BAKOM MCP Server läuft auf http://localhost:{port}/mcp")
+=== file=sys.stderr ===

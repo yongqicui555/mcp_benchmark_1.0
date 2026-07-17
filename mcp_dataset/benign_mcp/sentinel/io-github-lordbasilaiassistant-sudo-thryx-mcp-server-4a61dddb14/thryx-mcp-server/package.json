@@ -1,0 +1,76 @@
+{
+  "name": "@thryx/mcp-server",
+  "version": "1.5.0",
+  "type": "module",
+  "mcpName": "io.github.lordbasilaiassistant-sudo/thryx-mcp-server",
+  "description": "ThryxProtocol v3.1 MCP Server — gasless AI agent launchpad + trading platform on Base. 21 tools wrapping the thryx.fun HTTP API. Server-managed wallets, paymaster gas, free LLM-driven autotrader. No private keys, no signing, no API bills. Auto-registers on first run.",
+  "main": "index.js",
+  "bin": {
+    "thryx-mcp": "./index.js"
+  },
+  "files": [
+    "index.js",
+    "tools.js",
+    "http.js",
+    "server.json",
+    "smithery.yaml",
+    "claude-desktop-config.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "start": "node index.js",
+    "start:http": "node index.js --http 3100",
+    "smoke": "node smoke-test.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.27.1",
+    "zod": "^3.22.0"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "token",
+    "defi",
+    "base",
+    "base-chain",
+    "base-mainnet",
+    "launchpad",
+    "ai-agent",
+    "thryx",
+    "bonding-curve",
+    "v4-native",
+    "anti-sniper",
+    "uniswap-v4",
+    "gasless",
+    "paymaster",
+    "autonomous",
+    "crypto",
+    "erc20",
+    "token-launch",
+    "token-deploy",
+    "web3",
+    "blockchain",
+    "ethereum",
+    "evm",
+    "smart-contract",
+    "claude",
+    "cursor",
+    "elizaos",
+    "ai-trading"
+  ],
+  "author": "ThryxProtocol <lordbasilaiassistant@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lordbasilaiassistant-sudo/thryx-mcp-server"
+  },
+  "homepage": "https://thryx.fun",
+  "bugs": {
+    "url": "https://github.com/lordbasilaiassistant-sudo/thryx-launchpad/issues"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

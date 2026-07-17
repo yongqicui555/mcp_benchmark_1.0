@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "aptos-mcp-server_aptos-dev": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/aptos-mcp-server_aptos-dev/aptos-mcp-server",
+        "run",
+        "aptos_mcp_server.py"
+      ]
+    }
+  }
+}

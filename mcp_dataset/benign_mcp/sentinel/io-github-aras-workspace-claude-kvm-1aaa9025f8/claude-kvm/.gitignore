@@ -1,0 +1,33 @@
+#  █████╗ ██████╗  █████╗ ███████╗
+# ██╔══██╗██╔══██╗██╔══██╗██╔════╝
+# ███████║██████╔╝███████║███████╗
+# ██╔══██║██╔══██╗██╔══██║╚════██║
+# ██║  ██║██║  ██║██║  ██║███████║
+# ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝
+
+# Dependencies
+node_modules/
+
+# Environment variables & MCP config (contains credentials)
+.env
+.mcp.json
+.mcpregistry_*
+
+# Output Directories
+screenshots/
+test-screenshots/
+*.cast
+screen-recording.mp4
+
+# IDE - WebStorm & Development Tools
+.idea/
+*.iml
+*.iws
+*.ipr
+.idea_modules/
+.claude/
+
+# Temporary files
+/tmp/
+*.ppm
+.DS_Store

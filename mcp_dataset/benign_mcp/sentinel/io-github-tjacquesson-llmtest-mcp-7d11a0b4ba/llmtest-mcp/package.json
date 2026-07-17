@@ -1,0 +1,36 @@
+{
+  "name": "llmtest-mcp",
+  "version": "0.6.1",
+  "description": "LLMTest MCP server — benchmark AI models and get cost-saving suggestions in your IDE",
+  "mcpName": "io.github.tjacquesson/llmtest-mcp",
+  "type": "module",
+  "bin": {
+    "llmtest-mcp": "./bin.js"
+  },
+  "files": [
+    "bin.js",
+    "mcp.js",
+    "README.md"
+  ],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "keywords": [
+    "mcp",
+    "llm",
+    "ai",
+    "benchmark",
+    "model-context-protocol",
+    "claude-code",
+    "cursor"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tjacquesson/llmtest-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tjacquesson/llmtest-mcp/issues"
+  },
+  "homepage": "https://llmtest.io"
+}

@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "ai-nexustoken-nexustoken-sdk-26134b49b7": {
+      "args": [
+        "/app/ai-nexustoken-nexustoken-sdk-26134b49b7/nexustoken-sdk/nexus_sdk/mcp_server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

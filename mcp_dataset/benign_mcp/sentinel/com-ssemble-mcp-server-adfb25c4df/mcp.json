@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "com-ssemble-mcp-server-adfb25c4df": {
+      "args": [
+        "/app/com-ssemble-mcp-server-adfb25c4df/ssemble-mcp-server/src/transports/stdio.js"
+      ],
+      "command": "node"
+    }
+  }
+}

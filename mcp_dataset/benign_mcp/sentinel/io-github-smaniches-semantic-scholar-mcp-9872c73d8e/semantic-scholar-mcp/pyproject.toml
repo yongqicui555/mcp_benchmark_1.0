@@ -1,0 +1,109 @@
+[project]
+name = "s2-mcp-server"
+version = "1.6.0"
+description = "Model Context Protocol server for Semantic Scholar — 200M+ academic papers, 14 tools spanning paper search, citation graph traversal, author profiles, and recommendations."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "Santiago Maniches", email = "santiago@topologica.ai"}
+]
+maintainers = [
+    {name = "TOPOLOGICA LLC", email = "support@topologica.ai"}
+]
+keywords = ["mcp", "mcp-server", "model-context-protocol", "semantic-scholar", "academic-research", "claude", "python", "llm", "research-tools"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+dependencies = [
+    "mcp>=1.25.0,<2",  # >=1.25.0: upstream MCP SDK security fixes (see CHANGELOG / commit b351483)
+    "httpx>=0.25.0,<1",
+    "pydantic>=2.1.0,<3",
+    "starlette>=0.27,<2",  # imported directly in transport.py (also a hard dependency of mcp)
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.0.0",
+    "respx>=0.20.0",
+    "mypy>=1.0.0",
+    "ruff>=0.1.0",
+    "pre-commit>=3.0.0",
+    "hypothesis>=6.0.0",
+    "bandit[toml]>=1.8,<2",
+    "pip-audit>=2.7,<3",
+]
+
+[project.urls]
+Homepage = "https://topologica.ai"
+Documentation = "https://smaniches.github.io/semantic-scholar-mcp/"
+Repository = "https://github.com/smaniches/semantic-scholar-mcp"
+Issues = "https://github.com/smaniches/semantic-scholar-mcp/issues"
+Changelog = "https://github.com/smaniches/semantic-scholar-mcp/blob/main/CHANGELOG.md"
+"Semantic Scholar API" = "https://www.semanticscholar.org/product/api"
+
+[project.scripts]
+s2-mcp-server = "semantic_scholar_mcp:main"
+semantic-scholar-mcp = "semantic_scholar_mcp:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/semantic_scholar_mcp"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/src",
+    "/README.md",
+    "/LICENSE",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+# Mirror of the CI gate (see .github/workflows/ci.yml) so `pytest --cov` locally
+# enforces the same 100% line + branch threshold without any CLI flags.
+[tool.coverage.run]
+branch = true
+source = ["src/semantic_scholar_mcp"]
+
+[tool.coverage.report]
+fail_under = 100
+show_missing = true
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["ASYNC", "B", "E", "F", "I", "N", "PGH", "RUF", "SIM", "UP"]
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.bandit]
+# SAST gate; see the `sast` job in .github/workflows/ci.yml. Each `# nosec`
+# suppression in the source carries an inline justification. Tests are excluded:
+# assertion-heavy test code is out of scope for production SAST.
+exclude_dirs = ["tests"]

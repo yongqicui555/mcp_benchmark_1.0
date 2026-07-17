@@ -1,0 +1,18 @@
+[project]
+name = "tku_mcp"
+version = "0.1.0"
+description = "TronClass and TKU-ilife integration through the Model Context Protocol"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "mcp[cli]>=1.6.0",
+    "requests>=2.32.3",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["tku_mcp", "tku_mcp.*"]
+
+[tool.hatch.build.targets.wheel]
+only-include = ["server.py"]
+sources = ["."]

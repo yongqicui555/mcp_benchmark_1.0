@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-thevibepreneur-gapbase-mcp-920599b63e": {
+      "args": [
+        "/app/io-github-thevibepreneur-gapbase-mcp-920599b63e/gapbase-mcp/src/index.js"
+      ],
+      "command": "node"
+    }
+  }
+}

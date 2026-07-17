@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "uniprot-mcp-server_uniprot": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/uniprot-mcp-server_uniprot/uniprot-mcp-server",
+        "run",
+        "uniprot-mcp-server"
+      ]
+    }
+  }
+}

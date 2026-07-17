@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "tpm": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--directory",
+        "/app/tpm/TPM_Technical_Project_Manager/src",
+        "tpm-mcp"
+      ]
+    }
+  }
+}

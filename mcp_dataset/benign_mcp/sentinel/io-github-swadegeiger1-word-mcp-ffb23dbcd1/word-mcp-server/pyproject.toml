@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "word-mcp-server"
+version = "1.0.0"
+description = "Minimal MCP server for Microsoft Word document operations"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "Swade Geiger", email = "swadeg@amazon.com"}
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "mcp>=0.9.0",
+    "python-docx>=1.1.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/swadegeiger1/word-mcp-server"
+Repository = "https://github.com/swadegeiger1/word-mcp-server"
+Issues = "https://github.com/swadegeiger1/word-mcp-server/issues"
+
+[project.scripts]
+word-mcp-server = "server:main"

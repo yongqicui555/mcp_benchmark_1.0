@@ -1,0 +1,2 @@
+=== API key storage patterns ===
+(profile says auth_model=none — N/A but check stillruns)

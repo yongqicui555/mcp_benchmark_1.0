@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "record-to-apple-notes": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/record-to-apple-notes/record-to-markdown",
+        "run",
+        "server.py"
+      ]
+    }
+  }
+}

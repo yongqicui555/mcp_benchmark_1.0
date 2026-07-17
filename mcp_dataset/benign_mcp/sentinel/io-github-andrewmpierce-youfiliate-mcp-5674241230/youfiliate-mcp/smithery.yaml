@@ -1,0 +1,24 @@
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    required:
+      - YOUFILIATE_API_KEY
+    properties:
+      YOUFILIATE_API_KEY:
+        type: string
+        title: API Key
+        description: "Your Youfiliate API key (starts with youfiliate_sk_). Generate one at https://youfiliate.com/settings."
+      YOUFILIATE_API_BASE_URL:
+        type: string
+        title: API Base URL
+        description: "Youfiliate backend URL."
+        default: "https://app.youfiliate.com"
+  commandFunction: |
+    (config) => ({
+      command: "youfiliate-mcp",
+      env: {
+        YOUFILIATE_API_KEY: config.YOUFILIATE_API_KEY,
+        YOUFILIATE_API_BASE_URL: config.YOUFILIATE_API_BASE_URL || "https://app.youfiliate.com"
+      }
+    })

@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "book-fetcher": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/book-fetcher/Book_Fetch_Library_Genesis",
+        "run",
+        "main.py"
+      ]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-pythia-the-oracle-pythia-oracle-mcp-e1387ff54a": {
+      "args": [
+        "/app/io-github-pythia-the-oracle-pythia-oracle-mcp-e1387ff54a/pythia-oracle-mcp/src/pythia_oracle_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

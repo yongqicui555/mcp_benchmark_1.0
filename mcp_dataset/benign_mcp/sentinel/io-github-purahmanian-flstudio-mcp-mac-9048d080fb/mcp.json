@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-purahmanian-flstudio-mcp-mac-9048d080fb": {
+      "args": [
+        "/app/io-github-purahmanian-flstudio-mcp-mac-9048d080fb/flstudio-mcp-mac/src/flstudio_mcp_mac/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

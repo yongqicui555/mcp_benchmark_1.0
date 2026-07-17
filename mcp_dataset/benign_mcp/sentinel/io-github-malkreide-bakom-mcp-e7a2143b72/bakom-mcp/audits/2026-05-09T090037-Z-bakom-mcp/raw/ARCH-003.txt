@@ -1,0 +1,18 @@
+=== heuristic markers in sendeanlagen + rtv tools ===
+1026:            hinweis: str | None = None
+1029:                hinweis = (
+1031:                    f"Empfehlung: Radius auf {vorschlag_radius} m erhoehen "
+1035:                hinweis = (
+1037:                    "Standort ist vermutlich abgelegen."
+1047:            if hinweis:
+1048:                output["hinweis"] = hinweis
+1059:                md += f"> **Hinweis:** {hinweis}\n"
+1282:            hinweis: str | None = None
+1297:                hinweis = "Keine Treffer. Empfehlung: " + ", oder ".join(vorschlaege) + "."
+1310:            if hinweis:
+1311:                output["hinweis"] = hinweis
+1325:                md += f"> **Hinweis:** {hinweis}\n"
+1970:        "priorisierte Ausbau-Empfehlung."
+1986:        "Empfehlung.\n"
+=== Heuristics test count ===
+5

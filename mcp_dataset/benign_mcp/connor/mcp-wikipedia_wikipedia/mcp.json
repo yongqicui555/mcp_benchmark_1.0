@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "mcp-wikipedia_wikipedia": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/mcp-wikipedia_wikipedia/mcp-wikipedia",
+        "run",
+        "python",
+        "main.py"
+      ]
+    }
+  }
+}

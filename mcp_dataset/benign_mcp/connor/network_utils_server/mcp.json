@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "network-utils": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/network_utils_server/network_tools",
+        "run",
+        "python",
+        "server.py"
+      ]
+    }
+  }
+}

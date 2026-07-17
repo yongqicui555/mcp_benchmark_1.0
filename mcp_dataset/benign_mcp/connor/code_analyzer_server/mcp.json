@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "code-analyzer": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/code_analyzer_server/code_tools",
+        "run",
+        "python",
+        "server.py"
+      ]
+    }
+  }
+}

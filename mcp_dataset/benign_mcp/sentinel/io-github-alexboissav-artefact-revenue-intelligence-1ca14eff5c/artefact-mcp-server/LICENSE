@@ -1,0 +1,39 @@
+Business Source License 1.1
+
+Licensor: Artefact Ventures Inc.
+Licensed Work: Artefact Revenue Intelligence MCP Server
+Copyright (c) 2026 Artefact Ventures Inc. All rights reserved.
+
+Change Date: 2030-02-10
+Change License: MIT License
+
+Terms
+
+The Licensor hereby grants you the right to copy, modify, create derivative
+works, redistribute, and make non-production use of the Licensed Work. The
+Licensor may make an Additional Use Grant, below.
+
+Additional Use Grant:
+You may use the Licensed Work in a production environment solely for the
+purpose of connecting to and using the Licensed Work's MCP tools via an
+AI assistant (e.g., Claude, GPT, Cursor). You may NOT:
+
+  1. Extract, replicate, or redistribute the scoring models, methodology,
+     or business logic contained in the Licensed Work as a standalone
+     product or service.
+  2. Offer the Licensed Work, or any substantial portion of its scoring
+     or analysis logic, as part of a competing commercial product.
+  3. Remove or alter any proprietary methodology notices.
+
+Any use of the Licensed Work in violation of this License will automatically
+terminate your rights under this License for the current and all other
+versions of the Licensed Work.
+
+This License does not grant you any right in any trademark or logo of
+Licensor or its affiliates.
+
+TO THE EXTENT PERMITTED BY APPLICABLE LAW, THE LICENSED WORK IS PROVIDED ON
+AN "AS IS" BASIS. LICENSOR HEREBY DISCLAIMS ALL WARRANTIES AND CONDITIONS,
+EXPRESS OR IMPLIED, INCLUDING (WITHOUT LIMITATION) WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, AND
+TITLE.

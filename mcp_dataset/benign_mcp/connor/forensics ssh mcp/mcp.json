@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "forensics ssh mcp": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/forensics ssh mcp/Server-Inspection-MCP",
+        "run",
+        "main.py"
+      ]
+    }
+  }
+}

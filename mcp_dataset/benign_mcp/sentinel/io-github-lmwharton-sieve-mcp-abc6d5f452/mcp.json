@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-lmwharton-sieve-mcp-abc6d5f452": {
+      "args": [
+        "/app/io-github-lmwharton-sieve-mcp-abc6d5f452/sieve-mcp/src/sieve_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

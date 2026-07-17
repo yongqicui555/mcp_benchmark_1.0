@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "Biomart": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--with",
+        "mcp[cli]",
+        "--with",
+        "pybiomart",
+        "mcp",
+        "run",
+        "/app/Biomart/biomart-mcp/biomart-mcp.py"
+      ]
+    }
+  }
+}

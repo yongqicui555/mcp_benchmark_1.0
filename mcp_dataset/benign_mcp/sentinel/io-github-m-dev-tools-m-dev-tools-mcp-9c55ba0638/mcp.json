@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-m-dev-tools-m-dev-tools-mcp-9c55ba0638": {
+      "args": [
+        "/app/io-github-m-dev-tools-m-dev-tools-mcp-9c55ba0638/m-dev-tools-mcp/src/m_dev_tools_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

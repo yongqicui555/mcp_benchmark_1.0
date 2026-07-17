@@ -1,0 +1,72 @@
+# Python-generated files
+__pycache__/
+*.py[cod]
+*$py.class
+build/
+dist/
+wheels/
+*.egg-info/
+.eggs/
+*.so
+MANIFEST
+
+# Virtual environments
+.venv
+venv/
+ENV/
+env/
+.env/
+.python-version
+
+# IDE settings
+.idea/
+.vscode/
+*.swp
+*.swo
+.project
+.pydevproject
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# Testing
+.coverage
+coverage.xml
+*.cover
+.pytest_cache/
+.tox/
+nosetests.xml
+htmlcov/
+.hypothesis/
+.coverage.*
+
+# Documentation
+docs/_build/
+site/
+docs/generated/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# Environment variables
+.env
+.env.local
+.env*.local
+*.env
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Logs and databases
+*.log
+*.sqlite
+*.db
+
+# Local development
+local_settings.py
+db.sqlite3
+media/

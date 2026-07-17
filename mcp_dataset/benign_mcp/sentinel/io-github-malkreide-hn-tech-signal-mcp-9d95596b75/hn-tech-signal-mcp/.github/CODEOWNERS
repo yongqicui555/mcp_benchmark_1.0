@@ -1,0 +1,5 @@
+# Default owner for all files.
+* @malkreide
+
+# Audit artefacts — auditor co-review.
+/audits/ @malkreide

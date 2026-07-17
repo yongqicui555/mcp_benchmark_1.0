@@ -1,0 +1,35 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.screenshotink/mcp",
+  "description": "Screenshot, diff, audit and sitemap-capture any web page — 5 MCP tools for AI agents.",
+  "status": "active",
+  "repository": {
+    "url": "https://github.com/bikker/screenshotink-mcp",
+    "source": "github"
+  },
+  "websiteUrl": "https://screenshotink.com/mcp",
+  "version": "1.0.4",
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "@screenshotink/mcp",
+      "version": "1.0.3",
+      "transport": { "type": "stdio" },
+      "environmentVariables": [
+        {
+          "name": "SCREENSHOTINK_API_KEY",
+          "description": "Your ScreenshotInk API key (sk_live_…). Free at https://screenshotink.com/signup.",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.screenshotink.com/mcp"
+    }
+  ]
+}

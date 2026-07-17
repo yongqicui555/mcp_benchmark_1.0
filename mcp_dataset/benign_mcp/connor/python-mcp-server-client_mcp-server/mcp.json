@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "python-mcp-server-client_mcp-server": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/python-mcp-server-client_mcp-server/python-mcp-server-client",
+        "run",
+        "main.py"
+      ]
+    }
+  }
+}

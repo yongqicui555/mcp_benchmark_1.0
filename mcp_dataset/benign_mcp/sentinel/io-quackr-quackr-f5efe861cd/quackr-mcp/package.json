@@ -1,0 +1,45 @@
+{
+  "name": "quackr-mcp",
+  "version": "1.0.1",
+  "mcpName": "io.quackr/quackr",
+  "description": "MCP launcher for Quackr — virtual phone numbers for SMS verification and OTP receipt. Bridges stdio MCP clients to the hosted Quackr server at https://mcp.quackr.io/.",
+  "type": "module",
+  "bin": {
+    "quackr-mcp": "bin/quackr-mcp.js"
+  },
+  "files": [
+    "bin/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "start": "node bin/quackr-mcp.js"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "quackr",
+    "sms",
+    "otp",
+    "verification",
+    "phone-numbers",
+    "claude"
+  ],
+  "homepage": "https://quackr.io",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/quackr-mcp/quackr-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/quackr-mcp/quackr-mcp/issues",
+    "email": "support@quackr.io"
+  },
+  "author": "Quackr <support@quackr.io> (https://quackr.io)",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "mcp-remote": "^0.1.38"
+  }
+}

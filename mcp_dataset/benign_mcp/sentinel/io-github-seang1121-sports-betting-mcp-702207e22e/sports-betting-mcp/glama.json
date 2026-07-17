@@ -1,0 +1,10 @@
+{
+  "$schema": "https://glama.ai/mcp/schemas/server.json",
+  "maintainers": ["seang1121"],
+  "relatedServers": [
+    "@anthropics/mcp-server-fetch",
+    "@Bortlesboat/bitcoin-mcp",
+    "@massive-com/polygon-io-mcp-server",
+    "@token-metrics/tmai-mcp"
+  ]
+}

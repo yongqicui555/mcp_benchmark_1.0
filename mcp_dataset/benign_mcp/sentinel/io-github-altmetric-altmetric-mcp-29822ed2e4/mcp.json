@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-altmetric-altmetric-mcp-29822ed2e4": {
+      "args": [
+        "/app/io-github-altmetric-altmetric-mcp-29822ed2e4/altmetric-mcp/index.js"
+      ],
+      "command": "node"
+    }
+  }
+}

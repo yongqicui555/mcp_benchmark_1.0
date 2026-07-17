@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "label": "baseline",
+    "timestamp": "2026-05-14T10:41:44.676Z",
+    "commit": "93ba4ff",
+    "machine": {
+      "platform": "win32",
+      "arch": "x64",
+      "node_version": "v24.14.0",
+      "cpu_model": "AMD Ryzen 9 3900X 12-Core Processor            ",
+      "cpu_count": 24,
+      "total_mem_gb": 31.9,
+      "os_release": "10.0.22000"
+    },
+    "config": {
+      "N": 10000,
+      "M": 10000,
+      "miss_k": 1000,
+      "list_k": 200,
+      "output_bytes": 1024
+    }
+  },
+  "latency": {
+    "write": {
+      "name": "write",
+      "n": 10000,
+      "mean_ms": 0.1719,
+      "p50_ms": 0.0893,
+      "p95_ms": 0.1516,
+      "p99_ms": 2.6637,
+      "max_ms": 18.5811,
+      "ops_per_sec": 5819
+    },
+    "read_hit": {
+      "name": "read_hit",
+      "n": 10000,
+      "mean_ms": 0.1316,
+      "p50_ms": 0.0742,
+      "p95_ms": 0.1159,
+      "p99_ms": 0.2269,
+      "max_ms": 20.99,
+      "ops_per_sec": 7597
+    },
+    "read_miss": {
+      "name": "read_miss",
+      "n": 1000,
+      "mean_ms": 0.0567,
+      "p50_ms": 0.0402,
+      "p95_ms": 0.0666,
+      "p99_ms": 0.1256,
+      "max_ms": 8.2085,
+      "ops_per_sec": 17638
+    },
+    "list_50": {
+      "name": "list_50",
+      "n": 200,
+      "mean_ms": 0.1346,
+      "p50_ms": 0.111,
+      "p95_ms": 0.1627,
+      "p99_ms": 0.5341,
+      "max_ms": 2.3962,
+      "ops_per_sec": 7427
+    }
+  },
+  "storage": {
+    "db_bytes": 15732736,
+    "wal_bytes": 4177712,
+    "total_bytes": 19910448,
+    "bytes_per_entry": 1991
+  }
+}

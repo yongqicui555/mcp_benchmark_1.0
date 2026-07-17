@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "bilibili": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/bilibili/Bilibili_API_MCP_Server",
+        "run",
+        "bilibili.py"
+      ]
+    }
+  }
+}

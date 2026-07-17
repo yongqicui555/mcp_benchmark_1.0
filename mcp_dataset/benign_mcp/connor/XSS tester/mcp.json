@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "XSS tester": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--with",
+        "mcp[cli]",
+        "--with",
+        "playwright",
+        "mcp",
+        "run",
+        "/app/XSS tester/XSS_Vulnerability_Tester/main.py"
+      ]
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "lol-client-mcp_lol-client-mcp": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/lol-client-mcp_lol-client-mcp/lol-client-mcp",
+        "run",
+        "main.py"
+      ]
+    }
+  }
+}

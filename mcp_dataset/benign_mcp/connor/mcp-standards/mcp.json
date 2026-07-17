@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "mcp-standards": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--directory",
+        "/app/mcp-standards/Standards/src",
+        "python",
+        "-m",
+        "mcp_standards.server_simple"
+      ]
+    }
+  }
+}

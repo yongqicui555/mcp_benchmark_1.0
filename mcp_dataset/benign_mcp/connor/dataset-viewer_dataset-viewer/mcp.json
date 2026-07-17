@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "dataset-viewer_dataset-viewer": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/dataset-viewer_dataset-viewer/dataset-viewer",
+        "run",
+        "dataset-viewer"
+      ]
+    }
+  }
+}

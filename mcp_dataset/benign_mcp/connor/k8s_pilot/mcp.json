@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "k8s_pilot": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/k8s_pilot/k8s-pilo",
+        "run",
+        "--with",
+        "mcp[cli]",
+        "mcp",
+        "run",
+        "k8s_pilot.py"
+      ]
+    }
+  }
+}

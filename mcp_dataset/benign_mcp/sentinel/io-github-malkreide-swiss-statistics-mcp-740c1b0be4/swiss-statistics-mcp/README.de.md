@@ -1,0 +1,438 @@
+[🇬🇧 English Version](README.md)
+
+> 🇨🇭 **Teil des [Swiss Public Data MCP Portfolios](https://github.com/malkreide)**
+
+# 📊 swiss-statistics-mcp
+
+![Version](https://img.shields.io/badge/version-0.2.0-blue)
+[![Lizenz: MIT](https://img.shields.io/badge/Lizenz-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
+[![MCP](https://img.shields.io/badge/MCP-Model%20Context%20Protocol-purple)](https://modelcontextprotocol.io/)
+[![Kein API-Schlüssel](https://img.shields.io/badge/Auth-keiner%20erforderlich-brightgreen)](https://github.com/malkreide/swiss-statistics-mcp)
+![CI](https://github.com/malkreide/swiss-statistics-mcp/actions/workflows/ci.yml/badge.svg)
+
+> MCP-Server für Schweizer Statistikdaten des Bundesamts für Statistik (BFS) via STAT-TAB PxWeb API — 682 Datensätze aus 21 Themengebieten, keine Authentifizierung erforderlich
+
+---
+
+### Demo
+
+![Demo: Claude uses bfs_education_stats](docs/assets/demo.svg)
+
+---
+
+## Reifegrad
+
+Dieser Server befindet sich im **Alpha-Stadium (0.x)** gemäss [PyPI-Classifier](https://pypi.org/classifiers/). Bis zur Version 1.0:
+
+- Tool-Namen, Input-Schemas und Output-JSON-Keys KÖNNEN sich zwischen Minor-Versionen ändern
+- Cloud-Deployments auf einen spezifischen Git-Tag pinnen, nicht auf `main`
+- Produktiv-Einsatz für Read-Only-Open-Data-Szenarien akzeptabel; für User-facing-Use-Cases als experimentell behandeln
+
+Breaking Changes siehe [CHANGELOG.md](./CHANGELOG.md).
+
+---
+
+## Übersicht
+
+`swiss-statistics-mcp` ermöglicht KI-Assistenten den direkten Zugang zur STAT-TAB-Datenbank des Bundesamts für Statistik (BFS) — ohne Authentifizierung:
+
+| Eigenschaft | Details |
+|-------------|---------|
+| **API** | STAT-TAB PxWeb API v1 |
+| **Endpoint** | `https://www.pxweb.bfs.admin.ch/api/v1/` |
+| **Anbieter** | Bundesamt für Statistik (BFS), Schweiz |
+| **Datensätze** | 682 Tabellen in 21 Themengebieten |
+| **Sprachen** | Deutsch (`de`), Französisch (`fr`), Italienisch (`it`), Englisch (`en`) |
+| **Lizenz** | Open Government Data (OGD) — [BFS-Nutzungsbedingungen](https://www.bfs.admin.ch/bfs/de/home/grundlagen/nutzungsbedingungen.html) |
+| **Authentifizierung** | Keine — vollständig öffentlich zugänglich |
+
+**Anker-Demo-Abfrage:** *«Wie viele Schülerinnen und Schüler besuchen 2024 die Sekundarstufe I im Kanton Zürich?»* — echte BFS-Zahlen, keine Halluzination.
+
+---
+
+## Funktionen
+
+- 📊 **9 Tools** über 21 statistische Themengebiete (682 Datensätze)
+- 🔍 **Volltextsuche** über den gesamten BFS-Datenkatalog
+- 🎓 **Convenience-Tools** für Bildungsstatistik und Bevölkerungsdaten
+- 🏔️ **Kantonsvergleich** für beliebige Tabellen und Merkmale
+- 🔓 **Kein API-Schlüssel erforderlich** — alle Daten unter offenen Lizenzen
+- ☁️ **Dualer Transport** — stdio (Claude Desktop) + Streamable HTTP (Cloud)
+
+---
+
+## Voraussetzungen
+
+- Python 3.11+
+- [uv](https://github.com/astral-sh/uv) (empfohlen) oder pip
+
+---
+
+## Installation
+
+```bash
+# Repository klonen
+git clone https://github.com/malkreide/swiss-statistics-mcp.git
+cd swiss-statistics-mcp
+
+# Installieren
+pip install -e .
+# oder mit uv:
+uv pip install -e .
+```
+
+Oder mit `uvx` (ohne dauerhafte Installation):
+
+```bash
+uvx swiss-statistics-mcp
+```
+
+---
+
+## Schnellstart
+
+```bash
+# stdio (für Claude Desktop)
+python -m swiss_statistics_mcp.server
+
+# Streamable HTTP, nur Loopback (Default: host=127.0.0.1, port=8000)
+python -m swiss_statistics_mcp.server --http --port 8000
+
+# Streamable HTTP, alle Interfaces (nur hinter Reverse-Proxy mit Access Control)
+MCP_HOST=0.0.0.0 python -m swiss_statistics_mcp.server --http --port 8000
+# oder
+python -m swiss_statistics_mcp.server --http --host 0.0.0.0 --port 8000
+```
+
+Sofort in Claude Desktop ausprobieren:
+
+> *«Wie viele Lehrkräfte unterrichteten 2023 im Kanton Zürich?»*
+> *«Wie gross ist die Bevölkerung im Kanton Bern nach Alter?»*
+> *«Vergleiche die Sozialhilfequote aller Kantone für 2022.»*
+
+---
+
+## Konfiguration
+
+### Claude Desktop
+
+Editiere `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS) bzw. `%APPDATA%\Claude\claude_desktop_config.json` (Windows):
+
+```json
+{
+  "mcpServers": {
+    "swiss-statistics": {
+      "command": "python",
+      "args": ["-m", "swiss_statistics_mcp.server"]
+    }
+  }
+}
+```
+
+Oder mit `uvx`:
+
+```json
+{
+  "mcpServers": {
+    "swiss-statistics": {
+      "command": "uvx",
+      "args": ["swiss-statistics-mcp"]
+    }
+  }
+}
+```
+
+**Pfad zur Konfigurationsdatei:**
+- macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
+- Windows: `%APPDATA%\Claude\claude_desktop_config.json`
+
+### Cursor / Windsurf / VS Code + Continue
+
+Die Konfigurationssyntax ist identisch zu Claude Desktop. Die JSON-Datei heisst je nach Client:
+
+- **Cursor:** `.cursor/mcp.json` im Projektordner oder `~/.cursor/mcp.json` global
+- **Windsurf:** `~/.codeium/windsurf/mcp_config.json`
+- **VS Code + Continue:** `.continue/config.json`
+
+### Cloud-Deployment (SSE für Browser-Zugriff)
+
+Für den Einsatz via **claude.ai im Browser** (z.B. auf verwalteten Arbeitsplätzen ohne lokale Software-Installation).
+
+> ⚠️ **Security-Hinweis — dieser Server hat keine Authentifizierung.** Eine
+> öffentliche URL macht ihn zum Open Proxy zur BFS-API auf der IP deines
+> Deployments. Jeder Client mit der URL kann die Tools nutzen, dein
+> Platform-Kontingent verbrauchen und Traffic auf deine IP attribuieren.
+> Zwei Mitigationen, in absteigender Präferenz:
+>
+> 1. **Hinter Access Control stellen** — Render «Private Service»,
+>    Cloudflare Access oder Reverse-Proxy mit Basic-Auth / IP-Allowlist
+>    vor dem Container.
+> 2. **Bewusst als öffentlicher Open-Data-Proxy akzeptieren** — nur
+>    vertretbar, weil alle Daten BFS OGD (Public Open Data) sind und die
+>    Tools read-only.
+>
+> Der Server bindet per Default auf `127.0.0.1`. Für Container-Port-Exposure
+> musst du explizit `MCP_HOST=0.0.0.0` setzen (z.B. als Render-Env-Var) oder
+> `--host 0.0.0.0` übergeben. Nicht ohne eine der Mitigationen oben.
+
+**Render.com:**
+1. Repository auf GitHub pushen/forken
+2. Auf [render.com](https://render.com): New Web Service → GitHub-Repo verbinden
+3. Environment-Variable setzen: `MCP_HOST=0.0.0.0`
+4. Start-Befehl setzen: `python -m swiss_statistics_mcp.server --http --port 8000`
+5. In claude.ai unter Settings → MCP Servers eintragen: `https://your-app.onrender.com/sse`
+
+> 💡 *«stdio für den Entwickler-Laptop, SSE für den Browser.»*
+
+---
+
+## Output-Schema
+
+Seit `v0.2.0` liefert jedes Tool ein typisiertes Pydantic-Model statt eines
+JSON-Strings. FastMCP serialisiert das als strukturierten Content, sodass
+MCP-Clients die Felder direkt lesen können.
+
+```python
+# Alt (vor 0.2.0)
+result = await bfs_get_data(...)        # str
+data = json.loads(result)               # dict
+print(data["rows_total"])
+
+# Neu (>= 0.2.0)
+result = await bfs_get_data(...)        # DataTableResult
+print(result.rows_total)                # 1000
+print(result.truncated)                 # True
+```
+
+Jedes Result hat top-level `error: str | None` und `hint: str | None` —
+`result.error is None` bedeutet Erfolg. Daten-Tools (`bfs_get_data`,
+`bfs_education_stats`, `bfs_population`, `bfs_compare_cantons`) liefern
+zusätzlich `truncated: bool`, `rows_total: int`, `rows_returned: int`
+für maschinen-lesbare Trunkierungs-Erkennung.
+
+| Tool | Result-Type |
+|------|-------------|
+| `bfs_list_themes` | `ListThemesResult` |
+| `bfs_list_tables_by_theme` | `ListTablesByThemeResult` |
+| `bfs_search_tables` | `SearchTablesResult` |
+| `bfs_get_table_metadata` | `TableMetadataResult` |
+| `bfs_get_data` | `DataTableResult` |
+| `bfs_education_stats` | `DataTableResult` |
+| `bfs_population` | `DataTableResult` |
+| `bfs_compare_cantons` | `DataTableResult` |
+| `bfs_featured_datasets` | `FeaturedDatasetsResult` |
+
+---
+
+## Verfügbare Tools
+
+| Tool | Beschreibung |
+|------|-------------|
+| `bfs_featured_datasets` | Kuratierte Liste hochrelevanter Datensätze (Schwerpunkt Bildung und Demografie) |
+| `bfs_list_themes` | Alle 21 BFS-Themen mit Anzahl verfügbarer Datensätze |
+| `bfs_list_tables_by_theme` | Alle Tabellen eines Themas (z.B. `"15"` = Bildung und Wissenschaft) |
+| `bfs_search_tables` | Freitextsuche über den gesamten Datenkatalog (682 Datensätze) |
+| `bfs_get_table_metadata` | Variablen, Ausprägungen und Metadaten einer spezifischen Tabelle |
+| `bfs_get_data` | Datenabruf mit optionalen Filtern nach Dimensionen und Werten |
+| `bfs_education_stats` | Convenience-Tool: Lehrkräfte, Schüler/-innen, Szenarien, Stipendien |
+| `bfs_population` | Wohnbevölkerung nach Kanton, Jahr, Altersstruktur oder Geschlecht |
+| `bfs_compare_cantons` | Kantonsvergleich für eine beliebige Tabelle und ein beliebiges Merkmal |
+
+### Beispiel-Abfragen
+
+| Abfrage | Tool |
+|---------|------|
+| *«Wie viele Lehrkräfte unterrichteten 2023 in Zürich?»* | `bfs_education_stats` |
+| *«Wie entwickeln sich die Schülerzahlen der Sek II bis 2031?»* | `bfs_education_stats` |
+| *«Wie gross ist die Bevölkerung im Kanton Zürich nach Alter?»* | `bfs_population` |
+| *«Vergleiche die Sozialhilfequote aller Kantone»* | `bfs_compare_cantons` |
+| *«Gibt es Daten zu Schulliegenschaften?»* | `bfs_search_tables` |
+
+[→ Weitere Anwendungsbeispiele nach Zielgruppe →](EXAMPLES.md)
+
+---
+
+## Themengebiete
+
+| Code | Thema | Code | Thema |
+|------|-------|------|-------|
+| 01 | Bevölkerung | 12 | Geld, Banken, Versicherungen |
+| 02 | Raum und Umwelt | 13 | Soziale Sicherheit |
+| 03 | Arbeit und Erwerb | 14 | Gesundheit |
+| 04 | Volkswirtschaft | **15** | **Bildung und Wissenschaft** |
+| 05 | Preise | 16 | Kultur, Medien, Informationsgesellschaft |
+| 06 | Industrie und Dienstleistungen | 17 | Politik |
+| 07 | Land- und Forstwirtschaft | 18 | Öffentliche Verwaltung |
+| 08 | Energie | 19 | Kriminalität und Strafrecht |
+| 09 | Bau- und Wohnungswesen | 20 | Wirtschaftliche und soziale Situation |
+| 10 | Tourismus | 21 | Nachhaltige Entwicklung |
+| 11 | Mobilität und Verkehr | | |
+
+---
+
+## Architektur
+
+```
+┌─────────────────┐     ┌──────────────────────────────┐     ┌──────────────────────────┐
+│   Claude / KI   │────▶│  Swiss Statistics MCP          │────▶│  BFS STAT-TAB            │
+│   (MCP Host)    │◀────│  (MCP Server)                │◀────│  PxWeb API v1            │
+└─────────────────┘     │                              │     └──────────────────────────┘
+                        │  9 Tools                     │
+                        │  682 Datensätze · 21 Themen  │
+                        │  Stdio | Streamable HTTP     │
+                        │                              │
+                        │  Keine Authentifizierung     │
+                        └──────────────────────────────┘
+```
+
+### Datenquellen-Übersicht
+
+| Quelle | Protokoll | Umfang | Auth |
+|--------|-----------|--------|------|
+| BFS STAT-TAB | PxWeb REST API | 682 Tabellen, 21 Themen | Keine |
+
+---
+
+## Projektstruktur
+
+```
+swiss-statistics-mcp/
+├── src/swiss_statistics_mcp/
+│   ├── __init__.py              # Package
+│   └── server.py                # 9 Tools
+├── tests/
+│   └── test_server.py           # Unit + Integrationstests (gemockt)
+├── .github/workflows/ci.yml     # GitHub Actions (Python 3.11/3.12/3.13)
+├── pyproject.toml
+├── CHANGELOG.md
+├── CONTRIBUTING.md              # Englisch
+├── CONTRIBUTING.de.md           # Deutsche Version
+├── SECURITY.md                  # Englisch
+├── SECURITY.de.md               # Deutsche Version
+├── LICENSE
+├── README.md                    # Englische Hauptversion
+└── README.de.md                 # Diese Datei (Deutsch)
+```
+
+---
+
+## Observability
+
+Der Server schreibt pro Tool-Call **eine JSON-Log-Zeile** auf stderr:
+
+```jsonc
+{"ts": "2026-05-20T04:02:28", "level": "INFO", "logger": "swiss_statistics_mcp",
+ "event": "tool_start", "tool": "bfs_list_themes", "rid": "1091cb73", "params_keys": ["lang"]}
+{"ts": "2026-05-20T04:02:28", "level": "INFO", "logger": "swiss_statistics_mcp",
+ "event": "tool_end", "tool": "bfs_list_themes", "rid": "1091cb73", "status": "ok", "duration_ms": 303}
+```
+
+- `rid` — 8-Zeichen-Correlation-ID, verbindet `tool_start` und `tool_end` desselben Calls
+- `params_keys` — sortierte Liste der Input-Feld-Namen (keine Werte, kein PII)
+- `duration_ms` — Latenz pro Call im `tool_end`-Event
+- `status` — `"ok"` oder `"error"`; bei Fehler zusätzlich `error_type`
+
+Render und andere Cloud-Plattformen können diese Logs direkt für per-Tool-Latency-
+Dashboards und Error-Rate-Alerts indexieren. `MCP_LOG_LEVEL=DEBUG` für verbose,
+`WARNING` um Per-Call-Events zu unterdrücken.
+
+> ℹ️ Logs gehen auf **stderr**, kollidieren also nie mit dem MCP-Protokoll auf
+> stdio-Transport (das stdout nutzt).
+
+---
+
+## Resilience
+
+Der Server absorbiert transiente BFS-API-Aussetzer, bevor sie das LLM erreichen:
+
+- **Retries** — `5xx`, `429` und Netzwerk-Fehler werden bis zu 3× mit
+  exponential backoff (0.5s → 4s) wiederholt. `4xx`-Fehler werden sofort
+  durchgereicht, damit Client-Bugs nicht maskiert werden. Konfigurierbar via
+  `MCP_RETRY_MAX_ATTEMPTS`, `MCP_RETRY_WAIT_INITIAL`, `MCP_RETRY_WAIT_MAX`.
+- **Metadaten-Cache** — Tabellen-Metadaten (Variablen, Wertebereiche,
+  last_updated) werden in-memory pro `(table_id, lang)` für 1h gecacht.
+  Erster Call wärmt den Cache, Folge-Calls antworten instant.
+- **Concurrency-Cap** — Fan-out Metadaten-Fetches in `bfs_list_tables_by_theme`
+  laufen parallel begrenzt durch `FANOUT_CONCURRENCY = 5`. Für `limit=20`
+  reduziert das die Wall-Clock von ~20s sequenziell auf ~4s, ohne die
+  Upstream-API zu überlasten.
+
+---
+
+## Bekannte Einschränkungen
+
+- **PxWeb API:** Rate-Limiting bei schnellen aufeinanderfolgenden Abfragen; der Server nutzt einen 1-Stunden-Cache für den Katalogindex sowie einen 1-Stunden-Cache für Tabellen-Metadaten
+- **Sprache:** Tabellentitel und Dimensionswerte sind standardmässig auf Deutsch; die Abdeckung in Französisch, Italienisch und Englisch variiert je Tabelle
+- **JSON-STAT2:** Komplexe Kreuztabellierungen können grosse Ergebnismengen liefern; Dimensionsfilter zur Eingrenzung verwenden
+
+---
+
+## Tests
+
+```bash
+# Unit-Tests (kein API-Key erforderlich)
+PYTHONPATH=src pytest tests/ -m "not live"
+
+# Integrationstests (Live-API-Aufrufe)
+pytest tests/ -m "live"
+```
+
+---
+
+## Safety & Limits
+
+- **Nur lesend:** Alle Tools führen ausschliesslich HTTP-GET-Anfragen durch — es werden keine Daten geschrieben, verändert oder gelöscht.
+- **Keine Personendaten:** STAT-TAB liefert aggregierte statistische Datensätze. Der Server verarbeitet und speichert keine personenbezogenen Daten (PII).
+- **Rate Limits:** Die PxWeb-API ist ein öffentlicher Endpunkt ohne dokumentierte Rate Limits; keine engen Schleifen über den gesamten 682-Tabellen-Katalog. Der Server erzwingt ein 30s-Timeout pro Anfrage und cached den Katalogindex für 1 Stunde.
+- **Aktualität:** Das BFS veröffentlicht aktualisierte Daten periodisch (nicht in Echtzeit). Die Zahlen spiegeln den Stand der BFS-Datenbank zum Abfragezeitpunkt wider.
+- **Nutzungsbedingungen:** Die Daten unterliegen den [BFS-Nutzungsbedingungen (OGD)](https://www.bfs.admin.ch/bfs/de/home/grundlagen/nutzungsbedingungen.html). Alle STAT-TAB-Daten werden als Open Government Data veröffentlicht und können mit Quellenangabe frei verwendet werden.
+- **Keine Gewähr:** Dieses Projekt ist kein offizielles Produkt des BFS. Die Verfügbarkeit hängt von der vorgelagerten BFS-API ab.
+
+---
+
+## Changelog
+
+Siehe [CHANGELOG.md](CHANGELOG.md)
+
+---
+
+## Mitwirken
+
+Siehe [CONTRIBUTING.de.md](CONTRIBUTING.de.md)
+
+---
+
+## Sicherheit
+
+Rein lesend, keine Personendaten, keine Authentifizierung, ein einziger fixer
+BFS-Endpunkt. Die vollständige Sicherheitslage und die akzeptierten Risiken sind
+in [SECURITY.de.md](SECURITY.de.md) dokumentiert.
+
+---
+
+## Lizenz
+
+MIT-Lizenz — siehe [LICENSE](LICENSE)
+
+Daten: Open Government Data (OGD) des Bundesamts für Statistik (BFS). Nutzung gemäss [BFS-Nutzungsbedingungen](https://www.bfs.admin.ch/bfs/de/home/grundlagen/nutzungsbedingungen.html).
+
+---
+
+## Autor
+
+Hayal Oezkan · [malkreide](https://github.com/malkreide)
+
+---
+
+## Credits & Verwandte Projekte
+
+- **BFS:** [www.bfs.admin.ch](https://www.bfs.admin.ch/) — Bundesamt für Statistik
+- **STAT-TAB:** [www.pxweb.bfs.admin.ch](https://www.pxweb.bfs.admin.ch/) — PxWeb-Datenbankschnittstelle
+- **Protokoll:** [Model Context Protocol](https://modelcontextprotocol.io/) — Anthropic / Linux Foundation
+- **Verwandt:** [swiss-cultural-heritage-mcp](https://github.com/malkreide/swiss-cultural-heritage-mcp) — SIK-ISEA, Nationalmuseum, Nationalbibliothek
+- **Verwandt:** [fedlex-mcp](https://github.com/malkreide/fedlex-mcp) — Schweizer Bundesrecht via Fedlex SPARQL
+- **Verwandt:** [zurich-opendata-mcp](https://github.com/malkreide/zurich-opendata-mcp) — CKAN, Wetter, Luftqualität, Stadt Zürich
+- **Verwandt:** [swiss-transport-mcp](https://github.com/malkreide/swiss-transport-mcp) — OJP Reiseplanung, SIRI-SX Störungen
+- **Verwandt:** [global-education-mcp](https://github.com/malkreide/global-education-mcp) — UNESCO UIS und OECD Education at a Glance
+- **Portfolio:** [Swiss Public Data MCP Portfolio](https://github.com/malkreide)

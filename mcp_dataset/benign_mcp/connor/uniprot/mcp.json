@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "uniprot": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/uniprot/TakumiY235_uniprot-mcp-server",
+        "run",
+        "uniprot-mcp-server"
+      ]
+    }
+  }
+}

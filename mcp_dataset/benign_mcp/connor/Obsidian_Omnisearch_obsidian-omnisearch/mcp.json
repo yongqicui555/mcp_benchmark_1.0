@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "Obsidian_Omnisearch_obsidian-omnisearch": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/Obsidian_Omnisearch_obsidian-omnisearch/Obsidian_Omnisearch",
+        "run",
+        "mcp-server-obsidian-omnisearch",
+        "/app/Obsidian_Omnisearch_obsidian-omnisearch/Obsidian_Omnisearch/vault"
+      ]
+    }
+  }
+}

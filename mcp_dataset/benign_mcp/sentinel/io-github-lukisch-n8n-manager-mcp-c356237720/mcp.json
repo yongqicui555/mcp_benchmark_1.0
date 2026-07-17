@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-lukisch-n8n-manager-mcp-c356237720": {
+      "args": [
+        "/app/io-github-lukisch-n8n-manager-mcp-c356237720/n8n-manager-mcp/dist/index.js"
+      ],
+      "command": "node"
+    }
+  }
+}

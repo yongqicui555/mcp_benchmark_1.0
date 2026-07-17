@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "ai-anomalyarmor-armor-mcp-a84f70f62f": {
+      "args": [
+        "/app/ai-anomalyarmor-armor-mcp-a84f70f62f/agents/armor-mcp/src/armor_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

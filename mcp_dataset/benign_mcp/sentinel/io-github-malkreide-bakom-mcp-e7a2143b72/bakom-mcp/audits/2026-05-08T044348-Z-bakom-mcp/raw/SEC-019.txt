@@ -1,0 +1,23 @@
+=== write/send capability ===
+48:LAYER_RADIO_TV = "ch.bakom.radio-fernsehsender"
+85:class CoordinateInput(BaseModel):
+106:class BroadbandCoverageInput(BaseModel):
+131:class MobileCoverageInput(BaseModel):
+156:class AntennaSearchInput(BaseModel):
+183:class RTVSearchInput(BaseModel):
+217:class TelekomStatInput(BaseModel):
+234:class MultiLocationInput(BaseModel):
+418:async def bakom_broadband_coverage(params: BroadbandCoverageInput) -> str:
+426:        params (BroadbandCoverageInput): Eingabeparameter mit:
+500:async def bakom_glasfaser_verfuegbarkeit(params: CoordinateInput) -> str:
+508:        params (CoordinateInput): Standortkoordinaten WGS84 + Ausgabeformat.
+565:async def bakom_multi_standort_konnektivitaet(params: MultiLocationInput) -> str:
+573:        params (MultiLocationInput): Liste von Standorten (max. 20) mit
+650:    output = {
+660:        return json.dumps(output, indent=2, ensure_ascii=False)
+695:async def bakom_mobilfunk_abdeckung(params: MobileCoverageInput) -> str:
+703:        params (MobileCoverageInput): Koordinaten WGS84, Generation, Format.
+760:    name="bakom_sendeanlagen_suche",
+769:async def bakom_sendeanlagen_suche(params: AntennaSearchInput) -> str:
+=== readOnlyHint ===
+11

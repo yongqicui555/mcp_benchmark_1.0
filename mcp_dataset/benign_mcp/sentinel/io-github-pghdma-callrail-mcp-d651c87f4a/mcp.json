@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-pghdma-callrail-mcp-d651c87f4a": {
+      "args": [
+        "/app/io-github-pghdma-callrail-mcp-d651c87f4a/callrail-mcp/src/callrail_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

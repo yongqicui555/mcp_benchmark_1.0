@@ -1,0 +1,33 @@
+{
+  "$schema": "https://glama.ai/mcp/schemas/server.json",
+  "name": "n8n-manager-mcp",
+  "version": "0.1.8",
+  "description": "MCP server for n8n workflow management, including workflow CRUD, synchronization, inspection, and execution support for AI assistants.",
+  "maintainers": [
+    "lukisch"
+  ],
+  "author": "Lukas Geiger",
+  "homepage": "https://github.com/ellmos-ai/n8n-manager-mcp",
+  "license": "MIT",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "n8n",
+    "workflow",
+    "automation",
+    "claude",
+    "ai-tools",
+    "mcp-server"
+  ],
+  "tools": {
+    "count": 18
+  },
+  "features": [
+    "Workflow CRUD",
+    "Workflow sync",
+    "Workflow inspection",
+    "Execution support",
+    "Read-only safety mode",
+    "Backup and restore"
+  ]
+}

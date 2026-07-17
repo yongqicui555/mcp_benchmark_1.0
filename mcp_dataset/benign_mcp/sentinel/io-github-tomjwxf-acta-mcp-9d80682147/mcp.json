@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-tomjwxf-acta-mcp-9d80682147": {
+      "args": [
+        "/app/io-github-tomjwxf-acta-mcp-9d80682147/acta-mcp/server.js"
+      ],
+      "command": "node"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+=== Attribution constants ===
+171:LICENSE_NAME = "CC BY 4.0"
+172:LICENSE_URL = "https://creativecommons.org/licenses/by/4.0/deed.de"
+173:ATTRIBUTION_FOOTER_MD = (
+177:    f"**Lizenz:** [{LICENSE_NAME}]({LICENSE_URL})"
+640:            return md + ATTRIBUTION_FOOTER_MD
+706:            return md + ATTRIBUTION_FOOTER_MD
+845:    return md + ATTRIBUTION_FOOTER_MD
+922:            return md + ATTRIBUTION_FOOTER_MD
+=== Footer single-not-double check ===
+0
+=== README data licence section ===
+README.de.md:329:## Datenlizenz
+README.md:329:## Data Licence

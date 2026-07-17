@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "Jij_Mathematical_and_Quantum_Computing_Platform_jij": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/Jij_Mathematical_and_Quantum_Computing_Platform_jij/Jij_Mathematical_and_Quantum_Computing_Platform",
+        "run",
+        "jij_mcp/server.py"
+      ]
+    }
+  }
+}

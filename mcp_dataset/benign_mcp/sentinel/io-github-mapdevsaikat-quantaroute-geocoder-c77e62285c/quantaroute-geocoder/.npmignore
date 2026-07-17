@@ -1,0 +1,18 @@
+# Source files (not needed in npm package)
+src/
+tsconfig.json
+*.ts
+*.tsbuildinfo
+
+# Development files
+.git/
+.github/
+*.md
+!README.md
+
+# Only include what's needed
+# dist/ - included (required)
+# package.json - included (required)
+# README.md - included (required)
+# LICENSE - included (required)
+

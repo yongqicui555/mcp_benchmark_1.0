@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "mcp-fredap_mcp-fredapi": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/mcp-fredap_mcp-fredapi/mcp-fredap",
+        "run",
+        "--with",
+        "mcp",
+        "--with",
+        "httpx",
+        "mcp",
+        "run",
+        "server.py"
+      ]
+    }
+  }
+}

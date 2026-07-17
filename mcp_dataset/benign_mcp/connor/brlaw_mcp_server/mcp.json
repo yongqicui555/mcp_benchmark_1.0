@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "brlaw_mcp_server": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/brlaw_mcp_server/src/brlaw_mcp_server",
+        "run",
+        "serve"
+      ]
+    }
+  }
+}

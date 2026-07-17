@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-sarveshtalele-personal-finance-e3a8497cad": {
+      "args": [
+        "/app/io-github-sarveshtalele-personal-finance-e3a8497cad/personal-finance-mcp/src/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

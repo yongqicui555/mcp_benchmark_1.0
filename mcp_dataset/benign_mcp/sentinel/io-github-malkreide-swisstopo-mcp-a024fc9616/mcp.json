@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-malkreide-swisstopo-mcp-a024fc9616": {
+      "args": [
+        "/app/io-github-malkreide-swisstopo-mcp-a024fc9616/swisstopo-mcp/src/swisstopo_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

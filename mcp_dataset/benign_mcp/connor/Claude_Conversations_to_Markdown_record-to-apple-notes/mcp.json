@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "Claude_Conversations_to_Markdown_record-to-apple-notes": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/Claude_Conversations_to_Markdown_record-to-apple-notes/Claude_Conversations_to_Markdown",
+        "run",
+        "server.py"
+      ]
+    }
+  }
+}

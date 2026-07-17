@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-osama-ata-p6xer-mcp-server-a80669714c": {
+      "args": [
+        "/app/io-github-osama-ata-p6xer-mcp-server-a80669714c/p6xer-mcp-server/src/p6xer_mcp_server/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-sapph1re-findata-mcp-a8d7f57436": {
+      "args": [
+        "/app/io-github-sapph1re-findata-mcp-a8d7f57436/findata-mcp/findata_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

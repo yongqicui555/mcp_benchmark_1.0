@@ -1,0 +1,10 @@
+README.md
+pyproject.toml
+src/mcp_ppt_server/__init__.py
+src/mcp_ppt_server/server.py
+src/mcp_ppt_server.egg-info/PKG-INFO
+src/mcp_ppt_server.egg-info/SOURCES.txt
+src/mcp_ppt_server.egg-info/dependency_links.txt
+src/mcp_ppt_server.egg-info/entry_points.txt
+src/mcp_ppt_server.egg-info/requires.txt
+src/mcp_ppt_server.egg-info/top_level.txt

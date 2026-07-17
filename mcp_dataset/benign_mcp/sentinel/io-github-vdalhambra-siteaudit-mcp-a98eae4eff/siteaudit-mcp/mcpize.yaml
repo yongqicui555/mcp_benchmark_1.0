@@ -1,0 +1,8 @@
+name: siteaudit-mcp
+description: "Instant SEO, performance, and security audits for any URL — 20+ SEO checks, security headers, SSL verification, and site comparison for AI agents"
+version: 1
+runtime: python
+entrypoint: src/siteaudit/server.py
+install:
+  - pip install -r requirements.txt
+start: PYTHONPATH=/app/src python /app/src/siteaudit/server.py

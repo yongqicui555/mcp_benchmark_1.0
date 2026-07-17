@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-aimoda-rigol-dho824-mcp-b1dfb0f2cc": {
+      "args": [
+        "/app/io-github-aimoda-rigol-dho824-mcp-b1dfb0f2cc/rigol-dho824-mcp/src/rigol_dho824_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "MCP_Weather_Server_open_meteo_weather": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/MCP_Weather_Server_open_meteo_weather/MCP_Weather_Server",
+        "run",
+        "openmeteo_weather/openmeteo_weather.py"
+      ]
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "nuanced": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/nuanced/nuanced-mcp",
+        "run",
+        "nuanced_mcp_server.py"
+      ]
+    }
+  }
+}

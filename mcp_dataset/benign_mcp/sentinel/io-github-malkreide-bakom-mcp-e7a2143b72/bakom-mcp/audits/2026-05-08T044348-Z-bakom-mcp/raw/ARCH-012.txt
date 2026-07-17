@@ -1,0 +1,35 @@
+=== mcp dependency pin ===
+    "mcp",
+    "mcp[cli]>=1.3.0",
+=== CHANGELOG ===
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
+
+## [1.0.0] - 2026-03-13
+
+### Added
+- Initial release
+- 12 tools in 4 categories: broadband, mobile, media/RTV, statistics
+- `bakom_broadband_coverage` – Fixed-line coverage at 30–1000 Mbit/s (geo.admin.ch)
+- `bakom_glasfaser_verfuegbarkeit` – FTTB/FTTH fibre availability
+- `bakom_multi_standort_konnektivitaet` – Multi-location connectivity comparison (up to 20 locations)
+- `bakom_mobilfunk_abdeckung` – 5G/4G/3G outdoor coverage
+- `bakom_sendeanlagen_suche` – Mobile antenna search by radius
+- `bakom_frequenzdaten` – Radio/TV transmitter sites
+- `bakom_rtv_suche` – Licensed broadcaster search (RTV database)
+- `bakom_medienstruktur_info` – Swiss media landscape datasets
+- `bakom_aktuell` – Current BAKOM topics with opendata.swiss enrichment
+- `bakom_telekomstatistik_uebersicht` – Telecom statistics via CKAN API
+- `bakom_breitbandatlas_datensaetze` – Full Broadband Atlas layer catalogue
+- 2 MCP resources: `bakom://info`, `bakom://demo-standorte`
+- 18 integration tests against live APIs
+- GitHub Actions CI (Python 3.11–3.13)
+- Bilingual documentation (EN/DE, Swiss spelling)
+- Dual transport: stdio (Claude Desktop) + Streamable HTTP (cloud)
+=== protocolVersion mention ===

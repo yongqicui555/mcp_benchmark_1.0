@@ -1,0 +1,89 @@
+[project]
+name = "mcp-windbg"
+version = "0.15.0"
+description = "A Model Context Protocol server providing tools to analyze Windows crash dumps using WinDbg/CDB"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "svnscha", email = "sven.scharmentke@gmail.com" }]
+maintainers = [{ name = "svnscha", email = "sven.scharmentke@gmail.com" }]
+keywords = ["windbg", "cdb", "mcp", "llm", "crash-analysis"]
+license = "MIT"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Environment :: Console",
+    "Operating System :: Microsoft :: Windows",
+    "Topic :: Software Development :: Debuggers",
+    "Topic :: Software Development :: Quality Assurance",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+]
+dependencies = [
+    "mcp>=1.28.1",
+    "pydantic>=2.13.4",
+    "starlette>=1.3.1",
+    "uvicorn>=0.51.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/svnscha/mcp-windbg"
+Repository = "https://github.com/svnscha/mcp-windbg"
+Issues = "https://github.com/svnscha/mcp-windbg/issues"
+Changelog = "https://github.com/svnscha/mcp-windbg/blob/main/CHANGELOG.md"
+
+[project.scripts]
+mcp-windbg = "mcp_windbg:main"
+
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.package-data]
+mcp_windbg = ["prompts/*.prompt.md"]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "pyyaml>=6.0.2",
+    "coverage[toml]>=7.6",
+    "twine>=6.2.0",
+    "jsonschema>=4.26.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["src/mcp_windbg/tests"]
+markers = [
+    "live: scenario needs a live cdb.exe (skips cleanly when absent)",
+    "remote: scenario starts a local cdb remote server (implies live)",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=9.1.1", "pyyaml>=6.0.2", "coverage[toml]>=7.6"]
+
+# Coverage measures the hosted server subprocess (see harness.server_command).
+# Run with MCP_WINDBG_COVERAGE=1, then `coverage combine` + `coverage report`.
+[tool.coverage.run]
+parallel = true
+branch = true
+concurrency = ["thread"]
+source = ["mcp_windbg"]
+omit = ["*/tests/*"]
+
+[tool.coverage.report]
+show_missing = true
+exclude_also = [
+    "if __name__ == .__main__.:",
+    # Defensive guards the MCP layer already enforces before these run.
+    "raise ValueError\\(\"Either dump_path",
+    "raise ValueError\\(\".* mutually exclusive",
+    # cdb.exe is always present for live tests; the not-found path cannot run.
+    "raise CDBError\\(\"Could not find cdb",
+    # Debug-only output and low-level IO error handlers (no fault injection in e2e).
+    "if self.verbose:",
+    "except IOError",
+    "except \\(IOError, ValueError\\)",
+]

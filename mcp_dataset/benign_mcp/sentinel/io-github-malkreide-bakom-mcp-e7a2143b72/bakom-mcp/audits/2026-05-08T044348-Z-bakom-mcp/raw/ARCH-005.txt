@@ -1,0 +1,14 @@
+=== generic secret pattern ===
+no match
+=== conn strings ===
+no match
+=== AWS keys ===
+no match
+=== os.environ usage ===
+=== .gitignore ===
+=== .env files ===
+=== CI workflows ===
+ci.yml
+publish.yml
+=== gitleaks/trufflehog in CI ===
+no match

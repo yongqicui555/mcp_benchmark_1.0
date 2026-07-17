@@ -1,0 +1,20 @@
+=== type hints on tools ===
+bakom_broadband_coverage: returns -> str
+bakom_glasfaser_verfuegbarkeit: returns -> str
+bakom_multi_standort_konnektivitaet: returns -> str
+bakom_mobilfunk_abdeckung: returns -> str
+bakom_sendeanlagen_suche: returns -> str
+bakom_frequenzdaten: returns -> str
+bakom_rtv_suche: returns -> str
+bakom_medienstruktur_info: returns -> str
+bakom_aktuell: returns -> str
+bakom_telekomstatistik_uebersicht: returns -> str
+bakom_breitbandatlas_datensaetze: returns -> str
+=== Pydantic models ===
+85:class CoordinateInput(BaseModel):
+106:class BroadbandCoverageInput(BaseModel):
+131:class MobileCoverageInput(BaseModel):
+156:class AntennaSearchInput(BaseModel):
+183:class RTVSearchInput(BaseModel):
+217:class TelekomStatInput(BaseModel):
+234:class MultiLocationInput(BaseModel):

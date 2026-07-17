@@ -1,0 +1,26 @@
+[project]
+name = "openmeteo-weather-mcp"
+version = "0.1.0"
+requires-python = ">=3.13"
+description = "Weather forecast tool for MCP"
+authors = []
+dependencies = [
+    "fastmcp",
+    "python-dotenv",
+    "aiohttp",
+    "uvicorn",
+    "geopy",
+    "pandas",
+    "requests_cache",
+    "retry_requests",
+    "openmeteo_requests"
+]
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project.scripts]
+openmeteo-weather-mcp = "openmeteo_weather.openmeteo_weather:mcp.run"
+
+[tool.hatch.build.targets.wheel]
+packages = ["openmeteo_weather.py"]

@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-malkreide-swiss-road-mobility-mcp-96e8e7be78": {
+      "args": [
+        "/app/io-github-malkreide-swiss-road-mobility-mcp-96e8e7be78/swiss-road-mobility-mcp/src/swiss_road_mobility_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

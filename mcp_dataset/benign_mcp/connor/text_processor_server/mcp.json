@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "text-processor": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/text_processor_server/text_tools",
+        "run",
+        "python",
+        "server.py"
+      ]
+    }
+  }
+}

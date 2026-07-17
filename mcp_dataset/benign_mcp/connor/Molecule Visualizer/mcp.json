@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "Molecule Visualizer": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--with",
+        "mcp[cli]",
+        "--with",
+        "pillow",
+        "--with",
+        "rdkit",
+        "mcp",
+        "run",
+        "/app/Molecule Visualizer/Molecule_Visualizer_MCP_Server/molecule_server.py"
+      ]
+    }
+  }
+}

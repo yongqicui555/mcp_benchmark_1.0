@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-qso-graph-qrz-mcp-32f1ba89b3": {
+      "args": [
+        "/app/io-github-qso-graph-qrz-mcp-32f1ba89b3/qrz-mcp/src/qrz_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

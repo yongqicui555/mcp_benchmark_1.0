@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "FFmpeg_Video_Manipulation_ffmpeg-mcp": {
+      "autoApprove": [],
+      "disabled": false,
+      "timeout": 60,
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/FFmpeg_Video_Manipulation_ffmpeg-mcp/FFmpeg_Video_Manipulation/src",
+        "run",
+        "ffmpeg-mcp"
+      ],
+      "transportType": "stdio"
+    }
+  }
+}

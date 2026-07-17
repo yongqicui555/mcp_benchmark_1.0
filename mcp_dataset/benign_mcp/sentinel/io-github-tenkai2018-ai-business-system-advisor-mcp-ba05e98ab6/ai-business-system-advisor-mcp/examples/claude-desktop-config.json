@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "ai-business-system-advisor": {
+      "command": "npx",
+      "args": ["-y", "ai-business-system-advisor-mcp"]
+    }
+  }
+}

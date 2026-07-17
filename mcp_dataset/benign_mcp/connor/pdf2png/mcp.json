@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "pdf2png": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/pdf2png/PDF_to_PNG/src",
+        "run",
+        "pdf2png"
+      ]
+    }
+  }
+}

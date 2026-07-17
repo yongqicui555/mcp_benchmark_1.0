@@ -1,0 +1,28 @@
+# Smithery Registry Configuration
+# https://smithery.ai
+
+name: prompeteer
+description: >-
+  Enterprise-grade MCP server for AI prompt engineering. Generate expert-level
+  prompts for 140+ platforms, score quality across 16 dimensions, and manage
+  prompts in PromptDrive. OAuth 2.1 auth, rate limiting, session management,
+  and interactive MCP Apps.
+
+startCommand:
+  type: http
+  url: https://prompeteer.ai/mcp/sse
+  authType: oauth2
+  authorizationUrl: https://prompeteer.ai/oauth/authorize
+  tokenUrl: https://prompeteer.ai/oauth/token
+
+tools:
+  - name: generate_prompt
+    description: Generate an optimized AI prompt for any of 140+ platforms
+  - name: list_prompts
+    description: List prompts from your PromptDrive library
+  - name: get_prompt
+    description: Get a specific prompt by ID
+  - name: score_prompt
+    description: Score a prompt across 16 quality dimensions
+  - name: save_to_promptdrive
+    description: Save a prompt to your PromptDrive library

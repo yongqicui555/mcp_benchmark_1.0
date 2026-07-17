@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-zomma-dev-quantcontext-8b73e73c16": {
+      "args": [
+        "/app/io-github-zomma-dev-quantcontext-8b73e73c16/quantcontext-mcp-server/src/quantcontext/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

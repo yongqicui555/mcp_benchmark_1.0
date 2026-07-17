@@ -1,0 +1,26 @@
+=== install-time consent / install scripts ===
+=== installation docs ===
+58-
+59:## Installation
+60-
+61-```bash
+62-# Recommended: uvx (no permanent installation required)
+63-uvx bakom-mcp
+64-
+--
+79-
+80:Add to `claude_desktop_config.json`:
+81-
+82-```json
+83-{
+84-  "mcpServers": {
+85-    "bakom": {
+--
+93-**Config file locations:**
+94:- macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
+95:- Windows: `%APPDATA%\Claude\claude_desktop_config.json`
+96-
+97-### Cloud / HTTP Transport
+98-
+99-```bash
+100-python -m bakom_mcp.server --http

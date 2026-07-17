@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-zekebuilds-lab-mcp-pay-gate-5a0da19c1e": {
+      "args": [
+        "/app/io-github-zekebuilds-lab-mcp-pay-gate-5a0da19c1e/mcp-pay-gate/src/index.js"
+      ],
+      "command": "node"
+    }
+  }
+}

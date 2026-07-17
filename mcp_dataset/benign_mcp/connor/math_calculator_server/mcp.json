@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "math-calculator": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/math_calculator_server/math_ops",
+        "run",
+        "python",
+        "server.py"
+      ]
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "Story_Protocol_storyscan-mcp": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/Story_Protocol_storyscan-mcp/Story_Protocol/storyscan-mcp",
+        "run",
+        "server.py"
+      ]
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "saptools": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/saptools/sap-mcp",
+        "run",
+        "saptools.py"
+      ]
+    }
+  }
+}

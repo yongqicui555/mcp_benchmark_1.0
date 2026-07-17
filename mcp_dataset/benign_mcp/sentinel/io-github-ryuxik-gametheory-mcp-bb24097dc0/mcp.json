@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-ryuxik-gametheory-mcp-bb24097dc0": {
+      "args": [
+        "/app/io-github-ryuxik-gametheory-mcp-bb24097dc0/gametheory-mcp/gametheory_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.prufa-dev/prufa-mcp",
+  "description": "The full Prufa QA agent over MCP (44 tools): real-browser audits, flows, monitors, gremlin chaos runs, full-auto discovery, workspace + billing.",
+  "repository": {
+    "url": "https://github.com/prufa-dev/prufa-mcp",
+    "source": "github"
+  },
+  "version": "0.2.3",
+  "packages": [
+    {
+      "registryType": "pypi",
+      "identifier": "prufa-mcp",
+      "version": "0.2.3",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "description": "Optional Prufa API token for authenticated/higher-tier runs. Not required for the free audit or for the server to start.",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": true,
+          "name": "PRUFA_API_TOKEN"
+        }
+      ]
+    }
+  ]
+}

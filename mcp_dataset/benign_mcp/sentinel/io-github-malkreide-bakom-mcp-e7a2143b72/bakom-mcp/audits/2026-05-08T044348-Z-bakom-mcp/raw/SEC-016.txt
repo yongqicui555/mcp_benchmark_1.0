@@ -1,0 +1,9 @@
+=== 0.0.0.0 / host bindings ===
+src/bakom_mcp/server.py:384:        return "Fehler: Keine Verbindung zur API. Netzwerk prüfen."
+src/bakom_mcp/server.py:1513:        "title": "Alle Breitbandatlas-Datensätze auflisten",
+src/bakom_mcp/server.py:1521:    """Alle verfügbaren BAKOM Breitbandatlas-Datensätze auf opendata.swiss auflisten.
+=== port config ===
+1749:    transport = "streamable-http" if "--http" in sys.argv else "stdio"
+1750:    port = 8050
+1751:    if transport == "streamable-http":
+1753:        mcp.run(transport=transport, port=port)

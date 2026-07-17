@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "Pylpex": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/Pylpex/Pylpex",
+        "run",
+        "mcp",
+        "run",
+        "main.py"
+      ]
+    }
+  }
+}

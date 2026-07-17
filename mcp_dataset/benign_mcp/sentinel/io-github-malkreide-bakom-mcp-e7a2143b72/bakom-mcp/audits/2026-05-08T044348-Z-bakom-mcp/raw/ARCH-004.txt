@@ -1,0 +1,18 @@
+=== mcp.run / transport calls ===
+22:from mcp.server.fastmcp import FastMCP
+391:mcp = FastMCP(
+1753:        mcp.run(transport=transport, port=port)
+1755:        mcp.run()
+=== HTTP/transport coupling in tool functions ===
+1749:    transport = "streamable-http" if "--http" in sys.argv else "stdio"
+=== entry points ===
+if __name__ == "__main__":
+    import sys
+
+    transport = "streamable-http" if "--http" in sys.argv else "stdio"
+    port = 8050
+    if transport == "streamable-http":
+        print(f"BAKOM MCP Server läuft auf http://localhost:{port}/mcp")
+        mcp.run(transport=transport, port=port)
+    else:
+        mcp.run()

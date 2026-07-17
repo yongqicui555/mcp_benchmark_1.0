@@ -1,0 +1,24 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.qso-graph/iota-mcp",
+  "description": "Islands on the Air MCP server. Group lookup, island search, DXCC mapping, nearby groups.",
+  "repository": {
+    "url": "https://github.com/qso-graph/iota-mcp",
+    "source": "github"
+  },
+  "version": "0.1.0",
+  "packages": [
+    {
+      "registryType": "pypi",
+      "identifier": "iota-mcp",
+      "version": "0.1.0",
+      "transport": { "type": "stdio" }
+    }
+  ],
+  "_meta": {
+    "io.modelcontextprotocol.registry/publisher-provided": {
+      "tool": "mcp-publisher",
+      "version": "2.0.0"
+    }
+  }
+}

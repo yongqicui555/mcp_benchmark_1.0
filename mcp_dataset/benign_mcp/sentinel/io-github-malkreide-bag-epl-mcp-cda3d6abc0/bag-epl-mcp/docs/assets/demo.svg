@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 340" font-family="system-ui,-apple-system,sans-serif" font-size="13">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8f9fa"/>
+      <stop offset="100%" stop-color="#e9ecef"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="340" rx="12" fill="url(#bg)" stroke="#dee2e6" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" font-size="15" font-weight="bold" fill="#212529">bag-epl-mcp — Demo: Kassenpflicht-Check</text>
+
+  <!-- Step 1: User Question -->
+  <rect x="30" y="55" width="230" height="60" rx="8" fill="#d0ebff" stroke="#339af0" stroke-width="1.5"/>
+  <text x="40" y="75" font-weight="600" fill="#1864ab">User</text>
+  <text x="40" y="95" fill="#1864ab" font-size="12">Ist Methylphenidat (Ritalin)</text>
+  <text x="40" y="108" fill="#1864ab" font-size="12">kassenpflichtig?</text>
+
+  <!-- Arrow 1 -->
+  <line x1="260" y1="85" x2="290" y2="85" stroke="#868e96" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#868e96"/></marker></defs>
+
+  <!-- Step 2: Tool Call -->
+  <rect x="295" y="55" width="230" height="60" rx="8" fill="#d3f9d8" stroke="#51cf66" stroke-width="1.5"/>
+  <text x="305" y="75" font-weight="600" fill="#2b8a3e">Tool Call</text>
+  <text x="305" y="95" fill="#2b8a3e" font-size="11" font-family="monospace">epl_sl_suche(</text>
+  <text x="305" y="108" fill="#2b8a3e" font-size="11" font-family="monospace">  suchbegriff="Methylphenidat")</text>
+
+  <!-- Arrow 2 -->
+  <line x1="525" y1="85" x2="555" y2="85" stroke="#868e96" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Step 3: Response -->
+  <rect x="560" y="50" width="220" height="70" rx="8" fill="#fff3bf" stroke="#fcc419" stroke-width="1.5"/>
+  <text x="570" y="72" font-weight="600" fill="#e67700">Response</text>
+  <text x="570" y="90" fill="#e67700" font-size="11">SL-Suche: Methylphenidat</text>
+  <text x="570" y="104" fill="#e67700" font-size="11">&#8594; Link sl.bag.admin.ch</text>
+
+  <!-- Step 4: Rechtskontext -->
+  <rect x="30" y="140" width="230" height="60" rx="8" fill="#d3f9d8" stroke="#51cf66" stroke-width="1.5"/>
+  <text x="40" y="160" font-weight="600" fill="#2b8a3e">Tool Call</text>
+  <text x="40" y="178" fill="#2b8a3e" font-size="11" font-family="monospace">epl_rechtskontext(</text>
+  <text x="40" y="191" fill="#2b8a3e" font-size="11" font-family="monospace">  frage="SL-Aufnahme")</text>
+
+  <!-- Arrow 3 -->
+  <line x1="260" y1="170" x2="290" y2="170" stroke="#868e96" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Step 5: Legal Response -->
+  <rect x="295" y="135" width="230" height="70" rx="8" fill="#fff3bf" stroke="#fcc419" stroke-width="1.5"/>
+  <text x="305" y="157" font-weight="600" fill="#e67700">Response</text>
+  <text x="305" y="175" fill="#e67700" font-size="11">KVG Art. 52 &#183; KLV Art. 30ff</text>
+  <text x="305" y="191" fill="#e67700" font-size="11">WZW-Kriterien &#183; Fedlex-Links</text>
+
+  <!-- Arrow 4 -->
+  <line x1="525" y1="170" x2="555" y2="170" stroke="#868e96" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Step 6: Summary -->
+  <rect x="560" y="135" width="220" height="70" rx="8" fill="#d0ebff" stroke="#339af0" stroke-width="1.5"/>
+  <text x="570" y="157" font-weight="600" fill="#1864ab">Claude</text>
+  <text x="570" y="175" fill="#1864ab" font-size="11">Methylphenidat ist auf der SL.</text>
+  <text x="570" y="191" fill="#1864ab" font-size="11">Rechtsgrundlage: KVG Art. 52</text>
+
+  <!-- Data Sources -->
+  <rect x="30" y="230" width="740" height="90" rx="8" fill="#f1f3f5" stroke="#ced4da" stroke-width="1"/>
+  <text x="400" y="252" text-anchor="middle" font-weight="600" fill="#495057" font-size="12">Datenquellen (kein API-Key erforderlich)</text>
+
+  <rect x="50" y="265" width="200" height="40" rx="6" fill="white" stroke="#dee2e6"/>
+  <text x="150" y="282" text-anchor="middle" fill="#495057" font-size="11" font-weight="600">&#128138; SL (sl.bag.admin.ch)</text>
+  <text x="150" y="297" text-anchor="middle" fill="#868e96" font-size="10">Kassenpflichtige Medikamente</text>
+
+  <rect x="300" y="265" width="200" height="40" rx="6" fill="white" stroke="#dee2e6"/>
+  <text x="400" y="282" text-anchor="middle" fill="#495057" font-size="11" font-weight="600">&#9878;&#65039; GGSL + MiGeL</text>
+  <text x="400" y="297" text-anchor="middle" fill="#868e96" font-size="10">Geburtsgebrechen &#183; Hilfsmittel</text>
+
+  <rect x="550" y="265" width="200" height="40" rx="6" fill="white" stroke="#dee2e6"/>
+  <text x="650" y="282" text-anchor="middle" fill="#495057" font-size="11" font-weight="600">&#128220; Fedlex</text>
+  <text x="650" y="297" text-anchor="middle" fill="#868e96" font-size="10">KVG &#183; KLV &#183; IVG &#183; GgV</text>
+</svg>

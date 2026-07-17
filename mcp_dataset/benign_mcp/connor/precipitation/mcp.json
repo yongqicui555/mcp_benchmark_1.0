@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "precipitation": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/precipitation/Buienradar_MCP_Server",
+        "run",
+        "server.py"
+      ]
+    }
+  }
+}

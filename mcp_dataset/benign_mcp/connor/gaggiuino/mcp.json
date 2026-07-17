@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "gaggiuino": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/gaggiuino/gaggiuino-mcp",
+        "run",
+        "gaggiuino.py"
+      ]
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "Bonsai-mcp": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/Bonsai-mcp/Bonsai_BIM_Blender_IFC",
+        "run",
+        "tools.py"
+      ]
+    }
+  }
+}

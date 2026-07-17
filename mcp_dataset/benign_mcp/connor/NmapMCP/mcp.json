@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "NmapMCP": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/NmapMCP/NmapMCP",
+        "run",
+        "main.py"
+      ]
+    }
+  }
+}

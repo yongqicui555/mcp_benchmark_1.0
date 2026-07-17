@@ -1,0 +1,35 @@
+{
+  "run_id": "audit-2026-05-12T00:00Z-hn-tech-signal-mcp",
+  "server": "hn-tech-signal-mcp",
+  "version": "0.1.0",
+  "audit_date": "2026-05-12",
+  "skill": "mcp-audit-skill@v0.5.0",
+  "production_ready": false,
+  "blocker_findings": ["SEC-001", "SEC-002"],
+  "counts": {
+    "checks_catalog": 68,
+    "checks_applicable": 43,
+    "checks_pass": 32,
+    "checks_fail": 11,
+    "findings_total": 11,
+    "findings_critical": 1,
+    "findings_high": 1,
+    "findings_medium": 4,
+    "findings_low": 5
+  },
+  "findings": [
+    {"id": "SEC-001", "title": "GITHUB_TOKEN an HN/arXiv/Lobsters geleakt", "severity": "critical", "effort": "S", "file": "findings/SEC-001-token-leak.md"},
+    {"id": "SEC-002", "title": "Streamable-HTTP ohne Auth, bindet 0.0.0.0", "severity": "high", "effort": "M", "file": "findings/SEC-002-http-no-auth.md"},
+    {"id": "ARCH-001", "title": "fastmcp deklariert, mcp importiert", "severity": "medium", "effort": "S", "file": "findings/ARCH-001-wrong-dependency.md"},
+    {"id": "SEC-003", "title": "Unsicheres xml.etree-Parsing", "severity": "medium", "effort": "S", "file": "findings/SEC-003-xxe.md"},
+    {"id": "SDK-001", "title": "datetime.utcnow() deprecated", "severity": "medium", "effort": "S", "file": "findings/SDK-001-utcnow-deprecated.md"},
+    {"id": "OBS-001", "title": "Logger deklariert, nie benutzt", "severity": "medium", "effort": "S-M", "file": "findings/OBS-001-unused-logger.md"},
+    {"id": "SEC-004", "title": "arxiv_search.category ohne Whitelist", "severity": "low", "effort": "S", "file": "findings/SEC-004-arxiv-category-not-whitelisted.md"},
+    {"id": "SCALE-001", "title": "Unbounded In-Memory-Cache", "severity": "low", "effort": "S", "file": "findings/SCALE-001-unbounded-cache.md"},
+    {"id": "OPS-001", "title": "CI ohne Lint/Coverage-Gate", "severity": "low", "effort": "S", "file": "findings/OPS-001-ci-no-lint.md"},
+    {"id": "OPS-002", "title": "Kein SECURITY.md / Dependabot / CODEOWNERS", "severity": "low", "effort": "S", "file": "findings/OPS-002-no-security-policy.md"},
+    {"id": "SDK-002", "title": "mcp Variable schattet Modulname", "severity": "low", "effort": "S", "file": "findings/SDK-002-fastmcp-tool-name-collision.md"}
+  ],
+  "inapplicable_categories": ["CH"],
+  "next_review_by": "2026-08-12"
+}

@@ -1,0 +1,42 @@
+{
+  "name": "ai-scanner-mcp",
+  "version": "1.0.4",
+  "description": "MCP server for ai-scanner — scan codebases for LLM usage, AI frameworks, and exposed secrets",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "ai-scanner-mcp": "./index.js"
+  },
+  "files": [
+    "index.js",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai-scanner",
+    "llm",
+    "security",
+    "secrets",
+    "token-detection",
+    "claude",
+    "cursor"
+  ],
+  "author": "Aakash Bhardwaj",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aakashbhardwaj27/ai-scanner-mcp"
+  },
+  "homepage": "https://github.com/Aakashbhardwaj27/ai-scanner-mcp",
+  "mcpName": "io.github.Aakashbhardwaj27/ai-scanner",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "ai-scanner": "^1.1.0",
+    "zod": "^3.25.0"
+  }
+}

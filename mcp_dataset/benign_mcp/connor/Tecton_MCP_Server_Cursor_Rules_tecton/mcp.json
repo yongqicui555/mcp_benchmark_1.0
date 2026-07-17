@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "Tecton_MCP_Server_Cursor_Rules_tecton": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/Tecton_MCP_Server_Cursor_Rules_tecton/Tecton_MCP_Server_Cursor_Rules",
+        "run",
+        "mcp",
+        "run",
+        "src/tecton_mcp/mcp_server/server.py"
+      ]
+    }
+  }
+}

@@ -1,0 +1,5 @@
+=== Scope sections ===
+README.md:36:## Scope
+README.md:38:### What this server does
+README.md:51:### What this server does not
+README.de.md:36:## Geltungsbereich

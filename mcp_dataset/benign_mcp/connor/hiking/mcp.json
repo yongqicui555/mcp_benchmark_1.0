@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "hiking": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/hiking/Hiking_MCP_Server",
+        "run",
+        "mcp-server.py"
+      ]
+    }
+  }
+}

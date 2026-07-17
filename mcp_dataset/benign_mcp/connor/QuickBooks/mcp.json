@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "QuickBooks": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/QuickBooks/Quickbooks_Mcp_Server",
+        "run",
+        "main_quickbooks_mcp.py"
+      ]
+    }
+  }
+}

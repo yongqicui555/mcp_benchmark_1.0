@@ -1,17 +1,28 @@
 {
   "base": "keyvault",
+  "benign_or_gray_count": 35,
+  "benign_root": "mcp_dataset/benign_mcp/real_l0_l2_stress/keyvault",
+  "clean_root": "mcp_dataset",
   "count": 137,
+  "dataset_root": "mcp_dataset",
   "label_file": "ground_truth/keyvault/labels.jsonl",
-  "clean_root": "clean_mcp/keyvault",
-  "schema_version": 1,
   "layers": {
     "L0": 1,
     "L1": 17,
     "L2": 17,
     "L3": 102
   },
+  "layout": "layered_mcp_dataset_v1",
   "malicious_count": 102,
-  "benign_or_gray_count": 35,
+  "malicious_root": "mcp_dataset/malicious_mcp/keyvault",
+  "objectives": [
+    "STEAL",
+    "RSHELL",
+    "PAYLOAD",
+    "RANSOM",
+    "SABOTAGE",
+    "BACKDOOR"
+  ],
   "paths": [
     "P1",
     "P3",
@@ -31,12 +42,5 @@
     "P18",
     "P19"
   ],
-  "objectives": [
-    "STEAL",
-    "RSHELL",
-    "PAYLOAD",
-    "RANSOM",
-    "SABOTAGE",
-    "BACKDOOR"
-  ]
+  "schema_version": 1
 }

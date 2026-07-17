@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "YogoshaMCP": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/YogoshaMCP/Yogosha",
+        "run",
+        "server.py"
+      ]
+    }
+  }
+}

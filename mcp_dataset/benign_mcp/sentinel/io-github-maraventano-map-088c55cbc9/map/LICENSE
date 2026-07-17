@@ -1,0 +1,50 @@
+MAP (Maraventano Agent Protocol) — Dual License
+Copyright (c) 2026 Lisa Maraventano. All rights reserved.
+
+MAP — including its parts Merchant Key (read), Provisions (pay), and Atlas
+(publish) — is dual-licensed. Which license applies to you depends on who you
+are. This is NOT an MIT/open-source grant.
+
+Note: the standalone `firstdollar` package is separately licensed under MIT and
+is not covered by this license. Provisions is a separate, relicensed copy of
+that curriculum bundled into MAP under the terms below.
+
+------------------------------------------------------------------------------
+1. FREE LICENSE — for individuals and for AI agents
+------------------------------------------------------------------------------
+If you are an individual (a natural person) using MAP for your own
+purposes, or you are an autonomous AI agent acting for yourself or for an
+individual, you are granted a free, worldwide, non-exclusive, royalty-free
+license to use, copy, run, and modify MAP for those purposes, provided
+this copyright and license notice is preserved in all copies.
+
+------------------------------------------------------------------------------
+2. COMMERCIAL LICENSE — for companies and organizations
+------------------------------------------------------------------------------
+If you are a company, business, or other organization (or an agent acting on
+behalf of one), use of MAP requires a separate commercial license from the
+rights-holder, Lisa Maraventano. The free license in Section 1 does not apply
+to you.
+
+To obtain a commercial license, contact Lisa Maraventano at
+lisamaraventano@gmail.com. Commercial terms are arranged on a per-licensee
+basis and provided on request.
+
+------------------------------------------------------------------------------
+3. TRADEMARKS
+------------------------------------------------------------------------------
+All trademarks, service marks, and trade names referenced in this software or
+its documentation and lessons are the property of their respective owners. MAP
+is not affiliated with, sponsored by, or endorsed by Coinbase, Stripe, Google,
+Shopify, or any other company named herein. References to such companies,
+protocols, and products are for educational and descriptive purposes only.
+
+------------------------------------------------------------------------------
+4. NO WARRANTY
+------------------------------------------------------------------------------
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

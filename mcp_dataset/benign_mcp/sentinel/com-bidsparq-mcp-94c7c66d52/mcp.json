@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "com-bidsparq-mcp-94c7c66d52": {
+      "args": [
+        "/app/com-bidsparq-mcp-94c7c66d52/bidsparq-mcp-server/dist/index.js"
+      ],
+      "command": "node"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "adb": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/adb/Android_Debug_Bridge_ADB",
+        "run",
+        "python",
+        "main.py"
+      ]
+    }
+  }
+}

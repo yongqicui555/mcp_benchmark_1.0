@@ -1,0 +1,16 @@
+# .github/workflows/release.yml
+name: Release (uv → PyPI via OIDC)
+on:
+  push:
+    tags: ["v*"]     # 打 v0.1.0 這種標籤就觸發
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write    # 必要：GitHub 才會發 OIDC token
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv build
+      - uses: pypa/gh-action-pypi-publish@release/v1

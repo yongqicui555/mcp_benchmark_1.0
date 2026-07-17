@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-qso-graph-ionis-mcp-be28e8d107": {
+      "args": [
+        "/app/io-github-qso-graph-ionis-mcp-be28e8d107/ionis-mcp/src/ionis_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

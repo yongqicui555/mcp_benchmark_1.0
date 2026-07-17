@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "apstra": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--with",
+        "fastmcp,httpx",
+        "python3",
+        "/app/apstra/Apstra_Mcp_Server/apstra_mcp.py",
+        "-f",
+        "/app/apstra/Apstra_Mcp_Server/apstra_config.json"
+      ]
+    }
+  }
+}

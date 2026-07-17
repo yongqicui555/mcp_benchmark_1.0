@@ -1,0 +1,30 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.prompeteer/prompeteer-mcp",
+  "description": "Generate A+ prompts for ChatGPT, Claude, Midjourney — built for agents & workflows.",
+  "repository": {
+    "url": "https://github.com/prompeteer/prompeteer-mcp",
+    "source": "github"
+  },
+  "version": "2.0.2",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@prompeteer.ai/mcp-server",
+      "version": "2.0.0",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ],
+  "remoteEndpoints": [
+    {
+      "transportType": "sse",
+      "url": "https://prompeteer.ai/mcp/sse"
+    },
+    {
+      "transportType": "streamable-http",
+      "url": "https://prompeteer.ai/mcp"
+    }
+  ]
+}

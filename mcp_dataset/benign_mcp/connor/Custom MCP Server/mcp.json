@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "Custom MCP Server": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--with",
+        "mcp[cli], pygithub, boto3",
+        "mcp",
+        "run",
+        "/app/Custom MCP Server/mcp-server-101/server.py"
+      ]
+    }
+  }
+}

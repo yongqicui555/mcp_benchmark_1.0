@@ -1,0 +1,550 @@
+{
+  "audit_meta": {
+    "server_name": "parlament-mcp",
+    "run_id": "2026-05-30T105608-Z-parlament-mcp",
+    "started_at": "2026-05-30T10:56:08.819054+00:00",
+    "timezone_offset": "Z",
+    "skill_version": "1.0.0",
+    "output_dir": "/home/user/parlament-mcp/audits/2026-05-30T105608-Z-parlament-mcp",
+    "catalog_hash": "091f446b27965044ce658a1d5f4b2cabe2b0ab5661dcc1a53b6be8f1f2e093c0",
+    "catalog_dir": "/tmp/mcp-audit-skill/checks",
+    "audit_date": "2026-05-30",
+    "catalog_version": "1.0.0 (catalog_hash 091f446b2796)"
+  },
+  "results": {
+    "ARCH-005": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "critical",
+      "evidence": [
+        "grep für hardcoded secrets in src/ liefert CLEAN (keine API-Keys/Passwörter/Tokens)",
+        "Kein os.environ-Default mit Secret; Server nutzt gar keine Secrets",
+        "auth_model=none, öffentliche Curia-Vista-API ohne API-Key (server.py:31)"
+      ],
+      "gaps": [
+        ".gitignore enthält keine .env/.env.* Einträge; kein .env.example; kein Gitleaks/Trufflehog-CI-Scan — defensive Härtung empfohlen, sobald Secrets/Write-Server dazukommen"
+      ]
+    },
+    "OBS-004": {
+      "status": "pass",
+      "category": "OBS",
+      "severity": "critical",
+      "evidence": [
+        "grep 'print(' in src/ → CLEAN: keine stdout-Ausgaben",
+        "Kein logging.basicConfig(stream=sys.stdout); keine Logging-Konfiguration die stdout korrumpiert",
+        "stdio-Default via mcp.run(transport='stdio') (server.py:758)"
+      ],
+      "gaps": []
+    },
+    "SEC-004": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "critical",
+      "evidence": [
+        "BASE_URL hartcodierte HTTPS-Konstante 'https://ws.parlament.ch/odata.svc' (server.py:31)",
+        "Kein Tool akzeptiert eine user-kontrollierte URL/Host — nur OData-Query-Parameter aus validierten Inputs",
+        "httpx kontaktiert ausschliesslich ws.parlament.ch (server.py:93-94, 428-429) → kein SSRF-Vektor"
+      ],
+      "gaps": [
+        "Kein Egress-Proxy/IP-Blocklisting als Defense-in-Depth — nicht nötig bei fixem Host, aber Pflicht falls je user-kontrollierte URLs hinzukommen"
+      ]
+    },
+    "SEC-009": {
+      "status": "partial",
+      "category": "SEC",
+      "severity": "critical",
+      "evidence": [
+        "transport=dual → HTTP-Transport vorhanden; Session-ID-Generierung an FastMCP delegiert (kryptografisch sichere uuid4)",
+        "Server ist read-only auf Public Open Data, kein Schreib-/Account-Zugriff"
+      ],
+      "gaps": [
+        "Kein kryptografisches Binding der Mcp-Session-Id an validierte User-Identität (mangels Auth nicht umsetzbar)",
+        "Reales Hijacking-Risiko aktuell gering (keine privaten Daten, keine Write-Ops); wird kritisch, sobald Auth/PII hinzukommt"
+      ]
+    },
+    "SEC-016": {
+      "status": "fail",
+      "category": "SEC",
+      "severity": "critical",
+      "evidence": [
+        "server.py:756: mcp.run(transport='streamable-http', host='0.0.0.0', port=port) — 0.0.0.0 als Code-Default hartcodiert",
+        "Kein MCP_HOST-ENV-Override, kein 127.0.0.1-Default, keine Container-Differenzierung, keine Warnung beim Binding"
+      ],
+      "gaps": [
+        "NeighborJack-Risiko: lokal via --http gestarteter Server ist für das ganze Subnetz erreichbar",
+        "Remediation: MCP_HOST-ENV mit Default 127.0.0.1, 0.0.0.0 nur im Dockerfile/Deploy-Manifest explizit"
+      ]
+    },
+    "SEC-019": {
+      "status": "partial",
+      "category": "SEC",
+      "severity": "critical",
+      "evidence": [
+        "Trifecta-Score ~1/3: liest nur Public Open Data (keine privaten Daten), read-only (keine externe Sende-/Write-Fähigkeit)",
+        "Strukturell sicher — keine verbotene Kombination vorhanden"
+      ],
+      "gaps": [
+        "Keine dokumentierte Lethal-Trifecta-Bewertung im README/docs (Pass-Kriterium des Checks)"
+      ]
+    },
+    "SEC-020": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "critical",
+      "evidence": [
+        "grep os.system/shell=True/eval/exec/os.popen in src/ → CLEAN",
+        "Keine Subprozess-Aufrufe; ausschliesslich httpx für HTTP",
+        "Keine String-Konkatenation in Shell-Kontext; OData-Quotes werden escaped (kw.replace(\"'\",\"''\"), server.py:330)"
+      ],
+      "gaps": []
+    },
+    "ARCH-004": {
+      "status": "partial",
+      "category": "ARCH",
+      "severity": "high",
+      "evidence": [
+        "Tool-Handler greifen nicht auf Transport-Internals (request.headers etc.) zu — rein Pydantic-Input-Modelle",
+        "Dual-Transport unterstützt: stdio (Default) + streamable-http (server.py:751-758)"
+      ],
+      "gaps": [
+        "Keine Settings/BaseSettings — Konfiguration über Modul-Konstanten + sys.argv",
+        "Transport-Auswahl via CLI-Flag '--http' statt ENV-Var; README behauptet MCP_TRANSPORT=sse, was der Code NICHT implementiert (Doku/Code-Mismatch)",
+        "Kein gemeinsamer Lifespan-Setup"
+      ]
+    },
+    "ARCH-006": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "high",
+      "evidence": [
+        "6 Tools (grep @mcp.tool → 6) — unter Schwellwert ≤8",
+        "Use-Case-orientiert statt 1:1-API-Mapping; Anker-Query mit 1 Tool-Call beantwortbar (parlament_search_business)"
+      ],
+      "gaps": []
+    },
+    "ARCH-009": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "high",
+      "evidence": [
+        "Alle 6 Tools haben explizite Annotations: readOnlyHint=True, destructiveHint=False, idempotentHint=True, openWorldHint=True (server.py:307-315 u.a.)",
+        "Annotations konsistent mit read-only Verhalten — kein Schreib-Tool als readOnly markiert"
+      ],
+      "gaps": [
+        "Keine Annotations-Übersichtstabelle im README (Nice-to-have-Kriterium)"
+      ]
+    },
+    "OBS-001": {
+      "status": "partial",
+      "category": "OBS",
+      "severity": "high",
+      "evidence": [
+        "Tools fangen Exceptions via _handle_error() und liefern handlungsorientierte Fehlertexte statt JSON-RPC-Errors (server.py:102-115, 356-357)",
+        "Empty-Results werden als normaler Text zurückgegeben, nicht als Error"
+      ],
+      "gaps": [
+        "Fehler werden als plain str zurückgegeben, nicht mit isError:true-Konvention",
+        "Keine standardisierten JSON-RPC-Fehlercodes (-326xx)",
+        "Kein Test deckt den Execution-Error-Pfad ab (kein Test mockt eine Exception)"
+      ]
+    },
+    "OBS-002": {
+      "status": "pass",
+      "category": "OBS",
+      "severity": "high",
+      "evidence": [
+        "_handle_error liefert generische, maskierte deutsche Meldungen ohne Stacktrace/SQL (server.py:102-115)",
+        "Kein traceback.format_exc()/sys.exc_info() in Tool-Returns",
+        "Tools fangen breit (except Exception) und leaken keine Internals"
+      ],
+      "gaps": [
+        "FastMCP mask_error_details nicht gesetzt; generischer Fallback interpoliert {e} (server.py:115) — kann minimale Interna zeigen, empfohlen zu entfernen"
+      ]
+    },
+    "OPS-001": {
+      "status": "partial",
+      "category": "OPS",
+      "severity": "high",
+      "evidence": [
+        "@pytest.mark.live-Marker genutzt + in pyproject registriert (pyproject.toml:59-61, tests/test_server.py:173)",
+        "CI läuft 'pytest -m \"not live\"' (.github/workflows/ci.yml)",
+        "Unit-Tests mit gemockten HTTP-Antworten (unittest.mock patch von _odata_get)"
+      ],
+      "gaps": [
+        "Nur ~3-4 von 6 Tools haben Unit-Tests (get_business, get_votes, get_transcripts ohne Test)",
+        "respx ist Dev-Dependency, wird aber nicht genutzt (mock.patch statt respx)",
+        "Kein separater nightly/manueller Live-Test-Workflow"
+      ]
+    },
+    "OPS-003": {
+      "status": "partial",
+      "category": "OPS",
+      "severity": "high",
+      "evidence": [
+        "Alle Tools readOnlyHint=True → konsistent mit Phase 1; README erwähnt 'Phase 1 – No-Auth-First'"
+      ],
+      "gaps": [
+        "Keine explizite Phase-Sektion/Status-Tabelle im README",
+        "Kein docs/roadmap.md mit Phasen-Tasks und Übergangs-Voraussetzungen"
+      ]
+    },
+    "SCALE-001": {
+      "status": "partial",
+      "category": "SCALE",
+      "severity": "high",
+      "evidence": [
+        "streamable-http-Transport für Cloud vorhanden (server.py:756); keine veraltete WebSocket-Implementierung"
+      ],
+      "gaps": [
+        "Transport-Auswahl via CLI-Flag '--http' statt ENV-Var MCP_TRANSPORT",
+        "README dokumentiert 'MCP_TRANSPORT=sse PORT=8080' — entspricht NICHT dem Code (--http/--port)",
+        "Kein Deployment-Manifest (railway.toml/render.yaml) das den Transport explizit setzt"
+      ]
+    },
+    "SCALE-002": {
+      "status": "partial",
+      "category": "SCALE",
+      "severity": "high",
+      "evidence": [
+        "Tools sind zustandslose Read-Operationen ohne Subscriptions/Per-Session-Daten → Session-Verlust bei Pod-Switch ist verlustarm"
+      ],
+      "gaps": [
+        "Keine Sticky-Sessions und kein Shared-State-Session-Manager (Redis) konfiguriert",
+        "Aktuell Single-Instance-tauglich; vor horizontaler Skalierung (>1 Replica) zwingend nachzurüsten"
+      ]
+    },
+    "SCALE-003": {
+      "status": "partial",
+      "category": "SCALE",
+      "severity": "high",
+      "evidence": [
+        "Kein Mehr-Replica-Betrieb erkennbar; Single-Instance benötigt kein Edge-LB-Session-Routing"
+      ],
+      "gaps": [
+        "Keine HAProxy/NGINX/Ingress-Konfiguration für Mcp-Session-Id-Routing vorhanden",
+        "Vor Skalierung gemeinsam mit SCALE-002 umzusetzen"
+      ]
+    },
+    "SDK-001": {
+      "status": "fail",
+      "category": "SDK",
+      "severity": "high",
+      "evidence": [
+        "Kein FastMCP-Lifespan (grep lifespan/asynccontextmanager → nicht vorhanden)",
+        "httpx.AsyncClient wird PRO Tool-Call neu erstellt (server.py:94 und server.py:429) — exakt das Fail-Pattern des Checks"
+      ],
+      "gaps": [
+        "Kein Connection-Pooling → Performance-Einbusse und Leak-Gefahr bei Fehlern",
+        "Remediation: @asynccontextmanager-Lifespan mit geteiltem httpx.AsyncClient in server.state, Cleanup im finally"
+      ]
+    },
+    "SDK-004": {
+      "status": "partial",
+      "category": "SDK",
+      "severity": "high",
+      "evidence": [
+        "HTTP-Transport vorhanden; primärer Use-Case stdio (Claude Desktop) und server-seitig — dort kein CORS nötig"
+      ],
+      "gaps": [
+        "Keine CORSMiddleware/expose_headers-Konfiguration → Browser-basierte MCP-Clients können Mcp-Session-Id nicht lesen",
+        "Mcp-Session-Id fehlt in expose_headers; relevant sobald Browser-Clients angebunden werden"
+      ]
+    },
+    "SEC-005": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "high",
+      "evidence": [
+        "Ausgehende Requests nur an hartcodierten Host ws.parlament.ch — kein user-kontrollierter Hostname",
+        "DNS-Rebinding setzt attacker-kontrollierten Hostnamen voraus → kein Vektor"
+      ],
+      "gaps": [
+        "Kein DNS-Pinning implementiert — nicht nötig bei fixem Host, aber Pflicht falls user-kontrollierte URLs hinzukommen (Synergie SEC-004)"
+      ]
+    },
+    "SEC-006": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "high",
+      "evidence": [
+        "Default-Transport ist stdio (else-Zweig, server.py:757-758); HTTP nur via explizites '--http' opt-in",
+        "README dokumentiert lokalen stdio/Claude-Desktop-Use-Case primär und Cloud separat",
+        "Default-Start öffnet keinen TCP-Port"
+      ],
+      "gaps": [
+        "Aktivierung via CLI-Flag statt ENV-Var (Cross-Ref SCALE-001) — Funktionalität gleichwertig (explizites opt-in)"
+      ]
+    },
+    "SEC-007": {
+      "status": "partial",
+      "category": "SEC",
+      "severity": "high",
+      "evidence": [
+        "Read-only Public-Data-Server ohne Secrets → reduzierte Angriffsfläche bei Code-Kompromittierung"
+      ],
+      "gaps": [
+        "Kein Dockerfile/Container-Hardening vorhanden (kein non-root USER, kein read-only FS, keine Capability-Drops)",
+        "Empfehlung: gehärtetes Multi-Stage-Dockerfile (Synergie SCALE-004) für Cloud-Deployment"
+      ]
+    },
+    "SEC-013": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "high",
+      "evidence": [
+        "Server verwendet keinerlei API-Keys/Secrets (auth_model=none, Public-API)",
+        "Kein Secret im Container-Layer möglich (keine Secrets existieren)",
+        "publish.yml nutzt OIDC-Trusted-Publisher (keine langlebigen PyPI-Tokens)"
+      ],
+      "gaps": [
+        "Datenklasse Public Open Data → Stufe 1 wäre akzeptabel; ein kurzer Hinweis 'keine Secrets' in der Doku wäre sauber"
+      ]
+    },
+    "SEC-018": {
+      "status": "partial",
+      "category": "SEC",
+      "severity": "high",
+      "evidence": [
+        "Alle Tools haben Pydantic-v2-Input-Modelle mit extra='forbid' (server.py:151,206,217,250,269,279)",
+        "Numerische Felder mit ge/le-Constraints (limit ge=1/le=100, offset ge=0); String max_length; Datum mit Whitelist-Pattern (server.py:184)"
+      ],
+      "gaps": [
+        "model_config setzt strict=True NICHT → Pydantic-Coercion ('1'→1) aktiv",
+        "Keine Tests gegen Input-Edge-Cases (zu lang, out-of-range, unbekannte Felder)"
+      ]
+    },
+    "SEC-021": {
+      "status": "partial",
+      "category": "SEC",
+      "severity": "high",
+      "evidence": [
+        "De-facto Single-Host-Egress: Code kontaktiert ausschliesslich die hartcodierte BASE_URL ws.parlament.ch"
+      ],
+      "gaps": [
+        "Keine explizite Code-Layer Allow-List (frozenset) mit assert_host_allowed-Check",
+        "Keine Network-Layer-Egress-Control (NetworkPolicy/Security Group)",
+        "Keine docs/network-egress.md — reales Risiko gering (keine user-kontrollierten URLs)"
+      ]
+    },
+    "SEC-022": {
+      "status": "partial",
+      "category": "SEC",
+      "severity": "high",
+      "evidence": [
+        "Konsistenter Namespace-Präfix 'parlament_' auf allen 6 Tools (server.py) → Cross-Server-Tool-Shadowing verhindert"
+      ],
+      "gaps": [
+        "Kein Tool-Definitions-Hash-Snapshot im Release-Workflow (Rug-Pull-Detection fehlt)",
+        "CHANGELOG nennt keine Tool-Definition-Hashes/Änderungen"
+      ]
+    },
+    "ARCH-001": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "medium",
+      "evidence": [
+        "Einheitliche snake_case-Convention über alle 6 Tools (parlament_search_business, …)",
+        "Keine Spaces/Punkte/Sonderzeichen; Beschreibungen (Docstrings) liefern Use-Case-Kontext"
+      ],
+      "gaps": []
+    },
+    "ARCH-002": {
+      "status": "partial",
+      "category": "ARCH",
+      "severity": "medium",
+      "evidence": [
+        "Tool-Docstrings sind ausführlich (>100 Zeichen) und nennen Use-Cases prosaisch ('Anker-Abfrage…', server.py:318-326)"
+      ],
+      "gaps": [
+        "Keine strukturierten <use_case>/<important_notes>-Tags in den Beschreibungen"
+      ]
+    },
+    "ARCH-003": {
+      "status": "partial",
+      "category": "ARCH",
+      "severity": "medium",
+      "evidence": [
+        "Tools liefern handlungsorientierte deutsche Not-Found-Texte statt leerer Listen (z.B. 'Keine Vorstösse gefunden…', server.py:360)"
+      ],
+      "gaps": [
+        "Kein match_type-Feld (exact/fuzzy/none) und kein Fuzzy-/Vorschlags-Mechanismus bei leeren Treffern"
+      ]
+    },
+    "ARCH-007": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "medium",
+      "evidence": [
+        "Tools liefern gedanklich abgeschlossene Resultate (search → vollständige Geschäfts-Felder; get_business → alle Textfelder), keine ID-only-Zwischenschritte",
+        "Anker-Query mit ≤2 Tool-Calls beantwortbar"
+      ],
+      "gaps": [
+        "Keine asyncio.gather-Aggregation — bei je einem API-Call pro Tool nicht nötig"
+      ]
+    },
+    "ARCH-008": {
+      "status": "partial",
+      "category": "ARCH",
+      "severity": "medium",
+      "evidence": [
+        "Server nutzt ausschliesslich das Tools-Primitiv (6 Tools), keine Resources/Prompts"
+      ],
+      "gaps": [
+        "Keine dokumentierte Begründung im README, warum nur Tools verwendet werden (Pass-Kriterium); read-only get_*-Tools sind Resource-Kandidaten"
+      ]
+    },
+    "ARCH-011": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "medium",
+      "evidence": [
+        "src-Layout korrekt (src/parlament_mcp/), pyproject deklariert packages=['src/parlament_mcp'] (pyproject.toml:53)",
+        "Pflicht-Files vorhanden: README.md, README.de.md, CHANGELOG.md, LICENSE, pyproject.toml",
+        "Verzeichnisse src/, tests/, .github/workflows/ vorhanden; ≤6 Tools → kein tools/-Split nötig"
+      ],
+      "gaps": []
+    },
+    "ARCH-012": {
+      "status": "partial",
+      "category": "ARCH",
+      "severity": "medium",
+      "evidence": [
+        "CHANGELOG.md im Keep-a-Changelog-Format mit SemVer-Bekenntnis (CHANGELOG.md:1-6)"
+      ],
+      "gaps": [
+        "protocolVersion nicht explizit gepinnt (grep protocol_version → nicht vorhanden) — nimmt SDK-Default",
+        "Keine README-Sektion 'MCP Protocol Version' / Update-Policy",
+        "Kein Dependabot/Renovate für monatliche SDK-Update-PRs"
+      ]
+    },
+    "CH-004": {
+      "status": "partial",
+      "category": "CH",
+      "severity": "medium",
+      "evidence": [
+        "README nennt die Datenquelle Curia Vista (parlament.ch) und liefert Curia-Vista-Deeplink pro Treffer (server.py:399)"
+      ],
+      "gaps": [
+        "Keine explizite Lizenz-/Attributions-Angabe (CC BY 4.0) im README",
+        "Tool-Antworten enthalten kein dediziertes source/license-Feld"
+      ]
+    },
+    "OBS-003": {
+      "status": "partial",
+      "category": "OBS",
+      "severity": "medium",
+      "evidence": [
+        "Kein print() im Code → kein stdout-Konflikt (Synergie OBS-004)"
+      ],
+      "gaps": [
+        "Kein strukturierter Logger (structlog/loguru) als Dependency; Server loggt überhaupt nicht",
+        "Empfehlung: structlog mit JSON-Output auf sys.stderr, bound context pro Tool-Call"
+      ]
+    },
+    "OBS-006": {
+      "status": "partial",
+      "category": "OBS",
+      "severity": "medium",
+      "evidence": [
+        "is_cloud_deployed=true → Check anwendbar"
+      ],
+      "gaps": [
+        "Kein OpenTelemetry-Setup (grep opentelemetry → nicht vorhanden); keine Tool-Call-Spans/Tracing",
+        "Für Cloud-Forensik/Performance empfohlen, aber medium-Priorität"
+      ]
+    },
+    "OPS-002": {
+      "status": "pass",
+      "category": "OPS",
+      "severity": "medium",
+      "evidence": [
+        "README enthält Anchor-Demo-Query, Installation (copy-paste), Tools-Tabelle, ASCII-Architekturdiagramm, 'Safety & Limits' und 'Known Limitations', Lizenz",
+        "README.de.md parallel vorhanden (10 vs 11 ## Sektionen — weitgehend parität); CHANGELOG.md + CONTRIBUTING.md vorhanden"
+      ],
+      "gaps": [
+        "Keine dedizierte 'Configuration'-Sektion (Server hat faktisch keine ENV-Vars); kleine Sektions-Differenz EN/DE"
+      ]
+    },
+    "SCALE-004": {
+      "status": "partial",
+      "category": "SCALE",
+      "severity": "medium",
+      "evidence": [
+        "is_cloud_deployed=true → Check anwendbar"
+      ],
+      "gaps": [
+        "Kein Dockerfile vorhanden — kein Multi-Stage-Build, kein non-root USER, kein HEALTHCHECK",
+        "Empfehlung: schlankes Multi-Stage-Dockerfile (Synergie SEC-007)"
+      ]
+    },
+    "SCALE-006": {
+      "status": "partial",
+      "category": "SCALE",
+      "severity": "medium",
+      "evidence": [
+        "is_cloud_deployed=true → Check anwendbar"
+      ],
+      "gaps": [
+        "Keine dokumentierten Resource-Limits (Memory/CPU/FD) — weder Manifest noch README",
+        "Bei Railway via UI setzbar, sollte dokumentiert werden"
+      ]
+    },
+    "SDK-002": {
+      "status": "partial",
+      "category": "SDK",
+      "severity": "medium",
+      "evidence": [
+        "Pydantic v2 als Dependency (pyproject.toml:32) und für alle Tool-INPUTS genutzt"
+      ],
+      "gaps": [
+        "Alle Tools haben Rückgabetyp '-> str' (Markdown/JSON-String) statt strukturierter BaseModel/TypedDict-Returns",
+        "Kein konsistenter Response-Envelope mit source/provenance/count → FastMCP exponiert kein Output-Schema"
+      ]
+    },
+    "SDK-003": {
+      "status": "partial",
+      "category": "SDK",
+      "severity": "medium",
+      "evidence": [
+        "Tools sind überwiegend schnelle Einzel-API-Calls (HTTP_TIMEOUT 20s)"
+      ],
+      "gaps": [
+        "Kein Tool deklariert ctx: Context → keine Progress-Reports/ctx.info-Logging",
+        "Transcript-Suche kann laut README langsam sein → Progress-Reports wären sinnvoll"
+      ]
+    },
+    "SEC-008": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "medium",
+      "evidence": [
+        "Keine pre/postinstall-Hooks; pyproject nutzt hatchling + Standard-Entry-Point (pyproject.toml:44-45)",
+        "README zeigt vollständigen, transparenten Installationsbefehl (uvx parlament-mcp)",
+        "publish.yml: OIDC-Trusted-Publisher via pypa/gh-action-pypi-publish mit id-token: write → Sigstore-Signatur"
+      ],
+      "gaps": []
+    },
+    "SEC-014": {
+      "status": "partial",
+      "category": "SEC",
+      "severity": "medium",
+      "evidence": [
+        "Einzel-Server, kein Enterprise-Gateway-Kontext; alle Tools read-only Public Data → geringe Relevanz"
+      ],
+      "gaps": [
+        "Keine Tool-Allow-List/Group-Checks; relevant erst im Multi-Server-Gateway-Setup"
+      ]
+    },
+    "SEC-015": {
+      "status": "partial",
+      "category": "SEC",
+      "severity": "medium",
+      "evidence": [
+        "Nur eigener, vertrauenswürdiger Server → Tool-Poisoning-Risiko aktuell niedrig"
+      ],
+      "gaps": [
+        "Keine Pre-Flight-Tool-Poisoning-Detection; wird relevant, sobald externe MCP-Server in ein Gateway integriert werden"
+      ]
+    }
+  }
+}

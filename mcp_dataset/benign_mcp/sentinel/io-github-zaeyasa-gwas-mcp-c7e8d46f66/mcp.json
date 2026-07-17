@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-zaeyasa-gwas-mcp-c7e8d46f66": {
+      "args": [
+        "/app/io-github-zaeyasa-gwas-mcp-c7e8d46f66/gwas-mcp/src/gwas_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

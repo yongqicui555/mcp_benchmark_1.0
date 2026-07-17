@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-tschoonj-xraylib-mcp-server-52a5f913b8": {
+      "args": [
+        "/app/io-github-tschoonj-xraylib-mcp-server-52a5f913b8/xraylib-mcp-server/src/xraylib_mcp_server/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "fedramp-20x": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/fedramp-20x/FedRAMP_20x/src",
+        "run",
+        "fedramp-20x-mcp"
+      ]
+    }
+  }
+}

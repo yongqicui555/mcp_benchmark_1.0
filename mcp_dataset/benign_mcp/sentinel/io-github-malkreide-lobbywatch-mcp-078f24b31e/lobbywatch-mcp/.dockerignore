@@ -1,0 +1,35 @@
+# Build context hygiene — keep image small and leak-free.
+.git
+.github
+.venv
+venv
+env
+__pycache__
+*.py[cod]
+*.egg-info
+build
+dist
+.pytest_cache
+.ruff_cache
+.mypy_cache
+.coverage
+htmlcov
+
+# Documentation that doesn't belong in the runtime image.
+audits
+docs
+EXAMPLES.md
+CONTRIBUTING.md
+CHANGELOG.md
+README.de.md
+
+# Tests are not needed at runtime.
+tests
+
+# Local secrets / IDE state.
+.env
+.env.*
+.idea
+.vscode
+*.swp
+.DS_Store

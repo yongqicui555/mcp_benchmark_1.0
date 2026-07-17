@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "mcp2lambda": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/mcp2lambda/AWS_Lambda",
+        "run",
+        "main.py"
+      ]
+    }
+  }
+}

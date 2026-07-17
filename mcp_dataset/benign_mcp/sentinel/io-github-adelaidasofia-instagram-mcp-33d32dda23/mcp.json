@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-adelaidasofia-instagram-mcp-33d32dda23": {
+      "args": [
+        "/app/io-github-adelaidasofia-instagram-mcp-33d32dda23/instagram-mcp/instagram_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

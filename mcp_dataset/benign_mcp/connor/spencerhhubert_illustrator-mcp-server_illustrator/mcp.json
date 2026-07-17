@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "spencerhhubert_illustrator-mcp-server_illustrator": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/spencerhhubert_illustrator-mcp-server_illustrator/spencerhhubert_illustrator-mcp-server/src",
+        "run",
+        "illustrator"
+      ]
+    }
+  }
+}

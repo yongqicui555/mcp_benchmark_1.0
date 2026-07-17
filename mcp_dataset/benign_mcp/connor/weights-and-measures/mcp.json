@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "weights-and-measures": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/weights-and-measures/Weights_and_Measures/weights_and_measures_server",
+        "run",
+        "weights-and-measures-server"
+      ]
+    }
+  }
+}

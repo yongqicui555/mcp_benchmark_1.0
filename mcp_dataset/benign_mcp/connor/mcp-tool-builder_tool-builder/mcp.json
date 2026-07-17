@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "mcp-tool-builder_tool-builder": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/mcp-tool-builder_tool-builder/mcp-tool-builder",
+        "run",
+        "tool-builder"
+      ]
+    }
+  }
+}

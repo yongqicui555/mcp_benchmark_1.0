@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "todo-mcp": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/todo-mcp/Todo_App_with_MCP_Server/todo-mcp",
+        "run",
+        "main.py"
+      ]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+        "charliermarsh.ruff", // Linter and formatter
+        "detachhead.basedpyright", // typechecker
+        "editorconfig.editorconfig", // .editorconfig
+        "github.vscode-github-actions", // Github Actions
+        "ms-python.python", // Python
+        "tamasfe.even-better-toml" // pyproject.toml
+    ]
+}

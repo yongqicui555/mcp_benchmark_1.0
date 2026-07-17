@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "jij": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/jij/Jij-MCP-Server",
+        "run",
+        "jij_mcp/server.py"
+      ]
+    }
+  }
+}

@@ -1,0 +1,23 @@
+# Railway-Deployment-Konfiguration.
+# Transport explizit auf streamable-http; MCP_HOST=0.0.0.0 ist im Container-
+# Kontext korrekt (Railway-Edge terminiert TLS und routet zum Container-Port).
+
+[build]
+builder = "dockerfile"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+restartPolicyType = "on_failure"
+restartPolicyMaxRetries = 5
+
+[deploy.envs]
+MCP_TRANSPORT = "streamable-http"
+MCP_HOST = "0.0.0.0"
+# PORT wird von Railway injiziert und vom Server bevorzugt (siehe _resolve_settings).
+LOG_LEVEL = "INFO"
+# Optional: OTLP-Tracing aktivieren (OBS-006)
+# OTEL_EXPORTER_OTLP_ENDPOINT = "https://otlp.example.eu:4318"
+# OTEL_SERVICE_NAME = "parlament-mcp"
+
+# Ressourcen-Limits werden im Railway-Dashboard gesetzt (Memory ~512Mi, CPU ~0.5).
+# Siehe docs/roadmap.md und deploy/k8s/ für die Kubernetes-Variante.

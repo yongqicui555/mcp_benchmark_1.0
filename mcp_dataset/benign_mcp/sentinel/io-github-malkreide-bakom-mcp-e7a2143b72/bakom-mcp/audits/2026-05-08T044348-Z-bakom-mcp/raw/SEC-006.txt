@@ -1,0 +1,5 @@
+=== default transport ===
+1749:    transport = "streamable-http" if "--http" in sys.argv else "stdio"
+1751:    if transport == "streamable-http":
+1753:        mcp.run(transport=transport, port=port)
+1755:        mcp.run()

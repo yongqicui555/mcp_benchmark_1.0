@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "com-halalterminal-mcp-fc166cff64": {
+      "args": [
+        "/app/com-halalterminal-mcp-fc166cff64/halalterminal-mcp/bin/cli.mjs"
+      ],
+      "command": "node"
+    }
+  }
+}

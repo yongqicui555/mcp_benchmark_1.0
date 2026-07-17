@@ -1,0 +1,68 @@
+{
+  "name": "@halalterminal/mcp",
+  "version": "1.0.0",
+  "description": "Halal Terminal MCP server — 22 tools: screen stocks/ETFs across 5 Shariah methodologies (AAOIFI, DJIM, FTSE, MSCI, S&P), audit portfolios, calculate zakat and purification, fetch market data and SEC filings. For Claude, Cursor, Windsurf and any MCP client.",
+  "mcpName": "com.halalterminal/mcp",
+  "type": "module",
+  "license": "Apache-2.0",
+  "author": {
+    "name": "Yassir",
+    "email": "yassir@halalterminal.com",
+    "url": "https://halalterminal.com"
+  },
+  "homepage": "https://www.halalterminal.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/goww7/halalterminal-mcp.git"
+  },
+  "bugs": {
+    "email": "yassir@halalterminal.com"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "modelcontextprotocol",
+    "halal",
+    "shariah",
+    "shariah-compliant",
+    "islamic-finance",
+    "halal-investing",
+    "halal-stocks",
+    "stock-screening",
+    "etf-screening",
+    "zakat",
+    "purification",
+    "aaoifi",
+    "djim",
+    "ftse-shariah",
+    "msci-islamic",
+    "sp-shariah",
+    "claude",
+    "cursor",
+    "windsurf",
+    "ai-agent",
+    "finance",
+    "investing",
+    "compliance"
+  ],
+  "bin": {
+    "halalterminal-mcp": "bin/cli.mjs"
+  },
+  "files": [
+    "bin/",
+    "server.json",
+    "README.md",
+    "CONNECT.md",
+    "TOOLS.md",
+    "EXAMPLES.md",
+    "LICENSE",
+    "NOTICE",
+    "TRADEMARKS.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "localgym": {
+      "command": "npx",
+      "args": ["-y", "localgym-mcp-server"],
+      "env": {
+        "LOCALGYM_API_BASE": "https://localgym.uk"
+      }
+    }
+  }
+}

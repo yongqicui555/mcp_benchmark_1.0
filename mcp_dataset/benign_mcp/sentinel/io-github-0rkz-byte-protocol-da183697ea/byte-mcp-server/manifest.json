@@ -1,0 +1,61 @@
+{
+  "manifest_version": "0.2",
+  "name": "byte-mcp-server",
+  "display_name": "PayPerByte",
+  "version": "0.11.2",
+  "description": "Per-byte USDC data feeds for AI agents. x402 pay-per-call on Base mainnet; EIP-712-attested payloads, no API keys.",
+  "long_description": "An MCP server for PayPerByte — verified, provenance-first data feeds for AI agents. Two rails: pay-per-call via the x402 gateway settles real USDC on Base mainnet (flagship: the $0.10 Address Reputation Oracle — a signed ALLOW/WARN/BLOCK verdict on a receiving address before an agent releases funds); the on-chain subscription/broadcast layer (BYTE Library contracts, fact-oracle escrow, indexer) runs on Arbitrum Sepolia testnet, mainnet gated on an external security audit. Agents discover first-party publishers, subscribe to live feeds (weather, earthquakes, threat-intel, positioning, liquidations), buy single packets via x402, and verify-before-act — recompute a payload's keccak256 and check it against the publisher's EIP-712 PayloadAttestation before trusting it. The 9 read-only tools need no wallet; the write tools and byte_buy_data require a private key (buys spend real USDC — use a dedicated wallet). No token.",
+  "author": {
+    "name": "0rkz",
+    "url": "https://www.payperbyte.io"
+  },
+  "homepage": "https://www.payperbyte.io",
+  "documentation": "https://github.com/0rkz/byte-mcp-server#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/0rkz/byte-mcp-server"
+  },
+  "license": "MIT",
+  "keywords": ["mcp", "byte-protocol", "data-marketplace", "ai-agents", "arbitrum", "x402", "agent-commerce", "depin"],
+  "server": {
+    "type": "node",
+    "entry_point": "dist/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/dist/index.js"],
+      "env": {
+        "PRIVATE_KEY": "${user_config.private_key}",
+        "RPC_URL": "${user_config.rpc_url}",
+        "INDEXER_URL": "${user_config.indexer_url}"
+      }
+    }
+  },
+  "user_config": {
+    "private_key": {
+      "type": "string",
+      "title": "Wallet Private Key",
+      "description": "Ethereum private key for write/buy tools (subscribe, publish, buy_data — buy_data spends real Base-mainnet USDC; use a dedicated wallet). Leave blank for read-only mode.",
+      "sensitive": true,
+      "required": false
+    },
+    "rpc_url": {
+      "type": "string",
+      "title": "Arbitrum RPC URL",
+      "description": "Arbitrum Sepolia RPC endpoint. Uses a public default if blank.",
+      "required": false,
+      "default": "https://sepolia-rollup.arbitrum.io/rpc"
+    },
+    "indexer_url": {
+      "type": "string",
+      "title": "Indexer API URL",
+      "description": "Byte Protocol indexer API URL. Uses the hosted default if blank.",
+      "required": false,
+      "default": "https://feeds.payperbyte.io"
+    }
+  },
+  "compatibility": {
+    "runtimes": {
+      "node": ">=18.0.0"
+    }
+  }
+}

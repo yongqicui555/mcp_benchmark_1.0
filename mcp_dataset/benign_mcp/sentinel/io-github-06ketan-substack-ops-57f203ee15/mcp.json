@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-06ketan-substack-ops-57f203ee15": {
+      "args": [
+        "/app/io-github-06ketan-substack-ops-57f203ee15/substack-ops/src/substack_ops/mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "file-utils": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/file_utils_server/file_operations",
+        "run",
+        "python",
+        "server.py"
+      ]
+    }
+  }
+}

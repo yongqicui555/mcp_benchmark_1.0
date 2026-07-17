@@ -1,0 +1,74 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "silentwatch-mcp"
+version = "1.0.11"
+description = "MCP server for catching cron silent failures in production AI deployments — exit-0-with-empty-output detection, overdue jobs, retry storms, action-budget leaks. Works with system cron, systemd timers, OpenClaw cron logs, and any JSONL run-log."
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Temur Khan", email = "hello@temhan.dev" },
+]
+keywords = ["mcp", "model-context-protocol", "claude", "ai-agent", "production-ai", "cron", "scheduler", "monitoring", "silent-failure", "observability", "openclaw", "agent-ops"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: System :: Monitoring",
+    "Topic :: System :: Systems Administration",
+]
+requires-python = ">=3.11"
+dependencies = [
+    "mcp>=1.0.0",
+    "pydantic>=2.0.0",
+    "croniter>=6.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "ruff>=0.5",
+    "mypy>=1.10",
+    "types-croniter>=2.0",
+]
+
+[project.scripts]
+silentwatch-mcp = "silentwatch_mcp.__main__:main"
+silentwatch-mcp-demo = "silentwatch_mcp.demo:main"
+silentwatch-mcp-report = "silentwatch_mcp.report:main"
+
+[project.urls]
+Homepage = "https://github.com/temurkhan13/silentwatch-mcp"
+Documentation = "https://github.com/temurkhan13/silentwatch-mcp/blob/main/SPEC.md"
+"Bug Tracker" = "https://github.com/temurkhan13/silentwatch-mcp/issues"
+"Custom MCP Build" = "https://github.com/temurkhan13/silentwatch-mcp#need-this-adapted-to-your-stack"
+Changelog = "https://github.com/temurkhan13/silentwatch-mcp/blob/main/CHANGELOG.md"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/silentwatch_mcp"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP", "B", "A", "C4", "SIM"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_unreachable = true

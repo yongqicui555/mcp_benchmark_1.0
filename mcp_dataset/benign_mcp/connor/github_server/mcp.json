@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "github_server": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/github_server/GitHub_API_MCP_Server",
+        "run",
+        "github_server.py"
+      ]
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "Crypto RSS Reader": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/Crypto RSS Reader/Crypto_RSS/src",
+        "run",
+        "crypto-rss-mcp"
+      ]
+    }
+  }
+}

@@ -1,0 +1,19 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+*.egg-info/
+build/
+dist/
+
+# Secrets — never commit
+.env
+.env.local
+.env.*.local
+secrets/
+credentials/
+*.pem
+*.key

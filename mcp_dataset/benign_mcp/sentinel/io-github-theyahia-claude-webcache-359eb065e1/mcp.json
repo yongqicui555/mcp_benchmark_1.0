@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-theyahia-claude-webcache-359eb065e1": {
+      "args": [
+        "/app/io-github-theyahia-claude-webcache-359eb065e1/claude-webcache/plugin/scripts/cli.cjs"
+      ],
+      "command": "node"
+    }
+  }
+}

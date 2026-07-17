@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "Modal_Serverless_Python_mcp-server-modal": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/Modal_Serverless_Python_mcp-server-modal/Modal_Serverless_Python/src",
+        "run",
+        "modal-server"
+      ]
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "NS_Lookup_MCP_Server_nslookup": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--directory",
+        "/app/NS_Lookup_MCP_Server_nslookup/NS_Lookup_MCP_Server",
+        "ns-lookup-mcp"
+      ]
+    }
+  }
+}

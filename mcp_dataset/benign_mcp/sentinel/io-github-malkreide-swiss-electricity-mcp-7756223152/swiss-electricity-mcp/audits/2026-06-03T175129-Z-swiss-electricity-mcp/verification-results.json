@@ -1,0 +1,549 @@
+{
+  "audit_meta": {
+    "server_name": "swiss-electricity-mcp",
+    "run_id": "2026-06-03T175129-Z-swiss-electricity-mcp",
+    "started_at": "2026-06-03T17:51:29.339117+00:00",
+    "timezone_offset": "Z",
+    "skill_version": "1.0.0",
+    "output_dir": "audits/2026-06-03T175129-Z-swiss-electricity-mcp",
+    "catalog_hash": "091f446b27965044ce658a1d5f4b2cabe2b0ab5661dcc1a53b6be8f1f2e093c0",
+    "catalog_dir": "/tmp/mcp-audit-skill/checks",
+    "audit_date": "2026-06-03",
+    "catalog_version": "0.5.0 (catalog_hash 091f446b)",
+    "skill_mode": "local (clone of github.com/malkreide/mcp-audit-skill@main)"
+  },
+  "results": {
+    "ARCH-001": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "medium",
+      "evidence": [
+        "Einheitliche snake_case-Konvention ueber alle 11 Tools (server.py:125 dashboard_get_production_mix, :280 tariff_list_categories, :484 consumption_search_bfe_datasets, :579 electricity_check_status)",
+        "Keine Spaces/Punkte/Sonderzeichen in Tool-Namen",
+        "Gruppen-Praefixe dashboard_/tariff_/consumption_ konsistent"
+      ],
+      "gaps": []
+    },
+    "ARCH-002": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "medium",
+      "evidence": [
+        "Tool-Beschreibungen ausfuehrlich, Median deutlich >100 Zeichen (server.py:120-123, :300-305, :435-440)",
+        "Use-Case-Kontext eingebettet, z.B. 'Use C3 for typical school buildings (~150000 kWh/year)' (server.py:277)",
+        "Differenzierung aehnlicher Tools explizit (median_swiss vs median_canton, server.py:360/396)"
+      ],
+      "gaps": [
+        "Keine formalen <use_case>-/<important_notes>-Tags wie im Katalog empfohlen (rein narrativ)"
+      ]
+    },
+    "ARCH-003": {
+      "status": "partial",
+      "category": "ARCH",
+      "severity": "medium",
+      "evidence": [
+        "Such-Tools consumption_search_zurich / consumption_search_bfe_datasets vorhanden (server.py:484, :534)",
+        "Leere Treffer liefern leere datasets-Liste + total_hits=0"
+      ],
+      "gaps": [
+        "Kein match_type-Feld (exact/fuzzy/none) in DatasetSearchResponse",
+        "Kein Fuzzy-Fallback und kein actionable Suggestion-Mechanismus bei 0 Treffern"
+      ]
+    },
+    "ARCH-004": {
+      "status": "partial",
+      "category": "ARCH",
+      "severity": "high",
+      "evidence": [
+        "ENV-basierte Transport-Selektion stdio + streamable-http (__main__.py:16-24)",
+        "Identische Tool-Outputs unabhaengig vom Transport"
+      ],
+      "gaps": [
+        "Konfiguration ueber Module-Globals (_dashboard/_elcom/_ckan, server.py:70-72) statt Pydantic-Settings",
+        "Kein gemeinsamer Lifespan/Setup-Code (siehe SDK-001)",
+        "Tool-Handler nutzen keinen ctx: Context (siehe SDK-003)"
+      ]
+    },
+    "ARCH-005": {
+      "status": "partial",
+      "category": "ARCH",
+      "severity": "critical",
+      "evidence": [
+        "Keine Hardcoded Secrets im Source (grep ueber src/ negativ)",
+        "Server benoetigt gar keine Secrets (auth_model=none, nur Public Open Data)",
+        "Keine os.environ.get(..., default=<secret>)-Pattern"
+      ],
+      "gaps": [
+        "Keine .gitignore mit .env/.env.* im Repo",
+        "Keine .env.example",
+        "Kein CI-Secret-Scan (Gitleaks/Trufflehog) - .github/workflows fehlt komplett"
+      ]
+    },
+    "ARCH-006": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "high",
+      "evidence": [
+        "11 Tools, klar begruendet und nach Use-Case gruppiert (<=12)",
+        "Keine 1:1-REST-Mappings; High-Level-Use-Cases (z.B. tariff_compare_municipalities aggregiert mehrere Gemeinden)",
+        "Anchor-Demo im README mit 1-2 Tool-Calls beantwortbar"
+      ],
+      "gaps": []
+    },
+    "ARCH-007": {
+      "status": "partial",
+      "category": "ARCH",
+      "severity": "medium",
+      "evidence": [
+        "Tools liefern abgeschlossene Resultate (vollstaendige Envelopes, keine reinen IDs/Pointer)",
+        "Aggregations-Tool tariff_compare_municipalities vorhanden (server.py:442)"
+      ],
+      "gaps": [
+        "tariff_compare_municipalities iteriert Gemeinden sequenziell in einer for-Schleife (server.py:451) statt asyncio.gather - bei 20 BFS-Nrn unnoetig langsam"
+      ]
+    },
+    "ARCH-008": {
+      "status": "partial",
+      "category": "ARCH",
+      "severity": "medium",
+      "evidence": [
+        "Server nutzt das Primitive Tools sauber und konsistent"
+      ],
+      "gaps": [
+        "Nur Tools, keine Resources oder Prompts",
+        "README dokumentiert nicht, warum keine Resources/Prompts (read-only, idempotente Tools waeren Resource-Migrations-Kandidaten)"
+      ]
+    },
+    "ARCH-009": {
+      "status": "fail",
+      "category": "ARCH",
+      "severity": "high",
+      "evidence": [
+        "grep auf readOnlyHint/destructiveHint/idempotentHint/openWorldHint in src/ = 0 Treffer",
+        "Alle 11 @mcp.tool-Decorators setzen nur description, keine annotations (server.py:119, :163, :248, ...)"
+      ],
+      "gaps": [
+        "KEINE Tool-Annotations vorhanden - alle Tools sind read-only und externe-Aufrufe, sollten readOnlyHint=true und openWorldHint=true deklarieren",
+        "Clients koennen read-only-Charakter nicht aus Annotations ableiten"
+      ]
+    },
+    "ARCH-011": {
+      "status": "fail",
+      "category": "ARCH",
+      "severity": "medium",
+      "evidence": [
+        "Pflicht-Files vorhanden: README.md, README.de.md, CHANGELOG.md, LICENSE, pyproject.toml",
+        "Korrektes src-Layout (src/swiss_electricity_mcp/), tests/ vorhanden"
+      ],
+      "gaps": [
+        ".github/workflows/ fehlt komplett - keine test.yml, keine publish.yml",
+        "Kein CI ohne Live-Tests, kein automatisches Publishing"
+      ]
+    },
+    "ARCH-012": {
+      "status": "partial",
+      "category": "ARCH",
+      "severity": "medium",
+      "evidence": [
+        "CHANGELOG.md vorhanden (Keep-a-Changelog-naher Stil)",
+        "mcp[cli]>=1.2.0 als Dependency gepinnt (pyproject.toml)"
+      ],
+      "gaps": [
+        "protocolVersion wird im Code nicht explizit gepinnt (FastMCP-Default)",
+        "Keine README-Sektion 'MCP Protocol Version' mit Update-Policy",
+        "Kein Dependabot/Renovate (.github fehlt)"
+      ]
+    },
+    "CH-004": {
+      "status": "pass",
+      "category": "CH",
+      "severity": "medium",
+      "evidence": [
+        "Jede Antwort traegt source-Feld mit Quelle+Lizenz via ResponseEnvelope (models.py:30-37)",
+        "Attribution-Strings nennen Amt + Lizenz (OGD-CH/CC0), models.py:11-26",
+        "README 'Data sources & licensing' listet alle vier Quellen mit Lizenz (CC BY 4.0 / CC0)",
+        "Provenance pro Antwort erhalten (live_api/sparql/cached)"
+      ],
+      "gaps": []
+    },
+    "OBS-001": {
+      "status": "partial",
+      "category": "OBS",
+      "severity": "high",
+      "evidence": [
+        "Anwendungsfehler werden als Exceptions geworfen und von FastMCP in isError-Tool-Results uebersetzt (UpstreamUnreachableError, server.py:496/543)",
+        "4xx/5xx-Differenzierung im API-Client (api_client.py:57-66)"
+      ],
+      "gaps": [
+        "Keine explizite isError-Behandlung im Tool-Code; Verlass auf FastMCP-Default-Wrapping",
+        "Kein dedizierter Test fuer Protocol-Error-Pfad (falsches Tool/falsche Args) erkennbar"
+      ]
+    },
+    "OBS-002": {
+      "status": "partial",
+      "category": "OBS",
+      "severity": "high",
+      "evidence": [
+        "Keine traceback.format_exc()/sys.exc_info()-Ausgaben in Tool-Returns",
+        "Fehlermeldungen ohne SQL/Stacktrace"
+      ],
+      "gaps": [
+        "FastMCP wird nicht mit mask_error_details=True initialisiert (server.py:59)",
+        "electricity_check_status gibt Exception-Typ+Message im note-Feld zurueck (server.py:615) - leakt Internals an Client"
+      ]
+    },
+    "OBS-003": {
+      "status": "fail",
+      "category": "OBS",
+      "severity": "medium",
+      "evidence": [
+        "Kein Structured-Logging-Framework (structlog/loguru) in dependencies",
+        "grep: keine Logger-Instanz im src/-Code"
+      ],
+      "gaps": [
+        "Ueberhaupt kein Logging vorhanden - kein JSON/logfmt, keine Severity-Stufen, kein per-Tool-Call-Context (tool name/session_id/correlation_id)"
+      ]
+    },
+    "OBS-004": {
+      "status": "pass",
+      "category": "OBS",
+      "severity": "critical",
+      "evidence": [
+        "Keine print()-Statements in src/ (grep negativ) - stdout bleibt fuer JSON-RPC frei",
+        "stdio ist Default-Transport (__main__.py:16)"
+      ],
+      "gaps": [
+        "Kein Logging auf stderr konfiguriert (Folge von OBS-003) - aktuell kein Risiko, da gar nicht geloggt wird"
+      ]
+    },
+    "OBS-006": {
+      "status": "fail",
+      "category": "OBS",
+      "severity": "medium",
+      "evidence": [
+        "is_cloud_deployed=true -> Check anwendbar"
+      ],
+      "gaps": [
+        "Kein OpenTelemetry-SDK, kein TracerProvider/OTLP-Exporter",
+        "Keine httpx-Auto-Instrumentation, keine per-Tool-Call-Spans"
+      ]
+    },
+    "OPS-001": {
+      "status": "partial",
+      "category": "OPS",
+      "severity": "high",
+      "evidence": [
+        "tests/test_server.py mit 22 Tests, respx-HTTP-Mocking (test_server.py:16,156)",
+        "Live-Marker 'live' in pyproject.toml registriert; respx in dev-deps"
+      ],
+      "gaps": [
+        "Keine Trennung test_unit.py/test_live.py",
+        "Keine CI (.github/workflows fehlt) - pytest -m 'not live' laeuft nirgends automatisch",
+        "Kein separater nightly Live-Test-Workflow"
+      ]
+    },
+    "OPS-002": {
+      "status": "partial",
+      "category": "OPS",
+      "severity": "medium",
+      "evidence": [
+        "README.md mit allen Kern-Sektionen (Anchor-Demo, Installation, Tools, Cloud, Architecture, Testing, Known limitations, Licensing)",
+        "README.de.md parallel; CHANGELOG.md + CONTRIBUTING.md (bilingual) + EXAMPLES.md vorhanden"
+      ],
+      "gaps": [
+        "Architektur-Sektion ist narrativ - kein ASCII-/Mermaid-Architekturdiagramm"
+      ]
+    },
+    "OPS-003": {
+      "status": "partial",
+      "category": "OPS",
+      "severity": "high",
+      "evidence": [
+        "Server ist faktisch Phase 1 (read-only first): alle Tools read-only, keine destruktiven Operationen"
+      ],
+      "gaps": [
+        "Keine explizite Phasen-Deklaration (Phase 1/2/3) im README",
+        "Kein roadmap-File mit phasenspezifischen Tasks"
+      ]
+    },
+    "SCALE-001": {
+      "status": "pass",
+      "category": "SCALE",
+      "severity": "high",
+      "evidence": [
+        "ENV-basierte Transport-Selektion: streamable-http fuer Cloud (__main__.py:17-22)",
+        "Keine WebSocket-Implementierung im Code",
+        "README 'Cloud deployment (Streamable HTTP)' dokumentiert Render/Railway/Fly.io"
+      ],
+      "gaps": []
+    },
+    "SCALE-002": {
+      "status": "todo",
+      "category": "SCALE",
+      "severity": "high",
+      "evidence": [
+        "dual transport -> Check anwendbar; Server ist zustandslos (nur in-process TTL-Cache, api_client.py:78)"
+      ],
+      "gaps": [
+        "Sticky-Session/Shared-State-Strategie ist eine Deployment-/LB-Entscheidung und im Repo nicht nachweisbar - manueller Infra-Review noetig"
+      ]
+    },
+    "SCALE-003": {
+      "status": "todo",
+      "category": "SCALE",
+      "severity": "high",
+      "evidence": [
+        "dual + is_cloud_deployed -> anwendbar"
+      ],
+      "gaps": [
+        "Mcp-Session-Id-Routing am Edge-LB ist Infrastruktur, nicht im Repo abbildbar - manueller Review der Deployment-Config noetig"
+      ]
+    },
+    "SCALE-004": {
+      "status": "fail",
+      "category": "SCALE",
+      "severity": "medium",
+      "evidence": [
+        "is_cloud_deployed=true -> Containerization anwendbar"
+      ],
+      "gaps": [
+        "Kein Dockerfile im Repo - kein Multi-Stage-Build, kein slim/alpine-Base, kein non-root USER, kein HEALTHCHECK"
+      ]
+    },
+    "SCALE-006": {
+      "status": "todo",
+      "category": "SCALE",
+      "severity": "medium",
+      "evidence": [
+        "is_cloud_deployed=true -> anwendbar"
+      ],
+      "gaps": [
+        "Memory-/CPU-/FD-Limits sind Deploy-Config (Dockerfile/k8s/Render) - nicht im Repo, manueller Infra-Review noetig"
+      ]
+    },
+    "SDK-001": {
+      "status": "fail",
+      "category": "SDK",
+      "severity": "high",
+      "evidence": [
+        "grep auf lifespan/asynccontextmanager in src/ = 0 Treffer",
+        "HTTP-Clients werden als Module-Globals beim Import erzeugt und nie geschlossen (server.py:70-72; api_client.py:116/183/336)"
+      ],
+      "gaps": [
+        "Kein @asynccontextmanager-Lifespan, FastMCP erhaelt kein lifespan=",
+        "aclose() der Clients wird nie aufgerufen - Connection-Cleanup fehlt"
+      ]
+    },
+    "SDK-002": {
+      "status": "pass",
+      "category": "SDK",
+      "severity": "medium",
+      "evidence": [
+        "Pydantic >=2.6 in dependencies (pyproject.toml)",
+        "Explizite Return-Annotations (-> str) an allen Tools; konsistenter ResponseEnvelope mit source/provenance/retrieved_at (models.py:30)",
+        "Literal-Types fuer enumerable Werte (Provenance, response_format, region), models.py:28",
+        "Field(default=...) fuer Defaults"
+      ],
+      "gaps": []
+    },
+    "SDK-003": {
+      "status": "partial",
+      "category": "SDK",
+      "severity": "medium",
+      "evidence": [
+        "Tools machen externe Requests die >2s dauern koennen (LINDAS SPARQL Timeout 60s, api_client.py:184)"
+      ],
+      "gaps": [
+        "Kein ctx: Context-Parameter, kein ctx.report_progress() bei langlaufenden SPARQL-/Compare-Tools",
+        "Fehler werden nicht via ctx.warning()/ctx.error() berichtet"
+      ]
+    },
+    "SDK-004": {
+      "status": "partial",
+      "category": "SDK",
+      "severity": "high",
+      "evidence": [
+        "dual transport -> CORS-Check anwendbar"
+      ],
+      "gaps": [
+        "Keine explizite CORS-Middleware-Konfiguration; Verlass auf FastMCP-Default",
+        "expose_headers/allow_headers fuer Mcp-Session-Id nicht explizit gesetzt; allow_origins nicht eingeschraenkt"
+      ]
+    },
+    "SEC-004": {
+      "status": "partial",
+      "category": "SEC",
+      "severity": "critical",
+      "evidence": [
+        "Alle Upstream-URLs sind hardcodierte Konstanten (api_client.py:25-28) - KEIN user-kontrollierter URL-Parameter in irgendeinem Tool",
+        "Alle Endpunkte sind https://"
+      ],
+      "gaps": [
+        "Keine explizite HTTPS-Schema-Validierung als Layer",
+        "Keine IP-Blocklist/getaddrinfo-Pruefung gegen 169.254.169.254 & private Ranges (Defense-in-Depth fehlt, Restrisiko niedrig da keine dynamischen URLs)"
+      ]
+    },
+    "SEC-005": {
+      "status": "partial",
+      "category": "SEC",
+      "severity": "high",
+      "evidence": [
+        "Keine user-kontrollierten Hostnamen; nur feste Endpunkte"
+      ],
+      "gaps": [
+        "Kein DNS-Pinning/Single-Resolution-Pattern - Restrisiko niedrig mangels dynamischer URLs, aber Defense-in-Depth-Kontrolle fehlt"
+      ]
+    },
+    "SEC-006": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "high",
+      "evidence": [
+        "Default-Transport ohne ENV-Var ist stdio (__main__.py:16) - oeffnet keinen TCP-Port",
+        "HTTP/SSE nur via SWISS_ELECTRICITY_TRANSPORT explizit aktivierbar (__main__.py:17)",
+        "README dokumentiert lokalen stdio-Use-Case (Claude Desktop) und Cloud-Use-Case separat"
+      ],
+      "gaps": []
+    },
+    "SEC-007": {
+      "status": "fail",
+      "category": "SEC",
+      "severity": "high",
+      "evidence": [
+        "deployment enthaelt local-stdio/Railway/Render -> Sandboxing anwendbar"
+      ],
+      "gaps": [
+        "Kein Dockerfile -> kein non-root USER (>=10000), kein readOnlyRootFilesystem, kein capabilities.drop, kein seccomp-Profil"
+      ]
+    },
+    "SEC-008": {
+      "status": "partial",
+      "category": "SEC",
+      "severity": "medium",
+      "evidence": [
+        "Keine pre/postinstall-Hooks (reines Python-Paket, hatchling); keine dynamischen Setup-Scripts",
+        "README zeigt vollen Installationsbefehl transparent; CONTRIBUTING.md erklaert Build"
+      ],
+      "gaps": [
+        "Keine PyPI-OIDC-Trusted-Publisher/Sigstore-Signatur (kein publish-Workflow, .github fehlt)"
+      ]
+    },
+    "SEC-009": {
+      "status": "todo",
+      "category": "SEC",
+      "severity": "critical",
+      "evidence": [
+        "transport != stdio-only -> anwendbar; Session-Handling delegiert an FastMCP"
+      ],
+      "gaps": [
+        "auth_model=none -> keine User-ID zum Binden vorhanden; krypto. Session-User-Binding nur bei eingefuehrtem Auth bewertbar - manueller Review bei Auth-Einfuehrung"
+      ]
+    },
+    "SEC-013": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "high",
+      "evidence": [
+        "data_class=Public Open Data -> Stufe 1 akzeptabel",
+        "Server verwendet ueberhaupt keine API-Keys/Secrets (alle Quellen anonym zugaenglich)"
+      ],
+      "gaps": [
+        "Empfehlung: in docs/secret-management.md festhalten, dass bewusst keine Secrets noetig sind (derzeit nicht dokumentiert)"
+      ]
+    },
+    "SEC-014": {
+      "status": "todo",
+      "category": "SEC",
+      "severity": "medium",
+      "evidence": [
+        "is_cloud_deployed=true -> anwendbar"
+      ],
+      "gaps": [
+        "Tool-Allow-Listing/Gateway-Pattern ist Gateway-/Deployment-Ebene; fuer read-only Public-Data-Server niedrige Prioritaet - manueller Review"
+      ]
+    },
+    "SEC-015": {
+      "status": "todo",
+      "category": "SEC",
+      "severity": "medium",
+      "evidence": [
+        "is_cloud_deployed=true -> anwendbar"
+      ],
+      "gaps": [
+        "Pre-Flight Tool-Poisoning-Detection ist Gateway-Funktion, nicht im Server-Repo - manueller Review"
+      ]
+    },
+    "SEC-016": {
+      "status": "fail",
+      "category": "SEC",
+      "severity": "critical",
+      "evidence": [
+        "Default-Host ist hardcodiert 0.0.0.0: os.environ.get('SWISS_ELECTRICITY_HOST', '0.0.0.0') (__main__.py:18)"
+      ],
+      "gaps": [
+        "0.0.0.0 als Default-Binding (NeighborJack-Anti-Pattern) - Default sollte 127.0.0.1 sein, 0.0.0.0 nur im Dockerfile/Container explizit",
+        "Keine Warnung bei 0.0.0.0 ohne Container-Detection"
+      ]
+    },
+    "SEC-018": {
+      "status": "partial",
+      "category": "SEC",
+      "severity": "high",
+      "evidence": [
+        "Numerische Felder mit ge/le-Constraints (server.py:171 limit_days ge=1 le=400; :308 bfs_nr ge=1; :443 bfs_numbers min/max_length)",
+        "Pydantic-Field-Validierung an allen Tool-Boundaries; Literal-Types fuer Enums"
+      ],
+      "gaps": [
+        "String-Parameter category/canton/query ohne max_length/pattern (server.py:309/401/485)",
+        "category/canton werden ungeprueft in SPARQL-Query-Strings interpoliert (api_client.py:218/312) -> SPARQL-Injection-Risiko",
+        "Kein strict=True/extra='forbid' an den Modellen"
+      ]
+    },
+    "SEC-019": {
+      "status": "partial",
+      "category": "SEC",
+      "severity": "critical",
+      "evidence": [
+        "Trifecta-Bewertung: (1) nur Public Open Data, keine privaten Daten; (2) liest externe API-Daten; (3) kein Exfiltrations-Kanal (Egress hardcodiert) -> maximal 1-2 Faehigkeiten, Risiko niedrig"
+      ],
+      "gaps": [
+        "Trifecta-Assessment ist nicht im README/docs dokumentiert (Katalog verlangt explizite Dokumentation/ADR)"
+      ]
+    },
+    "SEC-020": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "critical",
+      "evidence": [
+        "grep auf os.system/shell=True/eval/exec/os.popen in src/ = 0 Treffer",
+        "Keine Subprocess-Aufrufe; rein httpx-basiert",
+        "Keine externen Binary-Aufrufe"
+      ],
+      "gaps": []
+    },
+    "SEC-021": {
+      "status": "partial",
+      "category": "SEC",
+      "severity": "high",
+      "evidence": [
+        "De-facto-Egress-Allowlist: alle Ziel-Hosts sind hardcodierte Modul-Konstanten (api_client.py:25-28), keine dynamischen Hosts"
+      ],
+      "gaps": [
+        "Keine explizite frozenset-Allowlist mit assert_host_allowed-Pre-Request-Check",
+        "Keine Network-Layer-Egress-Control (NetworkPolicy) dokumentiert; keine docs/network-egress.md"
+      ]
+    },
+    "SEC-022": {
+      "status": "partial",
+      "category": "SEC",
+      "severity": "high",
+      "evidence": [
+        "Funktionale Praefixe dashboard_/tariff_/consumption_ vorhanden"
+      ],
+      "gaps": [
+        "Praefixe sind Funktionsgruppen, kein Server-Identity-Namespace (<server>__<tool>)",
+        "Kein Tool-Definition-Hash-Snapshot pro Release; CHANGELOG nennt Tool-Aenderungen nicht explizit"
+      ]
+    }
+  }
+}

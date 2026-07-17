@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "time": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/time/Time-MCP",
+        "run",
+        "time_mcp_server.py"
+      ]
+    }
+  }
+}

@@ -1,0 +1,18 @@
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    required:
+      - apiKey
+    properties:
+      apiKey:
+        type: string
+        title: MuAPI API Key
+        description: Your API key from muapi.com/dashboard/keys
+        format: password
+  commandFunction: |
+    (config) => ({
+      command: 'node',
+      args: ['src/index.js'],
+      env: { MUAPI_API_KEY: config.apiKey }
+    })

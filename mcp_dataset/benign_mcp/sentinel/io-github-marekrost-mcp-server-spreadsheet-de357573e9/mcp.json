@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-marekrost-mcp-server-spreadsheet-de357573e9": {
+      "args": [
+        "/app/io-github-marekrost-mcp-server-spreadsheet-de357573e9/mcp-server-spreadsheet/src/mcp_server_spreadsheet/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-nugehs-aiglare-d00c94c059": {
+      "args": [
+        "/app/io-github-nugehs-aiglare-d00c94c059/aiglare/src/cli.js"
+      ],
+      "command": "node"
+    }
+  }
+}

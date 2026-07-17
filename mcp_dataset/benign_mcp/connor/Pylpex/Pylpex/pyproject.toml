@@ -1,0 +1,10 @@
+[project]
+name = "pylpex-mcp"
+version = "1.0.1"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "mcp[cli]>=1.20.0",
+    "pylpex>=1.1.1",
+]

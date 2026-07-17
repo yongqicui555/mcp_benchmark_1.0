@@ -1,0 +1,69 @@
+name: Test
+
+on:
+  pull_request:
+    branches:
+      - 'main'
+
+    paths:
+      - .github/workflows/test.yml
+      - src/**
+      - tests/**
+      - pyproject.toml
+      - uv.lock
+
+jobs:
+  lint:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          version: "~=0.7"
+
+      - name: Lint
+        run: uv run ruff check
+
+  typecheck:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          version: "~=0.7"
+
+      - name: Typecheck
+        run: uv run basedpyright
+
+  behaviour:
+    strategy:
+      matrix:
+        python-version: ["3.12", "3.13"]
+        os: ["ubuntu-latest", "macos-latest", "windows-latest"]
+      fail-fast: false
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          version: "~=0.7"
+
+      - name: Run pytest
+        env:
+          PYTHON_VERSION: ${{ matrix.python-version }}
+        run: |
+          uv python pin "$PYTHON_VERSION"
+          uv run patchright install chromium
+          uv run pytest tests

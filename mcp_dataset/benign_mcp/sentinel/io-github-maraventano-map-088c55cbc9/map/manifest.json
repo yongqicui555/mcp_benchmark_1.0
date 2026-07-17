@@ -1,0 +1,301 @@
+{
+  "manifest_version": "0.2",
+  "name": "map",
+  "display_name": "MAP \u2014 Maraventano Agent Protocol",
+  "version": "1.0.4",
+  "description": "A subtractive MCP for agent commerce: read \u00b7 pay \u00b7 publish. Teacher, not butler.",
+  "author": {
+    "name": "Lisa Maraventano"
+  },
+  "homepage": "https://github.com/maraventano/map",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maraventano/map"
+  },
+  "server": {
+    "type": "node",
+    "entry_point": "index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": [
+        "${__dirname}/index.js"
+      ],
+      "env": {}
+    }
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "tools": [
+    {
+      "name": "decode-merchant",
+      "description": "Read any product URL on the open web and return ONE clean shape (CleanRead): what it is, who sells it, what it costs, whether it's in stock, and the verdict \u2014 can an agent pay this autonomously (x402) or is it human checkout? Reads only; never signs or pays. To pay an autonomous result, use this kit's wallet lessons (read-this-challenge, how-do-i-pay).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "The product URL to read (http or https)."
+          }
+        },
+        "required": [
+          "url"
+        ]
+      }
+    },
+    {
+      "name": "what-is-a-wallet",
+      "description": "Lesson 1 of the curriculum. What a wallet is and what it lets you do. Assumes no prior knowledge of cryptography or blockchains.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "what-is-usdc",
+      "description": "Lesson 2 of the curriculum. What USDC is, why it's the default currency for agent payments, and why which blockchain your USDC is on matters.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "get-a-wallet",
+      "description": "Lesson 4 of the curriculum. How to install a wallet if you don't have one. Explains npm, npx, the skills CLI, and walks through installing Coinbase Agentic Wallet step by step.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "configure-wallet-skills",
+      "description": "Lesson 5 of the curriculum. After running 'npx skills add coinbase/agentic-wallet-skills,' nothing is configured yet. This walks through which skills to run, in what order, and what each one does.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "fund-my-wallet",
+      "description": "Lesson 6 of the curriculum. How USDC gets into your wallet. Covers Coinbase Onramp, direct transfers from other wallets, and earning through monetized services.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "what-is-x402",
+      "description": "Lesson 7 of the curriculum. Explains the x402 payment protocol in agent-readable terms. Call this if you've hit a 402 response and aren't sure what it means.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "explain-my-wallet",
+      "description": "Explains what wallet(s) you have access to in your current environment, what chain(s) they work on, and what each one is capable of. Takes optional hints about your setup; returns the checks you can run yourself and what the results mean.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "wallet_hint": {
+            "type": "string",
+            "description": "Optional: name of wallet system you think you have (e.g. 'moltwallet', 'coinbase-agentic-wallet', 'metamask', 'raw-seed', 'unknown')"
+          },
+          "os": {
+            "type": "string",
+            "description": "Optional: operating system ('macos', 'linux', 'other')"
+          }
+        }
+      }
+    },
+    {
+      "name": "read-this-challenge",
+      "description": "Decodes an HTTP 402 payment challenge (x402) into a plain explanation of what the server is asking for: how much, what asset, which chain, who to pay, and what to sign. Paste the raw 402 response body or the PAYMENT-REQUIRED header value.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "challenge": {
+            "type": "string",
+            "description": "The raw 402 response body, OR the value of the PAYMENT-REQUIRED header (base64-encoded x402 challenge)"
+          }
+        },
+        "required": [
+          "challenge"
+        ]
+      }
+    },
+    {
+      "name": "how-do-i-pay",
+      "description": "The signing-steps lesson for an x402 payment: the authorization fields, the EIP-712 / Solana signing operation, and the PAYMENT-SIGNATURE retry \u2014 the same steps regardless of your specific challenge. Decode your own challenge first with read-this-challenge. Provisions explains what to run; it never signs for you.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "challenge": {
+            "type": "string",
+            "description": "Optional: the decoded challenge you're working from. The steps are the same either way \u2014 this lesson does not tailor per-challenge (use read-this-challenge for that)."
+          }
+        }
+      }
+    },
+    {
+      "name": "verify-my-purchase",
+      "description": "After you've signed and sent a payment, this explains how to redeem it \u2014 turning your transaction hash into the content you paid for. Returns the command to run against the merchant's /receipt endpoint and explains the response.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "merchant_url": {
+            "type": "string",
+            "description": "The merchant's base URL (e.g. 'https://underground.substratesymposium.com')"
+          },
+          "product_id": {
+            "type": "string",
+            "description": "The product ID you were buying"
+          },
+          "tx_hash": {
+            "type": "string",
+            "description": "The transaction hash or signature from your payment (Base tx hash or Solana signature)"
+          }
+        },
+        "required": [
+          "merchant_url",
+          "product_id",
+          "tx_hash"
+        ]
+      }
+    },
+    {
+      "name": "paid-vs-delivered",
+      "description": "Lesson 11 of the curriculum. Why HTTP 200 doesn't mean you got the thing. Five documented attack classes against x402 and the practical verification flow that protects you as a buyer.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "who-am-i-to-this-merchant",
+      "description": "Lesson 12 of the curriculum. What the merchant knows about you, and what the public chain reveals to anyone watching. Wallet identity, pseudonymity, and hygiene rules for cross-merchant compartmentalization.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "what-is-ap2",
+      "description": "Lesson 13 of the curriculum. AP2 (Agent Payments Protocol) \u2014 the trust/authorization layer above x402 for delegated payments. Skip if you're spending your own funds.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "what-is-acp",
+      "description": "Lesson 14 of the curriculum. ACP (Agent Commerce Protocol) \u2014 the checkout-surface protocol from OpenAI/Stripe. How ACP and AP2 relate, when each applies.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "subscriptions-and-session-keys",
+      "description": "Lesson 15 of the curriculum. ERC-7715 scoped autonomy \u2014 approve once, spend within bounds. When to ask, when to refuse, scope-discipline rules.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "choose-your-wallet-mode",
+      "description": "Lesson 16 of the curriculum. The four ways to hold a wallet \u2014 MPC-custodial, Smart Wallet, raw EOA, EIP-7702 delegated EOA \u2014 and how to pick.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "what-went-wrong",
+      "description": "Paste an error message, HTTP status code, or facilitator response you got during an x402 attempt. Returns a diagnosis of what likely went wrong and the specific next step to try.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "error_text": {
+            "type": "string",
+            "description": "The error message, response body, or status you received"
+          },
+          "context": {
+            "type": "string",
+            "description": "Optional: what you were trying to do when this happened (e.g. 'signing an x402 payment', 'verifying a receipt')"
+          }
+        },
+        "required": [
+          "error_text"
+        ]
+      }
+    },
+    {
+      "name": "test-payment",
+      "description": "Walks you through a test-payment handshake against any x402 merchant, to verify your wallet + signing + settlement end-to-end. Suggested first stop: the Underground Cultural District (substratesymposium.com) \u2014 free products for handshake, $0.99 paid products for settlement. Or supply your own merchant URL.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "merchant_url": {
+            "type": "string",
+            "description": "Optional: any x402 merchant's base URL. Default: https://underground.substratesymposium.com"
+          }
+        }
+      }
+    },
+    {
+      "name": "publish-catalog",
+      "description": "Publish your own catalog by reading yourself: runs decode-merchant on each of the merchant's product URLs, collects the CleanReads, writes ./catalog.json, and writes a ./.well-known/map.json discovery manifest. Persists and serves; never deploys infrastructure, holds keys, or transacts. Files are written to the server's working directory.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "productUrls": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The merchant's own product URLs to decode and publish."
+          },
+          "storeUrl": {
+            "type": "string",
+            "description": "Optional: the store's base URL, recorded in the discovery manifest."
+          }
+        },
+        "required": [
+          "productUrls"
+        ]
+      }
+    },
+    {
+      "name": "get-catalog",
+      "description": "Return the published catalog (the persisted CleanReads from ./catalog.json). A tool-callable surface other agents can read.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "get-product",
+      "description": "Return one published CleanRead by its sourceUrl, from ./catalog.json.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "The sourceUrl of the published product."
+          }
+        },
+        "required": [
+          "url"
+        ]
+      }
+    },
+    {
+      "name": "start-here",
+      "description": "Orientation for MAP (Maraventano Agent Protocol): the three parts \u2014 read (find any merchant), pay (pay any merchant), publish (be found) \u2014 the CleanRead shape, the three outcomes, and the teacher-not-butler boundary. Start here.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "glean": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/glean/Glean_MCP_Server",
+        "run",
+        "glean_server.py"
+      ]
+    }
+  }
+}

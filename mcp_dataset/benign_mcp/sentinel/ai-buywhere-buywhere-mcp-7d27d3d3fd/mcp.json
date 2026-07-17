@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "ai-buywhere-buywhere-mcp-7d27d3d3fd": {
+      "args": [
+        "/app/ai-buywhere-buywhere-mcp-7d27d3d3fd/buywhere-mcp/dist/index.js"
+      ],
+      "command": "node"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+name: Publish
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+jobs:
+  publish-pypi:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    - run: pip install build
+    - run: python -m build
+    - run: twine upload --verbose --skip-existing dist/*
+      env:
+        TWINE_USERNAME: __token__
+        TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
+
+  publish-mcp-registry:
+    needs: publish-pypi
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+    - uses: actions/checkout@v4
+    - name: Download mcp-publisher
+      run: |
+        curl -fSL "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_linux_amd64.tar.gz" -o mcp-publisher.tar.gz
+        tar xzf mcp-publisher.tar.gz
+        chmod +x mcp-publisher
+        sudo mv mcp-publisher /usr/local/bin/
+    - name: Authenticate to MCP Registry
+      run: mcp-publisher login github-oidc
+    - name: Publish to MCP Registry
+      run: mcp-publisher publish --server-json server.json

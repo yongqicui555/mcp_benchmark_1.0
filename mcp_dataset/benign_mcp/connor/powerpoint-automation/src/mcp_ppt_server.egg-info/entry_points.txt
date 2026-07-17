@@ -1,0 +1,2 @@
+[console_scripts]
+mcp-ppt-server = mcp_ppt_server.server:main

@@ -1,0 +1,20 @@
+[project]
+name = "mcp-server-kusto"
+version = "0.1.0"
+description = "A mcp server that uses azure data explorer as a backend"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "azure-kusto-data>=4.6.1",
+    "mcp>=1.1.1",
+]
+
+[[project.authors]]
+name = "zzzhdw"
+
+[build-system]
+requires = [ "hatchling",]
+build-backend = "hatchling.build"
+
+[project.scripts]
+mcp-server-kusto = "mcp_server_kusto:main"

@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "sequential-thinking": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/sequential-thinking/python-sequential-thinking-mcp/sequential-thinking-mcp",
+        "run",
+        "main.py"
+      ]
+    }
+  }
+}

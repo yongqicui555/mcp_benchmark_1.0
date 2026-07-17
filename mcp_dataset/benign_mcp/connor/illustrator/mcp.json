@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "illustrator": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/illustrator/Adobe_Illustrator/src",
+        "run",
+        "illustrator"
+      ]
+    }
+  }
+}

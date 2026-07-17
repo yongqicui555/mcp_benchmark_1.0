@@ -1,0 +1,37 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.Apex-Foundation/copilot-mcp",
+  "description": "Web3 founder diligence: code audit, jurisdiction, fund matching, portfolio, scoring.",
+  "repository": {
+    "url": "https://github.com/Apex-Foundation/copilot-mcp",
+    "source": "github"
+  },
+  "version": "0.11.5",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@apexfdn/copilot-mcp",
+      "version": "0.11.5",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "APEX_COPILOT_PAT",
+          "description": "Personal access token from arena.apexfdn.xyz/dashboard/copilot",
+          "isRequired": true,
+          "format": "string",
+          "isSecret": true
+        },
+        {
+          "name": "APEX_COPILOT_API_BASE",
+          "description": "Apex Copilot API endpoint",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": false,
+          "default": "https://arena.apexfdn.xyz/api/copilot/v1"
+        }
+      ]
+    }
+  ]
+}

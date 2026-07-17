@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "mcp-allure-server": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--with",
+        "mcp[cli]",
+        "mcp",
+        "run",
+        "/app/mcp-allure-server/Allure_Test_Reports/mcp-allure-server.py"
+      ]
+    }
+  }
+}

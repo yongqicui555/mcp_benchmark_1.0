@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-tchivs-aktools-pro-7bb203b923": {
+      "args": [
+        "/app/io-github-tchivs-aktools-pro-7bb203b923/mcp-aktools/mcp_aktools/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

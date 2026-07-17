@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-adelaidasofia-linear-mcp-f14820c3f2": {
+      "args": [
+        "/app/io-github-adelaidasofia-linear-mcp-f14820c3f2/linear-mcp/linear_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

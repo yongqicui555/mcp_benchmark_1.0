@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-seaser0-otc-pricing-mcp-a4800589c5": {
+      "args": [
+        "/app/io-github-seaser0-otc-pricing-mcp-a4800589c5/otc-pricing-mcp/src/otc_pricing_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

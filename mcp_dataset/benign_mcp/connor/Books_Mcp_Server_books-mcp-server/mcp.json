@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "Books_Mcp_Server_books-mcp-server": {
+      "name": "books-mcp",
+      "type": "stdio",
+      "description": "",
+      "isActive": true,
+      "registryUrl": "",
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/Books_Mcp_Server_books-mcp-server/Books_Mcp_Server",
+        "run",
+        "main.py"
+      ]
+    }
+  }
+}

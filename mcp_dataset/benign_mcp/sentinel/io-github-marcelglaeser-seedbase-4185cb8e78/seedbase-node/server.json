@@ -1,0 +1,45 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.marcelglaeser/seedbase",
+  "title": "SeedBase Test Data",
+  "description": "Generate realistic, FK-consistent synthetic test data for your databases from your AI assistant.",
+  "repository": {
+    "url": "https://github.com/marcelglaeser/seedbase-node",
+    "source": "github"
+  },
+  "websiteUrl": "https://seedbase.dev",
+  "version": "0.4.0",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@seedbase/client",
+      "version": "0.4.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "SEEDBASE_API_KEY",
+          "description": "SeedBase API key (dr_sk_...) \u2014 create at https://seedbase.dev -> Settings -> API keys",
+          "isRequired": true,
+          "format": "string",
+          "isSecret": true
+        }
+      ]
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://seedbase.dev/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Bearer <SEEDBASE_API_KEY> \u2014 create the API key at https://seedbase.dev -> Settings -> API keys",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}

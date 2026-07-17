@@ -1,0 +1,32 @@
+name = "quantrisk-mcp"
+main = "src/index.ts"
+compatibility_date = "2026-05-01"
+compatibility_flags = ["nodejs_compat"]
+
+# yahoo-finance2 ships a Deno-targeted shim (`@deno/shim-deno`) whose CJS
+# bundle references `__dirname`, which is not defined in Workers. Stub it
+# with an empty module — yahoo-finance2 only consults this shim from inside
+# `runtime-detect.js`, where `Deno === undefined` correctly tells it the
+# runtime is Cloudflare.
+[alias]
+"@deno/shim-deno" = "./src/shims/deno-shim-stub.js"
+
+[vars]
+ENVIRONMENT = "production"
+STRIPE_PRO_PRICE_ID = "price_1TVGd9FZ2MTltqGwQO9xRd5k"
+PUBLIC_BASE_URL = "https://quantrisk-mcp.quantrisk.workers.dev"
+
+# KV namespace for price caching
+[[kv_namespaces]]
+binding = "PRICE_CACHE"
+id = "2ca8d80d261e4101af0fc863abcab03f"
+
+# Durable Object for user state
+[durable_objects]
+bindings = [
+  { name = "USER_STATE", class_name = "UserState" }
+]
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["UserState"]

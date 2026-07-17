@@ -1,0 +1,39 @@
+# Dockerfile for Apstra MCP Server
+FROM python:3.11-slim
+
+# Set working directory
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    curl \
+    procps \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements first for better caching
+COPY requirements.txt .
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy application files
+COPY apstra_mcp.py .
+COPY apstra_core.py .
+COPY logger_config.py .
+COPY apstra_config_sample.json .
+
+# Create non-root user for security
+RUN groupadd -r apstra && useradd -r -g apstra apstra
+RUN chown -R apstra:apstra /app
+USER apstra
+
+# Expose port for MCP server
+EXPOSE 8080
+
+# Health check for stdio transport (checks if process is running)
+HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
+    CMD pgrep -f "python3 apstra_mcp.py" || exit 1
+
+# Default command - secure stdio transport by default
+# For network access, override with: -t streamable-http -H 0.0.0.0 -p 8080
+CMD ["python3", "apstra_mcp.py", "-t", "stdio", "-f", "apstra_config.json"]

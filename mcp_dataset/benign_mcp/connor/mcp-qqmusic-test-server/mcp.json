@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "mcp-qqmusic-test-server": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/mcp-qqmusic-test-server/QQ_Music",
+        "run",
+        "main.py"
+      ]
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "Bilibili_Search_bilibili": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/Bilibili_Search_bilibili/Bilibili_Search",
+        "run",
+        "bilibili.py"
+      ]
+    }
+  }
+}

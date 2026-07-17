@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "mcp-server-minecraft-mod-devdoc": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/mcp-server-minecraft-mod-devdoc/MCP_Server_for_Minecraft_Mod_Documentation",
+        "run",
+        "--with",
+        "mcp",
+        "mcp",
+        "run",
+        "run_server.py"
+      ]
+    }
+  }
+}

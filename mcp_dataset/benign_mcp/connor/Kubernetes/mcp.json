@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "Kubernetes": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/Kubernetes/abhijeetka_mcp-k8s-server",
+        "run",
+        "kubernetes.py"
+      ]
+    }
+  }
+}

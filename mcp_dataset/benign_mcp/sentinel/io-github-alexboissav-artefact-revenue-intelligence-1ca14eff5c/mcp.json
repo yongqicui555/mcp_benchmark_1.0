@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-alexboissav-artefact-revenue-intelligence-1ca14eff5c": {
+      "args": [
+        "/app/io-github-alexboissav-artefact-revenue-intelligence-1ca14eff5c/artefact-mcp-server/src/artefact_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

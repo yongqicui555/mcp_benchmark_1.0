@@ -1,0 +1,52 @@
+"""Shared pytest fixtures for srgssr-mcp tests."""
+import os
+import time
+
+import pytest
+
+from srgssr_mcp import server
+
+
+@pytest.fixture(autouse=True)
+def _preseed_oauth_token():
+    """Inject a fake bearer token so unit tests skip the OAuth round-trip.
+
+    The server's `_get_access_token` short-circuits when `_token_cache`
+    contains a non-expired token, so respx never sees the token endpoint
+    and tests don't need real credentials.
+    """
+    server._token_cache["access_token"] = "test-token"
+    server._token_cache["expires_at"] = time.time() + 3600
+    yield
+    server._token_cache["access_token"] = None
+    server._token_cache["expires_at"] = 0.0
+
+
+@pytest.fixture(autouse=True)
+def _reset_dns_pin_cache():
+    """SEC-005: drop any cached DNS pins between tests.
+
+    Tests that monkeypatch ``socket.getaddrinfo`` to return a blocked IP
+    (e.g. ``test_validate_url_safe_rejects_private_rfc1918_ip``) would see
+    a stale cache hit from a previous test and bypass the monkeypatched
+    resolver, masking the regression we are trying to detect.
+    """
+    from srgssr_mcp import _http as _http_mod
+
+    _http_mod._dns_pin_cache.clear()
+    yield
+    _http_mod._dns_pin_cache.clear()
+
+
+@pytest.fixture
+def live_credentials():
+    """Skip live tests unless real SRG SSR credentials are present."""
+    key = os.environ.get("SRGSSR_CONSUMER_KEY", "")
+    secret = os.environ.get("SRGSSR_CONSUMER_SECRET", "")
+    if not key or not secret:
+        pytest.skip("SRGSSR_CONSUMER_KEY/SECRET not set; live tests require real credentials")
+    server._token_cache["access_token"] = None
+    server._token_cache["expires_at"] = 0.0
+    # Settings are memoized; drop any cached value so the live env is re-read.
+    server.get_settings.cache_clear()
+    return key, secret

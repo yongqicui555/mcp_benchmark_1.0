@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "BugcrowdMCP": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/BugcrowdMCP/Bugcrowd",
+        "run",
+        "server.py"
+      ]
+    }
+  }
+}

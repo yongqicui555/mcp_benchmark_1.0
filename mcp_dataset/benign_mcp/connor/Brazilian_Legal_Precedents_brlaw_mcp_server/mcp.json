@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "Brazilian_Legal_Precedents_brlaw_mcp_server": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/app/Brazilian_Legal_Precedents_brlaw_mcp_server/Brazilian_Legal_Precedents/src",
+        "run",
+        "server.py"
+      ]
+    }
+  }
+}

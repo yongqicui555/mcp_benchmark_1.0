@@ -1,5 +1,5 @@
 {
-  "admission_policy": "source_scan_only_no_confirmed_malicious_behavior",
+  "admission_policy": "confirmed_benign",
   "base": "benign_sentinel",
   "benign_count": 210,
   "count": 210,

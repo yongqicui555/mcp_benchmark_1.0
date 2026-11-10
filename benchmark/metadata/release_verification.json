@@ -1,5 +1,5 @@
 {
-  "status": "local_checks_complete_clean_checkout_pending",
+  "status": "complete_for_private_review",
   "version": "1.0.0-rc.1",
   "baseline_commit": "83bdeb9fa540f62722944f7ad844a8da9a7726d3",
   "prepared_on": "2026-11-10",
@@ -9,21 +9,49 @@
     "dependency_lock": "uv.lock"
   },
   "dataset": {
+    "ok": true,
     "samples": 1025,
+    "subsets": {
+      "benign_connor": 130,
+      "benign_sentinel": 210,
+      "devspace": 137,
+      "docforge": 137,
+      "keyvault": 137,
+      "notevault": 137,
+      "scaffoldkit": 137
+    },
+    "layers": {
+      "L0": 5,
+      "L1": 85,
+      "L2": 85,
+      "L3": 510,
+      "imported_benign": 340
+    },
+    "malicious": 510,
+    "benign_or_gray": 515,
+    "inventory_files": 11421,
     "verified_files": 11421,
     "constructed_servers_parsed": 685,
+    "sample_code_executed": false,
+    "errors": [],
+    "elapsed_seconds": 153.8,
     "sample_content_matches_pre_migration_working_tree": true,
-    "sample_code_executed": false
+    "non_path_label_changes": 0
   },
   "tests": {
-    "passed": 69,
-    "scope": "Existing controlled tests and initial catalog tests; final independent-copy result follows."
+    "passed": 70,
+    "failed": 0,
+    "skipped": 0,
+    "scope": "Controlled first-party tests and catalog tests in a freshly cloned repository with a newly installed locked environment.",
+    "tested_commit": "46d69d18f662628d4390c36ad96feb60ed0d33af",
+    "construction_and_catalog_code_unchanged_in_candidate": true
   },
   "first_party_source_files_parsed": 92,
   "baseline_example": {
     "generated_l0_samples": 5,
     "sample_code_executed": false,
-    "model_api_called": false
+    "model_api_called": false,
+    "clean_checkout_passed": true
   },
   "credential_pattern_scan": {
     "scope": "High-confidence patterns in indexed text-like files up to 6 MiB; findings require context, not token-validity tests",
@@ -51,5 +79,17 @@
     "Historical LLM session replay",
     "Additional per-sample license audits",
     "Reconstruction of historical Sentinel review records"
-  ]
+  ],
+  "clean_checkout": {
+    "ok": true,
+    "verified_commit": "6ee861b991ae6f8b323b6f8220d02be0d113b60b",
+    "new_dependency_environment_installed": true,
+    "dataset_integrity_verified": true,
+    "git_core_autocrlf": false,
+    "git_core_longpaths": true,
+    "private_local_files_required": false
+  },
+  "public_document_links_checked": true,
+  "checksum_inventory_sha256": "81f948eec62e7e7caf08911bc1b8c27f18cebef74079a6a341b583b736c173ee",
+  "repository_visibility_changed": false
 }

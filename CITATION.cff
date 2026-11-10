@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "Please cite this repository and acknowledge the upstream sources for any imported subsets used."
-title: "MCP Benchmark 1.0 and Researcher Directed Harness plus LLM Construction"
+title: "MCP Benchmark 1.0: Dataset and Harness + LLM Construction Method"
 type: software
 authors:
   - name: "yongqicui555"
@@ -9,6 +9,9 @@ repository-code: "https://github.com/yongqicui555/mcp_benchmark_1.0"
 url: "https://github.com/yongqicui555/mcp_benchmark_1.0"
 license: Apache-2.0
 abstract: >-
-  An MCP security dataset with 1025 samples and the researcher-directed
-  construction method using Codex and Hermes with GLM-5.2. Final code is
-  released as an artifact of the staged harness and LLM workflow.
+  An MCP security benchmark comprising 1025 labeled samples, including
+  340 imported benign samples and 685 samples constructed across five
+  application bases. The accompanying harness + LLM method combines
+  controlled construction and testing with Codex and behavioral
+  transformation with GLM-5.2 within Hermes. Final code is released as
+  an implementation artifact of the manually directed, staged workflow.

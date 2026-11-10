@@ -2,7 +2,7 @@
 
 [Method](../method/README.md) · [中文方法](../method/README.zh-CN.md) · [Reproduction](REPRODUCTION.md)
 
-These are the final construction, testing, transformation and export programs produced through the researcher-directed harness + LLM workflow. Codex supported the construction/testing stage; Hermes with GLM-5.2 supported transformation introducing real malicious behavior. The code is an artifact of that workflow, not the source of Codex or Hermes and not a new multi-model orchestration framework.
+I release these construction, testing, transformation and export programs as implementation artifacts of the [harness + LLM method](../method/README.md). I used Codex for construction and testing code, then GLM-5.2 within Hermes for the transformation introducing real malicious behavior. I directed the work through separate stage instructions. The source map below connects the resulting programs to their inputs and outputs; the method document explains their role in the sample design.
 
 ## Source map
 

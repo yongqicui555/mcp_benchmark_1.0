@@ -40,4 +40,4 @@ The layered exporter consumes the constructed stage outputs, imported benign tre
 
 The frozen published dataset is identified by its file-checksum inventory. The final code allows the supported data-reading, checking and controlled construction steps to be executed. Intermediate fixtures may contain random keys and timestamps, so a new build is not promised to reproduce the frozen bytes.
 
-The historical researcher-directed LLM coding sessions are described in the method, but private task instructions and process records are not released. Exact model-session replay is outside the reproduction claim. The release report lists the checks actually performed and the dynamic checks not performed.
+I describe my staged use of Codex and Hermes + GLM-5.2 in the method account, without releasing private task instructions or process records. Exact model-session replay is outside the reproduction claim. The release report lists the checks actually performed and the dynamic checks not performed.

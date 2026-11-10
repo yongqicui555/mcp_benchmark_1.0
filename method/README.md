@@ -1,71 +1,84 @@
-# Researcher-directed harness and LLM construction method
+# Harness + LLM construction methodology
 
 [中文方法说明](README.zh-CN.md) · [Dataset](../benchmark/README.md) · [Final code](../construction/README.md)
 
-The method uses coding-agent environments to produce and revise the programs that construct an MCP benchmark. The researcher directs successive stages. Codex supports construction and testing code; Hermes with GLM-5.2 supports the transformation introducing real malicious behavior. The programs are implementation artifacts of this process.
+I constructed MCP Benchmark through **harness-mediated program generation followed by behavioral transformation**. I used Codex to develop and refine the construction and testing programs, then used GLM-5.2 within Hermes for the transformation that introduced real malicious behavior. The final programs, including the transformation code, are artifacts of this authoring process.
 
-## Roles and stage control
+The method connects three kinds of specification: **sample design**, which defines the experimental dimensions; **program implementation**, which instantiates those dimensions; and **verification evidence**, which determines what can be concluded about the resulting artifacts. I supplied requirements and directed revisions and handoffs through separate stage instructions.
 
-| Participant | Responsibility |
-|---|---|
-| Researcher | Defines stage requirements, supplies context and chooses when to revise or hand off |
-| Codex | Writes and revises construction and testing code in the coding environment |
-| Hermes | Supplies coding context, file access and tools for GLM-5.2 |
-| GLM-5.2 | Performs transformation-stage coding work inside Hermes |
-| MCP test host and verification scripts | Exercise supported intermediate interfaces and record observations; distinct from the authoring harness |
+## Sample design and evaluation scope
 
-These roles are researcher-reported provenance. The underlying Codex model, harness versions, historical decoding parameters, revision counts and exact run dates are not recorded in the released provenance. No comparison of model capability is claimed.
+I organize the constructed corpus along four dimensions: application base, risk layer, influence path and behavioral objective. The five bases—DevSpace, DocForge, KeyVault, NoteVault and ScaffoldKit—provide the application contexts. The 17 normalized influence paths describe routes through MCP interfaces and interactions, including model-mediated routes and direct code or configuration routes. The six objective categories describe the intended behavioral outcomes of L3 variants. A path identifies how influence propagates; an objective identifies the intended effect.
 
-## Stage flow and handoffs
+| Layer | Design role | Samples per base | Total |
+|---|---|---:|---:|
+| L0 | Baseline | 1 | 5 |
+| L1 | Benign suggestions across the 17 paths | 17 | 85 |
+| L2 | Gray/stress variants across the 17 paths | 17 | 85 |
+| L3 | Malicious variants combining 17 paths and six objectives | 102 | 510 |
+
+For base set `B`, path set `P` and objective set `O`, the design gives:
+
+`N_constructed = |B| × (1 + 2|P| + |P||O|) = 5 × (1 + 34 + 102) = 685`
+
+The shared dimensions support stratified evaluation within this corpus. They do not establish that all code differences are experimentally controlled or that the corpus exhausts MCP threats. L2 retains a gray/stress interpretation even though its binary `malicious_ground_truth` label is false; its results should be reported separately. Another 340 benign samples are imported from Connor and Sentinel and are outside this generation method.
+
+## Harness-mediated program generation
+
+I used the coding environment to connect task requirements with repository context, file operations, tool execution and test feedback. This gives the model access to implementation artifacts and check results during code revision. Construction, testing and transformation programs emerged from this process and are released as its implementation.
+
+The authoring roles are specific: **Codex** supported construction and testing code; **Hermes** supplied the coding context and tools for **GLM-5.2** during transformation. I defined the tasks, supplied the stage context and decided when to request a revision or advance. This account describes my use of those tools; it does not establish a comparative advantage of one model or harness.
+
+The **authoring harness** and the **MCP test host** serve different purposes. The harness supports code production. The test host exercises supported sample interfaces and records observations. A model configured in the interaction runner belongs to that test setup and does not identify the model that authored the code.
+
+## Controlled construction and feedback
+
+I used Codex to turn the base definitions, layer/path specifications and objective configurations into construction and testing implementations. Their outputs include intermediate variants, configurations, candidate metadata and verification code. The methodological role of the intermediate representation is to make the relationship among interfaces, intended routes and observation points inspectable before interpreting final behavior.
+
+Intermediate testing operates on those artifacts and controlled fixtures. Trigger observations and interface checks provide feedback for code revision; I used the available results to direct subsequent tasks and stage transitions. Reaching a collection point establishes an observation about that intermediate implementation, rather than an outcome of the final transformed program.
 
 ```mermaid
 flowchart TD
-    A[Researcher sets stage requirements] --> B[Codex: write and revise implementation]
-    B --> C[Intermediate artifacts and testing code]
-    C --> D[Run checks; inspect feedback]
-    D --> E[Researcher selects revision or handoff]
-    E --> B
-    E --> F[Hermes + GLM-5.2: transformation coding]
-    F --> G[Final research samples]
-    G --> H[Post-transformation checks and labels]
-    H --> I[Versioned dataset]
+    A[Design: bases, layers, paths and objectives] --> B[Codex: construction and testing code]
+    B --> C[Controlled intermediate samples]
+    C --> D[Trigger observations and test feedback]
+    D -->|Revisions directed by me| B
+    D -->|Stage handoff directed by me| E[Hermes + GLM-5.2: behavioral transformation]
+    E --> F[Transformed sample code]
+    F --> G[Structural checks and label association]
+    G --> I[685 constructed samples across L0-L3]
+    I --> J[MCP Benchmark: 1,025 samples]
+    K[340 imported benign samples] --> J
 ```
 
-| Stage | Inputs | Outputs and interpretation |
+The diagram describes methodological relationships, not an automatically scheduled execution graph. The transition uses the intermediate files, stage requirements and available check results as context for the next authoring stage. Exact private task instructions are outside the released materials.
+
+## Behavioral transformation with Hermes and GLM-5.2
+
+**Introducing real malicious behavior is the central transformation step.** I used GLM-5.2 within Hermes to develop the code that transforms intermediate artifacts into research samples containing such behavior. The distinction concerns execution semantics: an intermediate trigger observation records that a route or observation point was reached, whereas transformed malicious code can perform actual filesystem, network or process operations.
+
+This distinction matters for the object of evaluation. An intermediate implementation supports analysis of triggering and evidence collection; a final sample exposes the program semantics associated with its intended objective. I retain both the construction/testing implementation and the transformation implementation so that this relationship can be inspected alongside the data. The release does not treat successful intermediate tests as proof that every final effect was realized.
+
+The source groups `phase3_converter/`, `phase4_realify.py` and `phase5_diversify/` preserve the resulting transformation implementations and existing structural checks. Their presence documents the available implementation, without establishing historical run counts or successful dynamic execution across the corpus. The published verification reads final source and configuration without launching dangerous samples. Dynamic studies require a separate authorized, isolated experiment as described in [research-use guidance](../SECURITY.md).
+
+## Evidence interpretation and sample association
+
+I separate three levels of evidence to keep corpus construction distinct from behavioral claims:
+
+| Evidence | Supported conclusion | Additional evidence needed |
 |---|---|---|
-| Construction | Five base designs, layer/path definitions and objective configuration | Construction code, verification code, intermediate variants and candidate metadata |
-| Intermediate testing | Intermediate code/configuration and synthetic fixtures | Trigger observations and test results; failures inform researcher-directed revision |
-| Researcher handoff | Intermediate artifacts, requirements and available check results | Context for the Hermes + GLM-5.2 stage |
-| Transformation | Stage inputs and transformation requirements | Transformation implementation and samples containing real malicious behavior |
-| Post-transformation checks | Final source/configuration and label definitions | Structural results and sample-to-label association; dynamic results require separate evidence |
-| Export | Final files, imported benign samples and labels | Dataset snapshot and integrity metadata |
+| Intermediate trigger observation | A specified route or observation point was reached in a controlled intermediate implementation | A separate experiment to establish an effect in the final sample |
+| Post-transformation structural check | Source/configuration satisfies the syntax and structural conditions actually checked | Runtime observations to establish behavior under particular conditions |
+| Final behavioral validation | A specified effect was observed in a controlled dynamic experiment | An experiment record specifying the sample, environment, observations and outcome |
 
-The stage handoff is directed by the researcher. This repository does not implement a new scheduler automatically coordinating Codex, Hermes and GLM-5.2.
+The current [release report](../benchmark/metadata/verification.md) records dataset integrity, label correspondence, static parsing and controlled tests. It does not supply a dynamic success rate for final malicious behavior. Likewise, fields such as `expected_trigger` and `evidence_endpoint` describe construction/test intent; they are not execution results.
 
-## Transformation as a central part of the method
+Samples and labels are associated by the composite key `(base, mcp_id)`, because identifiers such as `L0` recur across bases. Labels remain outside sample source directories. The checksum inventory identifies the exact released snapshot, while [method provenance](provenance.json) records the authoring roles. For detector evaluation, labels, class-bearing directory names and objective metadata must be kept out of detector inputs; the chosen source/configuration inputs should be documented.
 
-Intermediate variants support controlled trigger observation and evidence collection. GLM-5.2 inside Hermes produced the implementation work transforming those artifacts into samples with actual malicious effects. Final sample code can contain real filesystem, network or process behavior.
+## Reproducibility and limitations
 
-The source tree preserves the resulting transformation stages and existing checks. Their presence does not demonstrate that every final behavior was executed successfully. Default release verification reads source and configuration without launching dangerous samples.
+I release the method description, final code, necessary configuration and frozen data. I do not release original task instructions, authoring prompts, conversations or process traces. Runtime test messages and adversarial text intrinsic to the samples remain benchmark content and are distinct from those private authoring materials.
 
-Three result types remain distinct:
+**Code-level reproduction** covers the supported data-reading, checking and construction operations in the [reproduction guide](../construction/REPRODUCTION.md). Some intermediate fixtures include randomness and timestamps, so a new build is not claimed to reproduce the frozen sample bytes. **Historical process reproduction** is limited to the method account and tool roles; it does not include exact replay of the LLM coding sessions.
 
-1. **Intermediate trigger evidence**: a specified route or collection point was reached in the controlled intermediate implementation.
-2. **Structural conversion checks**: source/configuration is syntactically valid and matches checked structural expectations.
-3. **Final behavior validation**: an effect was observed in a separately controlled dynamic experiment. This requires an experiment record and is not inferred from the first two checks.
-
-The coding model is distinct from any model configured in the MCP interaction runner. An interaction-runner API setting does not establish which model authored the code.
-
-## Dataset association
-
-Five bases contribute 685 constructed samples. Each has L0 (1), L1 (17), L2 (17) and L3 (102). There are 17 normalized paths; L3 combines those paths with six objective categories. Connor and Sentinel imports contribute another 340 benign samples, which were not generated by this coding workflow.
-
-Labels remain outside sample directories. Composite identity is `(base, mcp_id)`, because names such as `L0` repeat across bases. The checksum inventory identifies the release snapshot; stage provenance describes how its implementation was produced.
-
-## Reproduction and disclosure
-
-The release includes final code, configuration, data and method descriptions. Original task instructions, authoring prompts, conversations and process traces are not released. Development plans are summarized into this account rather than distributed as instructions to a coding agent.
-
-Code-level reproduction means executing supported published steps with documented inputs. Historical LLM authoring is disclosed methodologically, not as a replayable transcript. Generated fixtures include randomness and timestamps, so a new intermediate build is not promised to be byte-identical to the frozen dataset.
-
-Runtime test messages and adversarial text intrinsic to a sample remain research content; they are not the private prompts used to author the project. See [reproduction](../construction/REPRODUCTION.md) and [research use](../SECURITY.md).
+The tool/model roles are based on my account of the authoring process. The underlying Codex model, harness versions, historical decoding parameters, revision counts and exact run dates are unspecified in the published provenance. The release also does not establish a detector leaderboard, a validated train/test split, exhaustive threat coverage or an empirical advantage of this generation method. Those questions require separately documented studies.

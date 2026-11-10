@@ -1,7 +1,7 @@
 [project]
 name = "mcp-benchmark"
 version = "1.0.0rc1"
-description = "MCP research dataset and researcher-directed harness plus LLM construction artifacts."
+description = "MCP security benchmark and harness + LLM method for sample construction and behavioral transformation."
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [

@@ -6,7 +6,7 @@ Version: **1.0.0-rc.1**. This candidate prepares the existing private repository
 
 - The existing 1,025 samples: 130 Connor, 210 Sentinel, 175 constructed L0–L2 and 510 constructed L3.
 - Relocated sample and label directories, with corrected repository-relative metadata paths and a SHA-256 file inventory.
-- English and Chinese descriptions of the researcher-directed Codex and Hermes + GLM-5.2 method, emphasizing the real-behavior transformation stage.
+- English and Chinese method descriptions covering corpus design, my use of Codex and Hermes + GLM-5.2 for program generation and behavioral transformation, and the interpretation of verification evidence.
 - Final implementation artifacts and controlled tests, with local machine paths removed from first-party input defaults.
 - A standard-library catalog CLI and a baseline-only construction example that starts no servers.
 - Research-use guidance, project citation, Apache-2.0 for original material and upstream attribution.

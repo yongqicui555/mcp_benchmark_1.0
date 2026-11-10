@@ -1,7 +1,7 @@
 {
-  "workflow": "researcher-directed staged harness + LLM coding",
-  "basis": "researcher-reported tool and model roles",
-  "stage_control": "researcher issues stage instructions and chooses handoffs",
+  "workflow": "staged harness + LLM program generation and behavioral transformation",
+  "basis": "author-reported tool and model roles",
+  "stage_control": "I issue instructions separately for each stage and decide revisions and handoffs",
   "construction_and_testing": {
     "coding_environment": "Codex",
     "underlying_model": null

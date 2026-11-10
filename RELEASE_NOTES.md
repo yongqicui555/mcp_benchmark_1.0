@@ -13,7 +13,7 @@ Version: **1.0.0-rc.1**. This candidate prepares the existing private repository
 
 ## Verification
 
-The machine-readable [release report](benchmark/metadata/release_verification.json) records completed checks, environment and limits. The baseline is commit `83bdeb9fa540f62722944f7ad844a8da9a7726d3`. Original sample content is preserved; label filesystem references and the repository organization change.
+The [verification summary](benchmark/metadata/verification.md) and machine-readable [release report](benchmark/metadata/release_verification.json) record completed checks, environment and limits. The baseline is commit `83bdeb9fa540f62722944f7ad844a8da9a7726d3`. Original sample content is preserved; label filesystem references and the repository organization change.
 
 Verification covers file integrity, label correspondence, source/configuration parsing and controlled unit tests. Dynamic execution of the 510 final malicious samples and model API experiments are not part of release preparation. Intermediate tests and structural checks are not reported as final-behavior success rates.
 

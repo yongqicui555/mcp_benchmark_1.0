@@ -14,4 +14,4 @@ The 210 Sentinel benign samples retain their existing source labels, upstream `r
 
 The root Apache-2.0 license covers this project's original code and original metadata, including project-authored sample code. It does not replace licenses or terms applying to imported third-party material. Preserve the existing upstream notices when redistributing those files. The `license` field in historical Sentinel metadata is a filename, not a normalized SPDX identifier.
 
-I name Codex, Hermes and GLM-5.2 to document the tools and models used in constructing this benchmark. Their software and models are not distributed by this repository, and attribution does not imply endorsement.
+The project names Codex, Hermes and GLM-5.2 to document the tools and models used in constructing this benchmark. Their software and models are not distributed by this repository, and attribution does not imply endorsement.

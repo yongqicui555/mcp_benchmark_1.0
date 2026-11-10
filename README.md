@@ -4,15 +4,17 @@
 
 **An MCP security benchmark and a harness + LLM method for constructing it.**
 
-I present MCP Benchmark 1.0, a corpus of **1,025 labeled MCP samples** for security analysis and detector evaluation. The corpus combines 340 imported benign samples with 685 constructed samples organized by application base, risk layer, influence path and behavioral objective. Alongside the data, I release the construction methodology and its final implementation artifacts.
+MCP Benchmark 1.0 provides a corpus of **1,025 labeled MCP samples** for security analysis and detector evaluation. The corpus combines 340 imported benign samples with 685 constructed samples organized by application base, risk layer, influence path and behavioral objective. The project releases the construction methodology and its final implementation artifacts alongside the data.
 
-The methodological focus is **harness-mediated program generation and behavioral transformation**. I used **Codex** to develop construction and testing code, then **GLM-5.2 within Hermes** to transform intermediate samples into samples containing real malicious behavior. Construction, testing and transformation code are themselves outputs of this process. I defined tasks and directed revisions and transitions separately at each stage.
+The methodological focus is **harness-mediated program generation and behavioral transformation**. The project used **Codex** to develop construction and testing code, then **GLM-5.2 within Hermes** to transform intermediate samples into samples containing real malicious behavior. Construction, testing and transformation code are themselves outputs of this process. Tasks are issued separately for each stage, with manual approval governing revisions and stage transitions.
 
 ## Research scope
 
-I organize the benchmark around the relationship between **where an MCP interaction can be influenced, which behavior a sample is designed to induce, and what evidence supports its label**. The constructed corpus makes these dimensions explicit, allowing evaluation results to be reported by layer, path and objective instead of only as an aggregate binary classification score. The imported benign subsets provide additional source material collected outside the construction workflow.
+The benchmark is organized around the relationship between **where an MCP interaction can be influenced, which behavior a sample is designed to induce, and what evidence supports its label**. The constructed corpus makes these dimensions explicit, allowing evaluation results to be reported by layer, path and objective instead of only as an aggregate binary classification score. The imported benign subsets provide additional source material collected outside the construction workflow.
 
-The project contributes two connected research artifacts: a versioned dataset with explicit labels and provenance, and a method account explaining how I used coding harnesses and LLMs to produce it. The current release establishes the corpus and implementation; detector comparisons and empirical claims about model effectiveness require separate experiments.
+When language can become action through a tool, security judgments need to distinguish expressed intent, executable capability and observed consequences. A malicious label condenses a judgment but cannot replace its justification. Paths, objectives and explicit limits on verification make that judgment open to explanation, examination and revision.
+
+The project contributes two connected research artifacts: a versioned dataset with explicit labels and provenance, and a method account explaining the use of coding harnesses and LLMs for data production. The current release establishes the corpus and implementation; detector comparisons and empirical claims about model effectiveness require separate experiments.
 
 ## Corpus design
 
@@ -37,8 +39,8 @@ flowchart TD
     A[Design: bases, layers, paths and objectives] --> B[Codex: construction and testing code]
     B --> C[Controlled intermediate samples]
     C --> D[Trigger observations and test feedback]
-    D -->|Revisions directed by me| B
-    D -->|Stage handoff directed by me| E[Hermes + GLM-5.2: behavioral transformation]
+    D -->|Manual approval: revision| B
+    D -->|Manual approval: stage handoff| E[Hermes + GLM-5.2: behavioral transformation]
     E --> F[Transformed sample code]
     F --> G[Structural checks and label association]
     G --> I[685 constructed samples across L0-L3]
@@ -46,15 +48,15 @@ flowchart TD
     K[340 imported benign samples] --> J
 ```
 
-I separate two methodological concerns. **Controlled construction** makes interfaces, influence paths and trigger observations inspectable. **Behavioral transformation**, the central Hermes + GLM-5.2 stage, changes the execution semantics of intermediate samples to include real malicious behavior. The diagram expresses these relationships; I advanced the stages through separate instructions and review of available feedback.
+The method separates two concerns. **Controlled construction** makes interfaces, influence paths and trigger observations inspectable. **Behavioral transformation**, the central Hermes + GLM-5.2 stage, changes the execution semantics of intermediate samples to include real malicious behavior. The diagram expresses these relationships; stage progression uses manual approval based on available feedback.
 
 The [method account](method/README.md) explains this design and distinguishes the coding harness from the MCP test host. The released programs support the method as implementation artifacts.
 
 ## Evidence and reproducibility
 
-I distinguish **intermediate trigger observations**, **post-transformation structural checks** and **final behavioral validation**. A reached trigger or a valid source file does not establish that a final malicious effect succeeded. The [release verification](benchmark/metadata/verification.md) records integrity checks, static parsing and controlled tests; it does not report dynamic success rates for the final malicious samples.
+The project distinguishes **intermediate trigger observations**, **post-transformation structural checks** and **final behavioral validation**. A reached trigger or a valid source file does not establish that a final malicious effect succeeded. The [release verification](benchmark/metadata/verification.md) records integrity checks, static parsing and controlled tests; it does not report dynamic success rates for the final malicious samples.
 
-The release includes method descriptions, final code, required configuration and the frozen dataset. I do not release the original authoring instructions, prompts, conversations or process traces. Reproduction therefore covers the supported code-level operations, while the historical LLM coding sessions are documented without a claim of exact replay. Unknown model versions and historical run statistics remain unspecified.
+The release includes method descriptions, final code, required configuration and the frozen dataset. Original authoring instructions, prompts, conversations and process traces are outside the release scope. Reproduction therefore covers the supported code-level operations, while the historical LLM coding sessions are documented without a claim of exact replay. Unknown model versions and historical run statistics remain unspecified.
 
 ## Access and use
 

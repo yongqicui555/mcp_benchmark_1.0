@@ -4,7 +4,7 @@
 
 - Organize the existing 1,025-sample snapshot under `benchmark/`, preserving sample bytes and class labels.
 - Correct published paths, including the 340 imported benign label rows.
-- Describe the corpus design and harness + LLM method in English and Chinese, explaining my use of Codex for construction and Hermes + GLM-5.2 for behavioral transformation.
+- Describe the corpus design and harness + LLM method in English and Chinese, explaining the project's use of Codex for construction and Hermes + GLM-5.2 for behavioral transformation, with manual approval for stage progression.
 - Include final implementation artifacts, configuration and controlled tests under `construction/`.
 - Add standard-library catalog checks, a frozen checksum inventory and a baseline-only example.
 - Keep authoring prompts, conversations, raw process logs and the separate local real-world test set out of the release.

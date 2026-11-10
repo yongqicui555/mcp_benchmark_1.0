@@ -10,7 +10,7 @@ The release candidate was checked in an independently cloned repository.
 | Controlled tests | 70 passed, 0 failed, 0 skipped, using a fresh locked dependency environment |
 | Baseline example | Five L0 samples generated with synthetic data; no server or model API executed |
 | Label preservation | No changes to non-path label fields |
-| Documentation | Local links checked; provenance distinguishes my stage decisions, the coding harness and the MCP test host |
+| Documentation | Local links checked; provenance distinguishes manual approval for stage progression, the coding harness and the MCP test host |
 
 The corpus sample files retain their pre-migration working-tree bytes. Two empty historical source-directory references and five stale manifest roots were corrected; the migration record preserves the omitted directory references. Inherited Git text rules are controlled at the repository level so supported clean checkouts pass the same inventory.
 

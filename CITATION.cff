@@ -14,4 +14,4 @@ abstract: >-
   application bases. The accompanying harness + LLM method combines
   controlled construction and testing with Codex and behavioral
   transformation with GLM-5.2 within Hermes. Final code is released as
-  an implementation artifact of the manually directed, staged workflow.
+  an implementation artifact of the staged workflow with manual approval.

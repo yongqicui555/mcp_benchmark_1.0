@@ -35,6 +35,8 @@ All published filesystem fields such as `clean_path`, `sample_path`, `mcp_config
 
 Original source hashes refer to their original collection/normalization context. Use the release checksum inventory for the exact published bytes. Configuration files inside samples retain their original launch semantics and are research data; catalog verification does not resolve or execute their commands.
 
+`source_dirs` lists source directories present in the published snapshot. Two historically listed empty directories were never stored by Git; their original references are retained in `metadata/migration.json`. Original collection notes are retained as historical notes.
+
 ## Reading and integrity checks
 
 From the repository root, with Python 3.12+:

@@ -2,9 +2,9 @@
   "base": "devspace",
   "benign_or_gray_count": 35,
   "benign_root": "benchmark/mcp_dataset/benign_mcp/real_l0_l2_stress/devspace",
-  "clean_root": "mcp_dataset",
+  "clean_root": "benchmark/mcp_dataset",
   "count": 137,
-  "dataset_root": "mcp_dataset",
+  "dataset_root": "benchmark/mcp_dataset",
   "label_file": "benchmark/ground_truth/devspace/labels.jsonl",
   "layers": {
     "L0": 1,

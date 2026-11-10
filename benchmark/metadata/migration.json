@@ -1,0 +1,26 @@
+{
+  "relocated_dataset_prefix": [
+    "mcp_dataset/",
+    "benchmark/mcp_dataset/"
+  ],
+  "relocated_labels_prefix": [
+    "ground_truth/",
+    "benchmark/ground_truth/"
+  ],
+  "corrected_benign_sample_paths": 340,
+  "sample_ids_and_class_labels_changed": false,
+  "unpublished_empty_source_directories": [
+    {
+      "base": "benign_connor",
+      "mcp_id": "Custom MCP Server",
+      "path": "benchmark/mcp_dataset/benign_mcp/connor/Custom MCP Server/defender",
+      "reason": "Empty directory in local collection, absent from original Git tree"
+    },
+    {
+      "base": "benign_connor",
+      "mcp_id": "Custom MCP Server",
+      "path": "benchmark/mcp_dataset/benign_mcp/connor/Custom MCP Server/output",
+      "reason": "Empty directory in local collection, absent from original Git tree"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "com-mireye-earth-c1c54840c2": {
+      "args": [
+        "/app/com-mireye-earth-c1c54840c2/mireye-earth-mcp/mireye_earth_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

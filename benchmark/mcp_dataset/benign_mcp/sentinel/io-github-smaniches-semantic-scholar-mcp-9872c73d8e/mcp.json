@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-smaniches-semantic-scholar-mcp-9872c73d8e": {
+      "args": [
+        "/app/io-github-smaniches-semantic-scholar-mcp-9872c73d8e/semantic-scholar-mcp/src/semantic_scholar_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-u2n4-nanobanana-imagen-mcp-c3c55422d8": {
+      "args": [
+        "/app/io-github-u2n4-nanobanana-imagen-mcp-c3c55422d8/gemini-media-mcp/servers/nanobanana/nanobanana_mcp_server/core/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

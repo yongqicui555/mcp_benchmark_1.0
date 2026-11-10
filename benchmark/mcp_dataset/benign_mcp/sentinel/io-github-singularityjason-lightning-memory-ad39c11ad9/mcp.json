@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-singularityjason-lightning-memory-ad39c11ad9": {
+      "args": [
+        "/app/io-github-singularityjason-lightning-memory-ad39c11ad9/lightning-memory/lightning_memory/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

@@ -1,8 +1,0 @@
-{
-  "mcpServers": {
-    "fedlex": {
-      "command": "python",
-      "args": ["-m", "fedlex_mcp.server"]
-    }
-  }
-}

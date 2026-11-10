@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "parlament": {
+      "command": "uvx",
+      "args": ["parlament-mcp"]
+    },
+    "lobbywatch": {
+      "command": "uvx",
+      "args": ["lobbywatch-mcp"],
+      "env": {
+        "LOBBYWATCH_MCP_CACHE_TTL": "86400"
+      }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "name": "bidsparq-mcp-server",
+  "version": "0.1.7",
+  "mcpName": "com.bidsparq/mcp",
+  "description": "BidSparq MCP server — query federal RFPs, subaward primes, pricing percentiles, wired-RFP signals, buyer-side procurement-officer contacts (Beacon), and federal contract vehicles / GWACs / GSA Schedules / BPAs from Claude Desktop, Claude Code, Cursor, and other MCP-compatible AI clients.",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "rfp",
+    "government-contracting",
+    "bidsparq",
+    "claude",
+    "cursor"
+  ],
+  "homepage": "https://bidsparq.com/learn/mcp-setup",
+  "bugs": {
+    "url": "https://github.com/n0edlg/bidsparq-mcp-server/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/n0edlg/bidsparq-mcp-server.git"
+  },
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "bidsparq-mcp-server": "dist/index.js"
+  },
+  "files": [
+    "dist/",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --target node18 --no-splitting --minify --clean",
+    "dev": "tsup src/index.ts --format esm --target node18 --no-splitting --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.3.0"
+  }
+}

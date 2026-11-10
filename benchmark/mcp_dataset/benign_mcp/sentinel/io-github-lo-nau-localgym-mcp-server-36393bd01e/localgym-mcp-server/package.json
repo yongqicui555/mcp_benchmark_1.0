@@ -1,0 +1,43 @@
+{
+  "name": "localgym-mcp-server",
+  "version": "0.1.2",
+  "description": "Read-only MCP server for searching, comparing, and recommending UK gyms using the LocalGym Agent API.",
+  "type": "commonjs",
+  "bin": {
+    "localgym-mcp-server": "bin/localgym-mcp-server.cjs"
+  },
+  "scripts": {
+    "start": "node bin/localgym-mcp-server.cjs",
+    "test": "node --check bin/localgym-mcp-server.cjs"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "localgym",
+    "gyms",
+    "fitness",
+    "uk",
+    "local-search",
+    "ai-agents"
+  ],
+  "author": "LocalGym UK",
+  "license": "MIT",
+  "homepage": "https://localgym.uk/agent/mcp",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lo-nau/localgym-mcp-server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lo-nau/localgym-mcp-server/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "mcpName": "io.github.lo-nau/localgym-mcp-server",
+  "files": [
+    "bin/",
+    "examples/",
+    "README.md",
+    "LICENSE"
+  ]
+}

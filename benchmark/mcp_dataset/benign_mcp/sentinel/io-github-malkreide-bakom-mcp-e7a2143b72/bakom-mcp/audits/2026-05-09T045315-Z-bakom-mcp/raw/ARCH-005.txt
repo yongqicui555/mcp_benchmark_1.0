@@ -1,0 +1,13 @@
+=== .gitignore secrets section ===
+.env
+.env.*
+!.env.example
+*.secrets
+credentials.json
+=== .env.example exists ===
+-rw-r--r-- 1 root root 1001 May  8 19:09 .env.example
+=== gitleaks workflow ===
+.github/workflows/secret-scan.yml
+  gitleaks:
+    name: gitleaks
+      - name: Run gitleaks

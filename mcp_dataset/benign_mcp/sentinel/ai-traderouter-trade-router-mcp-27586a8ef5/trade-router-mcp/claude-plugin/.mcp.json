@@ -1,8 +1,0 @@
-{
-  "mcpServers": {
-    "trade-router": {
-      "command": "npx",
-      "args": ["-y", "@traderouter/trade-router-mcp@latest"]
-    }
-  }
-}

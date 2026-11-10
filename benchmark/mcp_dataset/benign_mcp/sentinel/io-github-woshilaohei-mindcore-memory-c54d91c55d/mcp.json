@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-woshilaohei-mindcore-memory-c54d91c55d": {
+      "args": [
+        "/app/io-github-woshilaohei-mindcore-memory-c54d91c55d/mindcore-memory-mcp/mindcore_memory/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

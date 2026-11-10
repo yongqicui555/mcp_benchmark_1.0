@@ -1,0 +1,35 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.admin978/canvas-mcp",
+  "description": "Local-first MCP server for Canvas LMS. Stdio transport, no third-party broker.",
+  "repository": {
+    "url": "https://github.com/admin978/canvas-mcp",
+    "source": "github"
+  },
+  "version": "0.1.1",
+  "packages": [
+    {
+      "registryType": "pypi",
+      "identifier": "canvas-local-mcp",
+      "version": "0.1.1",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "description": "Canvas institution root URL (no /api/v1 suffix), e.g. https://your-institution.instructure.com",
+          "isRequired": true,
+          "format": "string",
+          "name": "CANVAS_BASE_URL"
+        },
+        {
+          "description": "Canvas personal access token (Account -> Settings -> Approved Integrations -> New Access Token)",
+          "isRequired": true,
+          "format": "string",
+          "isSecret": true,
+          "name": "CANVAS_TOKEN"
+        }
+      ]
+    }
+  ]
+}

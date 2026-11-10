@@ -1,0 +1,11 @@
+{
+  "admission_policy": "connor_original_benign_copy",
+  "base": "benign_connor",
+  "benign_count": 130,
+  "count": 130,
+  "label_file": "benchmark/ground_truth/benign_connor/labels.jsonl",
+  "malicious_count": 0,
+  "sample_root": "benchmark/mcp_dataset/benign_mcp/connor",
+  "schema_version": 1,
+  "source": "connor"
+}

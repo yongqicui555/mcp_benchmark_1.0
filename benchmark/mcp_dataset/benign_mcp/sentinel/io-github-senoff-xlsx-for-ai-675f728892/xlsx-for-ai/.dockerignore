@@ -1,0 +1,17 @@
+node_modules
+npm-debug.log
+.git
+.github
+test
+*.tgz
+.DS_Store
+
+# Never bake secrets into the image / build cache.
+.npmrc
+.npmrc.*
+.env
+.env.*
+*.pem
+*.key
+*.cert
+id_*

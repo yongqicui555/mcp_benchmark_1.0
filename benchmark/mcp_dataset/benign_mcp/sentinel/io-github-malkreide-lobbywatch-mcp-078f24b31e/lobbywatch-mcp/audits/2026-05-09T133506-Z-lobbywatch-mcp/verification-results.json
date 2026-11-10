@@ -1,0 +1,434 @@
+{
+  "audit_meta": {
+    "server_name": "lobbywatch-mcp",
+    "run_id": "2026-05-09T133506-Z-lobbywatch-mcp",
+    "skill_version": "1.0.0",
+    "catalog_hash": "091f446b27965044ce658a1d5f4b2cabe2b0ab5661dcc1a53b6be8f1f2e093c0",
+    "auditor": "Claude (mcp-audit-skill v1.0.0, re-audit)",
+    "policy": "fail-or-partial",
+    "previous_run": "2026-05-09T115855-Z-lobbywatch-mcp"
+  },
+  "results": {
+    "ARCH-001": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "medium",
+      "evidence": [
+        "src/lobbywatch_mcp/server.py:147,167,201,275,321,357,389,397 — snake_case action-oriented tool names (get_*, list_*, search_*, refresh_*, dump_*)",
+        "Names are descriptive and domain-specific (Lobbywatch nomenclature: parlamentarier, interessenbindungen, lobbygruppe)"
+      ]
+    },
+    "ARCH-002": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "medium",
+      "evidence": [
+        "src/lobbywatch_mcp/server.py: every @mcp.tool docstring now ends with 'Use cases:' block of 3 example queries (ARCH-002 closure)"
+      ]
+    },
+    "ARCH-003": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "medium",
+      "evidence": [
+        "src/lobbywatch_mcp/client.py: new find_candidates() returns scored near-misses",
+        "src/lobbywatch_mcp/server.py: get_parlamentarier + list_interessenbindungen surface ParlamentarierSuggestion list on miss"
+      ]
+    },
+    "ARCH-004": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "high",
+      "evidence": [
+        "src/lobbywatch_mcp/server.py:132 build_server(client=None) accepts injected client (DI)",
+        "src/lobbywatch_mcp/__main__.py: transport selection isolated from server build",
+        "tests/test_server.py:18 build_server(client=primed_client) demonstrates IoC works"
+      ]
+    },
+    "ARCH-005": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "critical",
+      "evidence": [
+        "grep -rE secret patterns in src/ → no hits",
+        "grep -rE postgres/mysql/mongodb URLs with creds → no hits",
+        "No .env file in repo, no AWS keys",
+        "config.py uses os.getenv() for cache dir / TTL / timeout — no secrets needed (No-Auth-First)"
+      ]
+    },
+    "ARCH-006": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "high",
+      "evidence": [
+        "8 tools, all high-level use-case oriented (get_ranking, get_transparenzquote, search_parlamentarier_nach_branche)",
+        "No 1:1 wrapping of dataIF endpoints — server abstracts dump/live split"
+      ]
+    },
+    "ARCH-007": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "medium",
+      "evidence": [
+        "Internal helpers (_summary_from_record, _detail_from_record, _ib_to_model) compose, but tools are atomic",
+        "Each tool does one thing (lookup, list, rank, aggregate)"
+      ]
+    },
+    "ARCH-008": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "medium",
+      "evidence": [
+        "src/lobbywatch_mcp/server.py: @mcp.resource('lobbywatch://attribution')",
+        "src/lobbywatch_mcp/server.py: @mcp.prompt('lobbywatch_anchor_demo'), @mcp.prompt('lobbywatch_top_lobbyists_by_party')"
+      ]
+    },
+    "ARCH-009": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "high",
+      "evidence": [
+        "src/lobbywatch_mcp/server.py: ToolAnnotations on all 8 @mcp.tool() (8 occurrences); refresh_dump=destructiveHint+idempotentHint, get_lobbygruppe=openWorldHint, others=readOnlyHint+idempotentHint"
+      ]
+    },
+    "ARCH-011": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "medium",
+      "evidence": [
+        "src-layout: src/lobbywatch_mcp/ with __init__, __main__, client, config, models, server",
+        "tests/ with conftest, test_client, test_server, test_live",
+        "README.md + README.de.md (bilingual), CHANGELOG.md, CONTRIBUTING.md, LICENSE"
+      ]
+    },
+    "ARCH-012": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "medium",
+      "evidence": [
+        "pyproject.toml: mcp[cli]>=1.2.0,<2.0.0 (pinned upper bound)",
+        "src/lobbywatch_mcp/server.py: lifespan logs LATEST_PROTOCOL_VERSION at startup",
+        "CHANGELOG.md follows Keep a Changelog + SemVer; 0.2.0 documents BREAKING change explicitly"
+      ]
+    },
+    "CH-004": {
+      "status": "pass",
+      "category": "CH",
+      "severity": "medium",
+      "evidence": [
+        "src/lobbywatch_mcp/config.py:42 ATTRIBUTION constant with full CC BY-SA 4.0 string",
+        "src/lobbywatch_mcp/models.py:17-22 LobbywatchResponse base envelope sets default source=ATTRIBUTION",
+        "Every tool wraps output in *Response(...) Pydantic models — attribution non-bypassable"
+      ]
+    },
+    "OBS-001": {
+      "status": "pass",
+      "category": "OBS",
+      "severity": "high",
+      "evidence": [
+        "src/lobbywatch_mcp/server.py: _coerce_upstream() helper converts RuntimeError/httpx.HTTPError into McpError(INTERNAL_ERROR) at every tool boundary",
+        "tests/test_server.py: 3 tests cover pass-through, RuntimeError coercion, and McpError preservation"
+      ]
+    },
+    "OBS-002": {
+      "status": "pass",
+      "category": "OBS",
+      "severity": "high",
+      "evidence": [
+        "src/lobbywatch_mcp/client.py: zip namelist no longer in user-facing exception; details only in logger.error",
+        "Generic message 'Lobbywatch dump format unexpected' / 'Lobbywatch dump unreachable' / 'Lobbywatch dump shape invalid'"
+      ]
+    },
+    "OBS-003": {
+      "status": "pass",
+      "category": "OBS",
+      "severity": "medium",
+      "evidence": [
+        "src/lobbywatch_mcp/_observability.py: configure_logging() switches to structlog JSONRenderer when LOBBYWATCH_MCP_LOG_FORMAT=json",
+        "16-char correlation_id minted per tool call and bound via structlog.contextvars; surfaces as `correlation_id` field in every JSON line",
+        "tests/test_observability.py: JSON line shape, correlation lifecycle, level handling"
+      ]
+    },
+    "OBS-004": {
+      "status": "pass",
+      "category": "OBS",
+      "severity": "critical",
+      "evidence": [
+        "grep -n 'print(' src/ → no hits — no stdout writes from app code",
+        "Logging uses logging.getLogger(__name__); Python default StreamHandler defaults to stderr",
+        "__main__.py does not call logging.basicConfig or attach a stdout handler"
+      ],
+      "gaps": [
+        "Belt-and-braces: no explicit logging.basicConfig(stream=sys.stderr) — relies on Python default; one library that auto-configures stdout could break it"
+      ]
+    },
+    "OBS-006": {
+      "status": "pass",
+      "category": "OBS",
+      "severity": "medium",
+      "evidence": [
+        "src/lobbywatch_mcp/_observability.py: configure_tracing() opt-in via LOBBYWATCH_MCP_OTEL_ENABLED=1",
+        "TracerProvider with service.name=lobbywatch-mcp, optional OTLP/HTTP exporter, httpx auto-instrumentation",
+        "observed_tool() async context manager wraps every tool body with `tool.<name>` span (8 occurrences)",
+        "pyproject.toml: new optional `obs` extra pulls opentelemetry-api/sdk + OTLP exporter + httpx instrumentation"
+      ]
+    },
+    "OPS-001": {
+      "status": "pass",
+      "category": "OPS",
+      "severity": "high",
+      "evidence": [
+        "tests/conftest.py:121 lines with FIXTURE_RECORDS + dump_zip_bytes / primed_client fixtures",
+        "tests/test_client.py:1-13 uses respx.mock for HTTP mocking",
+        "tests/test_live.py marked @pytest.mark.live, excluded via pyproject markers + CONTRIBUTING.md instructs `pytest -m \"not live\"` for CI"
+      ]
+    },
+    "OPS-002": {
+      "status": "partial",
+      "category": "OPS",
+      "severity": "medium",
+      "evidence": [
+        "README.md + README.de.md bilingual",
+        "README.md '## Known Limitations' section present",
+        ".github/workflows/ci.yml exists — CI badge no longer broken"
+      ],
+      "gaps": [
+        "ASCII architecture diagram (dump-first / API-fallback) still not added — minor cosmetic gap"
+      ]
+    },
+    "OPS-003": {
+      "status": "pass",
+      "category": "OPS",
+      "severity": "high",
+      "evidence": [
+        "README.md:41 'No authentication required (Phase 1 — No-Auth-First)'",
+        "CONTRIBUTING.md:36 'No-Auth-First. All Phase 1 tools must work without credentials'",
+        "All 8 tools are read-only / cache-control"
+      ]
+    },
+    "SCALE-001": {
+      "status": "pass",
+      "category": "SCALE",
+      "severity": "high",
+      "evidence": [
+        "src/lobbywatch_mcp/__main__.py:18-29 supports transport='streamable-http' and 'sse'",
+        "README documents LOBBYWATCH_MCP_TRANSPORT=http"
+      ]
+    },
+    "SCALE-002": {
+      "status": "pass",
+      "category": "SCALE",
+      "severity": "high",
+      "evidence": [
+        "docs/deployment.md: 'Stateful HTTP / Streamable transport' section with HAProxy stick-table example pinning on Mcp-Session-Id; k8s Ingress + Istio DestinationRule equivalents"
+      ]
+    },
+    "SCALE-003": {
+      "status": "pass",
+      "category": "SCALE",
+      "severity": "high",
+      "evidence": [
+        "docs/deployment.md: same HAProxy/k8s/Istio example covers SCALE-003 stick-table guidance"
+      ]
+    },
+    "SCALE-004": {
+      "status": "pass",
+      "category": "SCALE",
+      "severity": "medium",
+      "evidence": [
+        "Dockerfile: multi-stage build (builder + runtime), python:slim base"
+      ]
+    },
+    "SCALE-006": {
+      "status": "pass",
+      "category": "SCALE",
+      "severity": "medium",
+      "evidence": [
+        "deploy/docker-compose.example.yml: deploy.resources with 256-512 MiB memory and 0.1-0.5 CPU limits/requests",
+        "tmpfs cache mount with explicit size=128M"
+      ]
+    },
+    "SDK-001": {
+      "status": "pass",
+      "category": "SDK",
+      "severity": "high",
+      "evidence": [
+        "src/lobbywatch_mcp/server.py:194 @asynccontextmanager lifespan owns LobbywatchClient lifecycle; aclose() called on shutdown when server owns the client",
+        "tests still pass with primed client (lifespan no-ops gracefully)"
+      ]
+    },
+    "SDK-002": {
+      "status": "pass",
+      "category": "SDK",
+      "severity": "medium",
+      "evidence": [
+        "src/lobbywatch_mcp/server.py: every tool now declares typed Pydantic return (ParlamentarierResponse, BrancheSearchResponse, etc.) instead of dict[str, Any]",
+        "tests/test_server.py:test_tools_have_typed_output_schema asserts no tool exposes additionalProperties:true at the schema layer",
+        "src/lobbywatch_mcp/models.py: new BrancheSearchHit + ParlamentarierSuggestion models"
+      ]
+    },
+    "SDK-003": {
+      "status": "pass",
+      "category": "SDK",
+      "severity": "medium",
+      "evidence": [
+        "src/lobbywatch_mcp/server.py: refresh_dump(ctx: Context) emits ctx.info start/end notifications"
+      ]
+    },
+    "SDK-004": {
+      "status": "pass",
+      "category": "SDK",
+      "severity": "high",
+      "evidence": [
+        "src/lobbywatch_mcp/__main__.py: HTTP/SSE transport now drives uvicorn directly on streamable_http_app() / sse_app()",
+        "Optional CORSMiddleware wraps app when LOBBYWATCH_MCP_CORS_ORIGINS set; expose_headers=['Mcp-Session-Id']"
+      ]
+    },
+    "SEC-004": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "critical",
+      "evidence": [
+        "src/lobbywatch_mcp/client.py:324 quote(str(id_or_name), safe='') escapes user input into URL path",
+        "src/lobbywatch_mcp/client.py:128 follow_redirects=False",
+        "src/lobbywatch_mcp/client.py:_ssrf_guard event hook re-resolves and rejects private/link-local/loopback/cloud-metadata IPs"
+      ]
+    },
+    "SEC-005": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "high",
+      "evidence": [
+        "src/lobbywatch_mcp/client.py: _ssrf_guard hooked via event_hooks={'request': [...]} ; re-resolves on every outbound request and refuses RFC1918/link-local/cloud-metadata networks (mitigates DNS-rebinding TOCTOU)",
+        "tests/test_client.py: 8 parametrize cases over forbidden CIDRs, 1 integration test for 169.254.169.254"
+      ]
+    },
+    "SEC-006": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "high",
+      "evidence": [
+        "src/lobbywatch_mcp/__main__.py:30-31 default transport='stdio'",
+        "claude_desktop_config.json uses uvx + stdio (default)"
+      ]
+    },
+    "SEC-007": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "high",
+      "evidence": [
+        "Dockerfile: USER 1000:1000, no shell, no apt cache, no build toolchain in runtime stage",
+        "deploy/docker-compose.example.yml: read_only:true, cap_drop:[ALL], security_opt:[no-new-privileges:true]",
+        "docs/deployment.md: trust-model recap + reverse-proxy requirement"
+      ]
+    },
+    "SEC-008": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "medium",
+      "evidence": [
+        "claude_desktop_config.json shows explicit user opt-in via mcpServers config",
+        "No autostart / silent install"
+      ]
+    },
+    "SEC-009": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "critical",
+      "evidence": [
+        "auth_model='none', no session/user binding code in src/",
+        "No grep hits for custom session handling — relies on FastMCP default which generates unguessable IDs"
+      ],
+      "gaps": [
+        "Server has no concept of user — Mcp-Session-Id cannot be bound to user_id (acceptable for No-Auth-First read-only public data, but documents the trust model)"
+      ]
+    },
+    "SEC-013": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "high",
+      "evidence": [
+        "No API keys required (auth_model=none); no secret-storage attack surface"
+      ]
+    },
+    "SEC-014": {
+      "status": "todo",
+      "category": "SEC",
+      "severity": "medium",
+      "evidence": [
+        "Tool-allow-listing is a deployment-layer concern (gateway), not server-internal"
+      ],
+      "gaps": [
+        "Manual review needed: portfolio-level decision whether to mandate gateway in front of HTTP deployments"
+      ]
+    },
+    "SEC-015": {
+      "status": "todo",
+      "category": "SEC",
+      "severity": "medium",
+      "evidence": [
+        "No tool-poisoning detection in client; this is typically client-side"
+      ],
+      "gaps": [
+        "Out of scope for server itself"
+      ]
+    },
+    "SEC-016": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "critical",
+      "evidence": [
+        "src/lobbywatch_mcp/__main__.py:75 default LOBBYWATCH_MCP_HOST=127.0.0.1 (was 0.0.0.0)",
+        "README.md + README.de.md: env-var table updated, 0.0.0.0 documented as auth-gateway-required"
+      ]
+    },
+    "SEC-018": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "high",
+      "evidence": [
+        "src/lobbywatch_mcp/server.py: Annotated[..., Field(ge/le/min_length/max_length)] on every user-facing arg; kriterium is now Literal so invalid values rejected at schema layer",
+        "tests/test_server.py: test_search_rejects_overlong_query, test_ranking_rejects_overlimit"
+      ]
+    },
+    "SEC-019": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "critical",
+      "evidence": [
+        "Server is read-only: 7/8 tools read; 1 (refresh_dump) only mutates a local cache file",
+        "No tools that send messages, write files, or call write APIs",
+        "Lethal Trifecta (untrusted-data + private-data + exfil) not present — public data, no exfil channel"
+      ]
+    },
+    "SEC-020": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "critical",
+      "evidence": [
+        "grep -rE '(os\\.system|shell=True|eval\\(|exec\\(|subprocess\\.)' src/ tests/ → no hits",
+        "No subprocess, no shell invocation, no dynamic code execution"
+      ]
+    },
+    "SEC-021": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "high",
+      "evidence": [
+        "Code-layer: hardcoded URLs (already covered)",
+        "Network-layer: docs/deployment.md ships a NetworkPolicy template (k8s) restricting egress to cms.lobbywatch.ch:443 and excluding RFC1918",
+        "_ssrf_guard provides defense-in-depth even if URL constants are tampered with"
+      ]
+    },
+    "SEC-022": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "high",
+      "evidence": [
+        "src/lobbywatch_mcp/server.py: every @mcp.tool name kwarg starts with `lobbywatch_` (8 tools); also lobbywatch_anchor_demo + lobbywatch_top_lobbyists_by_party prompts",
+        "tests/test_server.py:test_tools_use_lobbywatch_namespace asserts the invariant",
+        "Breaking change documented in CHANGELOG 0.2.0"
+      ]
+    }
+  }
+}

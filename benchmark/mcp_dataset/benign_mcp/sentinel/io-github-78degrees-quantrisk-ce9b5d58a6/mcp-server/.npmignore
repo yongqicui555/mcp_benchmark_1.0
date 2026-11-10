@@ -1,0 +1,62 @@
+# Source — only the compiled dist/ ships
+src/
+test/
+tests/
+__tests__/
+
+# Build / tooling configs
+tsconfig.json
+tsconfig.*.json
+vitest.config.ts
+vitest.config.*.mjs
+vitest.config.*.timestamp-*
+.mocharc*
+.eslintrc*
+.eslint.config.*
+.prettierrc*
+.prettier.config.*
+
+# Cloudflare / Wrangler
+wrangler.toml
+.wrangler/
+.dev.vars
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+.npmrc
+
+# Local config
+.claude/
+.vscode/
+.idea/
+claude-desktop-config.json
+
+# Scripts not needed by consumers
+deploy.sh
+
+# Marketing drafts
+LAUNCH_POST.md
+LAUNCH_TWEET.md
+
+# Git / CI
+.git/
+.gitignore
+.github/
+.gitlab-ci.yml
+.circleci/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.log
+*.swp
+*.swo
+
+# Build artifacts (we re-build via prepublishOnly)
+*.tsbuildinfo
+coverage/
+.nyc_output/
+
+# Lockfile — npm publishes package-lock.json by default; leave it in

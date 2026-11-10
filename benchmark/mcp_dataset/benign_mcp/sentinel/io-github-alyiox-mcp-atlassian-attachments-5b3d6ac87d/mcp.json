@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-alyiox-mcp-atlassian-attachments-5b3d6ac87d": {
+      "args": [
+        "/app/io-github-alyiox-mcp-atlassian-attachments-5b3d6ac87d/mcp-atlassian-attachments/src/mcp_atlassian_attachments/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

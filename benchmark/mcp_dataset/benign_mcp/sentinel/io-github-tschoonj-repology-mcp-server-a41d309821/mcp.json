@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-tschoonj-repology-mcp-server-a41d309821": {
+      "args": [
+        "/app/io-github-tschoonj-repology-mcp-server-a41d309821/repology-mcp-server/src/repology_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+build/
+dist/
+.venv/
+.env
+admin.env
+audit.log
+drafts.log
+*.mcpb
+.DS_Store
+.idea/
+.vscode/
+BUILD_PROMPT_*.md

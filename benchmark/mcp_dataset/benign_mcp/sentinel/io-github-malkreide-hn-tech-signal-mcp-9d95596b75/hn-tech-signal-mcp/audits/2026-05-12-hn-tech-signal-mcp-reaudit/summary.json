@@ -1,0 +1,38 @@
+{
+  "run_id": "reaudit-2026-05-12T18:00Z-hn-tech-signal-mcp",
+  "server": "hn-tech-signal-mcp",
+  "version_audited": "0.1.0 + Sprint 0-2 (post PR #4)",
+  "baseline_audit": "audits/2026-05-12-hn-tech-signal-mcp/",
+  "baseline_run_id": "audit-2026-05-12T00:00Z-hn-tech-signal-mcp",
+  "audit_date": "2026-05-12",
+  "skill": "mcp-audit-skill@v0.5.0",
+  "production_ready": true,
+  "blocker_findings": [],
+  "counts": {
+    "baseline_findings": 11,
+    "closed_in_remediation": 11,
+    "still_open": 0,
+    "new_findings": 1,
+    "new_critical": 0,
+    "new_high": 0,
+    "new_medium": 0,
+    "new_low": 1
+  },
+  "closed": [
+    {"id": "SEC-001", "severity": "critical", "pr": 2, "verified_by": "code-grep + test_github_token_only_sent_to_github + test_no_auth_header_without_token"},
+    {"id": "SEC-002", "severity": "high",     "pr": 2, "verified_by": "code-grep + 3x bind regression tests", "caveat": "Auth enforcement assumes reverse proxy; in-process middleware not implemented (see OPS-003-followup)"},
+    {"id": "ARCH-001","severity": "medium",  "pr": 3, "verified_by": "pyproject.toml diff"},
+    {"id": "SEC-003", "severity": "medium",  "pr": 3, "verified_by": "import grep + test_xml_parser_is_defused"},
+    {"id": "SDK-001", "severity": "medium",  "pr": 3, "verified_by": "grep -c datetime.utcnow == 0 + test_no_datetime_utcnow_in_source"},
+    {"id": "OBS-001", "severity": "medium",  "pr": 3, "verified_by": "logger.* call count >= 3 + test_handle_error_logs_warning"},
+    {"id": "SEC-004", "severity": "low",     "pr": 4, "verified_by": "validator presence + 3 arxiv_search regression tests"},
+    {"id": "SCALE-001","severity": "low",    "pr": 4, "verified_by": "OrderedDict + popitem + test_cache_evicts_oldest_when_full"},
+    {"id": "SDK-002", "severity": "low",     "pr": 4, "verified_by": "server symbol + test_server_symbol_replaces_mcp"},
+    {"id": "OPS-001", "severity": "low",     "pr": 4, "verified_by": "ci.yml has ruff check/format + cov-fail-under=45"},
+    {"id": "OPS-002", "severity": "low",     "pr": 4, "verified_by": "SECURITY.md, .github/dependabot.yml, .github/CODEOWNERS present"}
+  ],
+  "new_findings": [
+    {"id": "OPS-003", "severity": "low", "title": "CI [dev]-extra installation falls back silently", "effort": "S"}
+  ],
+  "release_recommendation": "Release v0.2.0 — all blockers closed, regression tests cover every fix, CI gates active."
+}

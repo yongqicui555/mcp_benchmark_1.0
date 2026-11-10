@@ -1,0 +1,30 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.nugehs/tieline",
+  "title": "tieline",
+  "description": "Static FE-BE contract-drift checker: finds frontend calls the backend does not expose. CLI + MCP.",
+  "websiteUrl": "https://github.com/nugehs/tieline#readme",
+  "repository": {
+    "url": "https://github.com/nugehs/tieline",
+    "source": "github"
+  },
+  "version": "0.1.4",
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "@nugehs/tieline",
+      "version": "0.1.4",
+      "runtimeHint": "npx",
+      "transport": {
+        "type": "stdio"
+      },
+      "packageArguments": [
+        {
+          "type": "positional",
+          "value": "mcp"
+        }
+      ]
+    }
+  ]
+}

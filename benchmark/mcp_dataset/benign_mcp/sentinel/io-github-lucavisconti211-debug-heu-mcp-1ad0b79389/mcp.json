@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-lucavisconti211-debug-heu-mcp-1ad0b79389": {
+      "args": [
+        "/app/io-github-lucavisconti211-debug-heu-mcp-1ad0b79389/heu-mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

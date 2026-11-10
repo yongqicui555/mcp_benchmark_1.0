@@ -1,0 +1,34 @@
+=== generic exception leak pattern ===
+(empty=fixed)
+=== _handle_api_error generic branch ===
+    if isinstance(e, EgressNotAllowedError):
+        return "Fehler: Datenquelle nicht in Egress-Allowlist (Konfigurationsproblem)."
+    if isinstance(e, httpx.HTTPStatusError):
+        if e.response.status_code == 404:
+            return "Fehler: Ressource nicht gefunden. Bitte Koordinaten oder Parameter prüfen."
+        if e.response.status_code == 429:
+            return "Fehler: Rate-Limit erreicht. Bitte kurz warten."
+        if e.response.status_code >= 500:
+            return f"Fehler: API-Server nicht erreichbar (HTTP {e.response.status_code})."
+        return f"Fehler: API-Anfrage fehlgeschlagen (HTTP {e.response.status_code})."
+    if isinstance(e, httpx.TimeoutException):
+        return "Fehler: Zeitüberschreitung. API antwortet nicht – bitte erneut versuchen."
+    if isinstance(e, httpx.ConnectError):
+        return "Fehler: Keine Verbindung zur API. Netzwerk prüfen."
+    logger.exception("Unerwarteter Fehler in Tool-Aufruf")
+    return "Fehler: Unerwarteter interner Fehler. Bitte erneut versuchen."
+
+
+def _raise_api_error(e: Exception) -> NoReturn:
+    """Klassifiziert einen API-Fehler und raise't `ToolError` (OBS-001).
+
+    Resultat auf der Wire: `CallToolResult(isError=True, ...)` — der Client
+    kann zwischen "Tool lief, Daten OK" und "Tool-Aufruf fehlgeschlagen"
+    unterscheiden und Retry-Logik anwenden. Generische Messages stellen
+    sicher, dass keine Stack/URL/Class-Details leaken (OBS-002).
+    """
+    raise ToolError(_handle_api_error(e)) from e
+
+
+# ---------------------------------------------------------------------------
+# Server-Initialisierung

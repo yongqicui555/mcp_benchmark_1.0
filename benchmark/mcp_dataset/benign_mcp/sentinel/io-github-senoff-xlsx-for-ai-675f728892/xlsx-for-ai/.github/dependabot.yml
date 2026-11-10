@@ -1,0 +1,49 @@
+version: 2
+
+# xlsx-for-ai dependency surveillance.
+#
+# The published client is a thin relay: it reads local .xlsx bytes and sends
+# them to the hosted API, which does all parsing and rendering server-side.
+# The only runtime dependency is `@modelcontextprotocol/sdk` plus its
+# transitive closure — that is the entire supply-chain surface that reaches
+# users on `npm install`. (The spreadsheet engines — exceljs, @protobi/exceljs,
+# xlsx, papaparse, formulajs — now live in the server repo, which owns their
+# surveillance.)
+#
+# Strategy: watch npm and GitHub Actions weekly. Direct dependency bumps land
+# as reviewable PRs labelled for security review; transitives change only via a
+# direct bump or a security advisory Dependabot raises against them.
+
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "America/Chicago"
+    open-pull-requests-limit: 10
+    versioning-strategy: "increase-if-necessary"
+    labels:
+      - "dependencies"
+      - "security-review"
+    commit-message:
+      prefix: "deps"
+      include: "scope"
+    # Major bumps get their own PR per package — never grouped — so a
+    # potentially breaking change gets a manual look.
+    ignore: []
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "America/Chicago"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "ci"
+    commit-message:
+      prefix: "ci"

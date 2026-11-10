@@ -1,0 +1,239 @@
+name: Release
+on:
+  push:
+    branches: [main]
+    paths:
+      - src/mcp_openrouter/__init__.py
+      - server.json
+      - pyproject.toml
+      - CHANGELOG.md
+      - .github/workflows/release.yml
+concurrency:
+  group: release
+  cancel-in-progress: false
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - uses: astral-sh/setup-uv@v7
+        with:
+          cache: true
+      - run: uv sync --dev
+      - run: uv run ruff check src tests
+      - run: uv run pytest tests/test_cli.py tests/test_client.py tests/test_config.py tests/test_installer.py tests/test_release_metadata.py tests/test_server.py
+      - env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: uv run pytest tests/test_tools.py
+
+  publish:
+    needs: [test]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: pypi
+    permissions:
+      contents: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Check version
+        id: check-version
+        shell: bash
+        run: |
+          VERSION=$(python -c "
+          import tomllib
+          import re
+
+          with open('pyproject.toml', 'rb') as f:
+              config = tomllib.load(f)
+
+          project = config.get('project', {})
+
+          if 'version' in project:
+              print(project['version'])
+          elif 'version' in project.get('dynamic', []):
+              hatch_config = config.get('tool', {}).get('hatch', {}).get('version', {})
+              version_path = hatch_config.get('path')
+              if version_path:
+                  with open(version_path) as vf:
+                      content = vf.read()
+                      match = re.search(r'__version__\\s*=\\s*[\"\\']([^\"\\']+)[\"\\']', content)
+                      if match:
+                          print(match.group(1))
+                      else:
+                          raise ValueError(f'Could not find __version__ in {version_path}')
+              else:
+                  raise ValueError('Dynamic version specified but no hatch.version.path found')
+          else:
+              raise ValueError('No version found in pyproject.toml')
+          ")
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag=v$VERSION" >> "$GITHUB_OUTPUT"
+          if git rev-parse "refs/tags/v$VERSION" >/dev/null 2>&1; then
+            echo "tag_exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "tag_exists=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Setup uv
+        if: steps.check-version.outputs.tag_exists == 'false'
+        uses: astral-sh/setup-uv@v7
+        with:
+          cache: true
+      - name: Validate release metadata
+        if: steps.check-version.outputs.tag_exists == 'false'
+        env:
+          RELEASE_VERSION: ${{ steps.check-version.outputs.version }}
+          RELEASE_TAG: ${{ steps.check-version.outputs.tag }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import re
+          import tomllib
+          from pathlib import Path
+
+          root = Path(".")
+          config = tomllib.loads((root / "pyproject.toml").read_text())
+          server = json.loads((root / "server.json").read_text())
+
+          version_path = root / config["tool"]["hatch"]["version"]["path"]
+          version_match = re.search(
+              r'__version__\s*=\s*["\']([^"\']+)["\']',
+              version_path.read_text(),
+          )
+          if not version_match:
+              raise SystemExit(f"Could not find __version__ in {version_path}")
+
+          package_version = version_match.group(1)
+          project_name = config["project"]["name"]
+          release_version = os.environ["RELEASE_VERSION"]
+          release_tag = os.environ["RELEASE_TAG"]
+
+          if release_version != package_version:
+              raise SystemExit(
+                  f"Workflow version {release_version} does not match package version {package_version}"
+              )
+          if server["version"] != package_version:
+              raise SystemExit(
+                  f"server.json version {server['version']} does not match package version {package_version}"
+              )
+          if server["packages"][0]["version"] != package_version:
+              raise SystemExit(
+                  "server.json package version "
+                  f"{server['packages'][0]['version']} does not match package version {package_version}"
+              )
+          if server["packages"][0]["identifier"] != project_name:
+              raise SystemExit(
+                  "server.json package identifier "
+                  f"{server['packages'][0]['identifier']} does not match project name {project_name}"
+              )
+          if release_tag != f"v{package_version}":
+              raise SystemExit(
+                  f"Release tag {release_tag} does not match expected v{package_version}"
+              )
+          PY
+      - name: Build package
+        if: steps.check-version.outputs.tag_exists == 'false'
+        run: uv build
+      - name: Smoke test built artifact
+        if: steps.check-version.outputs.tag_exists == 'false'
+        run: |
+          python -m venv /tmp/mcp-openrouter-smoke
+          . /tmp/mcp-openrouter-smoke/bin/activate
+          python -m pip install --upgrade pip
+          python -m pip install dist/*.whl
+          mcp-openrouter --help
+          mcp-openrouter install --help
+          mcp-openrouter uninstall --help
+          python - <<'PY'
+          import subprocess
+          import time
+
+          proc = subprocess.Popen(
+              ["mcp-openrouter", "serve"],
+              stdin=subprocess.PIPE,
+              stdout=subprocess.PIPE,
+              stderr=subprocess.PIPE,
+              text=True,
+          )
+          try:
+              time.sleep(2)
+              if proc.poll() is not None:
+                  stdout, stderr = proc.communicate(timeout=5)
+                  raise SystemExit(
+                      "mcp-openrouter serve exited early\n"
+                      f"stdout:\n{stdout}\n"
+                      f"stderr:\n{stderr}"
+                  )
+          finally:
+              proc.terminate()
+              try:
+                  proc.wait(timeout=5)
+              except subprocess.TimeoutExpired:
+                  proc.kill()
+                  proc.wait(timeout=5)
+          PY
+      - name: Render release notes
+        if: steps.check-version.outputs.tag_exists == 'false'
+        env:
+          RELEASE_VERSION: ${{ steps.check-version.outputs.version }}
+        run: |
+          python - <<'PY'
+          import os
+          import re
+          from pathlib import Path
+
+          version = os.environ["RELEASE_VERSION"]
+          changelog = Path("CHANGELOG.md").read_text()
+          pattern = re.compile(
+              rf"^## \[{re.escape(version)}\].*?(?=^## \[|\Z)",
+              re.MULTILINE | re.DOTALL,
+          )
+          match = pattern.search(changelog)
+          if not match:
+              raise SystemExit(f"Could not find CHANGELOG entry for {version}")
+          Path("/tmp/release-notes.md").write_text(match.group(0).strip() + "\n")
+          PY
+      - name: Create GitHub release
+        if: steps.check-version.outputs.tag_exists == 'false'
+        run: gh release create "${{ steps.check-version.outputs.tag }}" --title "${{ steps.check-version.outputs.tag }}" --notes-file /tmp/release-notes.md dist/*
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish to PyPI
+        if: steps.check-version.outputs.tag_exists == 'false'
+        uses: pypa/gh-action-pypi-publish@release/v1
+      - name: Wait for PyPI package availability
+        if: steps.check-version.outputs.tag_exists == 'false'
+        env:
+          RELEASE_VERSION: ${{ steps.check-version.outputs.version }}
+        run: |
+          for attempt in {1..30}; do
+            if curl --fail --silent --show-error "https://pypi.org/pypi/mcp-openrouter/${RELEASE_VERSION}/json" >/dev/null; then
+              echo "mcp-openrouter ${RELEASE_VERSION} is available on PyPI"
+              exit 0
+            fi
+            echo "Waiting for mcp-openrouter ${RELEASE_VERSION} on PyPI (${attempt}/30)"
+            sleep 10
+          done
+
+          echo "Timed out waiting for mcp-openrouter ${RELEASE_VERSION} on PyPI"
+          exit 1
+      - name: Install mcp-publisher
+        if: steps.check-version.outputs.tag_exists == 'false'
+        run: |
+          curl -L "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_$(uname -s | tr '[:upper:]' '[:lower:]')_$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/').tar.gz" | tar xz mcp-publisher
+      - name: Authenticate to MCP Registry
+        if: steps.check-version.outputs.tag_exists == 'false'
+        run: ./mcp-publisher login github-oidc
+      - name: Publish to MCP Registry
+        if: steps.check-version.outputs.tag_exists == 'false'
+        run: ./mcp-publisher publish

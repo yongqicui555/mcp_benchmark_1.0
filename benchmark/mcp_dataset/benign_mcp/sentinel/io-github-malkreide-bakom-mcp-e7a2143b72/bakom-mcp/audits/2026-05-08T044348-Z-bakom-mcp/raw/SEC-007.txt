@@ -1,0 +1,5 @@
+=== Dockerfile presence ===
+ls: cannot access 'Dockerfile*': No such file or directory
+=== docker-compose ===
+ls: cannot access 'docker-compose*': No such file or directory
+=== container references in docs ===

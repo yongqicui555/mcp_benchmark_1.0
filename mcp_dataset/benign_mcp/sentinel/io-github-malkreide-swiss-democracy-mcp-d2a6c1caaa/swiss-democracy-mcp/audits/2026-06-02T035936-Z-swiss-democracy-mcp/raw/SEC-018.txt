@@ -1,4 +1,0 @@
-# SEC-018 — re-audit (PASS)
-
-## Evidence
-- Alle Tool-Args via Pydantic (extra=forbid, ge/le, max_length); result_url zusätzlich host-validiert

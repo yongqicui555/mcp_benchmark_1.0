@@ -1,0 +1,18 @@
+{
+    "$schema": "https://glama.ai/mcp/servers/tb8412/qae-claude-mcp-example",
+  "maintainers": [
+    "tb8412"
+  ]
+  "name": "qae-safety-mcp",
+  "display_name": "QAE Safety Certification",
+  "description": "Deterministic safety certification for autonomous AI actions. Evaluates scope, reversibility, and sensitivity across constraint channels before execution.",
+  "license": "Apache-2.0",
+  "author": {
+    "name": "Northbeam Solutions LLC",
+    "url": "https://northbeam.solutions"
+  },
+  "repository": "https://github.com/tb8412/qae-claude-mcp-example",
+  "homepage": "https://qaesubstrate.com",
+  "categories": ["ai-safety", "certification", "autonomous-agents"],
+  "tags": ["safety", "certification", "risk", "constraints", "deterministic", "ai-agents"],
+}

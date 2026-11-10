@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-raskolnikovdd-adaptive-memory-graph-6d17650f21": {
+      "args": [
+        "/app/io-github-raskolnikovdd-adaptive-memory-graph-6d17650f21/adaptive-memory-graph/src/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-10-17/server.schema.json",
+  "name": "io.github.saucelabs/sauce-api-mcp",
+  "description": "An open-source MCP server that provides LLM access to the Sauce Labs API",
+  "repository": {
+    "url": "https://github.com/saucelabs/sauce-api-mcp",
+    "source": "github"
+  },
+  "version": "1.2.2",
+  "packages": [
+    {
+      "registryType": "pypi",
+      "registryBaseUrl": "https://pypi.org",
+      "identifier": "sauce-api-mcp",
+      "version": "1.2.2",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "SAUCE_USERNAME",
+          "value": "<sauce-user-name>"
+        },
+        {
+          "name": "SAUCE_ACCESS_KEY",
+          "value": "<sauce-access-key>"
+        }
+      ]
+    }
+  ]
+}

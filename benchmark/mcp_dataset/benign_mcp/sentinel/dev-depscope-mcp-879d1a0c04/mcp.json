@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "dev-depscope-mcp-879d1a0c04": {
+      "args": [
+        "/app/dev-depscope-mcp-879d1a0c04/depscope-mcp/index.js"
+      ],
+      "command": "node"
+    }
+  }
+}

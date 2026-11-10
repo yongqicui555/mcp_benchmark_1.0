@@ -1,8 +1,0 @@
-{
-  "mcpServers": {
-    "plasmate": {
-      "command": "plasmate",
-      "args": ["mcp"]
-    }
-  }
-}

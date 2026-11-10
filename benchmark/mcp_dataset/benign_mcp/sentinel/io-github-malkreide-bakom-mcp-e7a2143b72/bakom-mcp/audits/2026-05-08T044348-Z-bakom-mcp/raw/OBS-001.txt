@@ -1,0 +1,18 @@
+=== try/except in tools ===
+34
+=== McpError / ToolError usage ===
+=== error returning ===
+371:def _handle_api_error(e: Exception) -> str:
+487:        return _handle_api_error(e)
+552:        return _handle_api_error(e)
+588:              "fehler": str | None
+614:                        "fehler": "Koordinaten ausserhalb Schweiz",
+631:                        "fehler": None,
+643:                        "fehler": str(e)[:100],
+671:        err = s.get("fehler") or ""
+756:        return _handle_api_error(e)
+888:        return _handle_api_error(e)
+997:        return _handle_api_error(e)
+1130:        return _handle_api_error(e)
+1233:        return _handle_api_error(e)
+1507:        return _handle_api_error(e)

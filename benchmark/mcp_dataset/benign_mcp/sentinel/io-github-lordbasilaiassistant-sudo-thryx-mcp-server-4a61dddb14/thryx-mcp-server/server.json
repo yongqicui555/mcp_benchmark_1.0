@@ -1,0 +1,39 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.lordbasilaiassistant-sudo/thryx-mcp-server",
+  "title": "ThryxProtocol MCP Server",
+  "description": "ThryxProtocol v3.1 — gasless AI agent launchpad on Base. 21 tools wrap thryx.fun HTTP API.",
+  "websiteUrl": "https://www.npmjs.com/package/@thryx/mcp-server",
+  "repository": {
+    "url": "https://github.com/lordbasilaiassistant-sudo/thryx-mcp-server",
+    "source": "github"
+  },
+  "version": "1.5.0",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@thryx/mcp-server",
+      "version": "1.5.0",
+      "runtimeHint": "npx",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "THRYX_API_KEY",
+          "description": "Your THRYX API key (starts with thryx_). Get one for free with `curl -X POST https://thryx.fun/api/agent/register`. If unset, the package auto-registers a fresh wallet on first run and saves the key to ~/.thryx-mcp/credentials.json.",
+          "isRequired": false,
+          "isSecret": true,
+          "format": "string"
+        },
+        {
+          "name": "THRYX_BASE_URL",
+          "description": "Override the launchpad base URL. Defaults to https://thryx.fun.",
+          "isRequired": false,
+          "isSecret": false,
+          "format": "string"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "name": "@quantrisk/mcp-server",
+  "version": "1.0.0",
+  "description": "Portfolio risk analytics engine exposed as MCP tools — VaR, Monte Carlo, Markowitz optimization, options Greeks, and stress testing — for quant traders talking to AI assistants.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "quantrisk-mcp": "bin/quantrisk-mcp.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./server": {
+      "types": "./dist/server.d.ts",
+      "import": "./dist/server.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run clean && npm run build && npm test"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "quantitative-finance",
+    "risk-analytics",
+    "portfolio",
+    "var",
+    "value-at-risk",
+    "monte-carlo",
+    "options-greeks",
+    "stress-testing",
+    "markowitz",
+    "ai-tools",
+    "claude",
+    "cloudflare-workers"
+  ],
+  "author": "QuantRisk <hello@quantrisk.dev>",
+  "license": "MIT",
+  "homepage": "https://quantrisk.dev",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/quantrisk/mcp-server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/quantrisk/mcp-server/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "mathjs": "^13.0.0",
+    "stripe": "^15.0.0",
+    "yahoo-finance2": "^3.14.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260501.0",
+    "typescript": "^5.5.0",
+    "vitest": "^2.0.0",
+    "wrangler": "^3.80.0"
+  }
+}

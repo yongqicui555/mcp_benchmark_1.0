@@ -1,0 +1,46 @@
+name: Publish to PyPI
+
+on:
+  push:
+    tags:
+      - "v*"          # Ausgelöst bei jedem Tag wie v0.2.0, v1.0.0 etc.
+  workflow_dispatch:  # Erlaubt manuelles Auslösen (z.B. wenn kein Tag gepusht
+                      # werden kann). Veröffentlicht die Version aus pyproject.toml
+                      # des ausgewählten Branches. skip-existing schützt vor
+                      # Doppel-Uploads.
+
+jobs:
+  build-and-publish:
+    name: Build and publish to PyPI
+    runs-on: ubuntu-latest
+
+    environment:
+      name: pypi
+      url: https://pypi.org/p/swiss-snb-mcp
+
+    permissions:
+      id-token: write   # Pflicht für Trusted Publisher (OIDC)
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Install build dependencies
+        run: pip install hatch
+
+      - name: Build package
+        run: hatch build
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        # Kein 'with: password:' nötig — Trusted Publisher übernimmt das
+        with:
+          # Bricht nicht ab, wenn eine Version bereits auf PyPI existiert
+          # (PyPI ist immutable; ein Re-Upload derselben Version schlägt sonst
+          # mit "400 File already exists" fehl).
+          skip-existing: true

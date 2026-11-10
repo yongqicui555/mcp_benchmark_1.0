@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-ap311036-ews-meeting-mcp-559f4087c5": {
+      "args": [
+        "/app/io-github-ap311036-ews-meeting-mcp-559f4087c5/ews-meeting-mcp/src/ews_meeting_mcp/mcp_server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

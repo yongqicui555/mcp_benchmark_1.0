@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-pkotecha-eng-aria-mcp-server-e7c2145601": {
+      "args": [
+        "/app/io-github-pkotecha-eng-aria-mcp-server-e7c2145601/aria-mcp-server/aria_mcp_server/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

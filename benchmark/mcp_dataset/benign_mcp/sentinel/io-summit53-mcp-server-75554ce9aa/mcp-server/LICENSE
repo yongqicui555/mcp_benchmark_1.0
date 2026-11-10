@@ -1,0 +1,10 @@
+Copyright (c) 2026 Summit53 Pty Ltd. All rights reserved.
+
+This software is proprietary and confidential. Unauthorized copying, distribution,
+or use of this software, via any medium, is strictly prohibited.
+
+The Summit53 MCP Server npm package is provided as a convenience wrapper to connect
+MCP-compatible AI assistants to the hosted Summit53 service. Use of the Summit53
+service is subject to the Terms of Service at https://summit53.io/terms.
+
+For licensing inquiries, contact: support@summit53.io

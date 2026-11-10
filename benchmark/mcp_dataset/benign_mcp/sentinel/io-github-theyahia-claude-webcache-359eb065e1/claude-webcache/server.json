@@ -1,0 +1,23 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.theYahia/claude-webcache",
+  "description": "Cross-session WebFetch cache for Claude Code. Unlimited TTL by default, SQLite, MCP plugin.",
+  "title": "claude-webcache",
+  "websiteUrl": "https://github.com/theYahia/claude-webcache",
+  "repository": {
+    "url": "https://github.com/theYahia/claude-webcache",
+    "source": "github"
+  },
+  "version": "0.4.0",
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "@theyahia/claude-webcache",
+      "version": "0.4.0",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}

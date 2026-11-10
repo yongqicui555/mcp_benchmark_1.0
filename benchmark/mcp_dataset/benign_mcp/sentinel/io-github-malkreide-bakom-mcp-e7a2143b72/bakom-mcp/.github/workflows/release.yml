@@ -1,0 +1,45 @@
+name: Release on Tag
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+permissions:
+  contents: write  # Pflicht fuer das Erstellen eines GitHub Release
+
+jobs:
+  release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # vollstaendige History fuer auto-generated notes
+
+      - name: Extract changelog section for this tag
+        id: changelog
+        run: |
+          TAG="${GITHUB_REF_NAME}"
+          VERSION="${TAG#v}"
+          # Extract the [VERSION] - DATE … bis zum naechsten ^## [
+          awk "/^## \[${VERSION}\] -/{flag=1; next} /^## \[/{flag=0} flag" CHANGELOG.md > .release-body.md
+          if [ ! -s .release-body.md ]; then
+            echo "No CHANGELOG entry for ${VERSION} found." > .release-body.md
+          fi
+          {
+            echo "body<<EOF"
+            cat .release-body.md
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: ${{ github.ref_name }}
+          body: ${{ steps.changelog.outputs.body }}
+          generate_release_notes: true
+          # Veroeffentlichter Release triggert publish.yml fuer PyPI
+          draft: false
+          prerelease: false

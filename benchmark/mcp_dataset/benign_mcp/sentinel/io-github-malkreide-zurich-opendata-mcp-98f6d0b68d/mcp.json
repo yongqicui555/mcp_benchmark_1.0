@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-malkreide-zurich-opendata-mcp-98f6d0b68d": {
+      "args": [
+        "/app/io-github-malkreide-zurich-opendata-mcp-98f6d0b68d/zurich-opendata-mcp/src/zurich_opendata_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

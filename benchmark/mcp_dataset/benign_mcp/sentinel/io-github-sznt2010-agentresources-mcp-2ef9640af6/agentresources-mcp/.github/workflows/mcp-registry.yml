@@ -1,0 +1,41 @@
+name: Publish to MCP Registry
+
+# Re-publishes server.json to registry.modelcontextprotocol.io after a release
+# tag (`vX.Y.Z`) is pushed. Uses GitHub OIDC — no long-lived secret needed.
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Validate server.json
+        run: |
+          set -euo pipefail
+          npm i -g ajv-cli@5
+          curl -sSL -o /tmp/server.schema.json \
+            https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json
+          ajv validate -s /tmp/server.schema.json -d server.json --strict=false
+
+      - name: Publish via mcp-publisher
+        run: |
+          set -euo pipefail
+          curl -L "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_linux_amd64.tar.gz" \
+            | tar xz mcp-publisher
+          ./mcp-publisher login github-oidc
+          ./mcp-publisher publish

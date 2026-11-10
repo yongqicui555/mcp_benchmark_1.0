@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-major-pcp-8ee0acbe9e": {
+      "args": [
+        "/app/io-github-major-pcp-8ee0acbe9e/pcp-mcp/src/pcp_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

@@ -1,9 +1,0 @@
-src/
-*.test.*
-.env*
-test.mjs
-tsconfig.json
-dist/tools/geolocation.js
-dist/tools/geolocation.js.map
-dist/tools/geolocation.d.ts
-dist/tools/geolocation.d.ts.map

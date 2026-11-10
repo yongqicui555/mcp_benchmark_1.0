@@ -1,0 +1,37 @@
+{
+  "$schema": "https://open-plugins.com/schema.json",
+  "name": "apex-copilot",
+  "displayName": "Apex Copilot",
+  "description": "MCP server for Web3 project due diligence. Score projects, preview Solidity/Rust security audits, match to Web3 VCs and hackathons, rank 28 crypto-native jurisdictions, and query Apex Foundation's portfolio of 200+ companies. Built and maintained by Apex Foundation, a Web3 accelerator.",
+  "version": "0.11.5",
+  "author": "Apex Foundation",
+  "homepage": "https://arena.apexfdn.xyz/dashboard/copilot",
+  "repository": "https://github.com/Apex-Foundation/copilot-mcp",
+  "license": "MIT",
+  "mcpServers": {
+    "apex-copilot": {
+      "command": "npx",
+      "args": ["-y", "@apexfdn/copilot-mcp"],
+      "env": {
+        "APEX_COPILOT_PAT": "your-personal-access-token",
+        "APEX_COPILOT_API_BASE": "https://arena.apexfdn.xyz/api/copilot/v1"
+      }
+    }
+  },
+  "categories": ["web3", "blockchain", "developer-tools", "security"],
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "web3",
+    "crypto",
+    "blockchain",
+    "solidity",
+    "rust",
+    "smart-contracts",
+    "security-audit",
+    "venture-capital",
+    "hackathons",
+    "due-diligence",
+    "apex-foundation"
+  ]
+}

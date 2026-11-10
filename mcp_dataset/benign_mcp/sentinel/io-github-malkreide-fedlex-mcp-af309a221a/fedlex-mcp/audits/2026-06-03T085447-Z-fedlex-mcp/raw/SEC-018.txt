@@ -1,2 +1,0 @@
-=== SEC-018 validation ===
-34

@@ -1,0 +1,8 @@
+=== @mcp.prompt registered ===
+1964:@mcp.prompt(
+1993:@mcp.prompt(
+2020:@mcp.prompt(
+=== prompt fns ===
+1973:def prompt_schulhaus_konnektivitaet(
+2001:def prompt_rtv_kanton_uebersicht(
+2028:def prompt_standort_konnektivitaet_vergleich(

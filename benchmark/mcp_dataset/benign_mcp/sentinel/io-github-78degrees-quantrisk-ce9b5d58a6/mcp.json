@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-78degrees-quantrisk-ce9b5d58a6": {
+      "args": [
+        "/app/io-github-78degrees-quantrisk-ce9b5d58a6/mcp-server/bin/quantrisk-mcp.js"
+      ],
+      "command": "node"
+    }
+  }
+}

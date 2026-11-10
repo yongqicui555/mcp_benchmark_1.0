@@ -1,3 +1,0 @@
-"""
-GWAS MCP Server Tests
-"""

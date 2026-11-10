@@ -1,0 +1,57 @@
+"""
+FinanceKit MCP Server — Financial Market Intelligence for AI Agents.
+
+Provides stock quotes, technical analysis, crypto market data,
+asset comparison, and portfolio analysis tools.
+"""
+
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+from fastmcp import FastMCP
+
+from financekit.tools.stocks import register_stock_tools
+from financekit.tools.crypto import register_crypto_tools
+from financekit.tools.technical import register_technical_tools
+from financekit.tools.compare import register_compare_tools
+from financekit.tools.market import register_market_tools
+from financekit.tools.premium import register_premium_tools
+
+mcp = FastMCP(
+    name="FinanceKit",
+    instructions=(
+        "FinanceKit provides real-time financial market data and analysis. "
+        "Use these tools to get stock quotes, crypto prices, technical indicators "
+        "(RSI, MACD, Bollinger Bands, SMA/EMA), compare assets, analyze portfolios, "
+        "and get a market overview with major indices, VIX, and top movers. "
+        "Data comes from Yahoo Finance and CoinGecko. "
+        "Technical indicators are calculated from historical price data."
+    ),
+    version="1.2.0",
+    mask_error_details=True,
+)
+
+# Register all tool groups
+register_stock_tools(mcp)
+register_crypto_tools(mcp)
+register_technical_tools(mcp)
+register_compare_tools(mcp)
+register_market_tools(mcp)
+register_premium_tools(mcp)
+
+
+def main():
+    """Entry point for the FinanceKit MCP server."""
+    import os
+    if os.environ.get("PORT"):
+        # Running in cloud (MCPize/Cloud Run) — use HTTP transport
+        port = int(os.environ["PORT"])
+        mcp.run(transport="http", host="0.0.0.0", port=port)
+    else:
+        # Running locally — use stdio transport
+        mcp.run()
+
+
+if __name__ == "__main__":
+    main()

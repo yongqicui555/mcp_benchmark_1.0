@@ -1,0 +1,9 @@
+=== tests dir contents ===
+tests/test_integration.py
+tests/test_20_szenarien.py
+tests/test_20_neue_szenarien.py
+tests/test_scenarios_20.py
+=== test markers (live/integration) ===
+=== mocking ===
+=== conftest ===
+ls: cannot access 'tests/conftest.py': No such file or directory

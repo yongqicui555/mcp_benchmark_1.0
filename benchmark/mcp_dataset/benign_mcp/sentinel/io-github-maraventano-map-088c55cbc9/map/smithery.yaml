@@ -1,0 +1,11 @@
+# Smithery configuration file: https://smithery.ai/docs/config#smitheryyaml
+# MAP is a stdio MCP server published to npm.
+
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    required: []
+    properties: {}
+  commandFunction: |-
+    (config) => ({ command: 'npx', args: ['@maraventano/map'] })

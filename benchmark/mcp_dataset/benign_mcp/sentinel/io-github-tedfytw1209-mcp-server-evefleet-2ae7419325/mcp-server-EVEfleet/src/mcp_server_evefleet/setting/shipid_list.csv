@@ -1,0 +1,532 @@
+typeID,groupID,typeName,groupName
+582,25,Bantam,Frigate
+583,25,Condor,Frigate
+584,25,Griffin,Frigate
+585,25,Slasher,Frigate
+586,25,Probe,Frigate
+587,25,Rifter,Frigate
+588,237,Reaper,Corvette
+589,25,Executioner,Frigate
+590,25,Inquisitor,Frigate
+591,25,Tormentor,Frigate
+592,25,Navitas,Frigate
+593,25,Tristan,Frigate
+594,25,Incursus,Frigate
+595,25,Gallente Police Ship,Frigate
+596,237,Impairor,Corvette
+597,25,Punisher,Frigate
+598,25,Breacher,Frigate
+599,25,Burst,Frigate
+600,25,Minmatar Peacekeeper Ship,Frigate
+601,237,Ibis,Corvette
+602,25,Kestrel,Frigate
+603,25,Merlin,Frigate
+605,25,Heron,Frigate
+606,237,Velator,Corvette
+607,25,Imicus,Frigate
+608,25,Atron,Frigate
+609,25,Maulus,Frigate
+613,25,Devourer,Frigate
+614,25,Fury,Frigate
+615,237,Immolator,Corvette
+616,25,Medusa,Frigate
+617,237,Echo,Corvette
+618,25,Lynx,Frigate
+619,25,Swordspine,Frigate
+620,26,Osprey,Cruiser
+621,26,Caracal,Cruiser
+622,26,Stabber,Cruiser
+623,26,Moa,Cruiser
+624,26,Maller,Cruiser
+625,26,Augoror,Cruiser
+626,26,Vexor,Cruiser
+627,26,Thorax,Cruiser
+628,26,Arbitrator,Cruiser
+629,26,Rupture,Cruiser
+630,26,Bellicose,Cruiser
+631,26,Scythe,Cruiser
+632,26,Blackbird,Cruiser
+633,26,Celestis,Cruiser
+634,26,Exequror,Cruiser
+635,26,Opux Luxury Yacht,Cruiser
+638,27,Raven,Battleship
+639,27,Tempest,Battleship
+640,27,Scorpion,Battleship
+641,27,Megathron,Battleship
+642,27,Apocalypse,Battleship
+643,27,Armageddon,Battleship
+644,27,Typhoon,Battleship
+645,27,Dominix,Battleship
+648,28,Badger,Hauler
+649,28,Tayra,Hauler
+650,28,Nereus,Hauler
+651,28,Hoarder,Hauler
+652,28,Mammoth,Hauler
+653,28,Wreathe,Hauler
+654,28,Kryos,Hauler
+655,28,Epithal,Hauler
+656,28,Miasmos,Hauler
+657,28,Iteron Mark V,Hauler
+670,29,Capsule,Capsule
+671,30,Erebus,Titan
+672,31,Caldari Shuttle,Shuttle
+1233,237,Polaris Enigma Frigate,Corvette
+1896,25,Concord Police Frigate,Frigate
+1898,25,Concord SWAT Frigate,Frigate
+1900,25,Concord Army Frigate,Frigate
+1902,25,Concord Special Ops Frigate,Frigate
+1904,26,Concord Police Cruiser,Cruiser
+1912,27,Concord Police Battleship,Battleship
+1914,27,Concord Special Ops Battleship,Battleship
+1916,27,Concord SWAT Battleship,Battleship
+1918,27,Concord Army Battleship,Battleship
+1944,28,Bestower,Hauler
+2006,26,Omen,Cruiser
+2078,1022,Zephyr,Prototype Exploration Ship
+2161,25,Crucifier,Frigate
+2834,324,Utu,Assault Frigate
+2836,358,Adrestia,Heavy Assault Cruiser
+2863,28,Primae,Hauler
+2998,28,Noctis,Hauler
+3514,659,Revenant,Supercarrier
+3516,324,Malice,Assault Frigate
+3518,358,Vangel,Heavy Assault Cruiser
+3532,25,Echelon,Frigate
+3628,659,Nation,Supercarrier
+3751,25,SOCT 1,Frigate
+3753,25,SOCT 2,Frigate
+3756,419,Gnosis,Combat Battlecruiser
+3764,30,Leviathan,Titan
+3766,25,Vigil,Frigate
+3768,25,Amarr Police Frigate,Frigate
+4005,27,Scorpion Ishukone Watch,Battleship
+4302,1201,Oracle,Attack Battlecruiser
+4306,1201,Naga,Attack Battlecruiser
+4308,1201,Talos,Attack Battlecruiser
+4310,1201,Tornado,Attack Battlecruiser
+4363,28,Miasmos Quafe Ultra Edition,Hauler
+4388,28,Miasmos Quafe Ultramarine Edition,Hauler
+9854,237,Polaris Inspector Frigate,Corvette
+9858,237,Polaris Centurion TEST,Corvette
+9860,237,Polaris Legatus Frigate,Corvette
+9862,237,Polaris Centurion Frigate,Corvette
+11011,26,Guardian-Vexor,Cruiser
+11019,25,Cockroach,Frigate
+11129,31,Gallente Shuttle,Shuttle
+11132,31,Minmatar Shuttle,Shuttle
+11134,31,Amarr Shuttle,Shuttle
+11172,830,Helios,Covert Ops
+11174,893,Keres,Electronic Attack Ship
+11176,831,Crow,Interceptor
+11178,831,Raptor,Interceptor
+11182,830,Cheetah,Covert Ops
+11184,831,Crusader,Interceptor
+11186,831,Malediction,Interceptor
+11188,830,Anathema,Covert Ops
+11190,893,Sentinel,Electronic Attack Ship
+11192,830,Buzzard,Covert Ops
+11194,893,Kitsune,Electronic Attack Ship
+11196,831,Claw,Interceptor
+11198,831,Stiletto,Interceptor
+11200,831,Taranis,Interceptor
+11202,831,Ares,Interceptor
+11365,324,Vengeance,Assault Frigate
+11371,324,Wolf,Assault Frigate
+11373,324,Blade,Assault Frigate
+11375,324,Erinye,Assault Frigate
+11377,834,Nemesis,Stealth Bomber
+11379,324,Hawk,Assault Frigate
+11381,324,Harpy,Assault Frigate
+11383,324,Gatherer,Assault Frigate
+11387,893,Hyena,Electronic Attack Ship
+11389,324,Kishar,Assault Frigate
+11393,324,Retribution,Assault Frigate
+11400,324,Jaguar,Assault Frigate
+11567,30,Avatar,Titan
+11936,27,Apocalypse Imperial Issue,Battleship
+11938,27,Armageddon Imperial Issue,Battleship
+11940,25,Gold Magnate,Frigate
+11942,25,Silver Magnate,Frigate
+11957,833,Falcon,Force Recon Ship
+11959,906,Rook,Combat Recon Ship
+11961,906,Huginn,Combat Recon Ship
+11963,833,Rapier,Force Recon Ship
+11965,833,Pilgrim,Force Recon Ship
+11969,833,Arazu,Force Recon Ship
+11971,906,Lachesis,Combat Recon Ship
+11978,832,Scimitar,Logistics
+11985,832,Basilisk,Logistics
+11987,832,Guardian,Logistics
+11989,832,Oneiros,Logistics
+11993,358,Cerberus,Heavy Assault Cruiser
+11995,894,Onyx,Heavy Interdiction Cruiser
+11999,358,Vagabond,Heavy Assault Cruiser
+12003,358,Zealot,Heavy Assault Cruiser
+12005,358,Ishtar,Heavy Assault Cruiser
+12011,358,Eagle,Heavy Assault Cruiser
+12013,894,Broadsword,Heavy Interdiction Cruiser
+12015,358,Muninn,Heavy Assault Cruiser
+12017,894,Devoter,Heavy Interdiction Cruiser
+12019,358,Sacrilege,Heavy Assault Cruiser
+12021,894,Phobos,Heavy Interdiction Cruiser
+12023,358,Deimos,Heavy Assault Cruiser
+12032,834,Manticore,Stealth Bomber
+12034,834,Hound,Stealth Bomber
+12036,324,Dagger,Assault Frigate
+12038,834,Purifier,Stealth Bomber
+12042,324,Ishkur,Assault Frigate
+12044,324,Enyo,Assault Frigate
+12729,1202,Crane,Blockade Runner
+12731,380,Bustard,Deep Space Transport
+12733,1202,Prorator,Blockade Runner
+12735,1202,Prowler,Blockade Runner
+12743,1202,Viator,Blockade Runner
+12745,380,Occator,Deep Space Transport
+12747,380,Mastodon,Deep Space Transport
+12753,380,Impel,Deep Space Transport
+13202,27,Megathron Federate Issue,Battleship
+16227,419,Ferox,Combat Battlecruiser
+16229,419,Brutix,Combat Battlecruiser
+16231,419,Cyclone,Combat Battlecruiser
+16233,419,Prophecy,Combat Battlecruiser
+16236,420,Coercer,Destroyer
+16238,420,Cormorant,Destroyer
+16240,420,Catalyst,Destroyer
+16242,420,Thrasher,Destroyer
+17360,25,Immovable Enigma,Frigate
+17476,463,Covetor,Mining Barge
+17478,463,Retriever,Mining Barge
+17480,463,Procurer,Mining Barge
+17619,25,Caldari Navy Hookbill,Frigate
+17634,26,Caracal Navy Issue,Cruiser
+17636,27,Raven Navy Issue,Battleship
+17703,25,Imperial Navy Slicer,Frigate
+17705,25,Khanid Navy Frigate,Frigate
+17707,25,Mordus Frigate,Frigate
+17709,26,Omen Navy Issue,Cruiser
+17713,26,Stabber Fleet Issue,Cruiser
+17715,26,Gila,Cruiser
+17718,26,Phantasm,Cruiser
+17720,26,Cynabal,Cruiser
+17722,26,Vigilant,Cruiser
+17726,27,Apocalypse Navy Issue,Battleship
+17728,27,Megathron Navy Issue,Battleship
+17732,27,Tempest Fleet Issue,Battleship
+17736,27,Nightmare,Battleship
+17738,27,Machariel,Battleship
+17740,27,Vindicator,Battleship
+17812,25,Republic Fleet Firetail,Frigate
+17841,25,Federation Navy Comet,Frigate
+17843,26,Vexor Navy Issue,Cruiser
+17918,27,Rattlesnake,Battleship
+17920,27,Bhaalgorn,Battleship
+17922,26,Ashimmu,Cruiser
+17924,25,Succubus,Frigate
+17926,25,Cruor,Frigate
+17928,25,Daredevil,Frigate
+17930,25,Worm,Frigate
+17932,25,Dramiel,Frigate
+19720,485,Revelation,Dreadnought
+19722,485,Naglfar,Dreadnought
+19724,485,Moros,Dreadnought
+19726,485,Phoenix,Dreadnought
+19744,28,Sigil,Hauler
+20125,906,Curse,Combat Recon Ship
+20183,513,Providence,Freighter
+20185,513,Charon,Freighter
+20187,513,Obelisk,Freighter
+20189,513,Fenrir,Freighter
+21097,31,Goru's Shuttle,Shuttle
+21628,31,Guristas Shuttle,Shuttle
+22428,898,Redeemer,Black Ops
+22430,898,Sin,Black Ops
+22436,898,Widow,Black Ops
+22440,898,Panther,Black Ops
+22442,540,Eos,Command Ship
+22444,540,Sleipnir,Command Ship
+22446,540,Vulture,Command Ship
+22448,540,Absolution,Command Ship
+22452,541,Heretic,Interdictor
+22456,541,Sabre,Interdictor
+22460,541,Eris,Interdictor
+22464,541,Flycatcher,Interdictor
+22466,540,Astarte,Command Ship
+22468,540,Claymore,Command Ship
+22470,540,Nighthawk,Command Ship
+22474,540,Damnation,Command Ship
+22544,543,Hulk,Exhumer
+22546,543,Skiff,Exhumer
+22548,543,Mackinaw,Exhumer
+22852,659,Hel,Supercarrier
+23757,547,Archon,Carrier
+23773,30,Ragnarok,Titan
+23911,547,Thanatos,Carrier
+23913,659,Nyx,Supercarrier
+23915,547,Chimera,Carrier
+23917,659,Wyvern,Supercarrier
+23919,659,Aeon,Supercarrier
+24483,547,Nidhoggur,Carrier
+24688,27,Rokh,Battleship
+24690,27,Hyperion,Battleship
+24692,27,Abaddon,Battleship
+24694,27,Maelstrom,Battleship
+24696,419,Harbinger,Combat Battlecruiser
+24698,419,Drake,Combat Battlecruiser
+24700,419,Myrmidon,Combat Battlecruiser
+24702,419,Hurricane,Combat Battlecruiser
+25560,26,Opux Dragoon Yacht,Cruiser
+26840,27,Raven State Issue,Battleship
+26842,27,Tempest Tribal Issue,Battleship
+27299,31,Civilian Amarr Shuttle,Shuttle
+27301,31,Civilian Caldari Shuttle,Shuttle
+27303,31,Civilian Gallente Shuttle,Shuttle
+27305,31,Civilian Minmatar Shuttle,Shuttle
+28352,883,Rorqual,Capital Industrial Ship
+28606,941,Orca,Industrial Command Ship
+28659,900,Paladin,Marauder
+28661,900,Kronos,Marauder
+28665,900,Vargur,Marauder
+28710,900,Golem,Marauder
+28844,902,Rhea,Jump Freighter
+28846,902,Nomad,Jump Freighter
+28848,902,Anshar,Jump Freighter
+28850,902,Ark,Jump Freighter
+29248,25,Magnate,Frigate
+29266,31,Apotheosis,Shuttle
+29328,31,Amarr Media Shuttle,Shuttle
+29330,31,Caldari Media Shuttle,Shuttle
+29332,31,Gallente Media Shuttle,Shuttle
+29334,31,Minmatar Media Shuttle,Shuttle
+29336,26,Scythe Fleet Issue,Cruiser
+29337,26,Augoror Navy Issue,Cruiser
+29340,26,Osprey Navy Issue,Cruiser
+29344,26,Exequror Navy Issue,Cruiser
+29984,963,Tengu,Strategic Cruiser
+29986,963,Legion,Strategic Cruiser
+29988,963,Proteus,Strategic Cruiser
+29990,963,Loki,Strategic Cruiser
+30842,31,InterBus Shuttle,Shuttle
+32207,324,Freki,Assault Frigate
+32209,358,Mimir,Heavy Assault Cruiser
+32305,27,Armageddon Navy Issue,Battleship
+32307,27,Dominix Navy Issue,Battleship
+32309,27,Scorpion Navy Issue,Battleship
+32311,27,Typhoon Fleet Issue,Battleship
+32788,324,Cambion,Assault Frigate
+32790,832,Etana,Logistics
+32811,28,Miasmos Amastris Edition,Hauler
+32840,420,InterBus Catalyst,Destroyer
+32842,420,Intaki Syndicate Catalyst,Destroyer
+32844,420,Inner Zone Shipping Catalyst,Destroyer
+32846,420,Quafe Catalyst,Destroyer
+32848,420,Aliastra Catalyst,Destroyer
+32872,420,Algos,Destroyer
+32874,420,Dragoon,Destroyer
+32876,420,Corax,Destroyer
+32878,420,Talwar,Destroyer
+32880,25,Venture,Frigate
+32983,25,Sukuuvestaa Heron,Frigate
+32985,25,Inner Zone Shipping Imicus,Frigate
+32987,25,Sarum Magnate,Frigate
+32989,25,Vherokior Probe,Frigate
+33079,237,Hematos,Corvette
+33081,237,Taipan,Corvette
+33083,237,Violator,Corvette
+33099,420,Nefantar Thrasher,Destroyer
+33151,419,Brutix Navy Issue,Combat Battlecruiser
+33153,419,Drake Navy Issue,Combat Battlecruiser
+33155,419,Harbinger Navy Issue,Combat Battlecruiser
+33157,419,Hurricane Fleet Issue,Combat Battlecruiser
+33190,25,Tash-Murkon Magnate,Frigate
+33328,29,Capsule - Genolution 'Auroral' 197-variant,Capsule
+33395,833,Moracha,Force Recon Ship
+33397,830,Chremoas,Covert Ops
+33468,25,Astero,Frigate
+33470,26,Stratios,Cruiser
+33472,27,Nestor,Battleship
+33513,31,Leopard,Shuttle
+33553,26,Stratios Emergency Responder,Cruiser
+33623,27,Abaddon Tash-Murkon Edition,Battleship
+33625,27,Abaddon Kador Edition,Battleship
+33627,27,Rokh Nugoeihuvi Edition,Battleship
+33629,27,Rokh Wiyrkomi Edition,Battleship
+33631,27,Maelstrom Nefantar Edition,Battleship
+33633,27,Maelstrom Krusual Edition,Battleship
+33635,27,Hyperion Aliastra Edition,Battleship
+33637,27,Hyperion Inner Zone Shipping Edition,Battleship
+33639,26,Omen Kador Edition,Cruiser
+33641,26,Omen Tash-Murkon Edition,Cruiser
+33643,26,Caracal Nugoeihuvi Edition,Cruiser
+33645,26,Caracal Wiyrkomi Edition,Cruiser
+33647,26,Stabber Nefantar Edition,Cruiser
+33649,26,Stabber Krusual Edition,Cruiser
+33651,26,Thorax Aliastra Edition,Cruiser
+33653,26,Thorax Inner Zone Shipping Edition,Cruiser
+33655,25,Punisher Kador Edition,Frigate
+33657,25,Punisher Tash-Murkon Edition,Frigate
+33659,25,Merlin Nugoeihuvi Edition,Frigate
+33661,25,Merlin Wiyrkomi Edition,Frigate
+33663,25,Rifter Nefantar Edition,Frigate
+33665,25,Rifter Krusual Edition,Frigate
+33667,25,Incursus Aliastra Edition,Frigate
+33669,25,Incursus Inner Zone Shipping Edition,Frigate
+33673,831,Whiptail,Interceptor
+33675,833,Chameleon,Force Recon Ship
+33677,25,Police Pursuit Comet,Frigate
+33683,543,Mackinaw ORE Development Edition,Exhumer
+33685,941,Orca ORE Development Edition,Industrial Command Ship
+33687,883,Rorqual ORE Development Edition,Capital Industrial Ship
+33689,28,Iteron Inner Zone Shipping Edition,Hauler
+33691,28,Tayra Wiyrkomi Edition,Hauler
+33693,28,Mammoth Nefantar Edition,Hauler
+33695,28,Bestower Tash-Murkon Edition,Hauler
+33697,1283,Prospect,Expedition Frigate
+33816,25,Garmur,Frigate
+33818,26,Orthrus,Cruiser
+33820,27,Barghest,Battleship
+33869,419,Brutix Serpentis Edition,Combat Battlecruiser
+33871,419,Cyclone Thukker Tribe Edition,Combat Battlecruiser
+33873,419,Ferox Guristas Edition,Combat Battlecruiser
+33875,419,Prophecy Blood Raiders Edition,Combat Battlecruiser
+33877,420,Catalyst Serpentis Edition,Destroyer
+33879,420,Coercer Blood Raiders Edition,Destroyer
+33881,420,Cormorant Guristas Edition,Destroyer
+33883,420,Thrasher Thukker Tribe Edition,Destroyer
+34118,27,Megathron Quafe Edition,Battleship
+34151,27,Rattlesnake Victory Edition,Battleship
+34213,27,Apocalypse Blood Raider Edition,Battleship
+34215,27,Apocalypse Kador Edition,Battleship
+34217,27,Apocalypse Tash-Murkon Edition,Battleship
+34219,900,Paladin Blood Raider Edition,Marauder
+34221,900,Paladin Kador Edition,Marauder
+34223,900,Paladin Tash-Murkon Edition,Marauder
+34225,27,Raven Guristas Edition,Battleship
+34227,27,Raven Kaalakiota Edition,Battleship
+34229,27,Raven Nugoeihuvi Edition,Battleship
+34231,900,Golem Guristas Edition,Marauder
+34233,900,Golem Kaalakiota Edition,Marauder
+34235,900,Golem Nugoeihuvi Edition,Marauder
+34237,27,Megathron Police Edition,Battleship
+34239,27,Megathron Inner Zone Shipping Edition,Battleship
+34241,900,Kronos Police Edition,Marauder
+34243,900,Kronos Quafe Edition,Marauder
+34245,900,Kronos Inner Zone Shipping Edition,Marauder
+34247,27,Tempest Justice Edition,Battleship
+34249,27,Tempest Krusual Edition,Battleship
+34251,27,Tempest Nefantar Edition,Battleship
+34253,900,Vargur Justice Edition,Marauder
+34255,900,Vargur Krusual Edition,Marauder
+34257,900,Vargur Nefantar Edition,Marauder
+34317,1305,Confessor,Tactical Destroyer
+34328,513,Bowhead,Freighter
+34339,485,Moros Interbus Edition,Dreadnought
+34341,485,Naglfar Justice Edition,Dreadnought
+34343,485,Phoenix Wiyrkomi Edition,Dreadnought
+34345,485,Revelation Sarum Edition,Dreadnought
+34441,27,Dominix Quafe Edition,Battleship
+34443,25,Tristan Quafe Edition,Frigate
+34445,26,Vexor Quafe Edition,Cruiser
+34496,31,Council Diplomatic Shuttle,Shuttle
+34562,1305,Svipul,Tactical Destroyer
+34590,26,Victorieux Luxury Yacht,Cruiser
+34828,1305,Jackdaw,Tactical Destroyer
+35683,1305,Hecate,Tactical Destroyer
+35779,831,Imp,Interceptor
+35781,894,Fiend,Heavy Interdiction Cruiser
+37135,1283,Endurance,Expedition Frigate
+37453,25,Crucifier Navy Issue,Frigate
+37454,25,Vigil Fleet Issue,Frigate
+37455,25,Griffin Navy Issue,Frigate
+37456,25,Maulus Navy Issue,Frigate
+37457,1527,Deacon,Logistics Frigate
+37458,1527,Kirin,Logistics Frigate
+37459,1527,Thalia,Logistics Frigate
+37460,1527,Scalpel,Logistics Frigate
+37480,1534,Bifrost,Command Destroyer
+37481,1534,Pontifex,Command Destroyer
+37482,1534,Stork,Command Destroyer
+37483,1534,Magus,Command Destroyer
+37604,1538,Apostle,Force Auxiliary
+37605,1538,Minokawa,Force Auxiliary
+37606,1538,Lif,Force Auxiliary
+37607,1538,Ninazu,Force Auxiliary
+42124,485,Vehement,Dreadnought
+42125,659,Vendetta,Supercarrier
+42126,30,Vanquisher,Titan
+42132,547,Vanguard,Carrier
+42133,1538,Venerable,Force Auxiliary
+42241,30,Molok,Titan
+42242,1538,Dagon,Force Auxiliary
+42243,485,Chemosh,Dreadnought
+42244,941,Porpoise,Industrial Command Ship
+42245,832,Rabisu,Logistics
+42246,830,Caedes,Covert Ops
+42685,420,Sunesis,Destroyer
+44993,830,Pacifier,Covert Ops
+44995,833,Enforcer,Force Recon Ship
+44996,898,Marshal,Black Ops
+45530,834,Virtuoso,Stealth Bomber
+45531,833,Victor,Force Recon Ship
+45534,1972,Monitor,Flag Cruiser
+45645,1538,Loggerhead,Force Auxiliary
+45647,485,Caiman,Dreadnought
+45649,30,Komodo,Titan
+47269,25,Damavik,Frigate
+47270,26,Vedmak,Cruiser
+47271,27,Leshak,Battleship
+47466,27,Praxis,Battleship
+47727,900,GFX Test Vargur 1/2,Marauder
+47728,900,GFX Test Vargur 2/2,Marauder
+48635,833,Tiamat,Force Recon Ship
+48636,830,Hydra,Covert Ops
+48648,2001,Citizen Venture,Citizen Ships
+49710,420,Kikimora,Destroyer
+49711,419,Drekavac,Combat Battlecruiser
+49712,26,Rodiva,Cruiser
+49713,832,Zarmazd,Logistics
+52250,324,Nergal,Assault Frigate
+52252,358,Ikitursa,Heavy Assault Cruiser
+52254,1534,Draugur,Command Destroyer
+52267,26,Test Site Maller,Cruiser
+52907,485,Zirnitra,Dreadnought
+54731,25,Skybreaker,Frigate
+54732,26,Stormbringer,Cruiser
+54733,27,Thunderchild,Battleship
+58745,25,AIR Civilian Astero,Frigate
+60764,894,Laelaps,Heavy Interdiction Cruiser
+60765,893,Raiju,Electronic Attack Ship
+64034,31,Boobook,Shuttle
+72811,419,Cyclone Fleet Issue,Combat Battlecruiser
+72812,419,Ferox Navy Issue,Combat Battlecruiser
+72869,419,Myrmidon Navy Issue,Combat Battlecruiser
+72872,419,Prophecy Navy Issue,Combat Battlecruiser
+72903,25,Probe Fleet Issue,Frigate
+72904,25,Heron Navy Issue,Frigate
+72907,25,Magnate Navy Issue,Frigate
+72913,25,Imicus Navy Issue,Frigate
+73787,485,Naglfar Fleet Issue,Dreadnought
+73789,420,Coercer Navy Issue,Destroyer
+73790,485,Revelation Navy Issue,Dreadnought
+73792,485,Moros Navy Issue,Dreadnought
+73793,485,Phoenix Navy Issue,Dreadnought
+73794,420,Thrasher Fleet Issue,Destroyer
+73795,420,Cormorant Navy Issue,Destroyer
+73796,420,Catalyst Navy Issue,Destroyer
+74141,324,Geri,Assault Frigate
+74316,358,Bestla,Heavy Assault Cruiser
+77114,25,Metamorphosis,Frigate
+77281,4594,Hubris,Lancer Dreadnought
+77283,4594,Bane,Lancer Dreadnought
+77284,4594,Karura,Lancer Dreadnought
+77288,4594,Valravn,Lancer Dreadnought
+77726,358,Cybele,Heavy Assault Cruiser
+78333,420,Mekubal,Destroyer
+78366,419,Alligator,Combat Battlecruiser
+78367,420,Mamba,Destroyer
+78369,419,Khizriel,Combat Battlecruiser
+78414,324,Shapash,Assault Frigate
+78576,30,Azariel,Titan
+81008,28,Squall,Hauler
+81040,513,Avalanche,Freighter
+81046,1202,Deluge,Blockade Runner
+81047,380,Torrent,Deep Space Transport

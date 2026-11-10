@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=68.0", "setuptools-scm>=8.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "stocksense"
+version = "0.1.1"
+description = "StockSense — MCP server providing AI agents with access to financial data: SEC filings, price history, financials, insider trades"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11"
+keywords = ["mcp", "finance", "sec", "edgar", "stocks", "ai", "llm", "stocksense"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Office/Business :: Financial",
+]
+dependencies = [
+    "mcp>=1.0.0",
+    "yfinance>=0.2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.4.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/mikejj-creation/stocksense"
+Repository = "https://github.com/mikejj-creation/stocksense"
+Issues = "https://github.com/mikejj-creation/stocksense/issues"
+
+[project.scripts]
+stocksense = "stocksense.server:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-ausdata-ausdata-mcp-2ca6cefa92": {
+      "args": [
+        "/app/io-ausdata-ausdata-mcp-2ca6cefa92/ausdata-mcp-client/bin/run.js"
+      ],
+      "command": "node"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "keyvault": {
+      "command": "uv",
+      "args": [
+        "run",
+        "python",
+        "server.py",
+        "--profile",
+        "audit"
+      ],
+      "cwd": ".",
+      "env": {
+        "KEYVAULT_DATA_DIR": "~/.ssh"
+      }
+    }
+  }
+}

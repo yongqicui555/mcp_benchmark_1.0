@@ -1,0 +1,70 @@
+name: Tag and Release un-datacommons-mcp
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  tag_and_release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Read version
+        id: version
+        run: |
+          FILE="packages/un-datacommons-mcp/datacommons_mcp/version.py"
+          VERSION=$(grep "__version__" "$FILE" | sed 's/__version__ = "\(.*\)"/\1/')
+          if [ -z "$VERSION" ]; then
+            echo "Could not parse version from $FILE" >&2
+            exit 1
+          fi
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "tag=un-datacommons-mcp-v$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Install uv and build package
+        run: |
+          pip install uv
+          uv build
+        working-directory: packages/un-datacommons-mcp
+
+      - name: Check if tag exists on remote
+        id: check_tag
+        run: |
+          TAG="${{ steps.version.outputs.tag }}"
+          if git ls-remote --tags origin | grep -q "refs/tags/$TAG$"; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create and push tag
+        if: steps.check_tag.outputs.exists == 'false'
+        run: |
+          TAG="${{ steps.version.outputs.tag }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag "$TAG"
+          git push origin "$TAG"
+
+      - name: Create or update GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.tag }}
+          name: Release ${{ steps.version.outputs.version }}
+          body: |
+            Release ${{ steps.version.outputs.version }} of un-datacommons-mcp.
+            This tag-and-release workflow runs independently of PyPI publishing.
+          files: packages/un-datacommons-mcp/dist/*
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+          fail_on_unmatched_files: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+

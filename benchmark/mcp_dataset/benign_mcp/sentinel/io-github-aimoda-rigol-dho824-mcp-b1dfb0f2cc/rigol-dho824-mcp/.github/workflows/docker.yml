@@ -1,0 +1,151 @@
+name: Build and Push Docker Image
+
+on:
+  workflow_run:
+    workflows: ["Publish Python 🐍 distribution 📦 to PyPI"]
+    types:
+      - completed
+    branches:
+      - main
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # Only run if the PyPI workflow succeeded
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    permissions:
+      contents: read
+      packages: write
+      id-token: write  # Required for MCP registry OIDC authentication
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # Fetch full history so git rev-list --count is accurate
+          fetch-depth: 0
+
+      - name: Validate server.json against MCP schema
+        run: |
+          pip install check-jsonschema
+          check-jsonschema --schemafile https://static.modelcontextprotocol.io/schemas/2025-10-17/server.schema.json server.json
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Compute version from pyproject.toml and commit count
+        id: version
+        run: |
+          # Extract base version (X.Y.Z) from pyproject.toml
+          BASE_VERSION=$(grep -m 1 'version = ' pyproject.toml | cut -d'"' -f2)
+
+          # Extract major and minor version (X.Y)
+          MAJOR_MINOR=$(echo "$BASE_VERSION" | cut -d'.' -f1,2)
+
+          # Get commit count for patch version
+          COMMIT_COUNT=$(git rev-list --count HEAD)
+
+          # Compute final version as X.Y.COMMIT_COUNT
+          VERSION="$MAJOR_MINOR.$COMMIT_COUNT"
+
+          # Compute extended version for Docker tags
+          BRANCH_NAME=$(echo "${{ github.ref_name }}" | sed 's/[^a-zA-Z0-9-]/-/g')
+          SHORT_SHA=$(echo "${{ github.sha }}" | cut -c1-7)
+          VERSION_FULL="$VERSION-$BRANCH_NAME.$SHORT_SHA"
+
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "version_full=$VERSION_FULL" >> $GITHUB_OUTPUT
+          echo "Computed version: $VERSION"
+
+      - name: Extract metadata (tags, labels)
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=ref,event=branch
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=raw,value=${{ steps.version.outputs.version }},enable={{is_default_branch}}
+            type=raw,value=${{ steps.version.outputs.version_full }},enable={{is_default_branch}}
+
+      - name: Build and push Docker image
+        id: build
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Update server.json version
+        if: github.ref == 'refs/heads/main'
+        run: |
+          VERSION="${{ steps.version.outputs.version_full }}"
+          # Replace INVALID_PLACEHOLDER with actual version in OCI identifier and update server version
+          python3 << 'PYTHON_SCRIPT'
+          import json
+          with open('server.json', 'r') as f:
+              data = json.load(f)
+          data['version'] = '${{ steps.version.outputs.version_full }}'
+
+          # Get IMAGE_DIGEST from step output and strip 'sha256:' prefix
+          image_digest = '${{ steps.build.outputs.digest }}'
+          if image_digest.startswith('sha256:'):
+              image_digest = image_digest[7:]  # Remove 'sha256:' prefix
+
+          for package in data.get('packages', []):
+              if package.get('registryType') == 'oci':
+                  # Replace placeholder with actual version tag in identifier
+                  # Note: OCI packages must NOT have a separate 'version' field
+                  package['identifier'] = package['identifier'].replace('INVALID_PLACEHOLDER', '${{ steps.version.outputs.version_full }}')
+              elif package.get('registryType') == 'pypi':
+                  # Update version field for PyPI packages
+                  package['version'] = '${{ steps.version.outputs.version }}'
+
+          # Set the SHA256 hash in _meta for transparency (OCI packages don't support fileSha256)
+          if image_digest:
+              if '_meta' not in data:
+                  data['_meta'] = {}
+              if 'io.modelcontextprotocol.registry/publisher-provided' not in data['_meta']:
+                  data['_meta']['io.modelcontextprotocol.registry/publisher-provided'] = {}
+              if 'buildInfo' not in data['_meta']['io.modelcontextprotocol.registry/publisher-provided']:
+                  data['_meta']['io.modelcontextprotocol.registry/publisher-provided']['buildInfo'] = {}
+              data['_meta']['io.modelcontextprotocol.registry/publisher-provided']['buildInfo']['imageSha256'] = image_digest
+
+          with open('server.json', 'w') as f:
+              json.dump(data, f, indent=2)
+          print(f'Updated server.json to version ${{ steps.version.outputs.version_full }}')
+          if image_digest:
+              print(f'Set imageSha256 to {image_digest}')
+          PYTHON_SCRIPT
+          cat server.json
+
+      - name: Install MCP Publisher
+        if: github.ref == 'refs/heads/main'
+        run: |
+          curl -L "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_$(uname -s | tr '[:upper:]' '[:lower:]')_$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/').tar.gz" | tar xz mcp-publisher
+
+      - name: Login to MCP Registry
+        if: github.ref == 'refs/heads/main'
+        run: ./mcp-publisher login github-oidc
+
+      - name: Publish to MCP Registry
+        if: github.ref == 'refs/heads/main'
+        run: ./mcp-publisher publish

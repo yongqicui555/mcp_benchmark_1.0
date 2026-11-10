@@ -1,3 +1,0 @@
-=== logging usage ===
-17:import logging
-29:logger = logging.getLogger("bakom_mcp")

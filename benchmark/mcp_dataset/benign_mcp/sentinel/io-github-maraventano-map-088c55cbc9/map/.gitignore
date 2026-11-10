@@ -1,0 +1,16 @@
+node_modules/
+node_modules
+*.log
+.DS_Store
+
+# runtime artifacts written by Atlas (publish-catalog)
+catalog.json
+.well-known/
+
+# local backup of the Phase-1 decoder (pre-assembly)
+index.phase1.bak.js
+
+# internal review docs (kept local, not for the public repo)
+merchant-key-BUILD-SPEC.md
+merchant-key-PHASE2-AND-ASSEMBLY-SPEC.md
+merchant-key-handoff-2026-05-25.md

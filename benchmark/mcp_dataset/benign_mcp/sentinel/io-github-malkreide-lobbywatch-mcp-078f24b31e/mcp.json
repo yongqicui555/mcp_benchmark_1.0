@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-malkreide-lobbywatch-mcp-078f24b31e": {
+      "args": [
+        "/app/io-github-malkreide-lobbywatch-mcp-078f24b31e/lobbywatch-mcp/src/lobbywatch_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

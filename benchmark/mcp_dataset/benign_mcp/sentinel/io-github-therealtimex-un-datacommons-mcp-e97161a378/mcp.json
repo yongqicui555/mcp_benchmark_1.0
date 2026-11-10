@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-therealtimex-un-datacommons-mcp-e97161a378": {
+      "args": [
+        "/app/io-github-therealtimex-un-datacommons-mcp-e97161a378/un-datacommons-mcp/packages/un-datacommons-mcp/datacommons_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

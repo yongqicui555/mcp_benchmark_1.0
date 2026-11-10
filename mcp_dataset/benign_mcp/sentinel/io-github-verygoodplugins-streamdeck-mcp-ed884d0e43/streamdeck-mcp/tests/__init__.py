@@ -1,1 +1,0 @@
-# Stream Deck MCP Tests

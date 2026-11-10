@@ -1,0 +1,43 @@
+=== @mcp.tool definitions ===
+408:@mcp.tool(
+409:    name="bakom_broadband_coverage",
+490:@mcp.tool(
+491:    name="bakom_glasfaser_verfuegbarkeit",
+555:@mcp.tool(
+556:    name="bakom_multi_standort_konnektivitaet",
+685:@mcp.tool(
+686:    name="bakom_mobilfunk_abdeckung",
+759:@mcp.tool(
+760:    name="bakom_sendeanlagen_suche",
+891:@mcp.tool(
+892:    name="bakom_frequenzdaten",
+1005:@mcp.tool(
+1006:    name="bakom_rtv_suche",
+1133:@mcp.tool(
+1134:    name="bakom_medienstruktur_info",
+1236:@mcp.tool(
+1237:    name="bakom_aktuell",
+1391:@mcp.tool(
+1392:    name="bakom_telekomstatistik_uebersicht",
+1510:@mcp.tool(
+1511:    name="bakom_breitbandatlas_datensaetze",
+=== async def tool functions ===
+255:async def _geo_identify(
+292:async def _wms_abgedeckt(
+332:async def _opendata_dataset_info(client: httpx.AsyncClient, dataset_id: str) -> dict[str, Any]:
+340:def _point_to_envelope(east: float, north: float, tolerance: int = 100) -> str:
+345:def _wgs84_to_lv95_approx(lat: float, lon: float) -> tuple[float, float]:
+371:def _handle_api_error(e: Exception) -> str:
+418:async def bakom_broadband_coverage(params: BroadbandCoverageInput) -> str:
+500:async def bakom_glasfaser_verfuegbarkeit(params: CoordinateInput) -> str:
+565:async def bakom_multi_standort_konnektivitaet(params: MultiLocationInput) -> str:
+695:async def bakom_mobilfunk_abdeckung(params: MobileCoverageInput) -> str:
+769:async def bakom_sendeanlagen_suche(params: AntennaSearchInput) -> str:
+901:async def bakom_frequenzdaten(params: CoordinateInput) -> str:
+1015:async def bakom_rtv_suche(params: RTVSearchInput) -> str:
+1143:async def bakom_medienstruktur_info(params: TelekomStatInput) -> str:
+1246:async def bakom_aktuell(params: TelekomStatInput) -> str:
+1401:async def bakom_telekomstatistik_uebersicht(params: TelekomStatInput) -> str:
+1520:async def bakom_breitbandatlas_datensaetze(params: TelekomStatInput) -> str:
+1674:def bakom_server_info() -> str:
+1717:def bakom_demo_standorte() -> str:

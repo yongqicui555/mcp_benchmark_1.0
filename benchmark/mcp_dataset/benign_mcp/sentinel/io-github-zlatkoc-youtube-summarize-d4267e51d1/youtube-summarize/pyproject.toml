@@ -1,0 +1,41 @@
+[project]
+name = "youtube-summarize"
+dynamic = ["version"]
+description = "MCP server that fetches YouTube video transcripts and optionally summarizes them"
+readme = "README.md"
+requires-python = ">=3.13"
+license = "MIT"
+authors = [
+    { name = "Zlatko Cajic" },
+]
+keywords = ["mcp", "youtube", "transcript", "summarize", "model-context-protocol"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.13",
+]
+dependencies = [
+    "mcp[cli]>=1.27.0",
+    "youtube-transcript-api>=1.0.0",
+    "yt-dlp>=2025.1.1",
+]
+
+[project.urls]
+Homepage = "https://github.com/zlatkoc/youtube-summarize"
+Repository = "https://github.com/zlatkoc/youtube-summarize"
+Issues = "https://github.com/zlatkoc/youtube-summarize/issues"
+
+[project.scripts]
+youtube-summarize = "main:mcp.run"
+
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+include = ["main.py", "server.json"]
+
+[tool.hatch.version]
+source = "vcs"
+fallback-version = "0.0.0"

@@ -1,0 +1,698 @@
+"""Read-only Robinhood tools wrapping robin_stocks library."""
+
+import re
+import threading
+import time
+from collections.abc import Callable
+from copy import deepcopy
+from typing import Any, Literal
+
+import robin_stocks.robinhood as rh
+
+
+class RobinhoodError(Exception):
+    """Error from Robinhood API call."""
+
+    pass
+
+
+_POSITIONS_CACHE_TTL_SECONDS = 30.0
+_ACCOUNT_NUMBER_RE = re.compile(r"^[A-Za-z0-9_-]+$")
+_positions_cache_lock = threading.Lock()
+_positions_cache: dict[str | None, dict[str, dict[str, Any]]] = {}
+_positions_cache_ts: dict[str | None, float] = {}
+
+
+def _safe_call(func: Callable[..., Any], *args, **kwargs) -> Any:
+    """Safely call a robin_stocks function with error handling.
+
+    Args:
+        func: The robin_stocks function to call.
+        *args: Positional arguments.
+        **kwargs: Keyword arguments.
+
+    Returns:
+        The function result.
+
+    Raises:
+        RobinhoodError: If the call fails.
+    """
+    try:
+        result = func(*args, **kwargs)
+        if result is None:
+            raise RobinhoodError("API returned None - you may need to login first")
+        return result
+    except RobinhoodError:
+        raise
+    except Exception as e:
+        raise RobinhoodError(f"API call failed: {e}") from e
+
+
+def _normalize_symbol(symbol: str) -> str:
+    """Normalize and validate ticker symbols."""
+    if not symbol or not isinstance(symbol, str):
+        raise RobinhoodError("Symbol must be a non-empty string")
+    symbol = symbol.upper().strip()
+    if not symbol:
+        raise RobinhoodError("Symbol must be a non-empty string")
+    return symbol
+
+
+def _normalize_account_number(account_number: str | None) -> str | None:
+    """Normalize and validate an optional Robinhood account number."""
+    if account_number is None:
+        return None
+    if not isinstance(account_number, str):
+        raise RobinhoodError("account_number must be a string")
+
+    account_number = account_number.strip()
+    if not account_number:
+        raise RobinhoodError("account_number must be a non-empty string")
+    if not _ACCOUNT_NUMBER_RE.fullmatch(account_number):
+        raise RobinhoodError(
+            "account_number may contain only letters, numbers, underscores, and hyphens"
+        )
+    return account_number
+
+
+def _account_kwargs(account_number: str | None) -> dict[str, str]:
+    """Return robin_stocks kwargs, preserving no-arg calls for the default account."""
+    return {} if account_number is None else {"account_number": account_number}
+
+
+def _clear_positions_cache() -> None:
+    """Reset the cached holdings snapshot."""
+    global _positions_cache, _positions_cache_ts
+
+    with _positions_cache_lock:
+        _positions_cache = {}
+        _positions_cache_ts = {}
+
+
+def _get_positions_cached(
+    now: float, account_number: str | None = None
+) -> dict[str, dict[str, Any]] | None:
+    """Return cached holdings when still fresh."""
+    global _positions_cache, _positions_cache_ts
+
+    with _positions_cache_lock:
+        if account_number not in _positions_cache:
+            return None
+        if (now - _positions_cache_ts.get(account_number, 0.0)) >= _POSITIONS_CACHE_TTL_SECONDS:
+            _positions_cache.pop(account_number, None)
+            _positions_cache_ts.pop(account_number, None)
+            return None
+        return deepcopy(_positions_cache[account_number])
+
+
+def _set_positions_cache(
+    positions: dict[str, dict[str, Any]], now: float, account_number: str | None = None
+) -> None:
+    """Store a fresh holdings snapshot for subsequent reads."""
+    global _positions_cache, _positions_cache_ts
+
+    with _positions_cache_lock:
+        _positions_cache[account_number] = deepcopy(positions)
+        _positions_cache_ts[account_number] = now
+
+
+_ACCOUNT_FIELDS = (
+    "account_number",
+    "type",
+    "state",
+    "buying_power",
+    "cash",
+    "portfolio_cash",
+    "cash_available_for_withdrawal",
+    "deactivated",
+    "locked",
+)
+
+
+def get_accounts() -> list[dict[str, Any]]:
+    """Get available Robinhood accounts with fields needed for selection.
+
+    Returns:
+        List of account profiles including account_number, type, state, and
+        high-level cash/buying-power fields.
+    """
+    result = _safe_call(rh.profiles.load_account_profile, dataType="results")
+    if not isinstance(result, list):
+        raise RobinhoodError(f"Unexpected account profile response type: {type(result).__name__}")
+    return [
+        {field: account.get(field) for field in _ACCOUNT_FIELDS}
+        for account in result
+        if isinstance(account, dict)
+    ]
+
+
+def get_portfolio(account_number: str | None = None) -> dict[str, Any]:
+    """Get current portfolio value and performance metrics.
+
+    Args:
+        account_number: Optional Robinhood account number. Omit for the default account.
+
+    Returns:
+        Portfolio profile with equity, extended hours equity, market value, etc.
+    """
+    account_number = _normalize_account_number(account_number)
+    return _safe_call(rh.profiles.load_portfolio_profile, **_account_kwargs(account_number))
+
+
+_POSITION_FIELDS = (
+    "price",
+    "quantity",
+    "average_buy_price",
+    "equity",
+    "percent_change",
+    "equity_change",
+)
+
+
+def _slim_positions(positions: dict[str, dict[str, Any]]) -> dict[str, dict[str, Any]]:
+    """Slim down positions to only essential fields for LLM analysis.
+
+    Strips internal IDs, URLs, and other metadata that bloat context windows.
+    """
+    return {
+        symbol: {k: data.get(k) for k in _POSITION_FIELDS} for symbol, data in positions.items()
+    }
+
+
+def _is_zero_quantity_position(position: dict[str, Any]) -> bool:
+    """Return whether a raw position row has a parseable zero quantity."""
+    quantity = position.get("quantity")
+    if quantity in (None, ""):
+        return False
+    try:
+        return float(quantity) == 0.0
+    except (TypeError, ValueError):
+        return False
+
+
+def _position_data_from_open_position(symbol: str, position: dict[str, Any]) -> dict[str, Any]:
+    """Build slim position fields from one raw open-position row."""
+    quote = get_quote(symbol)
+    price = quote.get("last_trade_price") or quote.get("mark_price")
+    quantity = position.get("quantity")
+    average_buy_price = position.get("average_buy_price")
+    if price in (None, "") or quantity in (None, "") or average_buy_price in (None, ""):
+        raise RobinhoodError(f"Incomplete position data for symbol: {symbol}")
+
+    try:
+        quantity_f = float(quantity)
+        price_f = float(price)
+        average_buy_price_f = float(average_buy_price)
+    except (TypeError, ValueError) as e:
+        raise RobinhoodError(f"Invalid numeric position data for symbol: {symbol}") from e
+
+    equity = quantity_f * price_f
+    equity_change = equity - (quantity_f * average_buy_price_f)
+    percent_change = (
+        0.0
+        if average_buy_price_f == 0.0
+        else ((price_f - average_buy_price_f) * 100 / average_buy_price_f)
+    )
+    return {
+        "price": f"{price_f:.2f}",
+        "quantity": quantity,
+        "average_buy_price": average_buy_price,
+        "equity": f"{equity:.2f}",
+        "percent_change": f"{percent_change:.2f}",
+        "equity_change": f"{equity_change:.2f}",
+    }
+
+
+def _build_account_holdings(account_number: str) -> dict[str, dict[str, Any]]:
+    """Build current stock holdings for a specific account number."""
+    positions = _safe_call(rh.account.get_open_stock_positions, **_account_kwargs(account_number))
+    if not isinstance(positions, list):
+        raise RobinhoodError("Unexpected positions response type")
+
+    holdings: dict[str, dict[str, Any]] = {}
+    for position in positions:
+        if not isinstance(position, dict):
+            continue
+        if _is_zero_quantity_position(position):
+            continue
+        symbol = _resolve_symbol_by_url(position.get("instrument") or "")
+        if symbol is None:
+            continue
+        try:
+            holdings[symbol] = _position_data_from_open_position(symbol, position)
+        except RobinhoodError:
+            continue
+    return holdings
+
+
+def get_positions(account_number: str | None = None) -> dict[str, dict[str, Any]]:
+    """Get all current stock positions with details.
+
+    Args:
+        account_number: Optional Robinhood account number. Omit for the default account.
+
+    Returns:
+        Dict mapping symbol to position details including:
+        - price, quantity, average_buy_price
+        - equity, percent_change, equity_change
+
+    Note:
+        Response is slimmed to essential fields only. Internal IDs, URLs,
+        and other metadata are stripped to reduce context bloat.
+    """
+    global _positions_cache, _positions_cache_ts
+
+    account_number = _normalize_account_number(account_number)
+    now = time.monotonic()
+    cached = _get_positions_cached(now, account_number)
+    if cached is not None:
+        return _slim_positions(cached)
+
+    with _positions_cache_lock:
+        now = time.monotonic()
+        if (
+            account_number in _positions_cache
+            and (now - _positions_cache_ts.get(account_number, 0.0)) < _POSITIONS_CACHE_TTL_SECONDS
+        ):
+            return _slim_positions(deepcopy(_positions_cache[account_number]))
+
+        if account_number is None:
+            result = _safe_call(rh.account.build_holdings)
+        else:
+            result = _build_account_holdings(account_number)
+        if not isinstance(result, dict):
+            raise RobinhoodError(
+                f"Unexpected build_holdings response type: {type(result).__name__}"
+            )
+        _positions_cache[account_number] = deepcopy(result)
+        _positions_cache_ts[account_number] = time.monotonic()
+        return _slim_positions(result)
+
+
+def _position_payload(symbol: str, data: dict[str, Any]) -> dict[str, Any]:
+    """Build a stable position response with a fixed set of fields."""
+    fields = {k: data.get(k) for k in _POSITION_FIELDS}
+    held = all(v not in (None, "") for v in fields.values())
+    return {"symbol": symbol, "held": held, **fields}
+
+
+def _validate_symbol_instrument(symbol: str) -> str:
+    """Resolve a symbol to its instrument URL, raising on unknown tickers."""
+    instruments = _safe_call(rh.stocks.get_instruments_by_symbols, symbol)
+    if (
+        not isinstance(instruments, list)
+        or not instruments
+        or not isinstance(instruments[0], dict)
+        or not instruments[0].get("url")
+    ):
+        raise RobinhoodError(f"No instrument found for symbol: {symbol}")
+    return instruments[0]["url"]
+
+
+def get_position(symbol: str, account_number: str | None = None) -> dict[str, Any]:
+    """Get a single position by symbol without rebuilding all holdings.
+
+    Args:
+        symbol: Stock ticker symbol.
+        account_number: Optional Robinhood account number. Omit for the default account.
+
+    Returns:
+        Dict with held=False if absent, otherwise position details including
+        price, quantity, average_buy_price, equity, percent_change, and equity_change.
+    """
+    symbol = _normalize_symbol(symbol)
+    account_number = _normalize_account_number(account_number)
+    cached_positions = _get_positions_cached(time.monotonic(), account_number)
+    if cached_positions is not None:
+        cached_position = cached_positions.get(symbol)
+        if isinstance(cached_position, dict):
+            return _position_payload(symbol, cached_position)
+        _validate_symbol_instrument(symbol)
+        return {"symbol": symbol, "held": False}
+
+    instrument_url = _validate_symbol_instrument(symbol)
+
+    positions = _safe_call(rh.account.get_open_stock_positions, **_account_kwargs(account_number))
+    if not isinstance(positions, list):
+        raise RobinhoodError("Unexpected positions response type")
+
+    match = next(
+        (
+            item
+            for item in positions
+            if isinstance(item, dict)
+            and item.get("instrument") == instrument_url
+            and not _is_zero_quantity_position(item)
+        ),
+        None,
+    )
+    if not match:
+        return {"symbol": symbol, "held": False}
+
+    return _position_payload(symbol, _position_data_from_open_position(symbol, match))
+
+
+def get_watchlist(name: str = "Default") -> list[dict[str, Any]]:
+    """Get stocks in a watchlist.
+
+    Args:
+        name: Watchlist name (default: "Default").
+
+    Returns:
+        List of watchlist items with instrument details.
+    """
+    result = _safe_call(rh.account.get_watchlist_by_name, name=name)
+    return result if isinstance(result, list) else []
+
+
+def get_quote(symbol: str) -> dict[str, Any]:
+    """Get real-time quote for a stock symbol.
+
+    Args:
+        symbol: Stock ticker symbol (e.g., "AAPL").
+
+    Returns:
+        Quote data including last_trade_price, bid, ask, etc.
+    """
+    symbol = _normalize_symbol(symbol)
+    result = _safe_call(rh.stocks.get_quotes, symbol)
+
+    if isinstance(result, list) and len(result) > 0:
+        return result[0]
+    raise RobinhoodError(f"No quote found for symbol: {symbol}")
+
+
+def get_fundamentals(symbol: str) -> dict[str, Any]:
+    """Get fundamental data for a stock.
+
+    Args:
+        symbol: Stock ticker symbol.
+
+    Returns:
+        Fundamentals including pe_ratio, market_cap, dividend_yield, etc.
+    """
+    symbol = _normalize_symbol(symbol)
+    result = _safe_call(rh.stocks.get_fundamentals, symbol)
+
+    if isinstance(result, list) and len(result) > 0:
+        return result[0]
+    raise RobinhoodError(f"No fundamentals found for symbol: {symbol}")
+
+
+def get_historicals(
+    symbol: str,
+    interval: Literal["5minute", "10minute", "hour", "day", "week"] = "day",
+    span: Literal["day", "week", "month", "3month", "year", "5year"] = "month",
+) -> list[dict[str, Any]]:
+    """Get historical price data for a stock.
+
+    Args:
+        symbol: Stock ticker symbol.
+        interval: Time interval (5minute, 10minute, hour, day, week).
+        span: Time span (day, week, month, 3month, year, 5year).
+
+    Returns:
+        List of historical data points with open, close, high, low, volume.
+    """
+    symbol = _normalize_symbol(symbol)
+
+    valid_intervals = {"5minute", "10minute", "hour", "day", "week"}
+    valid_spans = {"day", "week", "month", "3month", "year", "5year"}
+
+    if interval not in valid_intervals:
+        raise RobinhoodError(f"Invalid interval. Must be one of: {valid_intervals}")
+    if span not in valid_spans:
+        raise RobinhoodError(f"Invalid span. Must be one of: {valid_spans}")
+
+    result = _safe_call(rh.stocks.get_stock_historicals, symbol, interval=interval, span=span)
+    return result if isinstance(result, list) else []
+
+
+def get_news(symbol: str) -> list[dict[str, Any]]:
+    """Get recent news articles for a stock.
+
+    Args:
+        symbol: Stock ticker symbol.
+
+    Returns:
+        List of news articles with title, url, source, published_at, etc.
+    """
+    symbol = _normalize_symbol(symbol)
+    result = _safe_call(rh.stocks.get_news, symbol)
+    return result if isinstance(result, list) else []
+
+
+def get_earnings(symbol: str) -> list[dict[str, Any]]:
+    """Get earnings data for a stock.
+
+    Args:
+        symbol: Stock ticker symbol.
+
+    Returns:
+        List of earnings reports with eps, report date, estimates, etc.
+    """
+    symbol = _normalize_symbol(symbol)
+    result = _safe_call(rh.stocks.get_earnings, symbol)
+    return result if isinstance(result, list) else []
+
+
+def get_ratings(symbol: str) -> dict[str, Any]:
+    """Get analyst ratings summary for a stock.
+
+    Args:
+        symbol: Stock ticker symbol.
+
+    Returns:
+        Ratings summary with buy, hold, sell counts and summary.
+    """
+    symbol = _normalize_symbol(symbol)
+    result = _safe_call(rh.stocks.get_ratings, symbol)
+
+    if isinstance(result, dict):
+        return result
+    raise RobinhoodError(f"No ratings found for symbol: {symbol}")
+
+
+def _matches_account(payload: dict[str, Any], account_number: str) -> bool:
+    """Return whether a Robinhood payload row belongs to an account."""
+    if payload.get("account_number") == account_number:
+        return True
+
+    account = payload.get("account")
+    if not isinstance(account, str):
+        return False
+    return account.rstrip("/").split("/")[-1] == account_number
+
+
+def get_dividends(account_number: str | None = None) -> list[dict[str, Any]]:
+    """Get all dividend payments received.
+
+    Args:
+        account_number: Optional Robinhood account number. Omit for all returned dividends.
+
+    Returns:
+        List of dividend payments with amount, payable_date, record_date, etc.
+    """
+    account_number = _normalize_account_number(account_number)
+    result = _safe_call(rh.account.get_dividends)
+    if not isinstance(result, list):
+        return []
+    if account_number is None:
+        return result
+    return [
+        dividend
+        for dividend in result
+        if isinstance(dividend, dict) and _matches_account(dividend, account_number)
+    ]
+
+
+def get_options_positions(account_number: str | None = None) -> list[dict[str, Any]]:
+    """Get all current options positions.
+
+    Args:
+        account_number: Optional Robinhood account number. Omit for the default account.
+
+    Returns:
+        List of options positions with chain_symbol, type, quantity, etc.
+    """
+    account_number = _normalize_account_number(account_number)
+    result = _safe_call(rh.options.get_open_option_positions, **_account_kwargs(account_number))
+    return result if isinstance(result, list) else []
+
+
+def search_symbols(query: str) -> list[dict[str, Any]]:
+    """Search for stock symbols by company name or ticker.
+
+    Args:
+        query: Search query (company name or partial ticker).
+
+    Returns:
+        List of matching instruments with symbol, name, etc.
+    """
+    if not query or not isinstance(query, str):
+        raise RobinhoodError("Query must be a non-empty string")
+
+    query = query.strip()
+
+    # Try to get instruments by the query
+    try:
+        result = rh.stocks.get_instruments_by_symbols(query.upper())
+        if result and isinstance(result, list):
+            return result
+    except Exception:
+        pass
+
+    # If exact match fails, try search
+    try:
+        result = rh.stocks.find_instrument_data(query)
+        return result if isinstance(result, list) else []
+    except Exception as e:
+        raise RobinhoodError(f"Search failed: {e}") from e
+
+
+# Instrument-URL -> symbol resolution. Mappings are immutable, so this cache
+# has no TTL; it only grows by the number of distinct instruments ever seen.
+_symbol_url_cache: dict[str, str] = {}
+_symbol_url_cache_lock = threading.Lock()
+
+
+def _clear_symbol_cache() -> None:
+    """Reset the cached instrument-URL to symbol lookups."""
+    with _symbol_url_cache_lock:
+        _symbol_url_cache.clear()
+
+
+def _resolve_symbol_by_url(url: str) -> str | None:
+    """Resolve an instrument URL to its ticker symbol, caching the result.
+
+    Returns None instead of raising when a lookup fails, so a single
+    unresolvable instrument cannot fail an entire order-history response.
+    """
+    if not url or not isinstance(url, str):
+        return None
+
+    with _symbol_url_cache_lock:
+        cached = _symbol_url_cache.get(url)
+    if cached is not None:
+        return cached
+
+    try:
+        symbol = rh.stocks.get_symbol_by_url(url)
+    except Exception:
+        return None
+    if not isinstance(symbol, str) or not symbol:
+        return None
+
+    with _symbol_url_cache_lock:
+        _symbol_url_cache[url] = symbol
+    return symbol
+
+
+def _raw_executions(order: dict[str, Any]) -> list[dict[str, Any]]:
+    """Return an order's executions as a list of dicts, tolerating malformed data.
+
+    The robin_stocks payload normally carries ``executions`` as a list, but a
+    non-list value must neither crash a whole order-history response nor be
+    counted as a fill - it is treated as no executions. This single definition
+    keeps the ``state="executed"`` filter and the curated payload consistent.
+    """
+    raw = order.get("executions")
+    if not isinstance(raw, list):
+        return []
+    return [execution for execution in raw if isinstance(execution, dict)]
+
+
+def _order_payload(order: dict[str, Any], symbol: str | None) -> dict[str, Any]:
+    """Build a curated order row with a fixed set of high-signal fields."""
+    executions = [
+        {
+            "price": execution.get("price"),
+            "quantity": execution.get("quantity"),
+            "timestamp": execution.get("timestamp"),
+        }
+        for execution in _raw_executions(order)
+    ]
+    return {
+        "symbol": symbol,
+        "side": order.get("side"),
+        "state": order.get("state"),
+        "quantity": order.get("quantity"),
+        "filled_quantity": order.get("cumulative_quantity"),
+        "average_price": order.get("average_price"),
+        "type": order.get("type"),
+        "created_at": order.get("created_at"),
+        "last_transaction_at": order.get("last_transaction_at"),
+        "executions": executions,
+    }
+
+
+def get_order_history(
+    symbol: str | None = None,
+    state: Literal["executed", "all"] = "executed",
+    limit: int = 50,
+    start_date: str | None = None,
+    account_number: str | None = None,
+) -> list[dict[str, Any]]:
+    """Get historical stock order history (executed buys and sells).
+
+    Wraps robin_stocks order history into curated, symbol-resolved rows with
+    per-fill execution detail. Read-only - this never places or cancels orders.
+
+    Args:
+        symbol: Optional ticker filter (e.g., "AAPL"). When given, only that
+            stock's orders are returned.
+        state: "executed" (default) returns only orders that filled, including
+            partial fills; "all" returns every order, including cancelled,
+            queued, and rejected ones.
+        limit: Maximum number of orders to return, most recent first.
+        start_date: Optional "YYYY-MM-DD" lower bound, applied server-side.
+        account_number: Optional Robinhood account number. Omit for the default account.
+
+    Returns:
+        List of order rows, newest first, each with symbol, side, state,
+        quantity, filled_quantity, average_price, type, created_at,
+        last_transaction_at, and a list of executions (price, quantity,
+        timestamp).
+    """
+    if state not in ("executed", "all"):
+        raise RobinhoodError('Invalid state. Must be "executed" or "all"')
+    if not isinstance(limit, int) or limit <= 0:
+        raise RobinhoodError("limit must be a positive integer")
+
+    account_number = _normalize_account_number(account_number)
+    instrument_url: str | None = None
+    resolved_symbol: str | None = None
+    if symbol is not None:
+        resolved_symbol = _normalize_symbol(symbol)
+        instrument_url = _validate_symbol_instrument(resolved_symbol)
+
+    orders = _safe_call(
+        rh.orders.get_all_stock_orders,
+        start_date=start_date,
+        **_account_kwargs(account_number),
+    )
+    if not isinstance(orders, list):
+        raise RobinhoodError(f"Unexpected order history response type: {type(orders).__name__}")
+
+    rows = [order for order in orders if isinstance(order, dict)]
+    if instrument_url is not None:
+        rows = [order for order in rows if order.get("instrument") == instrument_url]
+    if state == "executed":
+        rows = [order for order in rows if _raw_executions(order)]
+
+    rows.sort(key=lambda order: order.get("created_at") or "", reverse=True)
+    rows = rows[:limit]
+
+    if resolved_symbol is not None:
+        return [_order_payload(order, resolved_symbol) for order in rows]
+
+    # Resolve each distinct instrument URL once per call. The module-level
+    # cache only stores *successful* lookups, so without this an unresolvable
+    # URL shared by many rows would re-hit the API once per row.
+    url_to_symbol: dict[str, str | None] = {}
+    for order in rows:
+        url = order.get("instrument") or ""
+        if url not in url_to_symbol:
+            url_to_symbol[url] = _resolve_symbol_by_url(url)
+
+    return [_order_payload(order, url_to_symbol[order.get("instrument") or ""]) for order in rows]

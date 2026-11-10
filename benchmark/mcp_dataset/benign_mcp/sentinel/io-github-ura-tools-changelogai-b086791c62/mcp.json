@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-ura-tools-changelogai-b086791c62": {
+      "args": [
+        "/app/io-github-ura-tools-changelogai-b086791c62/changelogai/bin/cli.js"
+      ],
+      "command": "node"
+    }
+  }
+}

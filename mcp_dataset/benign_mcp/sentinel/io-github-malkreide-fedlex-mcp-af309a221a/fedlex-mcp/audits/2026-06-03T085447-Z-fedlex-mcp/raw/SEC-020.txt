@@ -1,2 +1,0 @@
-=== SEC-020 command injection ===
-none found - PASS

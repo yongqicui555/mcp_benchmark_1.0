@@ -1,0 +1,23 @@
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    required: []
+    properties:
+      hubspotApiKey:
+        type: string
+        title: "HubSpot API Key"
+        description: "Your HubSpot private app access token. Optional — tools work with demo data without it."
+      licenseKey:
+        type: string
+        title: "License Key"
+        description: "Artefact license key for Pro/Enterprise tier. Free tier works without a key."
+  commandFunction: |
+    (config) => ({
+      command: 'uvx',
+      args: ['--python', '3.11', 'artefact-mcp'],
+      env: {
+        ...(config.hubspotApiKey ? { HUBSPOT_API_KEY: config.hubspotApiKey } : {}),
+        ...(config.licenseKey ? { ARTEFACT_LICENSE_KEY: config.licenseKey } : {})
+      }
+    })

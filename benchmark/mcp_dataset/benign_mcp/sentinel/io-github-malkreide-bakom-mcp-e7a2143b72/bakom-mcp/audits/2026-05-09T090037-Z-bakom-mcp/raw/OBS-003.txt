@@ -1,0 +1,13 @@
+=== _log_tool_call decorator ===
+45:def _log_tool_call(fn: Callable[..., Awaitable[T]]) -> Callable[..., Awaitable[T]]:
+52:        logger.info("tool_call_start", extra={"tool": tool_name})
+58:                "tool_call_failed",
+68:            "tool_call_ok",
+573:@_log_tool_call
+656:@_log_tool_call
+722:@_log_tool_call
+863:@_log_tool_call
+938:@_log_tool_call
+1089:@_log_tool_call
+=== logger usage count ===
+6

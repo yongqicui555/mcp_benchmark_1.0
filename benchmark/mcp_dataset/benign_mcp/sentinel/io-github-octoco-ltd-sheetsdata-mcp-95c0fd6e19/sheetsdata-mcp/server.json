@@ -1,0 +1,40 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.octoco-ltd/sheetsdata-mcp",
+  "description": "Electronic component datasheets for AI agents — specs, pinouts, package data on demand.",
+  "repository": {
+    "url": "https://github.com/octoco-ltd/sheetsdata-mcp",
+    "source": "github"
+  },
+  "version": "1.3.2",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@sheetsdata/mcp",
+      "version": "1.3.2",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "SHEETSDATA_API_KEY",
+          "description": "Optional — if omitted, OAuth login opens in your browser. Get a key at https://sheetsdata.com/dashboard/keys",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": true
+        }
+      ]
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.sheetsdata.com/mcp"
+    }
+  ],
+  "capabilities": {
+    "tools": true,
+    "prompts": true,
+    "resources": true
+  }
+}

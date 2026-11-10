@@ -1,0 +1,63 @@
+# mcpize.yaml - MCPize Deployment Configuration
+version: 1
+name: structured-data-validator
+description: |
+  Professional-grade MCP server for validating, transforming, and normalizing structured data.
+  Built specifically for AI agents dealing with messy, inconsistent data from APIs, web scraping, 
+  user uploads, and other sources. Provides 5 powerful tools: JSON schema validation, intelligent 
+  CSV to JSON conversion, data normalization (dates, phones, currencies), text cleaning, and 
+  dataset merging with conflict resolution.
+
+# Runtime configuration
+runtime: typescript
+entry: dist/index.js
+
+# Build configuration  
+build:
+  install: npm ci
+  command: npm run build
+
+# Start command
+startCommand:
+  type: stdio  # MCP servers typically use stdio transport
+  command: node dist/index.js
+
+# Bridge mode for stdio servers (MCPize will wrap with HTTP proxy)
+bridge:
+  mode: stdio
+
+# Category and tags for marketplace discovery
+category: data-processing
+tags:
+  - data-validation
+  - json-schema  
+  - csv-processing
+  - data-normalization
+  - text-cleaning
+  - agent-tools
+  - ai-agents
+  - data-transformation
+
+# Environment variables (none required for this server)
+secrets: []
+
+# Metadata for marketplace listing
+metadata:
+  icon: "🔧"  # Will be replaced with proper icon later
+  screenshots: []
+  homepage: "https://agensonhorrowitz.cc"
+  repository: "https://github.com/agenson-horrowitz/structured-data-validator-mcp"
+  license: "MIT"
+  author:
+    name: "Agenson Horrowitz"
+    email: "hello@agensonhorrowitz.cc"
+    url: "https://agensonhorrowitz.cc"
+
+# Health check endpoint (optional but recommended)
+healthCheck:
+  enabled: false  # stdio servers don't expose HTTP endpoints
+
+# Resource limits
+resources:
+  memory: 256  # MB
+  cpu: 0.5     # CPU units

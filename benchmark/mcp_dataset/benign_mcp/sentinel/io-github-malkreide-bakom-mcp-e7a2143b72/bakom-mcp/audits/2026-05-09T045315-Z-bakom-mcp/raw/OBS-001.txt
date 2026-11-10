@@ -1,0 +1,14 @@
+=== _raise_api_error helper ===
+26:from mcp.server.fastmcp.exceptions import ToolError
+457:    `_raise_api_error` (Standardpfad) und von Test-Suiten, die den
+478:def _raise_api_error(e: Exception) -> NoReturn:
+479:    """Klassifiziert einen API-Fehler und raise't `ToolError` (OBS-001).
+486:    raise ToolError(_handle_api_error(e)) from e
+589:        _raise_api_error(e)
+654:        _raise_api_error(e)
+859:        _raise_api_error(e)
+991:        _raise_api_error(e)
+1100:        _raise_api_error(e)
+=== count of return-string vs raise ===
+return _handle_api_error: 0
+_raise_api_error(e): 8

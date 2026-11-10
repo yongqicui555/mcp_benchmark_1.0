@@ -1,0 +1,29 @@
+{
+  "name": "MindCore Memory MCP",
+  "description": "AI long-term memory MCP server with importance scoring and confidence calibration",
+  "categories": [
+    "Knowledge & Memory",
+    "Agent Tools"
+  ],
+  "tags": [
+    "memory",
+    "mcp",
+    "ai",
+    "context-management",
+    "long-term-memory"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "Lao Hei",
+    "email": "1410770089@qq.com",
+    "url": "https://github.com/woshilaohei"
+  },
+  "repository": "https://github.com/woshilaohei/mindcore-memory-mcp",
+  "homepage": "https://github.com/woshilaohei/mindcore-memory-mcp",
+  "mcp": {
+    "type": "python",
+    "package": "mindcore-memory",
+    "version": "0.1.11",
+    "server_script": "mindcore_memory/server.py"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-malkreide-bakom-mcp-e7a2143b72": {
+      "args": [
+        "/app/io-github-malkreide-bakom-mcp-e7a2143b72/bakom-mcp/src/bakom_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

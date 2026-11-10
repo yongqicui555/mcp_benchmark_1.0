@@ -1,0 +1,11 @@
+{
+  "actorSpecification": 1,
+  "name": "toolstem-mcp-server",
+  "title": "Toolstem Financial Data",
+  "description": "Financial data MCP server for AI agents — stock snapshots, deep company metrics, and side-by-side company comparison with pre-computed DCF, CAGRs, and derived signals. Works natively with Claude, OpenAI Agents SDK, and LangChain. One call, one flat JSON response, no glue code.",
+  "version": "1.5",
+  "actorPermissionLevel": "LIMITED_PERMISSIONS",
+  "input": "./input_schema.json",
+  "dockerfile": "./Dockerfile",
+  "dockerContextDir": ".."
+}

@@ -1,0 +1,65 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "youfiliate-mcp"
+version = "0.1.1"
+description = "MCP server for Youfiliate Smart Links — manage geo-targeted affiliate links from Claude Desktop and other MCP-compatible AI assistants."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [
+    { name = "Andrew Pierce", email = "andrew@youfiliate.com" },
+]
+keywords = [
+    "mcp",
+    "model-context-protocol",
+    "claude",
+    "anthropic",
+    "youtube",
+    "affiliate",
+    "smart-links",
+    "geniuslink",
+    "youfiliate",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "mcp[cli]>=1.0",
+    "httpx>=0.27",
+    "pydantic-settings>=2.0",
+    "pydantic>=2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "respx>=0.21",
+]
+
+[project.urls]
+Homepage = "https://youfiliate.com"
+Repository = "https://github.com/andrewmpierce/youfiliate-mcp"
+Issues = "https://github.com/andrewmpierce/youfiliate-mcp/issues"
+Changelog = "https://github.com/andrewmpierce/youfiliate-mcp/blob/main/CHANGELOG.md"
+
+[project.scripts]
+youfiliate-mcp = "youfiliate_mcp.server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/youfiliate_mcp"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]

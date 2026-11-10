@@ -1,0 +1,43 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.alyiox/mcp-atlassian-attachments",
+  "title": "Atlassian Attachments",
+  "description": "MCP server for downloading Jira and Confluence Cloud attachments by attachment ID.",
+  "repository": {
+    "url": "https://github.com/alyiox/mcp-atlassian-attachments",
+    "source": "github"
+  },
+  "version": "0.1.0",
+  "packages": [
+    {
+      "registryType": "pypi",
+      "registryBaseUrl": "https://pypi.org",
+      "identifier": "mcp-atlassian-attachments",
+      "version": "0.1.0",
+      "runtimeHint": "uvx",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "ATLASSIAN_SITE_URL",
+          "description": "Atlassian Cloud site URL, for example https://yourorg.atlassian.net. Must be HTTPS. Can also be set in ~/.config/mcp-atlassian-attachments/config.json.",
+          "isRequired": false,
+          "isSecret": false
+        },
+        {
+          "name": "ATLASSIAN_EMAIL",
+          "description": "Email address used for Atlassian Cloud Basic auth. Can also be set in ~/.config/mcp-atlassian-attachments/config.json.",
+          "isRequired": false,
+          "isSecret": false
+        },
+        {
+          "name": "ATLASSIAN_API_TOKEN",
+          "description": "Atlassian Cloud API token. Used as the password in Basic auth. Can also be set in ~/.config/mcp-atlassian-attachments/config.json.",
+          "isRequired": false,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-nvlang-verso-39ae7746da": {
+      "args": [
+        "/app/io-github-nvlang-verso-39ae7746da/verso-mcp/src/verso_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

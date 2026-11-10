@@ -1,0 +1,8 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.DS_Store
+
+.mcpregistry_github_token
+.mcpregistry_registry_token
+mcp-publisher

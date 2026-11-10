@@ -1,0 +1,73 @@
+{
+  "name": "xlsx-for-ai",
+  "mcpName": "io.github.senoff/xlsx-for-ai",
+  "version": "3.2.4",
+  "description": "The MCP server that makes LLMs reliable on real-world Excel spreadsheets. Thin npm client over a hosted API — read, write, diff, redact, and supervise .xlsx files from any MCP-aware agent.",
+  "main": "index.js",
+  "bin": {
+    "xfa": "index.js",
+    "xlsx-for-ai": "index.js",
+    "xlsx-for-ai-mcp": "mcp.js",
+    "cursor-reads-xlsx": "index.js"
+  },
+  "files": [
+    "index.js",
+    "mcp.js",
+    "lib/annotations.js",
+    "lib/auto-upgrade.js",
+    "lib/client.js",
+    "lib/config.js",
+    "lib/discover.js",
+    "lib/register.js",
+    "lib/mcp-register.js",
+    "lib/setup.js",
+    "lib/installer-cleanup.js",
+    "scripts/postinstall.js",
+    "samples/reporting-pack-v1.xlsx",
+    "samples/reporting-pack-v2.xlsx",
+    "README.md",
+    "SECURITY.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test test/v2/*.test.js",
+    "build-manifests": "node scripts/build-manifests.js",
+    "check-publish-allowlist": "node scripts/check-publish-allowlist.js",
+    "prepublishOnly": "node scripts/check-publish-allowlist.js",
+    "postinstall": "node scripts/postinstall.js"
+  },
+  "keywords": [
+    "xlsx",
+    "excel",
+    "ai",
+    "mcp",
+    "claude",
+    "cursor",
+    "copilot",
+    "chatgpt",
+    "llm",
+    "agent",
+    "spreadsheet",
+    "json",
+    "mcp-server"
+  ],
+  "author": "senoff",
+  "license": "MIT",
+  "homepage": "https://github.com/senoff/xlsx-for-ai",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/senoff/xlsx-for-ai.git"
+  },
+  "bugs": {
+    "url": "https://github.com/senoff/xlsx-for-ai/issues"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0"
+  },
+  "overrides": {
+    "tmp": ">=0.2.6"
+  }
+}

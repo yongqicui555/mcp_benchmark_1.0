@@ -1,0 +1,3724 @@
+stargate:
+  50000082:
+    destination:
+      stargate_id: 50000102
+      system_id: 30000245
+    name: Stargate (X445-5)
+    position:
+      x: -312262287360.0
+      y: 256204800.0
+      z: 184739635200.0
+    stargate_id: 50000082
+    system_id: 30000244
+    type_id: 16
+  50000083:
+    destination:
+      stargate_id: 50000317
+      system_id: 30000246
+    name: Stargate (KRUN-N)
+    position:
+      x: 10882286346240.0
+      y: -9030328320.0
+      z: -2526866595840.0
+    stargate_id: 50000083
+    system_id: 30000244
+    type_id: 16
+  50000084:
+    destination:
+      stargate_id: 50000710
+      system_id: 30000247
+    name: Stargate (9OO-LH)
+    position:
+      x: -312241889280.0
+      y: 285204480.0
+      z: 184774287360.0
+    stargate_id: 50000084
+    system_id: 30000244
+    type_id: 16
+  50000085:
+    destination:
+      stargate_id: 50001646
+      system_id: 30000249
+    name: Stargate (EIDI-N)
+    position:
+      x: 10882297651200.0
+      y: -9023201280.0
+      z: -2526868070400.0
+    stargate_id: 50000085
+    system_id: 30000244
+    type_id: 16
+  50000311:
+    destination:
+      stargate_id: 50001705
+      system_id: 30000212
+    name: Stargate (NCGR-Q)
+    position:
+      x: 167735009280.0
+      y: -16383713280.0
+      z: -555580170240.0
+    stargate_id: 50000311
+    system_id: 30000209
+    type_id: 16
+  50000312:
+    destination:
+      stargate_id: 50001917
+      system_id: 30000242
+    name: Stargate (8TPX-N)
+    position:
+      x: -1929215631360.0
+      y: -964643020800.0
+      z: 3156496588800.0
+    stargate_id: 50000312
+    system_id: 30000209
+    type_id: 29627
+  50000313:
+    destination:
+      stargate_id: 50002282
+      system_id: 30000214
+    name: Stargate (HE-V4V)
+    position:
+      x: 167754670080.0
+      y: -16381255680.0
+      z: -555590000640.0
+    stargate_id: 50000313
+    system_id: 30000209
+    type_id: 16
+  50000612:
+    destination:
+      stargate_id: 50000377
+      system_id: 30000846
+    name: Stargate (E-OGL4)
+    position:
+      x: -887882588160.0
+      y: -4185266380800.0
+      z: -2099873587200.0
+    stargate_id: 50000612
+    system_id: 30000861
+    type_id: 29627
+  50000613:
+    destination:
+      stargate_id: 50001013
+      system_id: 30000863
+    name: Stargate (C2X-M5)
+    position:
+      x: 212587683840.0
+      y: 14336286720.0
+      z: -336413859840.0
+    stargate_id: 50000613
+    system_id: 30000861
+    type_id: 16
+  50000614:
+    destination:
+      stargate_id: 50002098
+      system_id: 30000866
+    name: Stargate (PNDN-V)
+    position:
+      x: -1176720138240.0
+      y: -79547473920.0
+      z: 129388830720.0
+    stargate_id: 50000614
+    system_id: 30000861
+    type_id: 16
+  50000661:
+    destination:
+      stargate_id: 50001482
+      system_id: 30000222
+    name: Stargate (0-R5TS)
+    position:
+      x: 1519388221440.0
+      y: -562421145600.0
+      z: -4380094586880.0
+    stargate_id: 50000661
+    system_id: 30000210
+    type_id: 29627
+  50000662:
+    destination:
+      stargate_id: 50001706
+      system_id: 30000212
+    name: Stargate (NCGR-Q)
+    position:
+      x: 2333944504320.0
+      y: 161633525760.0
+      z: 65874124800.0
+    stargate_id: 50000662
+    system_id: 30000210
+    type_id: 16
+  50000710:
+    destination:
+      stargate_id: 50000084
+      system_id: 30000244
+    name: Stargate (K8X-6B)
+    position:
+      x: -22755041280.0
+      y: -3849216000.0
+      z: -411253678080.0
+    stargate_id: 50000710
+    system_id: 30000247
+    type_id: 16
+  50000711:
+    destination:
+      stargate_id: 50000103
+      system_id: 30000245
+    name: Stargate (X445-5)
+    position:
+      x: -22784040960.0
+      y: -3858309120.0
+      z: -411256627200.0
+    stargate_id: 50000711
+    system_id: 30000247
+    type_id: 16
+  50000712:
+    destination:
+      stargate_id: 50001144
+      system_id: 30000229
+    name: Stargate (UH-9ZG)
+    position:
+      x: 11581317120.0
+      y: 2298235330560.0
+      z: 584939397120.0
+    stargate_id: 50000712
+    system_id: 30000247
+    type_id: 29627
+  50000713:
+    destination:
+      stargate_id: 50001806
+      system_id: 30000864
+    name: Stargate (MSHD-4)
+    position:
+      x: -1907991552000.0
+      y: -309842042880.0
+      z: 1373950402560.0
+    stargate_id: 50000713
+    system_id: 30000247
+    type_id: 29629
+  50000882:
+    destination:
+      stargate_id: 50000991
+      system_id: 30000862
+    name: Stargate (N-FK87)
+    position:
+      x: 3173637365760.0
+      y: -4593985904640.0
+      z: 1131867217920.0
+    stargate_id: 50000882
+    system_id: 30000853
+    type_id: 29627
+  50000883:
+    destination:
+      stargate_id: 50001259
+      system_id: 30000854
+    name: Stargate (B-S42H)
+    position:
+      x: -1632220323840.0
+      y: -75403714560.0
+      z: 4914757754880.0
+    stargate_id: 50000883
+    system_id: 30000853
+    type_id: 16
+  50000884:
+    destination:
+      stargate_id: 50001376
+      system_id: 30000856
+    name: Stargate (F-749O)
+    position:
+      x: -1632207790080.0
+      y: -75395850240.0
+      z: 4914791424000.0
+    stargate_id: 50000884
+    system_id: 30000853
+    type_id: 16
+  50000885:
+    destination:
+      stargate_id: 50002080
+      system_id: 30000860
+    name: Stargate (AW1-2I)
+    position:
+      x: -1632208035840.0
+      y: -75387248640.0
+      z: 4914787000320.0
+    stargate_id: 50000885
+    system_id: 30000853
+    type_id: 16
+  50000991:
+    destination:
+      stargate_id: 50000882
+      system_id: 30000853
+    name: Stargate (F-RT6Q)
+    position:
+      x: -1685494456320.0
+      y: 2439830691840.0
+      z: -601125888000.0
+    stargate_id: 50000991
+    system_id: 30000862
+    type_id: 29627
+  50000992:
+    destination:
+      stargate_id: 50002099
+      system_id: 30000866
+    name: Stargate (PNDN-V)
+    position:
+      x: 1552116080640.0
+      y: 279531479040.0
+      z: -2253680762880.0
+    stargate_id: 50000992
+    system_id: 30000862
+    type_id: 16
+  50001013:
+    destination:
+      stargate_id: 50000613
+      system_id: 30000861
+    name: Stargate (15W-GC)
+    position:
+      x: -1712731054080.0
+      y: -39792353280.0
+      z: -2624612229120.0
+    stargate_id: 50001013
+    system_id: 30000863
+    type_id: 16
+  50001014:
+    destination:
+      stargate_id: 50001807
+      system_id: 30000864
+    name: Stargate (MSHD-4)
+    position:
+      x: 1582358077440.0
+      y: 36777861120.0
+      z: 285548912640.0
+    stargate_id: 50001014
+    system_id: 30000863
+    type_id: 16
+  50001395:
+    destination:
+      stargate_id: 50001029
+      system_id: 30000239
+    name: Stargate (4GYV-Q)
+    position:
+      x: 3525797683200.0
+      y: 693336023040.0
+      z: -854281297920.0
+    stargate_id: 50001395
+    system_id: 30000240
+    type_id: 16
+  50001396:
+    destination:
+      stargate_id: 50001625
+      system_id: 30000241
+    name: Stargate (YMJG-4)
+    position:
+      x: -439916421120.0
+      y: -86578421760.0
+      z: -1177326919680.0
+    stargate_id: 50001396
+    system_id: 30000240
+    type_id: 16
+  50001397:
+    destination:
+      stargate_id: 50001919
+      system_id: 30000242
+    name: Stargate (8TPX-N)
+    position:
+      x: 3525764259840.0
+      y: 693530173440.0
+      z: -854404423680.0
+    stargate_id: 50001397
+    system_id: 30000240
+    type_id: 16
+  50001398:
+    destination:
+      stargate_id: 50002016
+      system_id: 30000243
+    name: Stargate (PM-DWE)
+    position:
+      x: 3525834055680.0
+      y: 693444403200.0
+      z: -854464880640.0
+    stargate_id: 50001398
+    system_id: 30000240
+    type_id: 16
+  50001482:
+    destination:
+      stargate_id: 50000661
+      system_id: 30000210
+    name: Stargate (U54-1L)
+    position:
+      x: -2349102735360.0
+      y: 869550366720.0
+      z: 6771996303360.0
+    stargate_id: 50001482
+    system_id: 30000222
+    type_id: 29627
+  50001483:
+    destination:
+      stargate_id: 50002407
+      system_id: 30000223
+    name: Stargate (H-UCD1)
+    position:
+      x: 558512578560.0
+      y: -57447997440.0
+      z: 741559050240.0
+    stargate_id: 50001483
+    system_id: 30000222
+    type_id: 16
+  50001625:
+    destination:
+      stargate_id: 50001396
+      system_id: 30000240
+    name: Stargate (4-HWWF)
+    position:
+      x: 418141102080.0
+      y: -47133941760.0
+      z: 134775152640.0
+    stargate_id: 50001625
+    system_id: 30000241
+    type_id: 16
+  50001626:
+    destination:
+      stargate_id: 50002339
+      system_id: 30000253
+    name: Stargate (DAYP-G)
+    position:
+      x: -2886032547840.0
+      y: 1141086658560.0
+      z: -1098651279360.0
+    stargate_id: 50001626
+    system_id: 30000241
+    type_id: 29627
+  50001646:
+    destination:
+      stargate_id: 50000085
+      system_id: 30000244
+    name: Stargate (K8X-6B)
+    position:
+      x: -1077710315520.0
+      y: -169708953600.0
+      z: -113083883520.0
+    stargate_id: 50001646
+    system_id: 30000249
+    type_id: 16
+  50001647:
+    destination:
+      stargate_id: 50000318
+      system_id: 30000246
+    name: Stargate (KRUN-N)
+    position:
+      x: -1077711052800.0
+      y: -169717555200.0
+      z: -113089290240.0
+    stargate_id: 50001647
+    system_id: 30000249
+    type_id: 16
+  50001648:
+    destination:
+      stargate_id: 50002213
+      system_id: 30000252
+    name: Stargate (IPAY-2)
+    position:
+      x: -145073971200.0
+      y: -22839091200.0
+      z: -871902289920.0
+    stargate_id: 50001648
+    system_id: 30000249
+    type_id: 16
+  50001649:
+    destination:
+      stargate_id: 50002340
+      system_id: 30000253
+    name: Stargate (DAYP-G)
+    position:
+      x: -1077704908800.0
+      y: -169721487360.0
+      z: -113088798720.0
+    stargate_id: 50001649
+    system_id: 30000249
+    type_id: 16
+  50001705:
+    destination:
+      stargate_id: 50000311
+      system_id: 30000209
+    name: Stargate (MC6O-F)
+    position:
+      x: 499604889600.0
+      y: -79899156480.0
+      z: 879221022720.0
+    stargate_id: 50001705
+    system_id: 30000212
+    type_id: 16
+  50001706:
+    destination:
+      stargate_id: 50000662
+      system_id: 30000210
+    name: Stargate (U54-1L)
+    position:
+      x: 94345912320.0
+      y: -15204802560.0
+      z: 322273320960.0
+    stargate_id: 50001706
+    system_id: 30000212
+    type_id: 16
+  50001707:
+    destination:
+      stargate_id: 50002283
+      system_id: 30000214
+    name: Stargate (HE-V4V)
+    position:
+      x: 2428802703360.0
+      y: -389237268480.0
+      z: -4663616839680.0
+    stargate_id: 50001707
+    system_id: 30000212
+    type_id: 16
+  50001708:
+    destination:
+      stargate_id: 50003090
+      system_id: 30000289
+    name: Stargate (669-IX)
+    position:
+      x: 5578733199360.0
+      y: -615927767040.0
+      z: 1461542461440.0
+    stargate_id: 50001708
+    system_id: 30000212
+    type_id: 29627
+  50001806:
+    destination:
+      stargate_id: 50000713
+      system_id: 30000247
+    name: Stargate (9OO-LH)
+    position:
+      x: 2069936332800.0
+      y: 336140328960.0
+      z: -1490567454720.0
+    stargate_id: 50001806
+    system_id: 30000864
+    type_id: 29629
+  50001807:
+    destination:
+      stargate_id: 50001014
+      system_id: 30000863
+    name: Stargate (C2X-M5)
+    position:
+      x: -611613450240.0
+      y: 54859653120.0
+      z: -587324743680.0
+    stargate_id: 50001807
+    system_id: 30000864
+    type_id: 16
+  50001808:
+    destination:
+      stargate_id: 50001924
+      system_id: 30000865
+    name: Stargate (H-W9TY)
+    position:
+      x: -97940398080.0
+      y: 8779653120.0
+      z: 503432355840.0
+    stargate_id: 50001808
+    system_id: 30000864
+    type_id: 16
+  50001835:
+    destination:
+      stargate_id: 50001471
+      system_id: 30000857
+    name: Stargate (0-YMBJ)
+    position:
+      x: -4484244725760.0
+      y: -135531356160.0
+      z: 4167608279040.0
+    stargate_id: 50001835
+    system_id: 30000858
+    type_id: 16
+  50001836:
+    destination:
+      stargate_id: 50002083
+      system_id: 30000860
+    name: Stargate (AW1-2I)
+    position:
+      x: 347151360000.0
+      y: 10482769920.0
+      z: -933135851520.0
+    stargate_id: 50001836
+    system_id: 30000858
+    type_id: 16
+  50001837:
+    destination:
+      stargate_id: 50002351
+      system_id: 30000879
+    name: Stargate (DL1C-E)
+    position:
+      x: -3472569753600.0
+      y: -5181937213440.0
+      z: 2541364469760.0
+    stargate_id: 50001837
+    system_id: 30000858
+    type_id: 29627
+  50001838:
+    destination:
+      stargate_id: 50002358
+      system_id: 30001261
+    name: Stargate (Y-W1Q3)
+    position:
+      x: 1814911672320.0
+      y: 4251748147200.0
+      z: 4898824396800.0
+    stargate_id: 50001838
+    system_id: 30000858
+    type_id: 29629
+  50001917:
+    destination:
+      stargate_id: 50000312
+      system_id: 30000209
+    name: Stargate (MC6O-F)
+    position:
+      x: 1139221340160.0
+      y: 569631498240.0
+      z: -1863943495680.0
+    stargate_id: 50001917
+    system_id: 30000242
+    type_id: 29627
+  50001918:
+    destination:
+      stargate_id: 50000887
+      system_id: 30000238
+    name: Stargate (WBR5-R)
+    position:
+      x: 502063718400.0
+      y: -52993351680.0
+      z: 1989302968320.0
+    stargate_id: 50001918
+    system_id: 30000242
+    type_id: 16
+  50001919:
+    destination:
+      stargate_id: 50001397
+      system_id: 30000240
+    name: Stargate (4-HWWF)
+    position:
+      x: 502021939200.0
+      y: -53013012480.0
+      z: 1989286010880.0
+    stargate_id: 50001919
+    system_id: 30000242
+    type_id: 16
+  50002080:
+    destination:
+      stargate_id: 50000885
+      system_id: 30000853
+    name: Stargate (F-RT6Q)
+    position:
+      x: -2485888573440.0
+      y: 397027614720.0
+      z: -2781359677440.0
+    stargate_id: 50002080
+    system_id: 30000860
+    type_id: 16
+  50002081:
+    destination:
+      stargate_id: 50001262
+      system_id: 30000854
+    name: Stargate (B-S42H)
+    position:
+      x: -2485935759360.0
+      y: 397018030080.0
+      z: -2781351321600.0
+    stargate_id: 50002081
+    system_id: 30000860
+    type_id: 16
+  50002082:
+    destination:
+      stargate_id: 50001379
+      system_id: 30000856
+    name: Stargate (F-749O)
+    position:
+      x: 6704763740160.0
+      y: -1070872780800.0
+      z: 3564538060800.0
+    stargate_id: 50002082
+    system_id: 30000860
+    type_id: 16
+  50002083:
+    destination:
+      stargate_id: 50001836
+      system_id: 30000858
+    name: Stargate (UMI-KK)
+    position:
+      x: -2486005555200.0
+      y: 397049241600.0
+      z: -2781251051520.0
+    stargate_id: 50002083
+    system_id: 30000860
+    type_id: 16
+  50002098:
+    destination:
+      stargate_id: 50000614
+      system_id: 30000861
+    name: Stargate (15W-GC)
+    position:
+      x: 480392110080.0
+      y: 60296355840.0
+      z: -8569054617600.0
+    stargate_id: 50002098
+    system_id: 30000866
+    type_id: 16
+  50002099:
+    destination:
+      stargate_id: 50000992
+      system_id: 30000862
+    name: Stargate (N-FK87)
+    position:
+      x: -549015183360.0
+      y: -68922777600.0
+      z: 802541199360.0
+    stargate_id: 50002099
+    system_id: 30000866
+    type_id: 16
+  50002100:
+    destination:
+      stargate_id: 50002313
+      system_id: 30000877
+    name: Stargate (DBT-GB)
+    position:
+      x: -7424119234560.0
+      y: 5803396423680.0
+      z: 578935726080.0
+    stargate_id: 50002100
+    system_id: 30000866
+    type_id: 29627
+  50002337:
+    destination:
+      stargate_id: 50000319
+      system_id: 30000246
+    name: Stargate (KRUN-N)
+    position:
+      x: -76603760640.0
+      y: 11905720320.0
+      z: -109927587840.0
+    stargate_id: 50002337
+    system_id: 30000253
+    type_id: 16
+  50002338:
+    destination:
+      stargate_id: 50001039
+      system_id: 30000248
+    name: Stargate (V-OJEN)
+    position:
+      x: 8500300800000.0
+      y: -1320471552000.0
+      z: -2439702159360.0
+    stargate_id: 50002338
+    system_id: 30000253
+    type_id: 16
+  50002339:
+    destination:
+      stargate_id: 50001626
+      system_id: 30000241
+    name: Stargate (YMJG-4)
+    position:
+      x: 8622331699200.0
+      y: -3409118945280.0
+      z: 3282338488320.0
+    stargate_id: 50002339
+    system_id: 30000253
+    type_id: 29627
+  50002340:
+    destination:
+      stargate_id: 50001649
+      system_id: 30000249
+    name: Stargate (EIDI-N)
+    position:
+      x: -76596387840.0
+      y: 11906949120.0
+      z: -109926850560.0
+    stargate_id: 50002340
+    system_id: 30000253
+    type_id: 16
+  50002407:
+    destination:
+      stargate_id: 50001483
+      system_id: 30000222
+    name: Stargate (0-R5TS)
+    position:
+      x: -523935129600.0
+      y: 81070448640.0
+      z: -853775032320.0
+    stargate_id: 50002407
+    system_id: 30000223
+    type_id: 16
+  50002408:
+    destination:
+      stargate_id: 50002465
+      system_id: 30000224
+    name: Stargate (7-K5EL)
+    position:
+      x: 4976873840640.0
+      y: -769221795840.0
+      z: -1836304588800.0
+    stargate_id: 50002408
+    system_id: 30000223
+    type_id: 16
+  50002465:
+    destination:
+      stargate_id: 50002408
+      system_id: 30000223
+    name: Stargate (H-UCD1)
+    position:
+      x: -3554433392640.0
+      y: -418589614080.0
+      z: 5135042273280.0
+    stargate_id: 50002465
+    system_id: 30000224
+    type_id: 16
+  50002466:
+    destination:
+      stargate_id: 50002550
+      system_id: 30000225
+    name: Stargate (H-5GUI)
+    position:
+      x: 3555302645760.0
+      y: 418699468800.0
+      z: 491493335040.0
+    stargate_id: 50002466
+    system_id: 30000224
+    type_id: 16
+  50002550:
+    destination:
+      stargate_id: 50002466
+      system_id: 30000224
+    name: Stargate (7-K5EL)
+    position:
+      x: -2396330188800.0
+      y: 245111316480.0
+      z: 5464126218240.0
+    stargate_id: 50002550
+    system_id: 30000225
+    type_id: 16
+  50002551:
+    destination:
+      stargate_id: 50002656
+      system_id: 30000226
+    name: Stargate (FH-TTC)
+    position:
+      x: 919530823680.0
+      y: -94066728960.0
+      z: 4599602749440.0
+    stargate_id: 50002551
+    system_id: 30000225
+    type_id: 16
+  50002552:
+    destination:
+      stargate_id: 50002948
+      system_id: 30000274
+    name: Stargate (Q-EHMJ)
+    position:
+      x: 1202783477760.0
+      y: 5084654592000.0
+      z: -3980817162240.0
+    stargate_id: 50002552
+    system_id: 30000225
+    type_id: 29627
+  50002553:
+    destination:
+      stargate_id: 50003101
+      system_id: 30002421
+    name: Stargate (MR4-MY)
+    position:
+      x: 3600303267840.0
+      y: -3801263431680.0
+      z: -3966802206720.0
+    stargate_id: 50002553
+    system_id: 30000225
+    type_id: 29629
+  50003101:
+    destination:
+      stargate_id: 50002553
+      system_id: 30000225
+    name: Stargate (H-5GUI)
+    position:
+      x: -3650037473280.0
+      y: 3853773742080.0
+      z: 4021599313920.0
+    stargate_id: 50003101
+    system_id: 30002421
+    type_id: 29629
+  50003102:
+    destination:
+      stargate_id: 50003321
+      system_id: 30002422
+    name: Stargate (SR-KBB)
+    position:
+      x: -3060263362560.0
+      y: -59404247040.0
+      z: -5223251435520.0
+    stargate_id: 50003102
+    system_id: 30002421
+    type_id: 16
+  50003103:
+    destination:
+      stargate_id: 50003724
+      system_id: 30002423
+    name: Stargate (FDZ4-A)
+    position:
+      x: -3060252794880.0
+      y: -59467407360.0
+      z: -5223264215040.0
+    stargate_id: 50003103
+    system_id: 30002421
+    type_id: 16
+  50003321:
+    destination:
+      stargate_id: 50003102
+      system_id: 30002421
+    name: Stargate (MR4-MY)
+    position:
+      x: 603566039040.0
+      y: -105478840320.0
+      z: 2414581063680.0
+    stargate_id: 50003321
+    system_id: 30002422
+    type_id: 16
+  50003322:
+    destination:
+      stargate_id: 50003784
+      system_id: 30002424
+    name: Stargate (2E-ZR5)
+    position:
+      x: 603602657280.0
+      y: -105436078080.0
+      z: 2414576148480.0
+    stargate_id: 50003322
+    system_id: 30002422
+    type_id: 16
+  50003323:
+    destination:
+      stargate_id: 50004765
+      system_id: 30002451
+    name: Stargate (NQ-9IH)
+    position:
+      x: -4020641095680.0
+      y: -1930646200320.0
+      z: 1627302912000.0
+    stargate_id: 50003323
+    system_id: 30002422
+    type_id: 29627
+  50003784:
+    destination:
+      stargate_id: 50003322
+      system_id: 30002422
+    name: Stargate (SR-KBB)
+    position:
+      x: -2373792276480.0
+      y: 155922309120.0
+      z: -1312958423040.0
+    stargate_id: 50003784
+    system_id: 30002424
+    type_id: 16
+  50003785:
+    destination:
+      stargate_id: 50003827
+      system_id: 30002425
+    name: Stargate (O1-FTD)
+    position:
+      x: 4643591577600.0
+      y: -305094942720.0
+      z: -2854008053760.0
+    stargate_id: 50003785
+    system_id: 30002424
+    type_id: 16
+  50003827:
+    destination:
+      stargate_id: 50003785
+      system_id: 30002424
+    name: Stargate (2E-ZR5)
+    position:
+      x: -7652152074240.0
+      y: 89603973120.0
+      z: -802816204800.0
+    stargate_id: 50003827
+    system_id: 30002425
+    type_id: 16
+  50003828:
+    destination:
+      stargate_id: 50004039
+      system_id: 30002427
+    name: Stargate (OEY-OR)
+    position:
+      x: 12571758305280.0
+      y: -147175464960.0
+      z: -347336417280.0
+    stargate_id: 50003828
+    system_id: 30002425
+    type_id: 16
+  50003829:
+    destination:
+      stargate_id: 50004360
+      system_id: 30002438
+    name: Stargate (BND-16)
+    position:
+      x: -4190860615680.0
+      y: 104115363840.0
+      z: -13184724049920.0
+    stargate_id: 50003829
+    system_id: 30002425
+    type_id: 29627
+  50004360:
+    destination:
+      stargate_id: 50003829
+      system_id: 30002425
+    name: Stargate (O1-FTD)
+    position:
+      x: 990926807040.0
+      y: -24617902080.0
+      z: 3117521510400.0
+    stargate_id: 50004360
+    system_id: 30002438
+    type_id: 29627
+  50004361:
+    destination:
+      stargate_id: 50004755
+      system_id: 30002439
+    name: Stargate (IOO-7O)
+    position:
+      x: -69292646400.0
+      y: -13980917760.0
+      z: -318927790080.0
+    stargate_id: 50004361
+    system_id: 30002438
+    type_id: 16
+  50004362:
+    destination:
+      stargate_id: 50006323
+      system_id: 30002441
+    name: Stargate (4-CUM5)
+    position:
+      x: 620289269760.0
+      y: 125192478720.0
+      z: 51129999360.0
+    stargate_id: 50004362
+    system_id: 30002438
+    type_id: 16
+  50006323:
+    destination:
+      stargate_id: 50004362
+      system_id: 30002438
+    name: Stargate (BND-16)
+    position:
+      x: -282172170240.0
+      y: -26304798720.0
+      z: 159175188480.0
+    stargate_id: 50006323
+    system_id: 30002441
+    type_id: 16
+  50006324:
+    destination:
+      stargate_id: 50008707
+      system_id: 30002443
+    name: Stargate (RLSI-V)
+    position:
+      x: 3965495255040.0
+      y: 370082242560.0
+      z: -2155351695360.0
+    stargate_id: 50006324
+    system_id: 30002441
+    type_id: 16
+  50008706:
+    destination:
+      stargate_id: 50005904
+      system_id: 30002440
+    name: Stargate (BWF-ZZ)
+    position:
+      x: -8507346493440.0
+      y: 987973754880.0
+      z: 668394823680.0
+    stargate_id: 50008706
+    system_id: 30002443
+    type_id: 16
+  50008707:
+    destination:
+      stargate_id: 50006324
+      system_id: 30002441
+    name: Stargate (4-CUM5)
+    position:
+      x: -8507349934080.0
+      y: 987955077120.0
+      z: 668402933760.0
+    stargate_id: 50008707
+    system_id: 30002443
+    type_id: 16
+station: {}
+structure: {}
+system:
+  30000209:
+    constellation_id: 20000030
+    name: MC6O-F
+    planets:
+    - planet_id: 40013262
+    - moons:
+      - 40013264
+      planet_id: 40013263
+    - moons:
+      - 40013266
+      planet_id: 40013265
+    - moons:
+      - 40013268
+      planet_id: 40013267
+    - moons:
+      - 40013270
+      - 40013271
+      - 40013272
+      - 40013273
+      planet_id: 40013269
+    - moons:
+      - 40013275
+      - 40013276
+      - 40013277
+      - 40013278
+      planet_id: 40013274
+    - asteroid_belts:
+      - 40013280
+      - 40013283
+      moons:
+      - 40013281
+      - 40013282
+      - 40013284
+      - 40013285
+      - 40013286
+      - 40013287
+      - 40013288
+      - 40013289
+      - 40013290
+      - 40013291
+      - 40013292
+      - 40013293
+      - 40013294
+      - 40013295
+      - 40013296
+      planet_id: 40013279
+    - moons:
+      - 40013298
+      - 40013299
+      - 40013300
+      - 40013301
+      planet_id: 40013297
+    - moons:
+      - 40013303
+      - 40013304
+      - 40013305
+      - 40013306
+      planet_id: 40013302
+    position:
+      x: -6.643849688715733e+16
+      y: 1.1376117831446072e+17
+      z: 1.7564147357345952e+17
+    security_class: H1
+    security_status: -0.2804349660873413
+    star_id: 40013261
+    stargates:
+    - 50000311
+    - 50000312
+    - 50000313
+    system_id: 30000209
+  30000210:
+    constellation_id: 20000030
+    name: U54-1L
+    planets:
+    - asteroid_belts:
+      - 40013309
+      planet_id: 40013308
+    - planet_id: 40013310
+    - planet_id: 40013311
+    - planet_id: 40013312
+    - moons:
+      - 40013314
+      planet_id: 40013313
+    - planet_id: 40013315
+    - moons:
+      - 40013317
+      - 40013318
+      planet_id: 40013316
+    - moons:
+      - 40013320
+      - 40013321
+      - 40013322
+      - 40013323
+      - 40013324
+      - 40013325
+      - 40013326
+      - 40013327
+      - 40013328
+      - 40013329
+      - 40013330
+      - 40013331
+      planet_id: 40013319
+    - asteroid_belts:
+      - 40013333
+      - 40013334
+      - 40013335
+      - 40013347
+      - 40013348
+      - 40013349
+      - 40013352
+      - 40013354
+      - 40013355
+      - 40013356
+      - 40013360
+      - 40013361
+      - 40013362
+      - 40013364
+      - 40013365
+      moons:
+      - 40013336
+      - 40013337
+      - 40013338
+      - 40013339
+      - 40013340
+      - 40013341
+      - 40013342
+      - 40013343
+      - 40013344
+      - 40013345
+      - 40013346
+      - 40013350
+      - 40013351
+      - 40013353
+      - 40013357
+      - 40013358
+      - 40013359
+      - 40013363
+      - 40013366
+      planet_id: 40013332
+    - asteroid_belts:
+      - 40013368
+      - 40013369
+      - 40013370
+      planet_id: 40013367
+    - asteroid_belts:
+      - 40013372
+      - 40013373
+      moons:
+      - 40013374
+      planet_id: 40013371
+    position:
+      x: -6.908333563953797e+16
+      y: 9.890401391200989e+16
+      z: 1.7356605335837846e+17
+    security_class: H1
+    security_status: -0.2680697739124298
+    star_id: 40013307
+    stargates:
+    - 50000661
+    - 50000662
+    system_id: 30000210
+  30000212:
+    constellation_id: 20000030
+    name: NCGR-Q
+    planets:
+    - moons:
+      - 40013488
+      planet_id: 40013487
+    - moons:
+      - 40013490
+      planet_id: 40013489
+    - moons:
+      - 40013492
+      - 40013493
+      planet_id: 40013491
+    - asteroid_belts:
+      - 40013505
+      moons:
+      - 40013495
+      - 40013496
+      - 40013497
+      - 40013498
+      - 40013499
+      - 40013500
+      - 40013501
+      - 40013502
+      - 40013503
+      - 40013504
+      planet_id: 40013494
+    - asteroid_belts:
+      - 40013527
+      - 40013528
+      moons:
+      - 40013507
+      - 40013508
+      - 40013509
+      - 40013510
+      - 40013511
+      - 40013512
+      - 40013513
+      - 40013514
+      - 40013515
+      - 40013516
+      - 40013517
+      - 40013518
+      - 40013519
+      - 40013520
+      - 40013521
+      - 40013522
+      - 40013523
+      - 40013524
+      - 40013525
+      - 40013526
+      - 40013529
+      planet_id: 40013506
+    - asteroid_belts:
+      - 40013534
+      - 40013535
+      - 40013537
+      - 40013554
+      - 40013556
+      - 40013557
+      moons:
+      - 40013531
+      - 40013532
+      - 40013533
+      - 40013536
+      - 40013538
+      - 40013539
+      - 40013540
+      - 40013541
+      - 40013542
+      - 40013543
+      - 40013544
+      - 40013545
+      - 40013546
+      - 40013547
+      - 40013548
+      - 40013549
+      - 40013550
+      - 40013551
+      - 40013552
+      - 40013553
+      - 40013555
+      - 40013558
+      planet_id: 40013530
+    - asteroid_belts:
+      - 40013560
+      - 40013561
+      planet_id: 40013559
+    position:
+      x: -6.690884101294275e+16
+      y: 1.0888685907867195e+17
+      z: 1.732112040856858e+17
+    security_class: H1
+    security_status: -0.26051652431488037
+    star_id: 40013486
+    stargates:
+    - 50001705
+    - 50001706
+    - 50001707
+    - 50001708
+    system_id: 30000212
+  30000222:
+    constellation_id: 20000032
+    name: 0-R5TS
+    planets:
+    - moons:
+      - 40014205
+      planet_id: 40014204
+    - moons:
+      - 40014207
+      - 40014208
+      - 40014209
+      - 40014210
+      - 40014211
+      planet_id: 40014206
+    - asteroid_belts:
+      - 40014215
+      moons:
+      - 40014213
+      - 40014214
+      - 40014216
+      - 40014217
+      - 40014218
+      - 40014219
+      planet_id: 40014212
+    - moons:
+      - 40014221
+      - 40014222
+      - 40014223
+      - 40014224
+      - 40014225
+      - 40014226
+      - 40014227
+      - 40014228
+      - 40014229
+      - 40014230
+      - 40014231
+      - 40014232
+      - 40014233
+      - 40014234
+      - 40014235
+      - 40014236
+      - 40014237
+      - 40014238
+      - 40014239
+      - 40014240
+      planet_id: 40014220
+    - asteroid_belts:
+      - 40014243
+      - 40014245
+      - 40014247
+      - 40014252
+      - 40014264
+      - 40014265
+      - 40014266
+      - 40014268
+      - 40014269
+      - 40014276
+      moons:
+      - 40014242
+      - 40014244
+      - 40014246
+      - 40014248
+      - 40014249
+      - 40014250
+      - 40014251
+      - 40014253
+      - 40014254
+      - 40014255
+      - 40014256
+      - 40014257
+      - 40014258
+      - 40014259
+      - 40014260
+      - 40014261
+      - 40014262
+      - 40014263
+      - 40014267
+      - 40014270
+      - 40014271
+      - 40014272
+      - 40014273
+      - 40014274
+      - 40014275
+      planet_id: 40014241
+    - asteroid_belts:
+      - 40014278
+      - 40014279
+      planet_id: 40014277
+    - asteroid_belts:
+      - 40014281
+      - 40014282
+      planet_id: 40014280
+    position:
+      x: -6.720104688976184e+16
+      y: 9.820726062584965e+16
+      z: 1.6813978897330374e+17
+    security_class: H
+    security_status: -0.21862681210041046
+    star_id: 40014203
+    stargates:
+    - 50001482
+    - 50001483
+    system_id: 30000222
+  30000223:
+    constellation_id: 20000032
+    name: H-UCD1
+    planets:
+    - asteroid_belts:
+      - 40014285
+      planet_id: 40014284
+    - asteroid_belts:
+      - 40014287
+      moons:
+      - 40014288
+      planet_id: 40014286
+    - asteroid_belts:
+      - 40014290
+      planet_id: 40014289
+    - asteroid_belts:
+      - 40014310
+      - 40014314
+      - 40014316
+      - 40014317
+      moons:
+      - 40014292
+      - 40014293
+      - 40014294
+      - 40014295
+      - 40014296
+      - 40014297
+      - 40014298
+      - 40014299
+      - 40014300
+      - 40014301
+      - 40014302
+      - 40014303
+      - 40014304
+      - 40014305
+      - 40014306
+      - 40014307
+      - 40014308
+      - 40014309
+      - 40014311
+      - 40014312
+      - 40014313
+      - 40014315
+      planet_id: 40014291
+    - asteroid_belts:
+      - 40014326
+      moons:
+      - 40014319
+      - 40014320
+      - 40014321
+      - 40014322
+      - 40014323
+      - 40014324
+      - 40014325
+      - 40014327
+      planet_id: 40014318
+    - asteroid_belts:
+      - 40014329
+      planet_id: 40014328
+    position:
+      x: -5.754975949296355e+16
+      y: 9.4083421911377e+16
+      z: 1.639054043968806e+17
+    security_class: H
+    security_status: -0.17222876846790314
+    star_id: 40014283
+    stargates:
+    - 50002407
+    - 50002408
+    system_id: 30000223
+  30000224:
+    constellation_id: 20000032
+    name: 7-K5EL
+    planets:
+    - asteroid_belts:
+      - 40014332
+      planet_id: 40014331
+    - moons:
+      - 40014334
+      planet_id: 40014333
+    - asteroid_belts:
+      - 40014355
+      - 40014356
+      moons:
+      - 40014336
+      - 40014337
+      - 40014338
+      - 40014339
+      - 40014340
+      - 40014341
+      - 40014342
+      - 40014343
+      - 40014344
+      - 40014345
+      - 40014346
+      - 40014347
+      - 40014348
+      - 40014349
+      - 40014350
+      - 40014351
+      - 40014352
+      - 40014353
+      - 40014354
+      - 40014357
+      planet_id: 40014335
+    - asteroid_belts:
+      - 40014367
+      moons:
+      - 40014359
+      - 40014360
+      - 40014361
+      - 40014362
+      - 40014363
+      - 40014364
+      - 40014365
+      - 40014366
+      - 40014368
+      - 40014369
+      - 40014370
+      - 40014371
+      - 40014372
+      - 40014373
+      - 40014374
+      - 40014375
+      - 40014376
+      planet_id: 40014358
+    - asteroid_belts:
+      - 40014390
+      moons:
+      - 40014378
+      - 40014379
+      - 40014380
+      - 40014381
+      - 40014382
+      - 40014383
+      - 40014384
+      - 40014385
+      - 40014386
+      - 40014387
+      - 40014388
+      - 40014389
+      - 40014391
+      - 40014392
+      - 40014393
+      - 40014394
+      - 40014395
+      - 40014396
+      - 40014397
+      - 40014398
+      - 40014399
+      - 40014400
+      planet_id: 40014377
+    - asteroid_belts:
+      - 40014417
+      moons:
+      - 40014402
+      - 40014403
+      - 40014404
+      - 40014405
+      - 40014406
+      - 40014407
+      - 40014408
+      - 40014409
+      - 40014410
+      - 40014411
+      - 40014412
+      - 40014413
+      - 40014414
+      - 40014415
+      - 40014416
+      planet_id: 40014401
+    - planet_id: 40014418
+    position:
+      x: -5.329740218412372e+16
+      y: 8.541391847032562e+16
+      z: 1.6198169670184774e+17
+    security_class: H
+    security_status: -0.1505020558834076
+    star_id: 40014330
+    stargates:
+    - 50002465
+    - 50002466
+    system_id: 30000224
+  30000225:
+    constellation_id: 20000032
+    name: H-5GUI
+    planets:
+    - asteroid_belts:
+      - 40014421
+      planet_id: 40014420
+    - moons:
+      - 40014423
+      planet_id: 40014422
+    - planet_id: 40014424
+    - asteroid_belts:
+      - 40014426
+      moons:
+      - 40014427
+      planet_id: 40014425
+    - asteroid_belts:
+      - 40014434
+      - 40014446
+      moons:
+      - 40014429
+      - 40014430
+      - 40014431
+      - 40014432
+      - 40014433
+      - 40014435
+      - 40014436
+      - 40014437
+      - 40014438
+      - 40014439
+      - 40014440
+      - 40014441
+      - 40014442
+      - 40014443
+      - 40014444
+      - 40014445
+      - 40014447
+      planet_id: 40014428
+    - asteroid_belts:
+      - 40014470
+      - 40014471
+      - 40014473
+      moons:
+      - 40014449
+      - 40014450
+      - 40014451
+      - 40014452
+      - 40014453
+      - 40014454
+      - 40014455
+      - 40014456
+      - 40014457
+      - 40014458
+      - 40014459
+      - 40014460
+      - 40014461
+      - 40014462
+      - 40014463
+      - 40014464
+      - 40014465
+      - 40014466
+      - 40014467
+      - 40014468
+      - 40014469
+      - 40014472
+      - 40014474
+      - 40014475
+      planet_id: 40014448
+    - asteroid_belts:
+      - 40014478
+      - 40014480
+      - 40014481
+      - 40014493
+      moons:
+      - 40014477
+      - 40014479
+      - 40014482
+      - 40014483
+      - 40014484
+      - 40014485
+      - 40014486
+      - 40014487
+      - 40014488
+      - 40014489
+      - 40014490
+      - 40014491
+      - 40014492
+      - 40014494
+      - 40014495
+      planet_id: 40014476
+    - asteroid_belts:
+      - 40014497
+      moons:
+      - 40014498
+      planet_id: 40014496
+    - asteroid_belts:
+      - 40014500
+      - 40014501
+      moons:
+      - 40014502
+      - 40014503
+      - 40014504
+      planet_id: 40014499
+    position:
+      x: -4.858357676308232e+16
+      y: 8.588768691137819e+16
+      z: 1.4943431646217197e+17
+    security_class: H
+    security_status: -0.14051498472690582
+    star_id: 40014419
+    stargates:
+    - 50002550
+    - 50002551
+    - 50002552
+    - 50002553
+    system_id: 30000225
+  30000240:
+    constellation_id: 20000034
+    name: 4-HWWF
+    planets:
+    - planet_id: 40015363
+    - asteroid_belts:
+      - 40015365
+      planet_id: 40015364
+    - asteroid_belts:
+      - 40015367
+      planet_id: 40015366
+    - asteroid_belts:
+      - 40015380
+      moons:
+      - 40015369
+      - 40015370
+      - 40015371
+      - 40015372
+      - 40015373
+      - 40015374
+      - 40015375
+      - 40015376
+      - 40015377
+      - 40015378
+      - 40015379
+      planet_id: 40015368
+    - moons:
+      - 40015382
+      - 40015383
+      - 40015384
+      - 40015385
+      - 40015386
+      - 40015387
+      - 40015388
+      - 40015389
+      - 40015390
+      - 40015391
+      - 40015392
+      - 40015393
+      - 40015394
+      - 40015395
+      - 40015396
+      - 40015397
+      - 40015398
+      - 40015399
+      - 40015400
+      - 40015401
+      - 40015402
+      planet_id: 40015381
+    - asteroid_belts:
+      - 40015406
+      - 40015419
+      - 40015424
+      - 40015425
+      moons:
+      - 40015404
+      - 40015405
+      - 40015407
+      - 40015408
+      - 40015409
+      - 40015410
+      - 40015411
+      - 40015412
+      - 40015413
+      - 40015414
+      - 40015415
+      - 40015416
+      - 40015417
+      - 40015418
+      - 40015420
+      - 40015421
+      - 40015422
+      - 40015423
+      planet_id: 40015403
+    - asteroid_belts:
+      - 40015428
+      - 40015430
+      - 40015431
+      - 40015451
+      - 40015453
+      - 40015454
+      moons:
+      - 40015427
+      - 40015429
+      - 40015432
+      - 40015433
+      - 40015434
+      - 40015435
+      - 40015436
+      - 40015437
+      - 40015438
+      - 40015439
+      - 40015440
+      - 40015441
+      - 40015442
+      - 40015443
+      - 40015444
+      - 40015445
+      - 40015446
+      - 40015447
+      - 40015448
+      - 40015449
+      - 40015450
+      - 40015452
+      - 40015455
+      planet_id: 40015426
+    position:
+      x: -7.969077902036126e+16
+      y: 9.80604907314994e+16
+      z: 1.9196732100494138e+17
+    security_class: H3
+    security_status: -0.4730263650417328
+    star_id: 40015362
+    stargates:
+    - 50001395
+    - 50001396
+    - 50001397
+    - 50001398
+    system_id: 30000240
+  30000241:
+    constellation_id: 20000034
+    name: YMJG-4
+    planets:
+    - moons:
+      - 40015458
+      planet_id: 40015457
+    - moons:
+      - 40015460
+      planet_id: 40015459
+    - moons:
+      - 40015462
+      planet_id: 40015461
+    - moons:
+      - 40015464
+      - 40015465
+      planet_id: 40015463
+    - asteroid_belts:
+      - 40015470
+      moons:
+      - 40015467
+      - 40015468
+      - 40015469
+      - 40015471
+      - 40015472
+      - 40015473
+      - 40015474
+      - 40015475
+      planet_id: 40015466
+    - moons:
+      - 40015477
+      - 40015478
+      - 40015479
+      planet_id: 40015476
+    - asteroid_belts:
+      - 40015481
+      moons:
+      - 40015482
+      planet_id: 40015480
+    - asteroid_belts:
+      - 40015484
+      - 40015485
+      planet_id: 40015483
+    position:
+      x: -8.475436646700912e+16
+      y: 8.876150003091146e+16
+      z: 1.9013070344741782e+17
+    security_class: H2
+    security_status: -0.41689354181289673
+    star_id: 40015456
+    stargates:
+    - 50001625
+    - 50001626
+    system_id: 30000241
+  30000242:
+    constellation_id: 20000034
+    name: 8TPX-N
+    planets:
+    - planet_id: 40015487
+    - moons:
+      - 40015489
+      planet_id: 40015488
+    - moons:
+      - 40015491
+      planet_id: 40015490
+    - moons:
+      - 40015493
+      planet_id: 40015492
+    - moons:
+      - 40015495
+      - 40015496
+      planet_id: 40015494
+    - asteroid_belts:
+      - 40015498
+      moons:
+      - 40015499
+      planet_id: 40015497
+    - asteroid_belts:
+      - 40015510
+      - 40015519
+      - 40015521
+      moons:
+      - 40015501
+      - 40015502
+      - 40015503
+      - 40015504
+      - 40015505
+      - 40015506
+      - 40015507
+      - 40015508
+      - 40015509
+      - 40015511
+      - 40015512
+      - 40015513
+      - 40015514
+      - 40015515
+      - 40015516
+      - 40015517
+      - 40015518
+      - 40015520
+      planet_id: 40015500
+    - moons:
+      - 40015523
+      - 40015524
+      - 40015525
+      - 40015526
+      - 40015527
+      - 40015528
+      planet_id: 40015522
+    position:
+      x: -7.376450041956384e+16
+      y: 1.1009804228610597e+17
+      z: 1.8762795448357245e+17
+    security_class: H2
+    security_status: -0.43719160556793213
+    star_id: 40015486
+    stargates:
+    - 50001917
+    - 50001918
+    - 50001919
+    system_id: 30000242
+  30000244:
+    constellation_id: 20000035
+    name: K8X-6B
+    planets:
+    - moons:
+      - 40015551
+      planet_id: 40015550
+    - asteroid_belts:
+      - 40015553
+      planet_id: 40015552
+    - asteroid_belts:
+      - 40015556
+      - 40015559
+      moons:
+      - 40015555
+      - 40015557
+      - 40015558
+      - 40015560
+      - 40015561
+      - 40015562
+      - 40015563
+      - 40015564
+      - 40015565
+      - 40015566
+      - 40015567
+      planet_id: 40015554
+    - moons:
+      - 40015569
+      - 40015570
+      - 40015571
+      - 40015572
+      - 40015573
+      - 40015574
+      - 40015575
+      - 40015576
+      planet_id: 40015568
+    - moons:
+      - 40015578
+      - 40015579
+      - 40015580
+      - 40015581
+      - 40015582
+      - 40015583
+      - 40015584
+      - 40015585
+      - 40015586
+      - 40015587
+      - 40015588
+      - 40015589
+      - 40015590
+      - 40015591
+      - 40015592
+      - 40015593
+      - 40015594
+      - 40015595
+      - 40015596
+      planet_id: 40015577
+    - asteroid_belts:
+      - 40015614
+      - 40015616
+      - 40015617
+      - 40015618
+      - 40015621
+      - 40015623
+      moons:
+      - 40015598
+      - 40015599
+      - 40015600
+      - 40015601
+      - 40015602
+      - 40015603
+      - 40015604
+      - 40015605
+      - 40015606
+      - 40015607
+      - 40015608
+      - 40015609
+      - 40015610
+      - 40015611
+      - 40015612
+      - 40015613
+      - 40015615
+      - 40015619
+      - 40015620
+      - 40015622
+      planet_id: 40015597
+    - asteroid_belts:
+      - 40015625
+      - 40015628
+      moons:
+      - 40015626
+      - 40015627
+      planet_id: 40015624
+    position:
+      x: -9.572588458370078e+16
+      y: 1.0039140229632003e+17
+      z: 1.9340958311963696e+17
+    security_class: H2
+    security_status: -0.43021538853645325
+    star_id: 40015549
+    stargates:
+    - 50000082
+    - 50000083
+    - 50000084
+    - 50000085
+    system_id: 30000244
+  30000247:
+    constellation_id: 20000035
+    name: 9OO-LH
+    planets:
+    - asteroid_belts:
+      - 40015737
+      planet_id: 40015736
+    - asteroid_belts:
+      - 40015739
+      planet_id: 40015738
+    - asteroid_belts:
+      - 40015741
+      - 40015742
+      planet_id: 40015740
+    - moons:
+      - 40015744
+      planet_id: 40015743
+    - moons:
+      - 40015746
+      - 40015747
+      - 40015748
+      planet_id: 40015745
+    - asteroid_belts:
+      - 40015750
+      moons:
+      - 40015751
+      - 40015752
+      planet_id: 40015749
+    - moons:
+      - 40015754
+      - 40015755
+      - 40015756
+      - 40015757
+      - 40015758
+      planet_id: 40015753
+    - asteroid_belts:
+      - 40015760
+      - 40015761
+      moons:
+      - 40015762
+      - 40015763
+      - 40015764
+      planet_id: 40015759
+    position:
+      x: -1.0292725608169162e+17
+      y: 1.0451260728068139e+17
+      z: 2.0194575553646877e+17
+    security_class: H3
+    security_status: -0.46696433424949646
+    star_id: 40015735
+    stargates:
+    - 50000710
+    - 50000711
+    - 50000712
+    - 50000713
+    system_id: 30000247
+  30000249:
+    constellation_id: 20000035
+    name: EIDI-N
+    planets:
+    - planet_id: 40015840
+    - moons:
+      - 40015842
+      planet_id: 40015841
+    - planet_id: 40015843
+    - asteroid_belts:
+      - 40015845
+      - 40015846
+      planet_id: 40015844
+    - planet_id: 40015847
+    - moons:
+      - 40015849
+      - 40015850
+      planet_id: 40015848
+    - asteroid_belts:
+      - 40015852
+      moons:
+      - 40015853
+      - 40015854
+      planet_id: 40015851
+    - asteroid_belts:
+      - 40015856
+      - 40015857
+      - 40015858
+      planet_id: 40015855
+    position:
+      x: -8.868589983537856e+16
+      y: 9.85871873727325e+16
+      z: 1.8842898070002662e+17
+    security_class: H2
+    security_status: -0.40610644221305847
+    star_id: 40015839
+    stargates:
+    - 50001646
+    - 50001647
+    - 50001648
+    - 50001649
+    system_id: 30000249
+  30000253:
+    constellation_id: 20000035
+    name: DAYP-G
+    planets:
+    - planet_id: 40015967
+    - moons:
+      - 40015969
+      - 40015970
+      - 40015971
+      - 40015972
+      - 40015973
+      - 40015974
+      - 40015975
+      - 40015976
+      - 40015977
+      - 40015978
+      - 40015979
+      - 40015980
+      planet_id: 40015968
+    - moons:
+      - 40015982
+      - 40015983
+      - 40015984
+      - 40015985
+      - 40015986
+      - 40015987
+      - 40015988
+      - 40015989
+      - 40015990
+      - 40015991
+      - 40015992
+      - 40015993
+      - 40015994
+      - 40015995
+      - 40015996
+      planet_id: 40015981
+    - moons:
+      - 40015998
+      - 40015999
+      - 40016000
+      - 40016001
+      - 40016002
+      - 40016003
+      - 40016004
+      - 40016005
+      - 40016006
+      planet_id: 40015997
+    position:
+      x: -8.949411367336317e+16
+      y: 9.063551312363094e+16
+      z: 1.883263823678816e+17
+    security_status: -0.3927612900733948
+    star_id: 40015966
+    stargates:
+    - 50002337
+    - 50002338
+    - 50002339
+    - 50002340
+    system_id: 30000253
+  30000853:
+    constellation_id: 20000125
+    name: F-RT6Q
+    planets:
+    - moons:
+      - 40054124
+      planet_id: 40054123
+    - moons:
+      - 40054126
+      planet_id: 40054125
+    - moons:
+      - 40054128
+      planet_id: 40054127
+    - asteroid_belts:
+      - 40054130
+      moons:
+      - 40054131
+      planet_id: 40054129
+    - asteroid_belts:
+      - 40054133
+      moons:
+      - 40054134
+      - 40054135
+      planet_id: 40054132
+    - asteroid_belts:
+      - 40054140
+      moons:
+      - 40054137
+      - 40054138
+      - 40054139
+      - 40054141
+      - 40054142
+      - 40054143
+      - 40054144
+      - 40054145
+      planet_id: 40054136
+    - asteroid_belts:
+      - 40054165
+      - 40054167
+      - 40054172
+      moons:
+      - 40054147
+      - 40054148
+      - 40054149
+      - 40054150
+      - 40054151
+      - 40054152
+      - 40054153
+      - 40054154
+      - 40054155
+      - 40054156
+      - 40054157
+      - 40054158
+      - 40054159
+      - 40054160
+      - 40054161
+      - 40054162
+      - 40054163
+      - 40054164
+      - 40054166
+      - 40054168
+      - 40054169
+      - 40054170
+      - 40054171
+      - 40054173
+      planet_id: 40054146
+    - asteroid_belts:
+      - 40054175
+      moons:
+      - 40054176
+      - 40054177
+      planet_id: 40054174
+    position:
+      x: -1.4919179124935206e+17
+      y: 1.0487097949862227e+17
+      z: 2.225027063986836e+17
+    security_class: H
+    security_status: -0.24985884130001068
+    star_id: 40054122
+    stargates:
+    - 50000882
+    - 50000883
+    - 50000884
+    - 50000885
+    system_id: 30000853
+  30000858:
+    constellation_id: 20000125
+    name: UMI-KK
+    planets:
+    - asteroid_belts:
+      - 40054545
+      planet_id: 40054544
+    - moons:
+      - 40054547
+      planet_id: 40054546
+    - moons:
+      - 40054549
+      planet_id: 40054548
+    - moons:
+      - 40054551
+      planet_id: 40054550
+    - asteroid_belts:
+      - 40054553
+      moons:
+      - 40054554
+      planet_id: 40054552
+    - asteroid_belts:
+      - 40054557
+      - 40054560
+      moons:
+      - 40054556
+      - 40054558
+      - 40054559
+      - 40054561
+      - 40054562
+      planet_id: 40054555
+    - asteroid_belts:
+      - 40054564
+      moons:
+      - 40054565
+      - 40054566
+      - 40054567
+      - 40054568
+      - 40054569
+      planet_id: 40054563
+    - moons:
+      - 40054571
+      - 40054572
+      - 40054573
+      - 40054574
+      - 40054575
+      - 40054576
+      - 40054577
+      - 40054578
+      - 40054579
+      - 40054580
+      - 40054581
+      - 40054582
+      - 40054583
+      - 40054584
+      - 40054585
+      - 40054586
+      - 40054587
+      - 40054588
+      - 40054589
+      - 40054590
+      - 40054591
+      planet_id: 40054570
+    - asteroid_belts:
+      - 40054594
+      - 40054596
+      - 40054598
+      - 40054600
+      - 40054602
+      - 40054604
+      - 40054605
+      - 40054614
+      - 40054616
+      - 40054617
+      - 40054619
+      - 40054622
+      - 40054623
+      - 40054625
+      - 40054626
+      - 40054628
+      - 40054629
+      - 40054631
+      moons:
+      - 40054593
+      - 40054595
+      - 40054597
+      - 40054599
+      - 40054601
+      - 40054603
+      - 40054606
+      - 40054607
+      - 40054608
+      - 40054609
+      - 40054610
+      - 40054611
+      - 40054612
+      - 40054613
+      - 40054615
+      - 40054618
+      - 40054620
+      - 40054621
+      - 40054624
+      - 40054627
+      - 40054630
+      planet_id: 40054592
+    - asteroid_belts:
+      - 40054633
+      moons:
+      - 40054634
+      planet_id: 40054632
+    - moons:
+      - 40054636
+      - 40054637
+      - 40054638
+      - 40054639
+      planet_id: 40054635
+    position:
+      x: -1.6539987056771914e+17
+      y: 1.0787823186696205e+17
+      z: 2.3763792468212272e+17
+    security_class: H
+    security_status: -0.16947874426841736
+    star_id: 40054543
+    stargates:
+    - 50001835
+    - 50001836
+    - 50001837
+    - 50001838
+    system_id: 30000858
+  30000860:
+    constellation_id: 20000125
+    name: AW1-2I
+    planets:
+    - moons:
+      - 40054699
+      - 40054700
+      planet_id: 40054698
+    - moons:
+      - 40054702
+      planet_id: 40054701
+    - moons:
+      - 40054704
+      - 40054705
+      - 40054706
+      - 40054707
+      - 40054708
+      - 40054709
+      - 40054710
+      - 40054711
+      - 40054712
+      - 40054713
+      - 40054714
+      - 40054715
+      - 40054716
+      - 40054717
+      - 40054718
+      planet_id: 40054703
+    - moons:
+      - 40054720
+      - 40054721
+      - 40054722
+      - 40054723
+      - 40054724
+      - 40054725
+      - 40054726
+      - 40054727
+      - 40054728
+      - 40054729
+      - 40054730
+      - 40054731
+      - 40054732
+      - 40054733
+      planet_id: 40054719
+    - asteroid_belts:
+      - 40054735
+      - 40054744
+      - 40054749
+      - 40054751
+      - 40054752
+      - 40054754
+      - 40054755
+      - 40054757
+      - 40054759
+      moons:
+      - 40054736
+      - 40054737
+      - 40054738
+      - 40054739
+      - 40054740
+      - 40054741
+      - 40054742
+      - 40054743
+      - 40054745
+      - 40054746
+      - 40054747
+      - 40054748
+      - 40054750
+      - 40054753
+      - 40054756
+      - 40054758
+      planet_id: 40054734
+    - moons:
+      - 40054761
+      - 40054762
+      planet_id: 40054760
+    position:
+      x: -1.555785484685556e+17
+      y: 1.0753875146901942e+17
+      z: 2.3257783908610538e+17
+    security_class: H
+    security_status: -0.21542473137378693
+    star_id: 40054697
+    stargates:
+    - 50002080
+    - 50002081
+    - 50002082
+    - 50002083
+    system_id: 30000860
+  30000861:
+    constellation_id: 20000126
+    name: 15W-GC
+    planets:
+    - moons:
+      - 40054765
+      planet_id: 40054764
+    - moons:
+      - 40054767
+      planet_id: 40054766
+    - planet_id: 40054768
+    - moons:
+      - 40054770
+      - 40054771
+      planet_id: 40054769
+    - moons:
+      - 40054773
+      - 40054774
+      - 40054775
+      - 40054776
+      - 40054777
+      - 40054778
+      - 40054779
+      planet_id: 40054772
+    - asteroid_belts:
+      - 40054782
+      - 40054785
+      moons:
+      - 40054781
+      - 40054783
+      - 40054784
+      - 40054786
+      - 40054787
+      - 40054788
+      - 40054789
+      - 40054790
+      - 40054791
+      - 40054792
+      planet_id: 40054780
+    - asteroid_belts:
+      - 40054795
+      - 40054799
+      moons:
+      - 40054794
+      - 40054796
+      - 40054797
+      - 40054798
+      - 40054800
+      - 40054801
+      - 40054802
+      - 40054803
+      - 40054804
+      - 40054805
+      - 40054806
+      - 40054807
+      - 40054808
+      - 40054809
+      - 40054810
+      - 40054811
+      planet_id: 40054793
+    - asteroid_belts:
+      - 40054814
+      - 40054821
+      - 40054828
+      - 40054830
+      - 40054832
+      - 40054834
+      - 40054835
+      - 40054836
+      - 40054838
+      - 40054839
+      - 40054840
+      - 40054841
+      - 40054842
+      - 40054844
+      - 40054845
+      - 40054846
+      moons:
+      - 40054813
+      - 40054815
+      - 40054816
+      - 40054817
+      - 40054818
+      - 40054819
+      - 40054820
+      - 40054822
+      - 40054823
+      - 40054824
+      - 40054825
+      - 40054826
+      - 40054827
+      - 40054829
+      - 40054831
+      - 40054833
+      - 40054837
+      - 40054843
+      planet_id: 40054812
+    - asteroid_belts:
+      - 40054848
+      moons:
+      - 40054849
+      - 40054850
+      - 40054851
+      - 40054852
+      - 40054853
+      planet_id: 40054847
+    position:
+      x: -1.3177023247337958e+17
+      y: 1.0663022528918323e+17
+      z: 2.1078333722298643e+17
+    security_class: H1
+    security_status: -0.3229769170284271
+    star_id: 40054763
+    stargates:
+    - 50000612
+    - 50000613
+    - 50000614
+    system_id: 30000861
+  30000862:
+    constellation_id: 20000126
+    name: N-FK87
+    planets:
+    - asteroid_belts:
+      - 40054856
+      planet_id: 40054855
+    - planet_id: 40054857
+    - moons:
+      - 40054859
+      planet_id: 40054858
+    - asteroid_belts:
+      - 40054861
+      planet_id: 40054860
+    - moons:
+      - 40054863
+      - 40054864
+      planet_id: 40054862
+    - moons:
+      - 40054866
+      - 40054867
+      - 40054868
+      - 40054869
+      - 40054870
+      - 40054871
+      - 40054872
+      - 40054873
+      - 40054874
+      - 40054875
+      - 40054876
+      - 40054877
+      planet_id: 40054865
+    - asteroid_belts:
+      - 40054895
+      moons:
+      - 40054879
+      - 40054880
+      - 40054881
+      - 40054882
+      - 40054883
+      - 40054884
+      - 40054885
+      - 40054886
+      - 40054887
+      - 40054888
+      - 40054889
+      - 40054890
+      - 40054891
+      - 40054892
+      - 40054893
+      - 40054894
+      - 40054896
+      - 40054897
+      planet_id: 40054878
+    - asteroid_belts:
+      - 40054899
+      - 40054901
+      moons:
+      - 40054900
+      planet_id: 40054898
+    position:
+      x: -1.4692120908388474e+17
+      y: 1.0158420747283275e+17
+      z: 2.2331250195499622e+17
+    security_class: H1
+    security_status: -0.26421669125556946
+    star_id: 40054854
+    stargates:
+    - 50000991
+    - 50000992
+    system_id: 30000862
+  30000863:
+    constellation_id: 20000126
+    name: C2X-M5
+    planets:
+    - moons:
+      - 40054904
+      planet_id: 40054903
+    - planet_id: 40054905
+    - asteroid_belts:
+      - 40054907
+      planet_id: 40054906
+    - asteroid_belts:
+      - 40054909
+      planet_id: 40054908
+    - moons:
+      - 40054911
+      - 40054912
+      planet_id: 40054910
+    - moons:
+      - 40054914
+      - 40054915
+      - 40054916
+      planet_id: 40054913
+    - asteroid_belts:
+      - 40054918
+      - 40054920
+      - 40054934
+      - 40054935
+      moons:
+      - 40054919
+      - 40054921
+      - 40054922
+      - 40054923
+      - 40054924
+      - 40054925
+      - 40054926
+      - 40054927
+      - 40054928
+      - 40054929
+      - 40054930
+      - 40054931
+      - 40054932
+      - 40054933
+      planet_id: 40054917
+    - asteroid_belts:
+      - 40054937
+      - 40054938
+      - 40054940
+      - 40054963
+      moons:
+      - 40054939
+      - 40054941
+      - 40054942
+      - 40054943
+      - 40054944
+      - 40054945
+      - 40054946
+      - 40054947
+      - 40054948
+      - 40054949
+      - 40054950
+      - 40054951
+      - 40054952
+      - 40054953
+      - 40054954
+      - 40054955
+      - 40054956
+      - 40054957
+      - 40054958
+      - 40054959
+      - 40054960
+      - 40054961
+      - 40054962
+      planet_id: 40054936
+    - asteroid_belts:
+      - 40054970
+      - 40054973
+      - 40054974
+      moons:
+      - 40054965
+      - 40054966
+      - 40054967
+      - 40054968
+      - 40054969
+      - 40054971
+      - 40054972
+      planet_id: 40054964
+    position:
+      x: -1.2474092984034587e+17
+      y: 1.03054265236951e+17
+      z: 2.105578504250228e+17
+    security_class: H2
+    security_status: -0.37397730350494385
+    star_id: 40054902
+    stargates:
+    - 50001013
+    - 50001014
+    system_id: 30000863
+  30000864:
+    constellation_id: 20000126
+    name: MSHD-4
+    planets:
+    - planet_id: 40054976
+    - planet_id: 40054977
+    - planet_id: 40054978
+    - asteroid_belts:
+      - 40054980
+      - 40054981
+      - 40054982
+      moons:
+      - 40054983
+      planet_id: 40054979
+    - moons:
+      - 40054985
+      - 40054986
+      planet_id: 40054984
+    - asteroid_belts:
+      - 40054989
+      moons:
+      - 40054988
+      - 40054990
+      - 40054991
+      planet_id: 40054987
+    - asteroid_belts:
+      - 40054993
+      moons:
+      - 40054994
+      - 40054995
+      - 40054996
+      planet_id: 40054992
+    - asteroid_belts:
+      - 40054999
+      moons:
+      - 40054998
+      - 40055000
+      - 40055001
+      - 40055002
+      - 40055003
+      planet_id: 40054997
+    - asteroid_belts:
+      - 40055006
+      - 40055008
+      - 40055009
+      - 40055022
+      - 40055023
+      - 40055025
+      - 40055026
+      - 40055028
+      - 40055029
+      - 40055032
+      - 40055034
+      moons:
+      - 40055005
+      - 40055007
+      - 40055010
+      - 40055011
+      - 40055012
+      - 40055013
+      - 40055014
+      - 40055015
+      - 40055016
+      - 40055017
+      - 40055018
+      - 40055019
+      - 40055020
+      - 40055021
+      - 40055024
+      - 40055027
+      - 40055030
+      - 40055031
+      - 40055033
+      planet_id: 40055004
+    position:
+      x: -1.1702991403762976e+17
+      y: 1.0222245299155958e+17
+      z: 2.1210112179697146e+17
+    security_class: H2
+    security_status: -0.44073960185050964
+    star_id: 40054975
+    stargates:
+    - 50001806
+    - 50001807
+    - 50001808
+    system_id: 30000864
+  30000866:
+    constellation_id: 20000126
+    name: PNDN-V
+    planets:
+    - moons:
+      - 40055155
+      planet_id: 40055154
+    - asteroid_belts:
+      - 40055158
+      - 40055159
+      moons:
+      - 40055157
+      - 40055160
+      - 40055161
+      - 40055162
+      - 40055163
+      - 40055164
+      - 40055165
+      planet_id: 40055156
+    - moons:
+      - 40055167
+      planet_id: 40055166
+    - moons:
+      - 40055169
+      - 40055170
+      planet_id: 40055168
+    - asteroid_belts:
+      - 40055189
+      moons:
+      - 40055172
+      - 40055173
+      - 40055174
+      - 40055175
+      - 40055176
+      - 40055177
+      - 40055178
+      - 40055179
+      - 40055180
+      - 40055181
+      - 40055182
+      - 40055183
+      - 40055184
+      - 40055185
+      - 40055186
+      - 40055187
+      - 40055188
+      planet_id: 40055171
+    - moons:
+      - 40055191
+      - 40055192
+      - 40055193
+      - 40055194
+      - 40055195
+      - 40055196
+      - 40055197
+      - 40055198
+      - 40055199
+      - 40055200
+      - 40055201
+      - 40055202
+      - 40055203
+      - 40055204
+      - 40055205
+      - 40055206
+      - 40055207
+      - 40055208
+      - 40055209
+      - 40055210
+      - 40055211
+      - 40055212
+      planet_id: 40055190
+    - asteroid_belts:
+      - 40055237
+      moons:
+      - 40055214
+      - 40055215
+      - 40055216
+      - 40055217
+      - 40055218
+      - 40055219
+      - 40055220
+      - 40055221
+      - 40055222
+      - 40055223
+      - 40055224
+      - 40055225
+      - 40055226
+      - 40055227
+      - 40055228
+      - 40055229
+      - 40055230
+      - 40055231
+      - 40055232
+      - 40055233
+      - 40055234
+      - 40055235
+      - 40055236
+      planet_id: 40055213
+    - asteroid_belts:
+      - 40055239
+      - 40055244
+      moons:
+      - 40055240
+      - 40055241
+      - 40055242
+      - 40055243
+      - 40055245
+      - 40055246
+      planet_id: 40055238
+    - asteroid_belts:
+      - 40055248
+      moons:
+      - 40055249
+      - 40055250
+      planet_id: 40055247
+    position:
+      x: -1.3851151526504627e+17
+      y: 1.0335244408331478e+17
+      z: 2.202608747196467e+17
+    security_class: H1
+    security_status: -0.31073710322380066
+    star_id: 40055153
+    stargates:
+    - 50002098
+    - 50002099
+    - 50002100
+    system_id: 30000866
+  30002421:
+    constellation_id: 20000356
+    name: MR4-MY
+    planets:
+    - moons:
+      - 40153980
+      planet_id: 40153979
+    - asteroid_belts:
+      - 40153982
+      moons:
+      - 40153983
+      planet_id: 40153981
+    - asteroid_belts:
+      - 40153985
+      - 40153986
+      moons:
+      - 40153987
+      planet_id: 40153984
+    - moons:
+      - 40153989
+      - 40153990
+      - 40153991
+      - 40153992
+      - 40153993
+      - 40153994
+      - 40153995
+      - 40153996
+      - 40153997
+      - 40153998
+      - 40153999
+      - 40154000
+      - 40154001
+      - 40154002
+      - 40154003
+      planet_id: 40153988
+    - asteroid_belts:
+      - 40154010
+      - 40154025
+      - 40154027
+      moons:
+      - 40154005
+      - 40154006
+      - 40154007
+      - 40154008
+      - 40154009
+      - 40154011
+      - 40154012
+      - 40154013
+      - 40154014
+      - 40154015
+      - 40154016
+      - 40154017
+      - 40154018
+      - 40154019
+      - 40154020
+      - 40154021
+      - 40154022
+      - 40154023
+      - 40154024
+      - 40154026
+      planet_id: 40154004
+    - asteroid_belts:
+      - 40154029
+      - 40154031
+      - 40154032
+      - 40154051
+      moons:
+      - 40154030
+      - 40154033
+      - 40154034
+      - 40154035
+      - 40154036
+      - 40154037
+      - 40154038
+      - 40154039
+      - 40154040
+      - 40154041
+      - 40154042
+      - 40154043
+      - 40154044
+      - 40154045
+      - 40154046
+      - 40154047
+      - 40154048
+      - 40154049
+      - 40154050
+      - 40154052
+      - 40154053
+      planet_id: 40154028
+    - moons:
+      - 40154055
+      - 40154056
+      - 40154057
+      - 40154058
+      planet_id: 40154054
+    position:
+      x: -4.048823655393147e+16
+      y: 7.734048448052762e+16
+      z: 1.4051489741393653e+17
+    security_class: H
+    security_status: -0.20341750979423523
+    star_id: 40153978
+    stargates:
+    - 50003101
+    - 50003102
+    - 50003103
+    system_id: 30002421
+  30002422:
+    constellation_id: 20000356
+    name: SR-KBB
+    planets:
+    - moons:
+      - 40154061
+      planet_id: 40154060
+    - moons:
+      - 40154063
+      planet_id: 40154062
+    - asteroid_belts:
+      - 40154065
+      moons:
+      - 40154066
+      planet_id: 40154064
+    - moons:
+      - 40154068
+      - 40154069
+      - 40154070
+      - 40154071
+      - 40154072
+      planet_id: 40154067
+    - asteroid_belts:
+      - 40154077
+      - 40154078
+      - 40154089
+      moons:
+      - 40154074
+      - 40154075
+      - 40154076
+      - 40154079
+      - 40154080
+      - 40154081
+      - 40154082
+      - 40154083
+      - 40154084
+      - 40154085
+      - 40154086
+      - 40154087
+      - 40154088
+      - 40154090
+      - 40154091
+      - 40154092
+      - 40154093
+      - 40154094
+      planet_id: 40154073
+    - asteroid_belts:
+      - 40154099
+      - 40154124
+      - 40154126
+      moons:
+      - 40154096
+      - 40154097
+      - 40154098
+      - 40154100
+      - 40154101
+      - 40154102
+      - 40154103
+      - 40154104
+      - 40154105
+      - 40154106
+      - 40154107
+      - 40154108
+      - 40154109
+      - 40154110
+      - 40154111
+      - 40154112
+      - 40154113
+      - 40154114
+      - 40154115
+      - 40154116
+      - 40154117
+      - 40154118
+      - 40154119
+      - 40154120
+      - 40154121
+      - 40154122
+      - 40154123
+      - 40154125
+      - 40154127
+      planet_id: 40154095
+    - asteroid_belts:
+      - 40154129
+      moons:
+      - 40154130
+      - 40154131
+      planet_id: 40154128
+    - moons:
+      - 40154133
+      - 40154134
+      - 40154135
+      planet_id: 40154132
+    position:
+      x: -3.899583765191953e+16
+      y: 8.449333355569034e+16
+      z: 1.3585967281171309e+17
+    security_class: H1
+    security_status: -0.2929917275905609
+    star_id: 40154059
+    stargates:
+    - 50003321
+    - 50003322
+    - 50003323
+    system_id: 30002422
+  30002424:
+    constellation_id: 20000356
+    name: 2E-ZR5
+    planets:
+    - planet_id: 40154189
+    - asteroid_belts:
+      - 40154191
+      moons:
+      - 40154192
+      planet_id: 40154190
+    - moons:
+      - 40154194
+      planet_id: 40154193
+    - moons:
+      - 40154196
+      planet_id: 40154195
+    - asteroid_belts:
+      - 40154199
+      - 40154200
+      - 40154211
+      - 40154214
+      - 40154217
+      - 40154218
+      moons:
+      - 40154198
+      - 40154201
+      - 40154202
+      - 40154203
+      - 40154204
+      - 40154205
+      - 40154206
+      - 40154207
+      - 40154208
+      - 40154209
+      - 40154210
+      - 40154212
+      - 40154213
+      - 40154215
+      - 40154216
+      - 40154219
+      planet_id: 40154197
+    - asteroid_belts:
+      - 40154221
+      - 40154222
+      - 40154224
+      - 40154225
+      - 40154228
+      - 40154230
+      - 40154244
+      - 40154249
+      - 40154250
+      - 40154252
+      - 40154253
+      moons:
+      - 40154223
+      - 40154226
+      - 40154227
+      - 40154229
+      - 40154231
+      - 40154232
+      - 40154233
+      - 40154234
+      - 40154235
+      - 40154236
+      - 40154237
+      - 40154238
+      - 40154239
+      - 40154240
+      - 40154241
+      - 40154242
+      - 40154243
+      - 40154245
+      - 40154246
+      - 40154247
+      - 40154248
+      - 40154251
+      planet_id: 40154220
+    - asteroid_belts:
+      - 40154255
+      - 40154257
+      - 40154263
+      moons:
+      - 40154256
+      - 40154258
+      - 40154259
+      - 40154260
+      - 40154261
+      - 40154262
+      - 40154264
+      - 40154265
+      planet_id: 40154254
+    position:
+      x: -3.4044272635223824e+16
+      y: 8.673428977214675e+16
+      z: 1.381276506600564e+17
+    security_class: H1
+    security_status: -0.3123050928115845
+    star_id: 40154188
+    stargates:
+    - 50003784
+    - 50003785
+    system_id: 30002424
+  30002425:
+    constellation_id: 20000356
+    name: O1-FTD
+    planets:
+    - asteroid_belts:
+      - 40154268
+      moons:
+      - 40154269
+      planet_id: 40154267
+    - asteroid_belts:
+      - 40154271
+      - 40154272
+      moons:
+      - 40154273
+      - 40154274
+      - 40154275
+      - 40154276
+      - 40154277
+      - 40154278
+      - 40154279
+      - 40154280
+      - 40154281
+      - 40154282
+      - 40154283
+      - 40154284
+      planet_id: 40154270
+    - moons:
+      - 40154286
+      planet_id: 40154285
+    - asteroid_belts:
+      - 40154300
+      - 40154306
+      - 40154309
+      - 40154310
+      - 40154311
+      moons:
+      - 40154288
+      - 40154289
+      - 40154290
+      - 40154291
+      - 40154292
+      - 40154293
+      - 40154294
+      - 40154295
+      - 40154296
+      - 40154297
+      - 40154298
+      - 40154299
+      - 40154301
+      - 40154302
+      - 40154303
+      - 40154304
+      - 40154305
+      - 40154307
+      - 40154308
+      planet_id: 40154287
+    - moons:
+      - 40154313
+      - 40154314
+      - 40154315
+      - 40154316
+      - 40154317
+      - 40154318
+      - 40154319
+      - 40154320
+      - 40154321
+      - 40154322
+      - 40154323
+      - 40154324
+      - 40154325
+      - 40154326
+      - 40154327
+      - 40154328
+      - 40154329
+      - 40154330
+      planet_id: 40154312
+    - asteroid_belts:
+      - 40154350
+      moons:
+      - 40154332
+      - 40154333
+      - 40154334
+      - 40154335
+      - 40154336
+      - 40154337
+      - 40154338
+      - 40154339
+      - 40154340
+      - 40154341
+      - 40154342
+      - 40154343
+      - 40154344
+      - 40154345
+      - 40154346
+      - 40154347
+      - 40154348
+      - 40154349
+      planet_id: 40154331
+    - asteroid_belts:
+      - 40154352
+      planet_id: 40154351
+    - asteroid_belts:
+      - 40154354
+      - 40154358
+      moons:
+      - 40154355
+      - 40154356
+      - 40154357
+      planet_id: 40154353
+    position:
+      x: -2.2694501334460824e+16
+      y: 8.2550029753574e+16
+      z: 1.3400906256633806e+17
+    security_class: H2
+    security_status: -0.4084748327732086
+    star_id: 40154266
+    stargates:
+    - 50003827
+    - 50003828
+    - 50003829
+    system_id: 30002425
+  30002438:
+    constellation_id: 20000358
+    name: BND-16
+    planets:
+    - asteroid_belts:
+      - 40155093
+      moons:
+      - 40155094
+      planet_id: 40155092
+    - moons:
+      - 40155096
+      planet_id: 40155095
+    - moons:
+      - 40155098
+      planet_id: 40155097
+    - planet_id: 40155099
+    - moons:
+      - 40155101
+      planet_id: 40155100
+    - moons:
+      - 40155103
+      planet_id: 40155102
+    - moons:
+      - 40155105
+      - 40155106
+      - 40155107
+      - 40155108
+      - 40155109
+      - 40155110
+      - 40155111
+      - 40155112
+      - 40155113
+      - 40155114
+      - 40155115
+      - 40155116
+      - 40155117
+      - 40155118
+      - 40155119
+      planet_id: 40155104
+    - asteroid_belts:
+      - 40155121
+      - 40155122
+      - 40155125
+      - 40155138
+      - 40155143
+      - 40155145
+      - 40155146
+      - 40155148
+      - 40155149
+      - 40155150
+      - 40155152
+      moons:
+      - 40155123
+      - 40155124
+      - 40155126
+      - 40155127
+      - 40155128
+      - 40155129
+      - 40155130
+      - 40155131
+      - 40155132
+      - 40155133
+      - 40155134
+      - 40155135
+      - 40155136
+      - 40155137
+      - 40155139
+      - 40155140
+      - 40155141
+      - 40155142
+      - 40155144
+      - 40155147
+      - 40155151
+      planet_id: 40155120
+    position:
+      x: -2.452466695313596e+16
+      y: 8.259549733862568e+16
+      z: 1.2825124062801413e+17
+    security_class: H3
+    security_status: -0.4922313988208771
+    star_id: 40155091
+    stargates:
+    - 50004360
+    - 50004361
+    - 50004362
+    system_id: 30002438
+  30002441:
+    constellation_id: 20000358
+    name: 4-CUM5
+    planets:
+    - moons:
+      - 40155297
+      planet_id: 40155296
+    - asteroid_belts:
+      - 40155299
+      moons:
+      - 40155300
+      planet_id: 40155298
+    - asteroid_belts:
+      - 40155302
+      moons:
+      - 40155303
+      planet_id: 40155301
+    - asteroid_belts:
+      - 40155305
+      - 40155306
+      - 40155310
+      moons:
+      - 40155307
+      - 40155308
+      - 40155309
+      planet_id: 40155304
+    - asteroid_belts:
+      - 40155312
+      moons:
+      - 40155313
+      planet_id: 40155311
+    - moons:
+      - 40155315
+      - 40155316
+      - 40155317
+      - 40155318
+      - 40155319
+      - 40155320
+      - 40155321
+      - 40155322
+      - 40155323
+      - 40155324
+      - 40155325
+      - 40155326
+      - 40155327
+      - 40155328
+      - 40155329
+      - 40155330
+      - 40155331
+      planet_id: 40155314
+    - asteroid_belts:
+      - 40155334
+      - 40155341
+      - 40155349
+      moons:
+      - 40155333
+      - 40155335
+      - 40155336
+      - 40155337
+      - 40155338
+      - 40155339
+      - 40155340
+      - 40155342
+      - 40155343
+      - 40155344
+      - 40155345
+      - 40155346
+      - 40155347
+      - 40155348
+      - 40155350
+      - 40155351
+      - 40155352
+      - 40155353
+      - 40155354
+      planet_id: 40155332
+    - moons:
+      - 40155356
+      - 40155357
+      - 40155358
+      - 40155359
+      planet_id: 40155355
+    - asteroid_belts:
+      - 40155361
+      moons:
+      - 40155362
+      - 40155363
+      planet_id: 40155360
+    position:
+      x: -2.092085087344156e+16
+      y: 7.902855172995354e+16
+      z: 1.2465514921842534e+17
+    security_class: H3
+    security_status: -0.49256885051727295
+    star_id: 40155295
+    stargates:
+    - 50006323
+    - 50006324
+    system_id: 30002441
+  30002443:
+    constellation_id: 20000358
+    name: RLSI-V
+    planets:
+    - moons:
+      - 40155444
+      planet_id: 40155443
+    - asteroid_belts:
+      - 40155446
+      moons:
+      - 40155447
+      planet_id: 40155445
+    - asteroid_belts:
+      - 40155450
+      moons:
+      - 40155449
+      - 40155451
+      - 40155452
+      - 40155453
+      - 40155454
+      planet_id: 40155448
+    - moons:
+      - 40155456
+      - 40155457
+      - 40155458
+      - 40155459
+      - 40155460
+      - 40155461
+      - 40155462
+      - 40155463
+      - 40155464
+      - 40155465
+      - 40155466
+      - 40155467
+      - 40155468
+      - 40155469
+      - 40155470
+      - 40155471
+      - 40155472
+      - 40155473
+      - 40155474
+      planet_id: 40155455
+    - asteroid_belts:
+      - 40155479
+      - 40155494
+      - 40155496
+      - 40155497
+      moons:
+      - 40155476
+      - 40155477
+      - 40155478
+      - 40155480
+      - 40155481
+      - 40155482
+      - 40155483
+      - 40155484
+      - 40155485
+      - 40155486
+      - 40155487
+      - 40155488
+      - 40155489
+      - 40155490
+      - 40155491
+      - 40155492
+      - 40155493
+      - 40155495
+      - 40155498
+      planet_id: 40155475
+    - asteroid_belts:
+      - 40155500
+      planet_id: 40155499
+    - asteroid_belts:
+      - 40155502
+      moons:
+      - 40155503
+      planet_id: 40155501
+    position:
+      x: -1.901759516219709e+16
+      y: 8.092487568358971e+16
+      z: 1.2090104048609368e+17
+    security_class: H3
+    security_status: -0.534088671207428
+    star_id: 40155442
+    stargates:
+    - 50008706
+    - 50008707
+    system_id: 30002443

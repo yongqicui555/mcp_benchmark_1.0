@@ -1,0 +1,45 @@
+{
+  "name": "claude-kvm",
+  "version": "2.0.12",
+  "description": "MCP server — control remote desktops via VNC (MacOS)",
+  "license": "MIT",
+  "author": "Rıza Emre ARAS <r.emrearas@proton.me>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ARAS-Workspace/claude-kvm.git"
+  },
+  "keywords": [
+    "mcp",
+    "vnc",
+    "kvm",
+    "claude",
+    "remote-desktop",
+    "automation",
+    "apple-silicon",
+    "native"
+  ],
+  "mcpName": "io.github.ARAS-Workspace/claude-kvm",
+  "main": "index.js",
+  "bin": {
+    "claude-kvm": "index.js"
+  },
+  "files": [
+    "index.js",
+    "tools/",
+    "LICENSE",
+    "README.md"
+  ],
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.26.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@anthropic-ai/sdk": "^0.52.0",
+    "@types/node": "^25.2.3",
+    "dotenv": "^17.3.1"
+  }
+}

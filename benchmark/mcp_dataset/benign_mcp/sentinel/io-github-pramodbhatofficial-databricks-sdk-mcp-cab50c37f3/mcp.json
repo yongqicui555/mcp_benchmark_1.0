@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-pramodbhatofficial-databricks-sdk-mcp-cab50c37f3": {
+      "args": [
+        "/app/io-github-pramodbhatofficial-databricks-sdk-mcp-cab50c37f3/databricks-mcp-server/databricks_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

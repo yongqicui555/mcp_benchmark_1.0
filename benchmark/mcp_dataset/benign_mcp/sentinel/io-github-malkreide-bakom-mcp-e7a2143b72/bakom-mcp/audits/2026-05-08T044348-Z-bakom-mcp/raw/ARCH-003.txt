@@ -1,0 +1,3 @@
+=== empty/not-found responses ===
+375:            return "Fehler: Ressource nicht gefunden. Bitte Koordinaten oder Parameter prüfen."
+=== suggestion/heuristic patterns ===

@@ -1,8 +1,0 @@
-[project]
-name = "keyvault-mcp"
-version = "0.1.0"
-requires-python = ">=3.12"
-dependencies = [
-  "cryptography>=43.0.0",
-  "mcp>=1.0.0",
-]

@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-x402node-x402-mcp-20503e423b": {
+      "args": [
+        "/app/io-github-x402node-x402-mcp-20503e423b/x402-mcp/mcp-server.js"
+      ],
+      "command": "node"
+    }
+  }
+}

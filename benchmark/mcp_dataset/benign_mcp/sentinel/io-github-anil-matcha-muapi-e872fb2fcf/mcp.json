@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-anil-matcha-muapi-e872fb2fcf": {
+      "args": [
+        "/app/io-github-anil-matcha-muapi-e872fb2fcf/muapi-claude-code/src/index.js"
+      ],
+      "command": "node"
+    }
+  }
+}

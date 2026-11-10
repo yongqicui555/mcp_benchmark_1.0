@@ -1,0 +1,12 @@
+=== CORS Middleware ===
+1856:        from starlette.middleware.cors import CORSMiddleware
+1860:        cors_env = os.environ.get("BAKOM_MCP_CORS_ORIGINS", "").strip()
+1873:                CORSMiddleware,
+1874:                allow_origins=cors_origins,
+1877:                expose_headers=["Mcp-Session-Id"],
+1880:                f"CORS aktiv für Origins: {', '.join(cors_origins)} "
+1881:                "(expose_headers=Mcp-Session-Id)",
+1886:                "CORS deaktiviert. Für Browser-Clients setze "
+1887:                "BAKOM_MCP_CORS_ORIGINS=https://example.com,https://other.com",
+=== env var docs ===
+# BAKOM_MCP_CORS_ORIGINS=https://app.example.com,https://app2.example.com

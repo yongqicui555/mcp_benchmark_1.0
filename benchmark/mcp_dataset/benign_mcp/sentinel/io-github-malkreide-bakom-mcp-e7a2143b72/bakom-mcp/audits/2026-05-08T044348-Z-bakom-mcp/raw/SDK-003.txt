@@ -1,0 +1,4 @@
+=== Context parameter / ctx usage ===
+332:async def _opendata_dataset_info(client: httpx.AsyncClient, dataset_id: str) -> dict[str, Any]:
+1143:async def bakom_medienstruktur_info(params: TelekomStatInput) -> str:
+1674:def bakom_server_info() -> str:

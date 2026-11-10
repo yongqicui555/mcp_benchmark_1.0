@@ -1,9 +1,0 @@
-{
-  "mcpServers": {
-    "qae-safety": {
-      "command": "python",
-      "args": ["-m", "qae_mcp_server"],
-      "env": {}
-    }
-  }
-}

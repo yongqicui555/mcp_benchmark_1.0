@@ -1,0 +1,20 @@
+# Environment variables
+.env
+
+# Node modules
+node_modules/
+
+# Test files
+src/test-api.js
+src/test-connection.js
+src/test-image.js
+src/test-prediction.js
+src/test-sdk.js
+test.js
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db

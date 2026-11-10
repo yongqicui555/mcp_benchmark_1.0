@@ -1,0 +1,100 @@
+{
+  "audit_meta": {
+    "server_name": "lobbywatch-mcp",
+    "run_id": "2026-05-09T133506-Z-lobbywatch-mcp",
+    "skill_version": "1.0.0",
+    "catalog_hash": "091f446b27965044ce658a1d5f4b2cabe2b0ab5661dcc1a53b6be8f1f2e093c0",
+    "auditor": "Claude (mcp-audit-skill v1.0.0, re-audit)",
+    "policy": "fail-or-partial",
+    "previous_run": "2026-05-09T115855-Z-lobbywatch-mcp"
+  },
+  "totals": {
+    "checks_evaluated": 44,
+    "applicable": 44,
+    "by_status": {
+      "pass": 41,
+      "fail": 0,
+      "partial": 1,
+      "todo": 2,
+      "n/a": 0
+    },
+    "by_severity_among_findings": {
+      "critical": 0,
+      "high": 0,
+      "medium": 1,
+      "low": 0
+    },
+    "by_category": {
+      "ARCH": {
+        "pass": 11,
+        "fail": 0,
+        "partial": 0,
+        "todo": 0,
+        "n/a": 0
+      },
+      "CH": {
+        "pass": 1,
+        "fail": 0,
+        "partial": 0,
+        "todo": 0,
+        "n/a": 0
+      },
+      "OBS": {
+        "pass": 5,
+        "fail": 0,
+        "partial": 0,
+        "todo": 0,
+        "n/a": 0
+      },
+      "OPS": {
+        "pass": 2,
+        "fail": 0,
+        "partial": 1,
+        "todo": 0,
+        "n/a": 0
+      },
+      "SCALE": {
+        "pass": 5,
+        "fail": 0,
+        "partial": 0,
+        "todo": 0,
+        "n/a": 0
+      },
+      "SDK": {
+        "pass": 4,
+        "fail": 0,
+        "partial": 0,
+        "todo": 0,
+        "n/a": 0
+      },
+      "SEC": {
+        "pass": 13,
+        "fail": 0,
+        "partial": 0,
+        "todo": 2,
+        "n/a": 0
+      }
+    }
+  },
+  "findings": {
+    "policy": "fail-or-partial",
+    "policy_statuses": [
+      "fail",
+      "partial"
+    ],
+    "expected_count": 1,
+    "expected_ids": [
+      "OPS-002"
+    ],
+    "details": [
+      {
+        "check_id": "OPS-002",
+        "category": "OPS",
+        "severity": "medium",
+        "status": "partial"
+      }
+    ]
+  },
+  "production_ready": true,
+  "blocking_findings": []
+}

@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-swadegeiger1-word-mcp-ffb23dbcd1": {
+      "args": [
+        "/app/io-github-swadegeiger1-word-mcp-ffb23dbcd1/word-mcp-server/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

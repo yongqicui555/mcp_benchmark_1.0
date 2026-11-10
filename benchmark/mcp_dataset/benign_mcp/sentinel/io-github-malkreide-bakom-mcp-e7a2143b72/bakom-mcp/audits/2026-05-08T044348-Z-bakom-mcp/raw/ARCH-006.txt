@@ -1,0 +1,13 @@
+=== tool count ===
+11
+=== tool names ===
+bakom_broadband_coverage
+bakom_multi_standort_konnektivitaet
+bakom_mobilfunk_abdeckung
+bakom_sendeanlagen_suche
+bakom_frequenzdaten
+bakom_rtv_suche
+bakom_medienstruktur_info
+bakom_aktuell
+bakom_telekomstatistik_uebersicht
+bakom_breitbandatlas_datensaetze

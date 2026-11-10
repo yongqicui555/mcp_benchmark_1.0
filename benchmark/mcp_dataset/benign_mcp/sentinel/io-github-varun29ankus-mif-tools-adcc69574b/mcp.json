@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-varun29ankus-mif-tools-adcc69574b": {
+      "args": [
+        "/app/io-github-varun29ankus-mif-tools-adcc69574b/mif-spec/python/mif/mcp_server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

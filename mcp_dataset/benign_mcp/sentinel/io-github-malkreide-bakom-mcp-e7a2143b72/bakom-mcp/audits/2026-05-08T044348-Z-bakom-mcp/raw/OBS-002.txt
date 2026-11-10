@@ -1,2 +1,0 @@
-=== exception details exposed ===
-643:                        "fehler": str(e)[:100],

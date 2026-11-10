@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-0xsl1m-cerebrus-pulse-mcp-0e96ee19cb": {
+      "args": [
+        "/app/io-github-0xsl1m-cerebrus-pulse-mcp-0e96ee19cb/cerebrus-pulse-mcp/src/cerebrus_pulse_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

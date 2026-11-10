@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap");
+
+/* ── Mintlify overrides ── */
+
+h1, h2, h3, h4 {
+  font-family: "Instrument Serif", serif !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.01em;
+}
+
+body, p, li, td, th {
+  font-family: "Inter", sans-serif !important;
+}
+
+code, pre, kbd {
+  font-family: "JetBrains Mono", monospace !important;
+  font-size: 0.9rem;
+}
+
+pre code {
+  font-size: 1em;
+}
+
+aside {
+  background: #f8fafc !important;
+  border-right: 1px solid #e2e8f0;
+  font-size: 1rem !important;
+}
+
+aside * {
+  font-size: inherit !important;
+}

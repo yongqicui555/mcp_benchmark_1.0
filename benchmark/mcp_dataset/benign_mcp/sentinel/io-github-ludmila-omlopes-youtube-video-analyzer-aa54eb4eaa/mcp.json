@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-ludmila-omlopes-youtube-video-analyzer-aa54eb4eaa": {
+      "args": [
+        "/app/io-github-ludmila-omlopes-youtube-video-analyzer-aa54eb4eaa/youtube-video-analyzer-mcp/bin/youtube-video-analyzer-mcp.js"
+      ],
+      "command": "node"
+    }
+  }
+}

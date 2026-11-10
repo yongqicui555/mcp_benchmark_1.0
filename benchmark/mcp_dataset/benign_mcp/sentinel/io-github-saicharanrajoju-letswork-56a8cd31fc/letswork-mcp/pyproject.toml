@@ -1,0 +1,50 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "letswork"
+version = "3.0.0"
+description = "Real-time collaborative coding via MCP — two developers, one codebase"
+readme = "README.md"
+license = "MIT"
+requires-python = ">= 3.10"
+authors = [{ name = "Sai Charan Rajoju" }]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "mcp[cli]>=1.0.0",
+    "click>=8.1.0",
+    "httpx>=0.27.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/saicharanrajoju/LetsWork"
+Repository = "https://github.com/saicharanrajoju/LetsWork"
+Issues = "https://github.com/saicharanrajoju/LetsWork/issues"
+
+[project.scripts]
+letswork = "letswork.cli:cli"
+letswork-proxy = "letswork.proxy:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["letswork"]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["letswork*"]

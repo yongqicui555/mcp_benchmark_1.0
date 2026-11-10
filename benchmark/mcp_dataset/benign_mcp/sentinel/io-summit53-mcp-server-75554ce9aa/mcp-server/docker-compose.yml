@@ -1,0 +1,25 @@
+# Summit53 MCP Server — Docker Compose example
+#
+# Quick start:
+#   1. Set your API key: export SUMMIT53_API_KEY=sk_your_key_here
+#   2. Run: docker compose up
+#
+# The container bridges stdio <-> Streamable HTTP to the hosted Summit53 server.
+# Use this with any MCP client that supports Docker-based servers.
+
+services:
+  summit53-mcp:
+    image: summit53/mcp-server:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - SUMMIT53_URL=${SUMMIT53_URL:-https://api.summit53.io/mcp/}
+    stdin_open: true
+    restart: unless-stopped
+    # OAuth tokens cached locally — mount a volume to persist across restarts
+    volumes:
+      - mcp-auth:/root/.mcp-auth
+
+volumes:
+  mcp-auth:

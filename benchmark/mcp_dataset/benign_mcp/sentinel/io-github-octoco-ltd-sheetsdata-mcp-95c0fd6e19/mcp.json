@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-octoco-ltd-sheetsdata-mcp-95c0fd6e19": {
+      "args": [
+        "/app/io-github-octoco-ltd-sheetsdata-mcp-95c0fd6e19/sheetsdata-mcp/bin/cli.js"
+      ],
+      "command": "node"
+    }
+  }
+}

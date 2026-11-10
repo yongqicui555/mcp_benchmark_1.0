@@ -1,0 +1,15 @@
+{
+  "client": {
+    "adapter": "rtk-query",
+    "repo": ".",
+    "roots": ["examples/express-fixture-client"],
+    "basePath": "/api/v1"
+  },
+  "server": {
+    "adapter": "express",
+    "repo": ".",
+    "roots": ["examples/express-fixture"]
+  },
+  "ignore": [],
+  "failOn": ["drift"]
+}

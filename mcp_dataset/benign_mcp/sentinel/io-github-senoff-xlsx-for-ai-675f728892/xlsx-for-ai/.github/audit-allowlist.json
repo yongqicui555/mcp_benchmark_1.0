@@ -1,4 +1,0 @@
-{
-  "$comment": "Triaged advisories that audit.yml will not fail the build on. Each entry MUST include a reassess date. A PR that adds an entry here is a security-policy change — review accordingly.",
-  "advisories": []
-}

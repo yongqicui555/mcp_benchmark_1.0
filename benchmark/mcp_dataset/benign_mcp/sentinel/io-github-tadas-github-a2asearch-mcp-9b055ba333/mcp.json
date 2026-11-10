@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-tadas-github-a2asearch-mcp-9b055ba333": {
+      "args": [
+        "/app/io-github-tadas-github-a2asearch-mcp-9b055ba333/a2asearch-mcp/index.js"
+      ],
+      "command": "node"
+    }
+  }
+}

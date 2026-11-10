@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-sapph1re-feedback-synthesis-mcp-023deebbf3": {
+      "args": [
+        "/app/io-github-sapph1re-feedback-synthesis-mcp-023deebbf3/feedback-synthesis-mcp/src/feedback_synthesis_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

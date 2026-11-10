@@ -1,3 +1,0 @@
-# NveilSpec
-
-::: nveil.NveilSpec

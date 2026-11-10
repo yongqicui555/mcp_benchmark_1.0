@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "com-screenshotink-mcp-e49da5c584": {
+      "args": [
+        "/app/com-screenshotink-mcp-e49da5c584/screenshotink-mcp/bin/cli.js"
+      ],
+      "command": "node"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "server_name": "hn-tech-signal-mcp",
+  "version": "0.1.0",
+  "repository": "https://github.com/malkreide/hn-tech-signal-mcp",
+  "audit_date": "2026-05-12",
+  "auditor": "Claude (mcp-audit-skill v0.5.0)",
+  "skill_source": "https://github.com/malkreide/mcp-audit-skill",
+  "run_id": "audit-2026-05-12T00:00Z-hn-tech-signal-mcp",
+  "profile": {
+    "transport": ["stdio", "streamable_http"],
+    "auth_model": "none (optional GITHUB_TOKEN env for upstream rate-limit)",
+    "data_classification": "public_only",
+    "write_access": false,
+    "deployment": ["local_desktop", "cloud_http"],
+    "language": "python>=3.11",
+    "framework": "mcp.server.fastmcp (official Python SDK)",
+    "tool_count": 7,
+    "upstream_apis": [
+      "hacker-news.firebaseio.com",
+      "hn.algolia.com",
+      "export.arxiv.org",
+      "lobste.rs",
+      "api.github.com"
+    ],
+    "processes_personal_data": false,
+    "swiss_jurisdiction_relevant": false
+  }
+}

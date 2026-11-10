@@ -1,0 +1,10 @@
+=== lifespan in FastMCP ctor ===
+501:    lifespan=lifespan,
+=== async with httpx.AsyncClient (sollte nur 1x in lifespan sein) ===
+94:    async with httpx.AsyncClient(
+=== _shared_client helper ===
+103:async def _shared_client(ctx: Context) -> AsyncIterator[httpx.AsyncClient]:
+558:        async with _shared_client(ctx) as client:
+626:        async with _shared_client(ctx) as client:
+=== ctx: Context in tools ===
+11

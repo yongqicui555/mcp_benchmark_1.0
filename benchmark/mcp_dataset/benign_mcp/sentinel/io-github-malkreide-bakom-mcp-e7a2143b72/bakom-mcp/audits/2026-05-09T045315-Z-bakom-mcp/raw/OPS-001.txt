@@ -1,0 +1,11 @@
+=== pyproject markers ===
+markers = [
+    "live: tests that hit real BAKOM/geo.admin.ch/opendata.swiss APIs (excluded from CI default)",
+]
+
+=== conftest live-tagging ===
+17:_LIVE_TEST_MODULES: frozenset[str] = frozenset(
+30:    live_marker = pytest.mark.live
+36:        if relative in _LIVE_TEST_MODULES:
+=== test_unit.py count ===
+41

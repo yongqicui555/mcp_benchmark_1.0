@@ -1,9 +1,0 @@
-__pycache__/
-*.pyc
-dist/
-*.egg-info/
-.eggs/
-build/
-.env
-.mcpregistry_github_token
-.mcpregistry_registry_token

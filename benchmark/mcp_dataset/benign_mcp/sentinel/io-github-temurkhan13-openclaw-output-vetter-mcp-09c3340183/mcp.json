@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-temurkhan13-openclaw-output-vetter-mcp-09c3340183": {
+      "args": [
+        "/app/io-github-temurkhan13-openclaw-output-vetter-mcp-09c3340183/openclaw-output-vetter-mcp/src/openclaw_output_vetter_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

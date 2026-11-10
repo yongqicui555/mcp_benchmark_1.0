@@ -1,0 +1,133 @@
+{
+  "mcp_name": "io.summit53/mcp-server",
+  "version": "1.0.2",
+  "external_function_count": 75,
+  "category_count": 15,
+  "availability": "Session visibility depends on granted scopes and Summit53 organization permissions. Use list_available_tools for the authoritative session-specific surface.",
+  "authentication": {
+    "interactive": "OAuth with PKCE",
+    "access_token_lifetime": "1 hour",
+    "refresh_token_lifetime": "7 days, rotating",
+    "service_integrations": "Approved integrations may use scoped static API keys.",
+    "read_scope_rollout": "Declared general read scopes are staged behind a production gate; Job Lifecycle read scope is always enforced.",
+    "write_scope_enforcement": "Business write and job-management scopes are always enforced.",
+    "application_permissions": "Summit53 organization, role, ownership, subscription, and handler permissions remain authoritative.",
+    "scope_is_human_approval": false
+  },
+  "async_jobs": {
+    "functions": [
+      "get_job",
+      "list_jobs",
+      "cancel_job"
+    ],
+    "retention_days": 30,
+    "cancellation": "Cancellation can be requested only while a job remains cancellable; already-running work is not guaranteed to stop."
+  },
+  "tool_categories": {
+    "Search": [
+      "get_opportunity",
+      "search_opportunities",
+      "search_accounts"
+    ],
+    "Opportunity Strategy": [
+      "get_opportunity_signals",
+      "opportunity_three_whys",
+      "opportunity_discovery_planner",
+      "opportunity_value_pyramid",
+      "opportunity_stakeholder_intelligence"
+    ],
+    "Account Intelligence": [
+      "account_intelligence_summary",
+      "account_execution_health",
+      "opportunity_framework_summary"
+    ],
+    "Pipeline & Risk": [
+      "pipeline_risk_summary",
+      "risk_heatmap",
+      "deal_drag_summary",
+      "deal_drag_dashboard"
+    ],
+    "RevOps": [
+      "data_quality_score",
+      "crm_sync_health"
+    ],
+    "Forecasting": [
+      "hunter_farmer_mix",
+      "ramp_cohort",
+      "forecast_confidence",
+      "forecast_gap_diagnosis",
+      "capacity_to_target_planner",
+      "reverse_capacity_planner",
+      "arr_growth_analytics",
+      "arr_growth_narrative",
+      "unified_forecast_summary"
+    ],
+    "Activity": [
+      "activity_gaps",
+      "weekly_action_plan",
+      "team_action_plan"
+    ],
+    "Research": [
+      "external_account_research"
+    ],
+    "Notes & Activities": [
+      "get_opportunity_notes_summary",
+      "rebuild_opportunity_notes_summary",
+      "get_opportunity_activities",
+      "get_opportunity_notes",
+      "create_opportunity_note"
+    ],
+    "Outreach": [
+      "search_outreach_leads",
+      "list_outreach_sequences",
+      "get_outreach_sequence",
+      "create_outreach_sequence",
+      "update_outreach_sequence",
+      "publish_outreach_sequence",
+      "list_outreach_lead_events",
+      "enroll_outreach_leads_in_sequence",
+      "process_outreach_due_steps",
+      "resolve_outreach_manual_step",
+      "convert_outreach_lead",
+      "list_outreach_starter_templates",
+      "get_outreach_lead",
+      "update_outreach_lead",
+      "list_outreach_lead_lists",
+      "bulk_upsert_outreach_leads",
+      "outreach_funnel_summary"
+    ],
+    "Value Impact": [
+      "get_value_impact_card",
+      "get_value_contract",
+      "list_impact_entries",
+      "list_account_contracts",
+      "create_impact_entry",
+      "update_impact_entry",
+      "delete_impact_entry",
+      "update_account_contract",
+      "set_primary_contract",
+      "generate_value_contract",
+      "run_value_impact_pipeline"
+    ],
+    "Coaching": [
+      "coaching_diagnostic",
+      "coaching_agenda",
+      "complete_coaching_session"
+    ],
+    "Knowledge Base": [
+      "search_knowledge",
+      "get_knowledge_asset",
+      "list_methodology_playbooks",
+      "get_battlecard",
+      "list_reactive_plays"
+    ],
+    "Job Lifecycle": [
+      "get_job",
+      "list_jobs",
+      "cancel_job"
+    ],
+    "Discovery": [
+      "list_available_tools"
+    ]
+  }
+}

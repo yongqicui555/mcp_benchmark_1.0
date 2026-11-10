@@ -1,2 +1,0 @@
-=== SDK-004 CORS ===
-no CORS middleware

@@ -1,0 +1,44 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.semorehq/mcp-commerce",
+  "description": "Semore K-product MCP server: search K-beauty/fashion/pop, cross-border carts, AP2-signed checkout.",
+  "title": "Semore K-Commerce",
+  "websiteUrl": "https://semore.net",
+  "repository": {
+    "url": "https://github.com/semorehq/mcp-commerce",
+    "source": "github"
+  },
+  "version": "0.4.2",
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "@semore/mcp-commerce",
+      "version": "0.4.2",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ],
+  "_meta": {
+    "io.modelcontextprotocol.registry/publisher-provided": {
+      "tool": "mcp-publisher",
+      "version": "1.7.2",
+      "publisher": "Semore",
+      "homepage": "https://semore.net",
+      "did": "did:web:semore.net",
+      "license": "Apache-2.0",
+      "categories": ["commerce", "retail", "travel"],
+      "tags": ["korean-products", "k-beauty", "k-fashion", "k-pop", "cross-border", "korea-travel", "agentic-commerce", "ap2", "acp", "ucp"],
+      "languages": ["en", "ja", "ko", "de", "fr", "es"],
+      "compliance": {
+        "pci": "SAQ-A",
+        "pipa": "PIPA §28-8 cross-border consent",
+        "ap2": "did:web:semore.net Ed25519 mandate signing",
+        "acp": "Shared Payment Token reference",
+        "ucp": "/ucp/capability with AP2 extension"
+      },
+      "tools_canonical": ["search_product", "get_product", "create_cart", "quote_checkout", "submit_intent"]
+    }
+  }
+}

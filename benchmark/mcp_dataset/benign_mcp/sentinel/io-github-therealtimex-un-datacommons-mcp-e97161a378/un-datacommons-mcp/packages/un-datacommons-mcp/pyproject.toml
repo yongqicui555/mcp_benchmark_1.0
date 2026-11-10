@@ -1,0 +1,37 @@
+[project]
+name = "un-datacommons-mcp"
+dynamic = ["version"]
+description = "Data Commons MCP server."
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "fastmcp",
+    "requests",
+    "datacommons-client",
+    "pydantic>=2.11.7",
+    "pydantic-settings",
+    "python-dateutil>=2.9.0.post0",
+]
+urls = {Homepage = "https://github.com/datacommonsorg/agent-toolkit"}
+
+[project.scripts]
+un-datacommons-mcp = "datacommons_mcp.cli:cli"
+
+[build-system]
+requires = ["uv", "setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["datacommons_mcp*"]
+
+[tool.setuptools.package-data]
+datacommons_mcp = ["**/*.json"]
+
+[tool.setuptools.dynamic]
+version = {attr = "datacommons_mcp.version.__version__"}

@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-malkreide-bag-epl-mcp-cda3d6abc0": {
+      "args": [
+        "/app/io-github-malkreide-bag-epl-mcp-cda3d6abc0/bag-epl-mcp/src/bag_epl_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

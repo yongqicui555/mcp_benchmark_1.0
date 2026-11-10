@@ -1,0 +1,302 @@
+{
+  "audit_meta": {
+    "server_name": "parlament-mcp",
+    "run_id": "2026-05-30T105608-Z-parlament-mcp",
+    "started_at": "2026-05-30T10:56:08.819054+00:00",
+    "timezone_offset": "Z",
+    "skill_version": "1.0.0",
+    "output_dir": "/home/user/parlament-mcp/audits/2026-05-30T105608-Z-parlament-mcp",
+    "catalog_hash": "091f446b27965044ce658a1d5f4b2cabe2b0ab5661dcc1a53b6be8f1f2e093c0",
+    "catalog_dir": "/tmp/mcp-audit-skill/checks",
+    "audit_date": "2026-05-30",
+    "catalog_version": "1.0.0 (catalog_hash 091f446b2796)"
+  },
+  "totals": {
+    "checks_evaluated": 44,
+    "applicable": 44,
+    "by_status": {
+      "pass": 15,
+      "fail": 2,
+      "partial": 27,
+      "todo": 0,
+      "n/a": 0
+    },
+    "by_severity_among_findings": {
+      "critical": 3,
+      "high": 13,
+      "medium": 13,
+      "low": 0
+    },
+    "by_category": {
+      "ARCH": {
+        "pass": 6,
+        "fail": 0,
+        "partial": 5,
+        "todo": 0,
+        "n/a": 0
+      },
+      "CH": {
+        "pass": 0,
+        "fail": 0,
+        "partial": 1,
+        "todo": 0,
+        "n/a": 0
+      },
+      "OBS": {
+        "pass": 2,
+        "fail": 0,
+        "partial": 3,
+        "todo": 0,
+        "n/a": 0
+      },
+      "OPS": {
+        "pass": 1,
+        "fail": 0,
+        "partial": 2,
+        "todo": 0,
+        "n/a": 0
+      },
+      "SCALE": {
+        "pass": 0,
+        "fail": 0,
+        "partial": 5,
+        "todo": 0,
+        "n/a": 0
+      },
+      "SDK": {
+        "pass": 0,
+        "fail": 1,
+        "partial": 3,
+        "todo": 0,
+        "n/a": 0
+      },
+      "SEC": {
+        "pass": 6,
+        "fail": 1,
+        "partial": 8,
+        "todo": 0,
+        "n/a": 0
+      }
+    }
+  },
+  "findings": {
+    "policy": "fail-or-partial",
+    "policy_statuses": [
+      "fail",
+      "partial"
+    ],
+    "expected_count": 29,
+    "expected_ids": [
+      "ARCH-002",
+      "ARCH-003",
+      "ARCH-004",
+      "ARCH-008",
+      "ARCH-012",
+      "CH-004",
+      "OBS-001",
+      "OBS-003",
+      "OBS-006",
+      "OPS-001",
+      "OPS-003",
+      "SCALE-001",
+      "SCALE-002",
+      "SCALE-003",
+      "SCALE-004",
+      "SCALE-006",
+      "SDK-001",
+      "SDK-002",
+      "SDK-003",
+      "SDK-004",
+      "SEC-007",
+      "SEC-009",
+      "SEC-014",
+      "SEC-015",
+      "SEC-016",
+      "SEC-018",
+      "SEC-019",
+      "SEC-021",
+      "SEC-022"
+    ],
+    "details": [
+      {
+        "check_id": "ARCH-002",
+        "category": "ARCH",
+        "severity": "medium",
+        "status": "partial"
+      },
+      {
+        "check_id": "ARCH-003",
+        "category": "ARCH",
+        "severity": "medium",
+        "status": "partial"
+      },
+      {
+        "check_id": "ARCH-004",
+        "category": "ARCH",
+        "severity": "high",
+        "status": "partial"
+      },
+      {
+        "check_id": "ARCH-008",
+        "category": "ARCH",
+        "severity": "medium",
+        "status": "partial"
+      },
+      {
+        "check_id": "ARCH-012",
+        "category": "ARCH",
+        "severity": "medium",
+        "status": "partial"
+      },
+      {
+        "check_id": "CH-004",
+        "category": "CH",
+        "severity": "medium",
+        "status": "partial"
+      },
+      {
+        "check_id": "OBS-001",
+        "category": "OBS",
+        "severity": "high",
+        "status": "partial"
+      },
+      {
+        "check_id": "OBS-003",
+        "category": "OBS",
+        "severity": "medium",
+        "status": "partial"
+      },
+      {
+        "check_id": "OBS-006",
+        "category": "OBS",
+        "severity": "medium",
+        "status": "partial"
+      },
+      {
+        "check_id": "OPS-001",
+        "category": "OPS",
+        "severity": "high",
+        "status": "partial"
+      },
+      {
+        "check_id": "OPS-003",
+        "category": "OPS",
+        "severity": "high",
+        "status": "partial"
+      },
+      {
+        "check_id": "SCALE-001",
+        "category": "SCALE",
+        "severity": "high",
+        "status": "partial"
+      },
+      {
+        "check_id": "SCALE-002",
+        "category": "SCALE",
+        "severity": "high",
+        "status": "partial"
+      },
+      {
+        "check_id": "SCALE-003",
+        "category": "SCALE",
+        "severity": "high",
+        "status": "partial"
+      },
+      {
+        "check_id": "SCALE-004",
+        "category": "SCALE",
+        "severity": "medium",
+        "status": "partial"
+      },
+      {
+        "check_id": "SCALE-006",
+        "category": "SCALE",
+        "severity": "medium",
+        "status": "partial"
+      },
+      {
+        "check_id": "SDK-001",
+        "category": "SDK",
+        "severity": "high",
+        "status": "fail"
+      },
+      {
+        "check_id": "SDK-002",
+        "category": "SDK",
+        "severity": "medium",
+        "status": "partial"
+      },
+      {
+        "check_id": "SDK-003",
+        "category": "SDK",
+        "severity": "medium",
+        "status": "partial"
+      },
+      {
+        "check_id": "SDK-004",
+        "category": "SDK",
+        "severity": "high",
+        "status": "partial"
+      },
+      {
+        "check_id": "SEC-007",
+        "category": "SEC",
+        "severity": "high",
+        "status": "partial"
+      },
+      {
+        "check_id": "SEC-009",
+        "category": "SEC",
+        "severity": "critical",
+        "status": "partial"
+      },
+      {
+        "check_id": "SEC-014",
+        "category": "SEC",
+        "severity": "medium",
+        "status": "partial"
+      },
+      {
+        "check_id": "SEC-015",
+        "category": "SEC",
+        "severity": "medium",
+        "status": "partial"
+      },
+      {
+        "check_id": "SEC-016",
+        "category": "SEC",
+        "severity": "critical",
+        "status": "fail"
+      },
+      {
+        "check_id": "SEC-018",
+        "category": "SEC",
+        "severity": "high",
+        "status": "partial"
+      },
+      {
+        "check_id": "SEC-019",
+        "category": "SEC",
+        "severity": "critical",
+        "status": "partial"
+      },
+      {
+        "check_id": "SEC-021",
+        "category": "SEC",
+        "severity": "high",
+        "status": "partial"
+      },
+      {
+        "check_id": "SEC-022",
+        "category": "SEC",
+        "severity": "high",
+        "status": "partial"
+      }
+    ]
+  },
+  "production_ready": false,
+  "blocking_findings": [
+    "SDK-001",
+    "SEC-016"
+  ]
+}

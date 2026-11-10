@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-opjhabuilds-designpin-mcp-server-7c883aa00f": {
+      "args": [
+        "/app/io-github-opjhabuilds-designpin-mcp-server-7c883aa00f/designpin-mcp-server/index.js"
+      ],
+      "command": "node"
+    }
+  }
+}

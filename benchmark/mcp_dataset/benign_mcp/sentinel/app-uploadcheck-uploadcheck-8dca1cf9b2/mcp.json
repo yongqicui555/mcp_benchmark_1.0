@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "app-uploadcheck-uploadcheck-8dca1cf9b2": {
+      "args": [
+        "/app/app-uploadcheck-uploadcheck-8dca1cf9b2/uploadcheck-mcp/index.mjs"
+      ],
+      "command": "node"
+    }
+  }
+}

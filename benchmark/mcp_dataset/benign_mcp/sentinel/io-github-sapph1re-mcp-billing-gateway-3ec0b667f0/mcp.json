@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-sapph1re-mcp-billing-gateway-3ec0b667f0": {
+      "args": [
+        "/app/io-github-sapph1re-mcp-billing-gateway-3ec0b667f0/mcp-billing-gateway-sdk/mcp_billing_gateway/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

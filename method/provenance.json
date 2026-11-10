@@ -1,0 +1,33 @@
+{
+  "workflow": "researcher-directed staged harness + LLM coding",
+  "basis": "researcher-reported tool and model roles",
+  "stage_control": "researcher issues stage instructions and chooses handoffs",
+  "construction_and_testing": {
+    "coding_environment": "Codex",
+    "underlying_model": null
+  },
+  "transformation": {
+    "coding_environment": "Hermes",
+    "model": "GLM-5.2",
+    "role": "Transformation-stage coding introducing real malicious behavior into research samples"
+  },
+  "harness_versions": null,
+  "historical_model_parameters": null,
+  "historical_revision_counts": null,
+  "historical_run_dates": null,
+  "null_means": "Not recorded in published provenance",
+  "released": [
+    "method descriptions",
+    "final code",
+    "required runtime configuration",
+    "benchmark data",
+    "release verification summaries"
+  ],
+  "not_released": [
+    "original coding task instructions",
+    "authoring prompts",
+    "conversations",
+    "raw process traces"
+  ],
+  "historical_session_replay_claimed": false
+}

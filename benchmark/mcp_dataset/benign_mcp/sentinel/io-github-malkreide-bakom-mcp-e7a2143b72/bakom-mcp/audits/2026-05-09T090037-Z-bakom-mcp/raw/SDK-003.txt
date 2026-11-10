@@ -1,0 +1,4 @@
+=== ctx.report_progress + ctx.info usage ===
+758:    await ctx.info(f"Verarbeite {total} Standort(e)…")
+768:            await ctx.report_progress(progress=index, total=total)
+813:    await ctx.report_progress(progress=total, total=total)

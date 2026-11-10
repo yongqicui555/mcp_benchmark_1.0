@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-temurkhan13-silentwatch-mcp-c98e186f65": {
+      "args": [
+        "/app/io-github-temurkhan13-silentwatch-mcp-c98e186f65/silentwatch-mcp/src/silentwatch_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

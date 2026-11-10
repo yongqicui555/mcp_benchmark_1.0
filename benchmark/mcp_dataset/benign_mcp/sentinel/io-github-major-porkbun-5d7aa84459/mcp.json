@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-major-porkbun-5d7aa84459": {
+      "args": [
+        "/app/io-github-major-porkbun-5d7aa84459/porkbun-mcp/src/porkbun_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

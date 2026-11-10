@@ -1,0 +1,28 @@
+=== https enforcement ===
+34:GEO_ADMIN_API = "https://api3.geo.admin.ch/rest/services/api/MapServer"
+35:GEO_ADMIN_IDENTIFY = "https://api3.geo.admin.ch/rest/services/api/MapServer/identify"
+36:GEO_ADMIN_FIND = "https://api3.geo.admin.ch/rest/services/api/MapServer/find"
+37:OPENDATA_SWISS_API = "https://ckan.opendata.swiss/api/3/action"
+38:RTV_DB_API = "https://rtvdb.ofcomnet.ch/api"
+39:BAKOM_INFOMAILING = "https://www.bakom.admin.ch/de/bakom-infomailing"
+47:WMS_GEO_ADMIN = "https://wms.geo.admin.ch/"
+264:    reframe_url = "https://geodesy.geo.admin.ch/reframe/wgs84tolv95"
+465:                "geodaten_api": f"https://map.geo.admin.ch/?layers={layer}",
+532:                "opendata_swiss": "https://opendata.swiss/de/dataset/verfugbare-anschlussarten-glasfaser-fttb-ftth",
+533:                "geodaten_api": f"https://map.geo.admin.ch/?layers={layer}",
+752:**Karte:** https://map.geo.admin.ch/?layers={layer}"""
+884:            md += f"**Karte:** https://map.geo.admin.ch/?layers={LAYER_MOBILFUNKANLAGEN}"
+993:            md += f"**Karte:** https://map.geo.admin.ch/?layers={LAYER_RADIO_TV}"
+1084:                        "url": f"https://opendata.swiss/de/dataset/{ds.get('name', '')}",
+1098:                "rtv_datenbank": "https://rtvdb.ofcomnet.ch/de",
+1126:            md += "**Vollständige Datenbank:** https://rtvdb.ofcomnet.ch/de"
+1193:                        "url": f"https://opendata.swiss/de/dataset/{ds.get('name', '')}",
+1199:                "bakom_medienstruktur": "https://www.bakom.admin.ch/de/medien-strukturbericht",
+1200:                "bakom_rtv_db": "https://rtvdb.ofcomnet.ch/de",
+=== URL validation / scheme check ===
+1175:                    "sort": "metadata_modified desc",
+1194:                        "aktualisiert": ds.get("metadata_modified", ""),
+1336:                    "sort": "metadata_modified desc",
+1348:                        "datum": ds.get("metadata_modified", "")[:10],
+1436:                    "sort": "score desc, metadata_modified desc",
+1752:        print(f"BAKOM MCP Server läuft auf http://localhost:{port}/mcp")

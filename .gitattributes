@@ -1,0 +1,11 @@
+# Preserve the byte-level research snapshot on every platform.
+benchmark/mcp_dataset/** -text
+benchmark/ground_truth/** -text
+benchmark/metadata/** -text
+*.py text eol=lf
+*.md text eol=lf
+*.toml text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+# Dataset rules take precedence over extension-based normalization.
+benchmark/mcp_dataset/** -text

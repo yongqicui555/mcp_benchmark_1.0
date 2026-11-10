@@ -1,0 +1,72 @@
+name: Docker Build
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - "Dockerfile"
+      - "docker-compose.yml"
+      - ".dockerignore"
+      - "pyproject.toml"
+      - "src/**"
+      - ".github/workflows/docker.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "Dockerfile"
+      - "docker-compose.yml"
+      - ".dockerignore"
+      - "pyproject.toml"
+      - "src/**"
+      - ".github/workflows/docker.yml"
+
+jobs:
+  build:
+    name: build & smoke-test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          load: true
+          tags: bakom-mcp:ci
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Verify image runs as non-root
+        run: |
+          USER_ID=$(docker run --rm --entrypoint id bakom-mcp:ci -u)
+          echo "Container UID: $USER_ID"
+          test "$USER_ID" = "10001" || (echo "Expected UID 10001, got $USER_ID" && exit 1)
+
+      - name: Smoke test — server starts and responds
+        run: |
+          docker run -d --name bakom-test \
+            --read-only \
+            --cap-drop=ALL \
+            --security-opt=no-new-privileges \
+            --tmpfs /tmp:rw,size=16M \
+            -p 127.0.0.1:18050:8050 \
+            -e BAKOM_MCP_HOST=0.0.0.0 \
+            -e BAKOM_MCP_PORT=8050 \
+            bakom-mcp:ci
+          # Warte bis Container lauscht
+          for i in $(seq 1 30); do
+            if curl -fsS -o /dev/null -w "%{http_code}" http://127.0.0.1:18050/mcp 2>/dev/null | grep -qE "^(200|405|406)$"; then
+              echo "Server responding after ${i}s"
+              break
+            fi
+            sleep 1
+          done
+          # Status pruefen
+          STATUS=$(docker inspect -f '{{.State.Status}}' bakom-test)
+          echo "Container state: $STATUS"
+          docker logs bakom-test | tail -30
+          test "$STATUS" = "running" || exit 1
+          docker stop bakom-test && docker rm bakom-test

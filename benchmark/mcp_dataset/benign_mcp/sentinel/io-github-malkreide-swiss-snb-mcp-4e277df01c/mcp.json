@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-malkreide-swiss-snb-mcp-4e277df01c": {
+      "args": [
+        "/app/io-github-malkreide-swiss-snb-mcp-4e277df01c/swiss-snb-mcp/src/swiss_snb_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

@@ -1,0 +1,437 @@
+{
+  "audit_meta": {
+    "server_name": "swiss-electricity-mcp",
+    "run_id": "2026-06-03T191138-Z-swiss-electricity-mcp",
+    "started_at": "2026-06-03T19:11:38.897291+00:00",
+    "timezone_offset": "Z",
+    "skill_version": "1.0.0",
+    "output_dir": "audits/2026-06-03T191138-Z-swiss-electricity-mcp",
+    "catalog_hash": "091f446b27965044ce658a1d5f4b2cabe2b0ab5661dcc1a53b6be8f1f2e093c0",
+    "catalog_dir": "/tmp/mcp-audit-skill/checks",
+    "audit_date": "2026-06-03",
+    "catalog_version": "0.5.0 (catalog_hash 091f446b)",
+    "skill_mode": "local (clone of github.com/malkreide/mcp-audit-skill@main)",
+    "audit_type": "re-audit after remediation waves 1-5 + ARCH-004"
+  },
+  "results": {
+    "ARCH-001": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "medium",
+      "evidence": [
+        "snake_case naming unchanged, consistent across 12 tools"
+      ],
+      "gaps": []
+    },
+    "ARCH-002": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "medium",
+      "evidence": [
+        "Detailed use-case descriptions retained"
+      ],
+      "gaps": []
+    },
+    "ARCH-003": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "medium",
+      "evidence": [
+        "Search tools now return match_type + actionable suggestion on 0 hits (server.py _search_match); covered by tests/test_search_and_compare.py"
+      ],
+      "gaps": []
+    },
+    "ARCH-004": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "high",
+      "evidence": [
+        "Pydantic Settings in config.py",
+        "Clients moved to lifespan AppContext, accessed via ctx.request_context.lifespan_context (_app(ctx))",
+        "End-to-end integration test confirms wiring (tests/test_integration.py)"
+      ],
+      "gaps": []
+    },
+    "ARCH-005": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "critical",
+      "evidence": [
+        "No hardcoded secrets; server uses none",
+        ".gitignore includes .env/.env.*",
+        "secret-scan.yml runs Gitleaks on push+PR"
+      ],
+      "gaps": []
+    },
+    "ARCH-006": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "high",
+      "evidence": [
+        "12 tools, high-level use-cases"
+      ],
+      "gaps": []
+    },
+    "ARCH-007": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "medium",
+      "evidence": [
+        "tariff_compare_municipalities now uses asyncio.gather for concurrent fetch (server.py); test asserts 3 concurrent calls"
+      ],
+      "gaps": []
+    },
+    "ARCH-008": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "medium",
+      "evidence": [
+        "README documents rationale for Tools-only (no Resources/Prompts)"
+      ],
+      "gaps": []
+    },
+    "ARCH-009": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "high",
+      "evidence": [
+        "All 12 tools declare ToolAnnotations (readOnlyHint; openWorldHint per external/static); verified via list_tools test"
+      ],
+      "gaps": []
+    },
+    "ARCH-011": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "medium",
+      "evidence": [
+        ".github/workflows/test.yml + publish.yml present; CI green on 3.11-3.13"
+      ],
+      "gaps": []
+    },
+    "ARCH-012": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "medium",
+      "evidence": [
+        "mcp[cli] pinned >=1.2.0,<2.0.0; Dependabot (pip+actions); README 'MCP protocol version' + update policy; CHANGELOG"
+      ],
+      "gaps": []
+    },
+    "CH-004": {
+      "status": "pass",
+      "category": "CH",
+      "severity": "medium",
+      "evidence": [
+        "Attribution + license per response; README licensing section"
+      ],
+      "gaps": []
+    },
+    "OBS-001": {
+      "status": "pass",
+      "category": "OBS",
+      "severity": "high",
+      "evidence": [
+        "Execution-error path (masked UpstreamUnreachableError) and protocol-error path (ToolError on invalid args) covered by tests"
+      ],
+      "gaps": []
+    },
+    "OBS-002": {
+      "status": "pass",
+      "category": "OBS",
+      "severity": "high",
+      "evidence": [
+        "Upstream + status-probe failures logged server-side, generic client message (api_client.py / server.py); test asserts no internal repr leak",
+        "Note: SDK has no mask_error_details flag; equivalent masking implemented manually"
+      ],
+      "gaps": []
+    },
+    "OBS-003": {
+      "status": "pass",
+      "category": "OBS",
+      "severity": "medium",
+      "evidence": [
+        "structlog JSON logging configured to stderr (observability.py configure_logging)"
+      ],
+      "gaps": []
+    },
+    "OBS-004": {
+      "status": "pass",
+      "category": "OBS",
+      "severity": "critical",
+      "evidence": [
+        "No print(); logging on stderr keeps stdout clean for stdio"
+      ],
+      "gaps": []
+    },
+    "OBS-006": {
+      "status": "pass",
+      "category": "OBS",
+      "severity": "medium",
+      "evidence": [
+        "Opt-in OpenTelemetry: TracerProvider + OTLP exporter + httpx auto-instrumentation + per-tool spans (observability.py); enabled via OTEL_EXPORTER_OTLP_ENDPOINT + otel extra; no PII in spans"
+      ],
+      "gaps": []
+    },
+    "OPS-001": {
+      "status": "pass",
+      "category": "OPS",
+      "severity": "high",
+      "evidence": [
+        "Tests split tests/test_unit.py + tests/test_live.py (live marker); CI runs pytest -m 'not live' on 3.11-3.13"
+      ],
+      "gaps": []
+    },
+    "OPS-002": {
+      "status": "pass",
+      "category": "OPS",
+      "severity": "medium",
+      "evidence": [
+        "README has ASCII architecture diagram + all required sections; README.de.md parallel"
+      ],
+      "gaps": []
+    },
+    "OPS-003": {
+      "status": "pass",
+      "category": "OPS",
+      "severity": "high",
+      "evidence": [
+        "README Phase-1 declaration + docs/roadmap.md with transition criteria"
+      ],
+      "gaps": []
+    },
+    "SCALE-001": {
+      "status": "pass",
+      "category": "SCALE",
+      "severity": "high",
+      "evidence": [
+        "ENV-based streamable-http for cloud; no websocket"
+      ],
+      "gaps": []
+    },
+    "SCALE-002": {
+      "status": "todo",
+      "category": "SCALE",
+      "severity": "high",
+      "evidence": [
+        "dual transport; stateless server (in-process cache)"
+      ],
+      "gaps": [
+        "Sticky-session/shared-state is a deployment/LB decision; accepted-risk documented in docs/security-posture.md - not repo-resolvable"
+      ]
+    },
+    "SCALE-003": {
+      "status": "todo",
+      "category": "SCALE",
+      "severity": "high",
+      "evidence": [
+        "dual + cloud"
+      ],
+      "gaps": [
+        "Mcp-Session-Id edge-LB routing is infrastructure; accepted-risk, manual deployment review"
+      ]
+    },
+    "SCALE-004": {
+      "status": "pass",
+      "category": "SCALE",
+      "severity": "medium",
+      "evidence": [
+        "Multi-stage Dockerfile, slim base, non-root USER (UID 10001), HEALTHCHECK"
+      ],
+      "gaps": []
+    },
+    "SCALE-006": {
+      "status": "todo",
+      "category": "SCALE",
+      "severity": "medium",
+      "evidence": [
+        "cloud-deployable"
+      ],
+      "gaps": [
+        "Memory/CPU/FD limits are deploy-config (Dockerfile/k8s/Render); accepted-risk"
+      ]
+    },
+    "SDK-001": {
+      "status": "pass",
+      "category": "SDK",
+      "severity": "high",
+      "evidence": [
+        "@asynccontextmanager lifespan owns clients and closes them; no per-call client creation; FastMCP gets lifespan="
+      ],
+      "gaps": []
+    },
+    "SDK-002": {
+      "status": "pass",
+      "category": "SDK",
+      "severity": "medium",
+      "evidence": [
+        "Pydantic v2 envelope, Literal types, explicit return annotations"
+      ],
+      "gaps": []
+    },
+    "SDK-003": {
+      "status": "pass",
+      "category": "SDK",
+      "severity": "medium",
+      "evidence": [
+        "SPARQL tools take ctx: Context; tariff_compare reports per-municipality progress; others emit ctx.info"
+      ],
+      "gaps": []
+    },
+    "SDK-004": {
+      "status": "pass",
+      "category": "SDK",
+      "severity": "high",
+      "evidence": [
+        "CORS middleware exposes/allows Mcp-Session-Id; origins via SWISS_ELECTRICITY_CORS_ORIGINS, never wildcard; test asserts config"
+      ],
+      "gaps": []
+    },
+    "SEC-004": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "critical",
+      "evidence": [
+        "assert_url_allowed() enforces HTTPS + host allow-list before every request (api_client.py _fetch_with_retry + status probe); metadata IP / non-HTTPS rejected; tests cover"
+      ],
+      "gaps": []
+    },
+    "SEC-005": {
+      "status": "partial",
+      "category": "SEC",
+      "severity": "high",
+      "evidence": [
+        "Only 4 fixed allow-listed hosts; no user-controlled hostnames -> low residual DNS-rebinding risk"
+      ],
+      "gaps": [
+        "No explicit DNS-pinning / single-resolution-then-pin-IP; relies on host allow-list + absence of dynamic URLs"
+      ]
+    },
+    "SEC-006": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "high",
+      "evidence": [
+        "stdio default; HTTP only via explicit env; documented"
+      ],
+      "gaps": []
+    },
+    "SEC-007": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "high",
+      "evidence": [
+        "Dockerfile runs as non-root USER (UID 10001) with HEALTHCHECK"
+      ],
+      "gaps": [
+        "k8s securityContext hardening (readOnlyRootFilesystem, cap drop, seccomp) is deployment-manifest scope, not in repo"
+      ]
+    },
+    "SEC-008": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "medium",
+      "evidence": [
+        "No pre/postinstall hooks; transparent install; PyPI OIDC Trusted Publisher (publish.yml); supply-chain documented in docs/security-posture.md"
+      ],
+      "gaps": []
+    },
+    "SEC-009": {
+      "status": "todo",
+      "category": "SEC",
+      "severity": "critical",
+      "evidence": [
+        "transport != stdio-only; session handling delegated to FastMCP"
+      ],
+      "gaps": [
+        "auth_model=none -> no user identity to bind; assessable only when auth is introduced; accepted-risk"
+      ]
+    },
+    "SEC-013": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "high",
+      "evidence": [
+        "No secrets used; documented in docs/security-posture.md (Public Open Data, none required)"
+      ],
+      "gaps": []
+    },
+    "SEC-014": {
+      "status": "todo",
+      "category": "SEC",
+      "severity": "medium",
+      "evidence": [
+        "cloud-deployable"
+      ],
+      "gaps": [
+        "Tool allow-listing/gateway is gateway-layer; low priority for read-only public-data server; accepted-risk"
+      ]
+    },
+    "SEC-015": {
+      "status": "todo",
+      "category": "SEC",
+      "severity": "medium",
+      "evidence": [
+        "cloud-deployable"
+      ],
+      "gaps": [
+        "Pre-flight tool-poisoning detection is a gateway function; accepted-risk"
+      ]
+    },
+    "SEC-016": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "critical",
+      "evidence": [
+        "Default host 127.0.0.1 (config.py); 0.0.0.0 only set explicitly in Dockerfile; README documents the distinction"
+      ],
+      "gaps": []
+    },
+    "SEC-018": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "high",
+      "evidence": [
+        "category validated against closed ElCom enum; canton SPARQL-escaped; string args carry min/max_length; tests cover injection + whitelist"
+      ],
+      "gaps": []
+    },
+    "SEC-019": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "critical",
+      "evidence": [
+        "Lethal-trifecta assessment documented in docs/security-posture.md (at most one capability present; low risk)"
+      ],
+      "gaps": []
+    },
+    "SEC-020": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "critical",
+      "evidence": [
+        "No os.system/shell=True/eval/exec/subprocess; httpx-only"
+      ],
+      "gaps": []
+    },
+    "SEC-021": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "high",
+      "evidence": [
+        "ALLOWED_HOSTS frozenset + assert_url_allowed pre-request check on every outbound call; docs/network-egress.md documents code+network layers and update procedure"
+      ],
+      "gaps": []
+    },
+    "SEC-022": {
+      "status": "partial",
+      "category": "SEC",
+      "severity": "high",
+      "evidence": [
+        "Tool-definition hash pinning via tool-definitions.lock.json + test guard against drift; CHANGELOG records tool changes"
+      ],
+      "gaps": [
+        "Server-identity namespace prefix (<server>__<tool>) deliberately deferred to a major-version bump (breaking client change)"
+      ]
+    }
+  }
+}

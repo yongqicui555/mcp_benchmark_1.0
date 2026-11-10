@@ -1,0 +1,47 @@
+Total applicable: 44
+By severity: {'critical': 7, 'high': 19, 'medium': 18}
+
+  [critical] ARCH-005   Keine Hardcoded Secrets: Env-Vars / Secret Manager only
+  [critical] OBS-004    stderr für stdio-Server: stdout reserviert für Protocol
+  [critical] SEC-004    SSRF-Prevention: HTTPS-Enforcement + IP-Blocklisting
+  [critical] SEC-009    Session-ID Cryptographic Binding (user_id:session_id)
+  [critical] SEC-016    0.0.0.0-Binding-Prevention (NeighborJack)
+  [critical] SEC-019    Lethal Trifecta vermeiden: Server-Separation Read vs Write/Send
+  [critical] SEC-020    Command Injection Prevention: keine os.system, shell=True, eval
+  [high    ] ARCH-004   Inversion of Control: Transport-agnostische Server-Logik
+  [high    ] ARCH-006   Tool-Budget: High-Level-Use-Cases statt API-Mapping 1:1
+  [high    ] ARCH-009   Tool Annotations: readOnlyHint, destructiveHint, idempotentHint, openWorldHint
+  [high    ] OBS-001    Protocol vs. Execution Errors: korrekte Trennung
+  [high    ] OBS-002    Mask Error Details: keine Stacktraces / SQL ans LLM
+  [high    ] OPS-001    Test-Strategie: Unit-Tests mocked + Live-Tests gemarkert
+  [high    ] OPS-003    Phasenarchitektur: Read-only First, dann Write, dann Multi-Agent
+  [high    ] SCALE-001  Streamable HTTP statt stdio für Cloud-Deployments
+  [high    ] SCALE-002  Stateful Load Balancing für Streamable HTTP / SSE
+  [high    ] SCALE-003  Mcp-Session-Id Routing via Edge-LB (HAProxy Stick-Tables)
+  [high    ] SDK-001    FastMCP Lifespan via @asynccontextmanager + AsyncExitStack
+  [high    ] SDK-004    CORS Mcp-Session-Id Exposure bei HTTP/SSE
+  [high    ] SEC-005    DNS-Rebinding-Prevention: DNS-Pinning gegen TOCTOU
+  [high    ] SEC-006    Lokaler Server: stdio-Transport zwingend (Netzwerk-Isolation)
+  [high    ] SEC-007    Container-Sandboxing: Docker / chroot mit minimalen Privilegien
+  [high    ] SEC-013    API-Key-Storage: Secret Manager statt Plain-Text Env-Vars
+  [high    ] SEC-018    Input-Validation an Tool-Boundaries (Pydantic strict / Zod)
+  [high    ] SEC-021    Egress-Allow-List: Code-Layer und Network-Layer
+  [high    ] SEC-022    Tool-Hash-Pinning + Namespace-Präfix gegen Rug Pull
+  [medium  ] ARCH-001   Tool Naming Convention
+  [medium  ] ARCH-002   Tool-Beschreibung mit Use-Case-Tags
+  [medium  ] ARCH-003   «Not Found» Anti-Pattern: Heuristiken statt leerer Antworten
+  [medium  ] ARCH-007   Capability-Aggregation: Composability intern, Atomarität extern
+  [medium  ] ARCH-008   Drei Primitive nutzen: Tools, Resources und Prompts
+  [medium  ] ARCH-011   Standardisierte Repo-Struktur (src-Layout, tests, README.de.md)
+  [medium  ] ARCH-012   protocolVersion-Pinning + CHANGELOG + SDK-Update-Disziplin
+  [medium  ] CH-004     OGD-CH Lizenz-Compliance: CC BY 4.0 Attribution
+  [medium  ] OBS-003    Structured Logging mit RFC 5424 Severity-Stufen
+  [medium  ] OBS-006    OpenTelemetry Distributed Tracing pro Tool-Call
+  [medium  ] OPS-002    Doku-Standard: bilingualer README, ASCII-Diagramm, Limits-Sektion
+  [medium  ] SCALE-004  Containerization mit Multi-Stage-Builds
+  [medium  ] SCALE-006  Resource-Limits per Container (Memory, CPU, FDs)
+  [medium  ] SDK-002    Pydantic v2 / TypedDict / Dataclass als Tool-Returns
+  [medium  ] SDK-003    Context Injection für Progress Reports und Logging
+  [medium  ] SEC-008    Pre-Configuration Consent für Local-Server-Installation
+  [medium  ] SEC-014    Tool-Allow-Listing via MCP-Gateway-Pattern
+  [medium  ] SEC-015    Pre-Flight Tool-Poisoning Detection

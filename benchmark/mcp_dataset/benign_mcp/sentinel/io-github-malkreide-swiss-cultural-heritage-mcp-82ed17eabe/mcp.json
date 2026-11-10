@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-malkreide-swiss-cultural-heritage-mcp-82ed17eabe": {
+      "args": [
+        "/app/io-github-malkreide-swiss-cultural-heritage-mcp-82ed17eabe/swiss-cultural-heritage-mcp/src/swiss_cultural_heritage_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

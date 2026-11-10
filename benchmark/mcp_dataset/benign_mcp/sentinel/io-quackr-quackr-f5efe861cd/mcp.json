@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-quackr-quackr-f5efe861cd": {
+      "args": [
+        "/app/io-quackr-quackr-f5efe861cd/quackr-mcp/bin/quackr-mcp.js"
+      ],
+      "command": "node"
+    }
+  }
+}

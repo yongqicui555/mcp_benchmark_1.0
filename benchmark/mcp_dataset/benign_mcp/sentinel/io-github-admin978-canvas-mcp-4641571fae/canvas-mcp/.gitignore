@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+.canvas.env
+.env
+.DS_Store
+canvas-dump/
+build/
+dist/
+*.egg-info/

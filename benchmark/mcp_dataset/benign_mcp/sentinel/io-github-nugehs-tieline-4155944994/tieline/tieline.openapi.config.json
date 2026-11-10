@@ -1,0 +1,16 @@
+{
+  "client": {
+    "adapter": "rtk-query",
+    "repo": "../my-frontend",
+    "roots": ["redux/apis", "src/redux/apis"],
+    "basePath": "/api/v1"
+  },
+  "server": {
+    "adapter": "openapi",
+    "repo": ".",
+    "spec": "examples/openapi-fixture/spec.json",
+    "stripPrefix": "api/v1"
+  },
+  "ignore": [],
+  "failOn": ["drift"]
+}

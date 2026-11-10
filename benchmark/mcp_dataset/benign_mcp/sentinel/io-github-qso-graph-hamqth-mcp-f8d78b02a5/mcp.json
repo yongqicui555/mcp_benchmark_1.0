@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-qso-graph-hamqth-mcp-f8d78b02a5": {
+      "args": [
+        "/app/io-github-qso-graph-hamqth-mcp-f8d78b02a5/hamqth-mcp/src/hamqth_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-vdalhambra-financekit-mcp-bd66ddda11": {
+      "args": [
+        "/app/io-github-vdalhambra-financekit-mcp-bd66ddda11/financekit-mcp/src/financekit/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

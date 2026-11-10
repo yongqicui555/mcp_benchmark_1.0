@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-mikejj-creation-stocksense-a46b997a88": {
+      "args": [
+        "/app/io-github-mikejj-creation-stocksense-a46b997a88/stocksense/src/stocksense/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

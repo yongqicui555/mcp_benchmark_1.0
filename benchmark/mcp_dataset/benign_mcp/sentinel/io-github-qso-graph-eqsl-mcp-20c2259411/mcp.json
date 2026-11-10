@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-qso-graph-eqsl-mcp-20c2259411": {
+      "args": [
+        "/app/io-github-qso-graph-eqsl-mcp-20c2259411/eqsl-mcp/src/eqsl_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

@@ -1,0 +1,5 @@
+=== AST scan: print() calls without file= kwarg ===
+unsafe lines: NONE (all prints go to a configured file)
+
+=== Total print() calls === 4
+=== With file= keyword === 4

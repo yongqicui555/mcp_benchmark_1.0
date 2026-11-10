@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-ajtgjmdjp-edinet-mcp-b407f85ccf": {
+      "args": [
+        "/app/io-github-ajtgjmdjp-edinet-mcp-b407f85ccf/edinet-mcp/src/edinet_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

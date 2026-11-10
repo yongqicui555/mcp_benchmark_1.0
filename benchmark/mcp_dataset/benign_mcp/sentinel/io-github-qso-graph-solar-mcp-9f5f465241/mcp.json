@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-qso-graph-solar-mcp-9f5f465241": {
+      "args": [
+        "/app/io-github-qso-graph-solar-mcp-9f5f465241/solar-mcp/src/solar_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "com-prereason-mcp-799f920e32": {
+      "args": [
+        "/app/com-prereason-mcp-799f920e32/mcp/bin/cli.js"
+      ],
+      "command": "node"
+    }
+  }
+}

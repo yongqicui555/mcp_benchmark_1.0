@@ -1,0 +1,59 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-16/server.schema.json",
+  "name": "io.github.therealtimex/un-datacommons-mcp",
+  "description": "MCP server to query Data Commons indicators and observations (base or custom).",
+  "status": "active",
+  "repository": {
+    "url": "https://github.com/therealtimex/un-datacommons-mcp",
+    "source": "github"
+  },
+  "version": "1.0.1",
+  "packages": [
+    {
+      "registryType": "pypi",
+      "registryBaseUrl": "https://pypi.org",
+      "identifier": "un-datacommons-mcp",
+      "version": "1.0.1",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "description": "Data Commons API key from apikeys.datacommons.org",
+          "isRequired": true,
+          "format": "string",
+          "isSecret": true,
+          "name": "DC_API_KEY"
+        },
+        {
+          "description": "Type of Data Commons to use: base|custom (default: base)",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": false,
+          "name": "DC_TYPE"
+        },
+        {
+          "description": "Custom DC base URL when DC_TYPE=custom",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": false,
+          "name": "CUSTOM_DC_URL"
+        },
+        {
+          "description": "Comma-separated root topic DCIDs for custom DCs",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": false,
+          "name": "DC_ROOT_TOPIC_DCIDS"
+        },
+        {
+          "description": "Search scope for custom DCs: base_only|custom_only|base_and_custom",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": false,
+          "name": "DC_SEARCH_SCOPE"
+        }
+      ]
+    }
+  ]
+}

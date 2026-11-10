@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0-rc.1",
+  "source_commit": "83bdeb9fa540f62722944f7ad844a8da9a7726d3",
+  "samples": 1025,
+  "imported_benign": 340,
+  "constructed": 685,
+  "constructed_l0_l2": 175,
+  "constructed_l3": 510,
+  "sample_files": 11407,
+  "sample_bytes": 495671408,
+  "path_base": "repository_root",
+  "sample_identity": [
+    "base",
+    "mcp_id"
+  ],
+  "checksum_inventory": "benchmark/metadata/files.sha256.jsonl",
+  "sample_content_policy": "Byte-identical to source snapshot; ground-truth filesystem references relocated.",
+  "additional_real_world_test_set_included": false,
+  "dynamic_final_sample_validation_claimed": false
+}

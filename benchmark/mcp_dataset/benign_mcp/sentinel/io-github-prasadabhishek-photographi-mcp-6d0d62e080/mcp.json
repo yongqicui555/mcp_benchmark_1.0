@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-prasadabhishek-photographi-mcp-6d0d62e080": {
+      "args": [
+        "/app/io-github-prasadabhishek-photographi-mcp-6d0d62e080/photographi-mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "bag-epl": {
+      "command": "python",
+      "args": ["-m", "bag_epl_mcp.server"]
+    }
+  }
+}

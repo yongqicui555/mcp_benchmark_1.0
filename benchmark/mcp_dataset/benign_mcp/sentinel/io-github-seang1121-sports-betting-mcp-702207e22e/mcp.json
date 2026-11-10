@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-seang1121-sports-betting-mcp-702207e22e": {
+      "args": [
+        "/app/io-github-seang1121-sports-betting-mcp-702207e22e/sports-betting-mcp/src/sports_betting_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

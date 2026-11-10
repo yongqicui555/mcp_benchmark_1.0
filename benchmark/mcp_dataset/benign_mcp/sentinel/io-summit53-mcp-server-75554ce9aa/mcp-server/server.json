@@ -1,0 +1,35 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.summit53/mcp-server",
+  "title": "Summit53 Revenue Engine",
+  "description": "Revenue Engine for scoped diagnosis, action planning, execution, and Figure-Eight value evidence.",
+  "repository": {
+    "url": "https://github.com/Summit53/mcp-server",
+    "source": "github"
+  },
+  "version": "1.0.2",
+  "websiteUrl": "https://www.summit53.com/founding-50?utm_source=mcp_registry&utm_medium=referral&utm_campaign=mcp_server",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://api.summit53.io/mcp"
+    }
+  ],
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@summit53/mcp-server",
+      "version": "1.0.2",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ],
+  "_meta": {
+    "io.modelcontextprotocol.registry/publisher-provided": {
+      "documentation_url": "https://www.summit53.com/docs/mcp-setup-guide?utm_source=mcp_registry&utm_medium=referral&utm_campaign=mcp_server",
+      "founding_50_url": "https://www.summit53.com/founding-50?utm_source=mcp_registry&utm_medium=referral&utm_campaign=mcp_server",
+      "external_function_count": 75
+    }
+  }
+}

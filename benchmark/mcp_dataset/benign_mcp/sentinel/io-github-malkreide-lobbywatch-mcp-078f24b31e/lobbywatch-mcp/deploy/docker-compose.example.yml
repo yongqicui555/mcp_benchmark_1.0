@@ -1,0 +1,60 @@
+# Example docker-compose deployment for lobbywatch-mcp.
+#
+# Demonstrates the hardening defaults discussed in docs/deployment.md
+# (audit findings SEC-007, SCALE-004, SCALE-006). Copy to docker-compose.yml
+# and adapt for your environment — in particular, put a TLS-terminating
+# reverse proxy with auth in front of port 8000 before exposing it beyond
+# 127.0.0.1.
+
+services:
+  lobbywatch-mcp:
+    image: ghcr.io/malkreide/lobbywatch-mcp:0.2.0
+    # Or build from source:
+    # build: ..
+
+    # Hardening — read-only rootfs + dropped capabilities + no privilege
+    # escalation. The cache directory is mounted as a tmpfs so the dump
+    # writes don't violate read_only.
+    read_only: true
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    user: "1000:1000"
+
+    # Resource limits (audit SCALE-006). The dump is ~17 MB compressed and
+    # ~80 MB in memory; 512 MiB hard cap leaves comfortable headroom for
+    # async workloads without inviting runaway growth.
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "0.5"
+        reservations:
+          memory: 256M
+          cpus: "0.1"
+
+    # Writable cache via tmpfs — survives container restart of-itself but
+    # not host reboots, which is fine: the dump downloads on first hit.
+    tmpfs:
+      - /home/lobbywatch/.cache:size=128M,mode=0700,uid=1000,gid=1000
+
+    environment:
+      LOBBYWATCH_MCP_TRANSPORT: http
+      LOBBYWATCH_MCP_HOST: 0.0.0.0          # internal to the container
+      LOBBYWATCH_MCP_PORT: "8000"
+      LOBBYWATCH_MCP_CACHE_TTL: "86400"
+
+    # Bind to loopback only — front this with an auth-enforcing reverse
+    # proxy (audit SEC-016). Set to "0.0.0.0:8000:8000" only if the
+    # docker-host firewall is doing the filtering for you.
+    ports:
+      - "127.0.0.1:8000:8000"
+
+    healthcheck:
+      test: ["CMD", "python", "-c", "import lobbywatch_mcp"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+    restart: unless-stopped

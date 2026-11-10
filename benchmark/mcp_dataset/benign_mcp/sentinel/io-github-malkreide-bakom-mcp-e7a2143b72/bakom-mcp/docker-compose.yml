@@ -1,0 +1,59 @@
+# bakom-mcp Container-Setup — sichere Defaults fuer Cloud-Deployment.
+#
+# Quickstart:
+#   docker compose up --build
+#
+# Optionale Konfiguration via .env oder Shell:
+#   BAKOM_MCP_HOST=0.0.0.0 (innerhalb des Containers, ueber ports gemappt)
+#   BAKOM_MCP_PORT=8050
+#   BAKOM_MCP_CORS_ORIGINS=https://app.example.com
+
+services:
+  bakom-mcp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: bakom-mcp:latest
+    container_name: bakom-mcp
+    restart: unless-stopped
+
+    # Sicherheit: Sandbox-Defaults nach Best Practice
+    read_only: true
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+
+    # Resource-Limits
+    mem_limit: 256m
+    mem_reservation: 64m
+    cpus: 0.5
+    pids_limit: 64
+
+    # tmpfs fuer Verzeichnisse, die zur Laufzeit Schreibzugriff brauchen
+    tmpfs:
+      - /tmp:rw,size=16M,mode=1777
+
+    environment:
+      BAKOM_MCP_HOST: "0.0.0.0"
+      BAKOM_MCP_PORT: "8050"
+      # CORS-Origins aus Host-Env weiterreichen (default: leer = aus)
+      BAKOM_MCP_CORS_ORIGINS: "${BAKOM_MCP_CORS_ORIGINS:-}"
+
+    ports:
+      # Default-Bind nur auf localhost — nicht oeffentlich exponiert.
+      # Fuer oeffentliches Deployment ueber Reverse-Proxy (Caddy/Traefik) leiten.
+      - "127.0.0.1:8050:8050"
+
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - |
+          import urllib.request, sys
+          r = urllib.request.urlopen('http://127.0.0.1:8050/mcp', timeout=3)
+          sys.exit(0 if r.status in (200, 405, 406) else 1)
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s

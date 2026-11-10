@@ -1,6 +1,0 @@
-node_modules/
-*.tar.gz
-.DS_Store
-dist/
-.mcpregistry_github_token
-.mcpregistry_registry_token

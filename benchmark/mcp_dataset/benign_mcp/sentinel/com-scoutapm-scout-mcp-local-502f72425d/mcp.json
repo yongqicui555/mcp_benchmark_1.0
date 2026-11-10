@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "com-scoutapm-scout-mcp-local-502f72425d": {
+      "args": [
+        "/app/com-scoutapm-scout-mcp-local-502f72425d/scout-mcp-local/scout_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

@@ -1,0 +1,473 @@
+{
+  "audit_meta": {
+    "server_name": "bakom-mcp",
+    "audit_date": "2026-05-08",
+    "skill_version": "1.0.0",
+    "catalog_version": "v0.5.0",
+    "applies_when_dsl_version": "1.0",
+    "policy": "fail-or-partial"
+  },
+  "results": {
+    "ARCH-001": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "medium",
+      "evidence": [
+        "11 tools, all use snake_case mit Namespace-Praefix 'bakom_*' (server.py:408-1520)",
+        "Beispiele: bakom_broadband_coverage, bakom_glasfaser_verfuegbarkeit, bakom_rtv_suche"
+      ],
+      "gaps": []
+    },
+    "ARCH-002": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "medium",
+      "evidence": [
+        "Alle 11 Tools haben ausfuehrliche deutsche Docstrings mit Use-Case-Kontext",
+        "Decorator 'title' liefert Use-Case-Tag (z.B. 'Konnektivitaetsvergleich mehrerer Standorte')",
+        "Args/Returns-Dokumentation nach Google-Style"
+      ],
+      "gaps": []
+    },
+    "ARCH-003": {
+      "status": "partial",
+      "category": "ARCH",
+      "severity": "medium",
+      "evidence": [
+        "_handle_api_error gibt strukturierte Fehlermeldung statt leerer Antwort (server.py:371-385)",
+        "Beispiel: 'Fehler: Ressource nicht gefunden. Bitte Koordinaten oder Parameter pruefen.'"
+      ],
+      "gaps": [
+        "Keine heuristischen Vorschlaege/Alternativen bei leeren Resultaten",
+        "Bei z.B. RTV-Suche ohne Treffer: keine 'did_you_mean'/Fallback-Logik"
+      ]
+    },
+    "ARCH-004": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "high",
+      "evidence": [
+        "FastMCP-Server-Logik ist transport-agnostisch (server.py:391-400)",
+        "Transport-Switch nur in __main__-Block (server.py:1746-1755), nicht in Tool-Logik",
+        "Keine sys.argv/Request-Coupling in Tool-Funktionen"
+      ],
+      "gaps": []
+    },
+    "ARCH-005": {
+      "status": "partial",
+      "category": "ARCH",
+      "severity": "critical",
+      "evidence": [
+        "Keine Hardcoded Secrets gefunden (grep nach api_key/password/secret/AKIA[A-Z]{16}: 0 Treffer)",
+        "Kein os.environ-Zugriff im Code (auth_model=none, keine Secrets noetig)",
+        "Keine .env-Datei im Repo"
+      ],
+      "gaps": [
+        ".gitignore fehlt .env / *.secrets / credentials Eintrag",
+        "Kein Gitleaks/Trufflehog-Run in CI (.github/workflows/ci.yml hat keinen Secret-Scan)",
+        "Kein .env.example als Doku-Hinweis fuer Future-Contributors"
+      ]
+    },
+    "ARCH-006": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "high",
+      "evidence": [
+        "11 Tools auf High-Level-Use-Cases ausgerichtet (broadband, glasfaser, mobilfunk, rtv, statistik)",
+        "bakom_multi_standort_konnektivitaet kombiniert 5G + Glasfaser fuer Use-Case 'Schulhausvergleich'",
+        "Keine 1:1-API-Mapping (z.B. kein generisches 'opendata_swiss_query'-Tool)"
+      ],
+      "gaps": []
+    },
+    "ARCH-007": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "medium",
+      "evidence": [
+        "6 private Helper-Funktionen mit Underscore-Praefix: _geo_identify, _wms_abgedeckt, _opendata_dataset_info, _point_to_envelope, _wgs84_to_lv95_approx, _handle_api_error",
+        "Tools delegieren an Helpers (Composability intern), Tool-Interface bleibt atomar"
+      ],
+      "gaps": []
+    },
+    "ARCH-008": {
+      "status": "partial",
+      "category": "ARCH",
+      "severity": "medium",
+      "evidence": [
+        "Tools: 11, Resources: 2 (bakom://info, bakom://demo-standorte)"
+      ],
+      "gaps": [
+        "Keine Prompts (@mcp.prompt) implementiert",
+        "Anchor-Demo 'Schulhaeuser Kreis 7 ohne Glasfaser' wuerde sich als Prompt-Template eignen"
+      ]
+    },
+    "ARCH-009": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "high",
+      "evidence": [
+        "Alle 11 Tools haben vollstaendige Annotations: title, readOnlyHint, destructiveHint, idempotentHint, openWorldHint",
+        "11x readOnlyHint=True, destructiveHint=False",
+        "10x idempotentHint=True (bakom_aktuell ist non-idempotent — korrekt, weil News tagesabhaengig)",
+        "11x openWorldHint=True (alle Tools rufen externe APIs)"
+      ],
+      "gaps": []
+    },
+    "ARCH-011": {
+      "status": "pass",
+      "category": "ARCH",
+      "severity": "medium",
+      "evidence": [
+        "src-Layout: src/bakom_mcp/",
+        "tests/-Verzeichnis mit 4 Test-Dateien",
+        "Bilingualer README: README.md (EN) + README.de.md",
+        "CHANGELOG.md vorhanden, Keep-a-Changelog-Format"
+      ],
+      "gaps": []
+    },
+    "ARCH-012": {
+      "status": "partial",
+      "category": "ARCH",
+      "severity": "medium",
+      "evidence": [
+        "MCP-SDK-Pin: 'mcp[cli]>=1.3.0' in pyproject.toml",
+        "CHANGELOG.md vorhanden mit Semver"
+      ],
+      "gaps": [
+        "Kein protocolVersion-Pinning im Code (grep liefert 0 Treffer)",
+        "Kein Upper-Bound auf mcp-SDK ('>=1.3.0' nimmt jede Major-Version)",
+        "Kein Hinweis im CHANGELOG zu MCP-Spec-Version (z.B. 2025-06-18)"
+      ]
+    },
+    "CH-004": {
+      "status": "partial",
+      "category": "CH",
+      "severity": "medium",
+      "evidence": [
+        "README.md verlinkt BAKOM Open Data Portal (Z. 281)",
+        "Tool-Outputs enthalten 'datenquelle': 'BAKOM + opendata.swiss' (server.py:1362)",
+        "BAKOM-Daten auf opendata.swiss sind unter CC BY 4.0 lizenziert"
+      ],
+      "gaps": [
+        "Keine explizite 'Lizenz: CC BY 4.0'-Attribution in Tool-Outputs",
+        "README.md erwaehnt OGD/CC0 nicht explizit (nur 'Open Government Data')",
+        "Tool-Output 'auth_erforderlich: False' aber keine Lizenz-Klausel"
+      ]
+    },
+    "OBS-001": {
+      "status": "partial",
+      "category": "OBS",
+      "severity": "high",
+      "evidence": [
+        "Zentraler _handle_api_error (server.py:371-385) trennt HTTP-Status, Timeout, Connect",
+        "34 try/except-Bloecke im Source"
+      ],
+      "gaps": [
+        "Keine Verwendung von McpError oder ToolError aus mcp-SDK",
+        "Fehler werden als String-Returns zurueckgegeben (FastMCP-Convention) — ToolErrors mit isError=True wuerden expliziter sein",
+        "Generic exception fallback (Z. 385) gibt rohen Exception-String zurueck"
+      ]
+    },
+    "OBS-002": {
+      "status": "fail",
+      "category": "OBS",
+      "severity": "high",
+      "evidence": [
+        "server.py:385: return f\"Fehler: Unerwarteter Fehler ({type(e).__name__}): {e}\" — gibt rohen Exception-String an LLM",
+        "server.py:643: \"fehler\": str(e)[:100] — truncated aber immer noch unmaskiert"
+      ],
+      "gaps": [
+        "Stacktraces / Exception-Messages koennen Stack-Pfade, lib-Versionen, interne URLs leaken",
+        "Best Practice: generische Fehlermeldung an LLM, Details nur in Logs"
+      ]
+    },
+    "OBS-003": {
+      "status": "fail",
+      "category": "OBS",
+      "severity": "medium",
+      "evidence": [
+        "server.py:17: import logging",
+        "server.py:29: logger = logging.getLogger('bakom_mcp')"
+      ],
+      "gaps": [
+        "logger wird NIE benutzt (grep nach 'logger.': 0 Treffer)",
+        "Keine structured logs, keine RFC 5424 Severity-Stufen verwendet",
+        "Kein structlog/loguru, keine JSON-Formatter-Konfiguration",
+        "Keine Konfiguration der Log-Levels per Env-Var"
+      ]
+    },
+    "OBS-004": {
+      "status": "partial",
+      "category": "OBS",
+      "severity": "critical",
+      "evidence": [
+        "Default-Transport ist stdio (server.py:1755)",
+        "Im stdio-Pfad werden keine print()-Statements ausgefuehrt"
+      ],
+      "gaps": [
+        "server.py:1752: print(f'BAKOM MCP Server laeuft auf http://localhost:{port}/mcp') — geht nach stdout (nicht stderr)",
+        "Im stdio-Default ist dieser Pfad zwar nicht aktiv (ist im --http-Branch), aber Konvention: ALLE prints nach stderr",
+        "Bei spaeterer Code-Aenderung (z.B. ein Startup-Banner) besteht Risiko, dass stdout-Protokoll beschaedigt wird"
+      ]
+    },
+    "OPS-001": {
+      "status": "partial",
+      "category": "OPS",
+      "severity": "high",
+      "evidence": [
+        "4 Test-Dateien in tests/: test_integration.py, test_20_szenarien.py, test_20_neue_szenarien.py, test_scenarios_20.py",
+        "CI ruft pytest mit '-m \"not live\"' auf (.github/workflows/ci.yml:46)"
+      ],
+      "gaps": [
+        "Tests sind NICHT mit @pytest.mark.live markiert (grep liefert 0 Treffer)",
+        "Da es keine 'live'-Markierung gibt, hat 'not live' keinen Effekt — alle Tests laufen in CI",
+        "Keine Mocks oder pytest-Fixtures (grep nach mock/Mock/patch: 0)",
+        "Kein conftest.py",
+        "Test-Datei test_integration.py ruft Live-APIs (geo.admin.ch, opendata.swiss, rtvdb)"
+      ]
+    },
+    "OPS-002": {
+      "status": "pass",
+      "category": "OPS",
+      "severity": "medium",
+      "evidence": [
+        "Bilingualer README: README.md (EN) + README.de.md",
+        "ASCII-Repo-Tree-Diagramm in README (Z. 230+)",
+        "'Safety & Limits'-Sektion explizit in README (Z. 172)"
+      ],
+      "gaps": []
+    },
+    "OPS-003": {
+      "status": "pass",
+      "category": "OPS",
+      "severity": "high",
+      "evidence": [
+        "Alle 11 Tools sind readOnlyHint=True (Phase 1 Read-only-Architektur)",
+        "README.md:176: '| Access | Read-only (`readOnlyHint: true`) — the server cannot modify or delete any data |'",
+        "Keine Write-Tools, keine Multi-Agent-Coordination"
+      ],
+      "gaps": []
+    },
+    "SCALE-002": {
+      "status": "todo",
+      "category": "SCALE",
+      "severity": "high",
+      "evidence": [
+        "HTTP-Transport ist optional via --http (server.py:1749)",
+        "Profile is_cloud_deployed=false — derzeit kein Cloud-LB-Setup im Repo dokumentiert"
+      ],
+      "gaps": [
+        "Falls spaeter Cloud-Deployment kommt, fehlt Mcp-Session-Id-Handling",
+        "Aktuell fuer Local-stdio nicht relevant, aber fuer HTTP-Path ungeloest"
+      ]
+    },
+    "SDK-001": {
+      "status": "fail",
+      "category": "SDK",
+      "severity": "high",
+      "evidence": [
+        "Kein @asynccontextmanager oder AsyncExitStack im Code",
+        "Kein lifespan-Parameter beim FastMCP()-Konstruktor (server.py:391)",
+        "Pro Tool-Call: 'async with httpx.AsyncClient() as client:' (10x im File)"
+      ],
+      "gaps": [
+        "Jeder Tool-Call erstellt + schliesst eine neue httpx-Connection: ineffizient (kein Connection-Pooling)",
+        "Best Practice: lifespan-Hook, der einmalig httpx.AsyncClient erstellt und in Context injiziert",
+        "Code-Aufwand: M (FastMCP lifespan + ctx.lifespan_context.client)"
+      ]
+    },
+    "SDK-002": {
+      "status": "partial",
+      "category": "SDK",
+      "severity": "medium",
+      "evidence": [
+        "Inputs: 7 Pydantic v2 BaseModel-Klassen mit Field-Constraints (server.py:85-249)",
+        "ConfigDict(str_strip_whitespace=True, extra='forbid') auf allen Inputs"
+      ],
+      "gaps": [
+        "Tool-Returns sind alle 'str' (Markdown oder JSON-string)",
+        "Kein Pydantic-Output-Modell, keine TypedDict-Returns",
+        "MCP-SDK kann strukturierte Outputs serialisieren — ungenutzt"
+      ]
+    },
+    "SDK-003": {
+      "status": "fail",
+      "category": "SDK",
+      "severity": "medium",
+      "evidence": [
+        "Keine Tool-Funktion akzeptiert Context/ctx-Parameter (grep nach Context/ctx in tool functions: 0)",
+        "Keine ctx.report_progress, ctx.info, ctx.warn-Calls"
+      ],
+      "gaps": [
+        "Long-running Tools wie bakom_multi_standort_konnektivitaet (max 20 Locations, viele HTTP-Calls) profitieren von Progress-Reports",
+        "Kein zentrales Logging via ctx (geht aktuell nur ueber print/logger ohne MCP-Protocol-Integration)"
+      ]
+    },
+    "SDK-004": {
+      "status": "fail",
+      "category": "SDK",
+      "severity": "high",
+      "evidence": [
+        "Kein CORS-Setup im Code (grep nach CORS/allow_origins/expose_headers/Mcp-Session-Id: 0 Treffer)",
+        "FastMCP-Default greift; im --http-Modus haengt es an FastMCP-Default-Defaults"
+      ],
+      "gaps": [
+        "Bei Streamable-HTTP-Transport muss CORS expose_headers Mcp-Session-Id explizit gesetzt sein, sonst funktioniert Browser-Client-Reconnect nicht",
+        "Aktuell unklar (haengt von mcp-SDK-Default ab)",
+        "Risiko: Audit ist auf Code-Ebene, nicht runtime — Verifikation per curl gegen --http waere noetig"
+      ]
+    },
+    "SEC-004": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "critical",
+      "evidence": [
+        "Alle externen URLs sind hardcodierte HTTPS-Konstanten (server.py:34-47)",
+        "Keine user-controlled URLs — User liefert nur Lat/Lon (Pydantic-validiert auf Schweiz-Bounds)",
+        "Kein dynamisches URL-Building aus User-Input (nur Layer-Namen aus internen Konstanten)"
+      ],
+      "gaps": []
+    },
+    "SEC-005": {
+      "status": "partial",
+      "category": "SEC",
+      "severity": "high",
+      "evidence": [
+        "Keine DNS-Pinning-Logik im Code",
+        "URLs sind statische Konstanten (admin.ch, opendata.swiss, ofcomnet.ch) — kein TOCTOU-Vektor",
+        "Risiko durch DNS-Rebinding theoretisch vorhanden, praktisch sehr niedrig (kein User-controlled-host)"
+      ],
+      "gaps": [
+        "Falls httpx einen lokalen DNS-Resolver mit kurzer TTL nutzt, kein Pinning",
+        "Best Practice fuer hoechste Reife: socket.getaddrinfo + IP-Pinning"
+      ]
+    },
+    "SEC-006": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "high",
+      "evidence": [
+        "Default-Transport ist stdio (server.py:1755: mcp.run() ohne transport-Arg)",
+        "HTTP nur opt-in via --http-Flag",
+        "Korrekt fuer lokale Server: stdio-Isolation, keine Netzwerk-Exposure ohne explizite Aktivierung"
+      ],
+      "gaps": []
+    },
+    "SEC-007": {
+      "status": "fail",
+      "category": "SEC",
+      "severity": "high",
+      "evidence": [
+        "Kein Dockerfile im Repo",
+        "Kein docker-compose.yml im Repo",
+        "Keine Container-Doku in README.md"
+      ],
+      "gaps": [
+        "Fuer Production-Deployment empfohlen: minimaler Docker-Container (slim-bullseye, --user, read-only filesystem)",
+        "Aktuell laeuft Server als Host-Process — Sandbox-Layer fehlt",
+        "Fuer rein lokalen stdio-Betrieb akzeptabel; bei spaeterem HTTP-Cloud-Deploy: Pflicht"
+      ]
+    },
+    "SEC-008": {
+      "status": "partial",
+      "category": "SEC",
+      "severity": "medium",
+      "evidence": [
+        "Standard claude_desktop_config-Flow dokumentiert (README:79-95)",
+        "Kein post-install-Script, kein Code-Execution beim Install"
+      ],
+      "gaps": [
+        "Keine explizite First-Run-Approval-Logik im Server",
+        "Da es ein OGD-Server ohne Auth ist, ist das Konsens-Risiko niedrig"
+      ]
+    },
+    "SEC-009": {
+      "status": "todo",
+      "category": "SEC",
+      "severity": "critical",
+      "evidence": [
+        "Kein Session-Management im Code sichtbar (grep nach session/Mcp-Session-Id: 0 Treffer im Source)",
+        "Im stdio-Default kein Session-ID-Konzept noetig"
+      ],
+      "gaps": [
+        "Bei HTTP-Transport: FastMCP haendelt Mcp-Session-Id intern, Verifikation per Runtime-Test noetig",
+        "Cryptographic-Binding (user_id:session_id) nicht im Code, vermutlich auch nicht in FastMCP-Default"
+      ]
+    },
+    "SEC-013": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "high",
+      "evidence": [
+        "Keine API-Keys benoetigt (auth_model=none, alle Datenquellen sind OGD ohne Auth)",
+        "Server hat keine Secrets zu speichern"
+      ],
+      "gaps": []
+    },
+    "SEC-016": {
+      "status": "partial",
+      "category": "SEC",
+      "severity": "critical",
+      "evidence": [
+        "server.py:1750: port = 8050",
+        "server.py:1753: mcp.run(transport=transport, port=port) — kein expliziter host-Parameter",
+        "Default-Host ist FastMCP-abhaengig (typisch '127.0.0.1' bei mcp-SDK aktuell)"
+      ],
+      "gaps": [
+        "Kein expliziter host='127.0.0.1' im Code — verlaesst sich auf SDK-Default",
+        "Bei spaeterer SDK-Aenderung oder bewusstem 0.0.0.0-Override durch User entstuende NeighborJack-Risiko",
+        "Best Practice: host='127.0.0.1' explizit setzen, opt-in fuer 0.0.0.0 mit Warnung"
+      ]
+    },
+    "SEC-018": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "high",
+      "evidence": [
+        "7 Pydantic-Input-Modelle mit ConfigDict(extra='forbid') und Field-Constraints",
+        "latitude/longitude: ge=45.8/le=47.9 + ge=5.9/le=10.6 (Schweiz-Bounds)",
+        "max_length auf String-Felder (kanton: 2, query: 100, thema: 50)",
+        "Limits: ge=1, le=50 (RTV-Suche), min_length=1/max_length=20 (MultiLocation)",
+        "@field_validator fuer kanton-uppercase"
+      ],
+      "gaps": []
+    },
+    "SEC-019": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "critical",
+      "evidence": [
+        "Alle 11 Tools haben readOnlyHint=True",
+        "Kein Tool sendet Daten nach extern (kein POST/PUT/DELETE/email/message)",
+        "Trifecta (read sensitive + external comm + read untrusted) physisch ausgeschlossen, da nur Read-only auf Public OGD"
+      ],
+      "gaps": []
+    },
+    "SEC-020": {
+      "status": "pass",
+      "category": "SEC",
+      "severity": "critical",
+      "evidence": [
+        "grep nach os.system/subprocess/shell=True/eval/exec/popen: 0 Treffer im Code",
+        "Keine dynamische Code-Ausfuehrung",
+        "Alle externen Calls via httpx.AsyncClient (Library-Mediated)"
+      ],
+      "gaps": []
+    },
+    "SEC-021": {
+      "status": "partial",
+      "category": "SEC",
+      "severity": "high",
+      "evidence": [
+        "Externe Endpoints sind als Konstanten am File-Top deklariert (server.py:34-47): geo.admin.ch, opendata.swiss, ofcomnet.ch, bakom.admin.ch, geodesy.geo.admin.ch",
+        "Keine User-controlled URLs — Code-Layer-Allow-List durch Konstanten implizit"
+      ],
+      "gaps": [
+        "Kein expliziter ALLOWED_HOSTS-Set im Code, dessen Membership vor jedem httpx-Call gecheckt wird",
+        "Kein Network-Layer-Allow-List (Egress-Firewall, etc.)",
+        "Bei Future-PR koennte versehentlich neue URL eingefuehrt werden ohne Review-Trigger",
+        "Best Practice: ALLOWED_HOSTS frozenset + assert in HTTP-Helper"
+      ]
+    }
+  }
+}

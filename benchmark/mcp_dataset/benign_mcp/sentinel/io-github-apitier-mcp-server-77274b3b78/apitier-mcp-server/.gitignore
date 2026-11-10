@@ -1,0 +1,10 @@
+node_modules/
+*.tgz
+.env
+.env.*
+
+# Lambda deployment — private, not part of the npm package
+lambda/
+serverless.yml
+serverless_dev.yml
+.serverless/

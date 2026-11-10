@@ -1,8 +1,0 @@
-{
-  "mcpServers": {
-    "nveil": {
-      "command": "nveil",
-      "args": ["mcp"]
-    }
-  }
-}

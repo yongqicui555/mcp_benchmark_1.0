@@ -1,4 +1,0 @@
-# ARCH-006 — re-audit (PASS)
-
-## Evidence
-- 10 Tools, use-case-orientiert

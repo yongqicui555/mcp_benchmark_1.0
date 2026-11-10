@@ -1,9 +1,0 @@
-__pycache__/
-*.egg-info/
-dist/
-build/
-.eggs/
-*.pyc
-.env
-.mcpregistry_*
-.gitnexus

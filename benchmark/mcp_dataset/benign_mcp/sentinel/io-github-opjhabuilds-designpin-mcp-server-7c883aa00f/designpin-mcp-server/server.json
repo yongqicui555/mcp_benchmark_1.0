@@ -1,0 +1,41 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.opjhabuilds/designpin-mcp-server",
+  "description": "Push HTML prototypes to DesignPin for team review and pull reviewer feedback into your AI.",
+  "repository": {
+    "url": "https://github.com/opjhabuilds/designpin-mcp-server",
+    "source": "github"
+  },
+  "version": "0.1.2",
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "@designpin/mcp-server",
+      "version": "0.1.2",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "DESIGNPIN_API_KEY",
+          "description": "DesignPin project-scoped API key. Generate at https://designpin.pro under Project Settings. Required for uploadVersion and listComments tools; not required for createShareLink.",
+          "isRequired": false,
+          "isSecret": true
+        },
+        {
+          "name": "DESIGNPIN_PROJECT_ID",
+          "description": "Firestore project document ID the API key is scoped to. Required when using uploadVersion or listComments.",
+          "isRequired": false,
+          "isSecret": false
+        },
+        {
+          "name": "DESIGNPIN_BASE_URL",
+          "description": "API base URL. Defaults to https://designpin.pro. Override only for testing against a staging or alternate host.",
+          "isRequired": false,
+          "isSecret": false
+        }
+      ]
+    }
+  ]
+}

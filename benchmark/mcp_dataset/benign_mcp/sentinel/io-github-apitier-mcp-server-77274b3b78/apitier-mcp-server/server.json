@@ -1,0 +1,85 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.apitier/mcp-server",
+  "description": "UK and global agent tools for KYC onboarding, address verification, business validation, EU/UK VAT compliance, and identity checks.",
+  "repository": {
+    "url": "https://github.com/apitier/apitier-mcp-server",
+    "source": "github"
+  },
+  "version": "1.2.0",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@apitier/mcp-server",
+      "version": "1.2.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "APITIER_MCP_KEY",
+          "description": "Unified APITier MCP Key — resolves all subscribed service keys automatically. Recommended over individual service keys. Get yours at apitier.com → Account → AI & MCP.",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": true
+        },
+        {
+          "name": "APITIER_POSTCODE_KEY",
+          "description": "API key from your APITier UK Postcode subscription — enables verify_uk_address, lookup_uprn, lookup_uk_postcode",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": true
+        },
+        {
+          "name": "APITIER_LEAD_AGENT_KEY",
+          "description": "API key from your APITier Lead Agent subscription — enables verify_uk_company, get_company_psc",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": true
+        },
+        {
+          "name": "APITIER_VAT_KEY",
+          "description": "API key from your APITier VAT Validation subscription — enables validate_vat (UK + EU VIES)",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": true
+        },
+        {
+          "name": "APITIER_EMAIL_KEY",
+          "description": "API key from your APITier Email Validation subscription — enables validate_email",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": true
+        },
+        {
+          "name": "APITIER_PHONE_KEY",
+          "description": "API key from your APITier Phone Validation subscription — enables validate_phone",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": true
+        },
+        {
+          "name": "APITIER_PINCODE_KEY",
+          "description": "API key from your APITier India Pincode subscription — enables lookup_india_pincode",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": true
+        },
+        {
+          "name": "APITIER_BARCODE_KEY",
+          "description": "API key from your APITier Barcode & QR Code subscription — enables generate_barcode, generate_qrcode",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": true
+        },
+        {
+          "name": "APITIER_CONVERT_DATA_KEY",
+          "description": "API key from your APITier Data Conversion subscription — enables convert_data",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}

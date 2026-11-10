@@ -1,0 +1,25 @@
+# Server profile — swiss-cultural-heritage-mcp
+# Inferred from repo (README, pyproject.toml, src/, .github/workflows/, Dockerfile)
+# Audit run: 2026-06-02T041532-Z-swiss-cultural-heritage-mcp
+name: swiss-cultural-heritage-mcp
+repo: https://github.com/malkreide/swiss-cultural-heritage-mcp
+transport: dual                       # stdio (default) + Streamable HTTP (--http --port)
+sdk_language: Python                   # FastMCP (mcp[cli]) on Python 3.11+
+auth_model: none                      # public open data, no auth surface
+data_class: Public Open Data          # institutional records, no PII
+write_capable: false                  # all tools readOnlyHint:true, no write/destructive ops
+deployment:                           # Claude Desktop stdio + Render.com HTTP + Docker
+  - local-stdio
+  - Render
+  - Docker
+is_cloud_deployed: true               # derived: deployment has entries other than local-stdio
+uses_sampling: false                  # no ctx.sample usage
+uses_sequential_thinking: false       # no sequential-thinking tool
+tools_include_filesystem: false       # no filesystem tools
+tools_make_external_requests: true    # all heritage_* tools call upstream HTTP APIs
+stadt_zuerich_context: false          # not a Stadt Zürich server
+schulamt_context: false               # education prompt exists but no Schulamt integration
+volksschule_context: false
+enterprise_context: false
+data_source:
+  is_swiss_open_data: true            # opendata.swiss CKAN + Nationalbibliothek OAI-PMH

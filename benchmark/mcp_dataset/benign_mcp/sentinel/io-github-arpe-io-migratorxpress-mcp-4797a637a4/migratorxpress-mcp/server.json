@@ -1,0 +1,46 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.arpe-io/migratorxpress-mcp",
+  "description": "MCP server for MigratorXpress — cross-platform database migration with parallel transfer",
+  "repository": {
+    "url": "https://github.com/arpe-io/migratorxpress-mcp",
+    "source": "github"
+  },
+  "version": "0.1.6",
+  "packages": [
+    {
+      "registryType": "pypi",
+      "identifier": "migratorxpress-mcp",
+      "version": "0.1.6",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "description": "Path to the MigratorXpress binary (optional — server runs in preview-only mode without it)",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": false,
+          "name": "MIGRATORXPRESS_PATH"
+        },
+        {
+          "description": "Execution timeout in seconds (default: 3600)",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": false,
+          "name": "MIGRATORXPRESS_TIMEOUT"
+        },
+        {
+          "description": "Directory for execution logs (default: ./logs)",
+          "format": "string",
+          "name": "MIGRATORXPRESS_LOG_DIR"
+        },
+        {
+          "description": "Logging level: DEBUG, INFO, WARNING, ERROR (default: INFO)",
+          "format": "string",
+          "name": "LOG_LEVEL"
+        }
+      ]
+    }
+  ]
+}

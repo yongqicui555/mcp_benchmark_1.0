@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-malkreide-swiss-academic-libraries-mcp-b1e763c909": {
+      "args": [
+        "/app/io-github-malkreide-swiss-academic-libraries-mcp-b1e763c909/swiss-academic-libraries-mcp/src/swiss_academic_libraries_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

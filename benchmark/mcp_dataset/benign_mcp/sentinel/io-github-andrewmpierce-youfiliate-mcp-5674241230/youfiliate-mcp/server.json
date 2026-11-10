@@ -1,0 +1,50 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.andrewmpierce/youfiliate-mcp",
+  "title": "Youfiliate Smart Links",
+  "description": "Create geo-targeted affiliate smart links, pull analytics, and rewrite YouTube descriptions.",
+  "version": "0.1.1",
+  "repository": {
+    "url": "https://github.com/andrewmpierce/youfiliate-mcp",
+    "source": "github"
+  },
+  "websiteUrl": "https://youfiliate.com",
+  "packages": [
+    {
+      "registryType": "pypi",
+      "identifier": "youfiliate-mcp",
+      "version": "0.1.1",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "YOUFILIATE_API_KEY",
+          "description": "Your Youfiliate API key (starts with youfiliate_sk_). Generate one at https://youfiliate.com/settings.",
+          "isRequired": true,
+          "isSecret": true
+        },
+        {
+          "name": "YOUFILIATE_API_BASE_URL",
+          "description": "Youfiliate backend URL.",
+          "isRequired": false,
+          "default": "https://app.youfiliate.com"
+        }
+      ]
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://youfiliate-mcp.onrender.com/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Bearer token using your Youfiliate API key. Format: 'Bearer youfiliate_sk_your_key_here'.",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}

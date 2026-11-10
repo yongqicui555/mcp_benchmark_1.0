@@ -1,0 +1,48 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.mapdevsaikat/quantaroute-geocoder",
+  "description": "Geocode addresses, lookup administrative boundaries, and process DigiPin codes for India",
+  "homepage": "https://quantaroute.com",
+  "repository": {
+    "url": "https://github.com/mapdevsaikat/quantaroute-geocoder",
+    "source": "github"
+  },
+  "version": "1.0.0",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@quantaroute/mcp-server",
+      "version": "1.0.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "QUANTAROUTE_API_KEY",
+          "description": "QuantaRoute API key (get from quantaroute.com or use: free_test_key_hash_12345)",
+          "isRequired": true,
+          "format": "string",
+          "isSecret": true
+        }
+      ]
+    }
+  ],
+  "categories": [
+    "geocoding",
+    "location",
+    "maps",
+    "data-sources"
+  ],
+  "tags": [
+    "geocoding",
+    "digipin",
+    "location-lookup",
+    "india",
+    "pincode",
+    "administrative-boundaries",
+    "postal-boundaries",
+    "reverse-geocoding",
+    "address-autocomplete",
+    "batch-processing"
+  ]
+}

@@ -1,0 +1,47 @@
+[
+  {
+    "id": "color-hunting-date-app",
+    "title": "Color Hunting Date App",
+    "pain": "\"Color Hunting\" is the #1 TikTok trend in April 2026. Couples assign a color, then photograph everything they spot in that hue throughout the day to build a 3x3 aesthetic grid. 5M+ views and growing — but everyone is doing it manually with their camera roll and a collage app.",
+    "solution": "A mobile-first PWA that uses color detection on your camera roll. Pick a hue, the app auto-filters matching photos, arranges them into a shareable 3x3 grid with your partner's grid side-by-side. Add a leaderboard for friend groups.",
+    "peak_window": "Apr 10–30",
+    "signal": "TikTok #1",
+    "full_details": "https://thevibepreneur.com/gaps?utm_source=mcp&utm_medium=tool&utm_campaign=gapbase-mcp#trends"
+  },
+  {
+    "id": "ai-yoga-pose-scorer",
+    "title": "AI Yoga Pose Challenge Scorer",
+    "pain": "The \"Viral Yoga Pose Challenge\" is trending #1 on TikTok. People attempt a deceptively difficult hamstring stretch and fail hilariously — millions of views on attempt videos. But there's no way to actually score how close you got or generate a shareable result.",
+    "solution": "A browser app using TensorFlow.js pose detection. User holds their phone up, attempts the pose, and the app scores their form 0-100 in real-time. Generates a shareable 'report card' image with their score, flexibility rating, and a funny roast line.",
+    "peak_window": "Apr 8–28",
+    "signal": "TikTok #1",
+    "full_details": "https://thevibepreneur.com/gaps?utm_source=mcp&utm_medium=tool&utm_campaign=gapbase-mcp#trends"
+  },
+  {
+    "id": "seedance-prompt-library",
+    "title": "Seedance Prompt Library & Remix Tool",
+    "pain": "Seedance 2.0 (ByteDance's AI video generator) went viral in March 2026 and is now integrated into CapCut. Creators are generating stunning AI videos but copy-pasting prompts from random Reddit threads and Discord servers. There is no organized, searchable prompt library — just scattered threads.",
+    "solution": "A curated prompt marketplace for Seedance/CapCut AI video. Users browse by category (cinematic, product demo, music video, meme), preview the output, and copy-paste into CapCut. Community upvoting surfaces the best prompts.",
+    "peak_window": "Apr–May 2026",
+    "signal": "ByteDance viral",
+    "full_details": "https://thevibepreneur.com/gaps?utm_source=mcp&utm_medium=tool&utm_campaign=gapbase-mcp#trends"
+  },
+  {
+    "id": "euphoria-outfit-id",
+    "title": "Euphoria Outfit ID & Shop",
+    "pain": "Euphoria Season 3 premieres April 12 on HBO after a 4-year hiatus. Outfit recreation content is already trending massively — fans screenshot character looks and manually hunt for each piece across Google, Shein, and Depop. No tool lets you snap a screenshot and instantly find where to buy every item.",
+    "solution": "An image recognition app where you upload a screenshot from any Euphoria scene. AI identifies each clothing item, matches to shoppable links across retailers (Zara, ASOS, Shein, Depop), and shows price comparisons. Add a 'recreate this look for under $50' budget mode.",
+    "peak_window": "Apr 12–May 5",
+    "signal": "HBO premiere Apr 12",
+    "full_details": "https://thevibepreneur.com/gaps?utm_source=mcp&utm_medium=tool&utm_campaign=gapbase-mcp#trends"
+  },
+  {
+    "id": "party-game-prompt-app",
+    "title": "\"He's a 10 But...\" Party Game App",
+    "pain": "The \"He's a 10 But...\" card game format is going viral on TikTok this week. Friend groups play a forehead-guessing game with random prompts — one person holds a card they can't see while others react. Millions of views, but everyone is using physical cards or making up prompts on the spot. No dedicated app exists.",
+    "solution": "A PWA party game app. Host creates a room, players join via QR code. App generates randomized 'He's a 10 But...' prompts, displays them forehead-style on the player's phone screen, tracks rounds and scores, and creates a shareable scorecard at the end.",
+    "peak_window": "Apr–May 2026",
+    "signal": "TikTok viral format",
+    "full_details": "https://thevibepreneur.com/gaps?utm_source=mcp&utm_medium=tool&utm_campaign=gapbase-mcp#trends"
+  }
+]

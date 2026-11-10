@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-nugehs-gate-910b2e9014": {
+      "args": [
+        "/app/io-github-nugehs-gate-910b2e9014/gate/src/cli.js"
+      ],
+      "command": "node"
+    }
+  }
+}

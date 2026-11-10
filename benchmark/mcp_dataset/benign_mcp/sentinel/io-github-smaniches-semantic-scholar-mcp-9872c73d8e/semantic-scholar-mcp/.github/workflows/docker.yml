@@ -1,0 +1,147 @@
+name: Docker
+
+on:
+  release:
+    types: [published]
+  # Manual / programmatic trigger. release-please.yml dispatches this after
+  # creating a release because GITHUB_TOKEN-authored release events do not
+  # fan out to other workflows.
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Git tag to build (e.g. semantic-scholar-mcp-v1.3.0)"
+        required: false
+        type: string
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'pyproject.toml'
+      - 'Dockerfile'
+  pull_request:
+    paths:
+      - 'src/**'
+      - 'pyproject.toml'
+      - 'Dockerfile'
+      - '.dockerignore'
+      - '.github/workflows/docker.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-push:
+    name: Build & Push Docker Image
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read        # actions/checkout
+      packages: write       # GHCR push
+      id-token: write       # OIDC for Sigstore-backed build-provenance attestation
+      attestations: write   # persist the provenance attestation
+
+    steps:
+    - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      with:
+        # When dispatched with an inputs.tag, check out that tag so the
+        # build reflects the released code. Otherwise default to the ref
+        # the workflow was triggered on (main on push, tag on release).
+        ref: ${{ inputs.tag || github.ref }}
+
+    # docker/setup-buildx-action boots a BuildKit container by pulling
+    # moby/buildkit from Docker Hub — a recurring transient failure point
+    # (Docker Hub timeouts / rate limits). When the release *dispatch* run hits
+    # it, the version-pinned image tags (e.g. :1.5.6, :1.5) silently fail to
+    # publish even though PyPI and the GitHub release succeed, because the
+    # concurrent push-triggered run only stamps :latest and :<sha>. Pre-pull
+    # the image with bounded retries so a flaky pull can't drop a release's
+    # version tags; once present locally, buildx bootstrap reuses it without a
+    # network round-trip.
+    - name: Pre-pull BuildKit image (resilient to Docker Hub flakes)
+      env:
+        BUILDKIT_IMAGE: moby/buildkit:buildx-stable-1
+      run: |
+        for attempt in $(seq 1 5); do
+          if docker pull "$BUILDKIT_IMAGE"; then
+            echo "Pulled $BUILDKIT_IMAGE on attempt $attempt."
+            exit 0
+          fi
+          wait=$((attempt * 10))
+          echo "Pull attempt $attempt failed; retrying in ${wait}s..."
+          sleep "$wait"
+        done
+        echo "::error::Failed to pull $BUILDKIT_IMAGE after 5 attempts."
+        exit 1
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@bb05f3f5519dd87d3ba754cc423b652a5edd6d2c # v4
+      with:
+        # Pin the builder to the same image pre-pulled above so bootstrap
+        # reuses the local copy instead of re-fetching from Docker Hub.
+        driver-opts: image=moby/buildkit:buildx-stable-1
+
+    - name: Login to GitHub Container Registry
+      if: github.event_name != 'pull_request'
+      uses: docker/login-action@af1e73f918a031802d376d3c8bbc3fe56130a9b0 # v4
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    # Pre-extract version from the input tag if present. GitHub's
+    # workflow_dispatch UI only lets you pick a *branch* for the "Use
+    # workflow from" field, so dispatches from main with a tag input would
+    # otherwise see github.ref = refs/heads/main and produce no semver
+    # Docker tags. This step computes the version directly from the input
+    # so type=raw can apply it below.
+    - name: Extract version from input tag
+      id: ver
+      if: ${{ inputs.tag != '' }}
+      run: |
+        version=$(echo "${{ inputs.tag }}" | grep -oE 'v[0-9]+\.[0-9]+\.[0-9]+' | head -1 | sed 's/^v//')
+        minor=$(echo "$version" | cut -d. -f1-2)
+        echo "version=$version" >> "$GITHUB_OUTPUT"
+        echo "minor=$minor" >> "$GITHUB_OUTPUT"
+
+    - name: Extract metadata
+      id: meta
+      uses: docker/metadata-action@dc802804100637a589fabce1cb79ff13a1411302 # v6
+      with:
+        images: ghcr.io/${{ github.repository }}
+        # release-please-managed tags carry a component prefix
+        # (e.g. ``semantic-scholar-mcp-v1.3.0``), so ``type=semver`` — which
+        # expects bare ``v1.3.0`` — won't match. ``type=match`` with a
+        # capturing regex extracts the version when the workflow is triggered
+        # by a tag ref (release: published). ``type=raw`` applies the version
+        # computed from ``inputs.tag`` when dispatched from a branch.
+        tags: |
+          type=match,pattern=v(\d+\.\d+\.\d+),group=1
+          type=match,pattern=v(\d+\.\d+),group=1
+          type=raw,value=${{ steps.ver.outputs.version }},enable=${{ steps.ver.outputs.version != '' }}
+          type=raw,value=${{ steps.ver.outputs.minor }},enable=${{ steps.ver.outputs.minor != '' }}
+          type=sha,prefix=
+          type=raw,value=latest,enable={{is_default_branch}}
+
+    - name: Build and push
+      id: build
+      uses: docker/build-push-action@53b7df96c91f9c12dcc8a07bcb9ccacbed38856a # v7
+      with:
+        context: .
+        push: ${{ github.event_name != 'pull_request' }}
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+        # BuildKit's inline provenance is disabled in favour of the stronger,
+        # Sigstore-backed attestation produced by the next step.
+        provenance: false
+
+    # SLSA build-provenance attestation, signed via Sigstore (Fulcio/Rekor)
+    # and pushed to the registry alongside the image digest. Skipped on pull
+    # requests, where the image is built but not pushed.
+    - name: Attest image build provenance
+      if: github.event_name != 'pull_request'
+      uses: actions/attest-build-provenance@0f67c3f4856b2e3261c31976d6725780e5e4c373 # v4
+      with:
+        subject-name: ghcr.io/${{ github.repository }}
+        subject-digest: ${{ steps.build.outputs.digest }}
+        push-to-registry: true

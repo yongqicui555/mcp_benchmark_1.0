@@ -1,0 +1,35 @@
+# Build artefacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+venv/
+build/
+dist/
+*.egg-info/
+
+# Audit / Doku
+audits/
+docs/
+EXAMPLES.md
+CHANGELOG.md
+
+# VCS / IDE / OS
+.git/
+.gitignore
+.github/
+.vscode/
+.idea/
+.DS_Store
+
+# Tests werden im Container nicht ausgefuehrt
+tests/
+
+# Secrets (defensiv — ARCH-005)
+.env
+.env.*
+!.env.example
+*.secrets
+credentials.json

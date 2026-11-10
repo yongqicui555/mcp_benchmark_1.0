@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-thehesiod-psquare-bf715e8965": {
+      "args": [
+        "/app/io-github-thehesiod-psquare-bf715e8965/psquare-mcp/src/parentsquare_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

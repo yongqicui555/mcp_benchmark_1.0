@@ -1,8 +1,0 @@
-{
-  "mcpServers": {
-    "swiss-cultural-heritage": {
-      "command": "python",
-      "args": ["-m", "swiss_cultural_heritage_mcp.server"]
-    }
-  }
-}

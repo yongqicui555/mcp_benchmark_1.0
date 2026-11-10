@@ -1,7 +1,0 @@
-{
-  "mcpServers": {
-    "quantrisk": {
-      "url": "https://quantrisk-mcp.quantrisk.workers.dev/mcp"
-    }
-  }
-}

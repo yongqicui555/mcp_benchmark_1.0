@@ -1,0 +1,17 @@
+node_modules/
+.claude/
+*.wav
+*.bin
+models/
+.DS_Store
+
+mcp-publisher.exe
+
+mcp-publisher.exe
+.mcpregistry_github_token
+.mcpregistry_registry_token
+
+CLAUDE.local.md
+
+# Generated publish package, assembled by scripts/build-package.js
+dist/

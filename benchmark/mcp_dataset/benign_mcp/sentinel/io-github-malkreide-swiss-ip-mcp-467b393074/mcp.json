@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-malkreide-swiss-ip-mcp-467b393074": {
+      "args": [
+        "/app/io-github-malkreide-swiss-ip-mcp-467b393074/swiss-ip-mcp/src/swiss_ip_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

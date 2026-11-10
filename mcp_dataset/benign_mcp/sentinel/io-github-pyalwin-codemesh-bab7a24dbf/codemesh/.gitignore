@@ -1,8 +1,0 @@
-node_modules/
-.codemesh/
-*.db
-*.db-journal
-bun.lockb
-eval/results/
-docs/superpowers/
-scripts/dist/

@@ -1,0 +1,16 @@
+node_modules/
+*.tgz
+.DS_Store
+.env
+.env.local
+*.log
+.npmrc
+
+# Build artifacts (uncomment if you prefer to omit dist/ from git — dist/ is currently
+# tracked because npm publish includes it and downstream forks may want a no-build install)
+# dist/
+
+# IDE
+.vscode/
+.idea/
+*.swp

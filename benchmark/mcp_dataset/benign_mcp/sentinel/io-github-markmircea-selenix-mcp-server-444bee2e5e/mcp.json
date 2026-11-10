@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-markmircea-selenix-mcp-server-444bee2e5e": {
+      "args": [
+        "/app/io-github-markmircea-selenix-mcp-server-444bee2e5e/Selenix-MCP-Server/dist/bundle.js"
+      ],
+      "command": "node"
+    }
+  }
+}

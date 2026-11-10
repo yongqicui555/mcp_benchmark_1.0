@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-summit53-mcp-server-75554ce9aa": {
+      "args": [
+        "/app/io-summit53-mcp-server-75554ce9aa/mcp-server/bin/cli.mjs"
+      ],
+      "command": "node"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-malkreide-srgssr-mcp-72a08ba18a": {
+      "args": [
+        "/app/io-github-malkreide-srgssr-mcp-72a08ba18a/srgssr-mcp/src/srgssr_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 520" font-family="system-ui,-apple-system,sans-serif" font-size="13">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#f1f5f9"/>
+    </linearGradient>
+    <filter id="shadow" x="-2%" y="-2%" width="104%" height="108%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="820" height="520" rx="12" fill="url(#bg)" stroke="#e2e8f0" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="410" y="36" text-anchor="middle" font-size="16" font-weight="700" fill="#1e293b">bakom-mcp  Demo Flow</text>
+  <text x="410" y="54" text-anchor="middle" font-size="11" fill="#64748b">User prompt  &#x2192;  MCP tool call  &#x2192;  Live API  &#x2192;  Structured response</text>
+
+  <!-- Step 1: User Prompt -->
+  <g filter="url(#shadow)">
+    <rect x="30" y="78" width="760" height="64" rx="10" fill="#ffffff" stroke="#c7d2fe" stroke-width="1.5"/>
+    <rect x="30" y="78" width="6" height="64" rx="3" fill="#6366f1"/>
+    <text x="56" y="98" font-size="11" font-weight="600" fill="#6366f1">USER PROMPT</text>
+    <text x="56" y="120" font-size="14" fill="#334155">&#x201C;Hat das Schulhaus Leutschenbach (47.4148, 8.5654) Glasfaser und 5G?&#x201D;</text>
+  </g>
+
+  <!-- Arrow 1 -->
+  <path d="M410 142 L410 162" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#94a3b8"/></marker></defs>
+
+  <!-- Step 2: Tool Call -->
+  <g filter="url(#shadow)">
+    <rect x="30" y="166" width="760" height="108" rx="10" fill="#ffffff" stroke="#bbf7d0" stroke-width="1.5"/>
+    <rect x="30" y="166" width="6" height="108" rx="3" fill="#22c55e"/>
+    <text x="56" y="186" font-size="11" font-weight="600" fill="#16a34a">MCP TOOL CALL</text>
+    <text x="56" y="210" font-size="13" font-weight="600" fill="#334155" font-family="monospace">bakom_multi_standort_konnektivitaet</text>
+    <rect x="56" y="220" width="720" height="42" rx="6" fill="#f0fdf4"/>
+    <text x="68" y="238" font-size="12" fill="#166534" font-family="monospace">{</text>
+    <text x="84" y="238" font-size="12" fill="#166534" font-family="monospace">"locations": [{"name": "Schulhaus Leutschenbach",</text>
+    <text x="84" y="254" font-size="12" fill="#166534" font-family="monospace"> "latitude": 47.4148, "longitude": 8.5654}]</text>
+    <text x="658" y="254" font-size="12" fill="#166534" font-family="monospace">}</text>
+  </g>
+
+  <!-- Arrow 2 -->
+  <path d="M410 274 L410 294" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Step 3: API Calls -->
+  <g filter="url(#shadow)">
+    <rect x="30" y="298" width="760" height="68" rx="10" fill="#ffffff" stroke="#fed7aa" stroke-width="1.5"/>
+    <rect x="30" y="298" width="6" height="68" rx="3" fill="#f97316"/>
+    <text x="56" y="318" font-size="11" font-weight="600" fill="#ea580c">LIVE API CALLS</text>
+    <rect x="56" y="328" width="190" height="26" rx="13" fill="#fff7ed" stroke="#fdba74" stroke-width="1"/>
+    <text x="151" y="345" text-anchor="middle" font-size="11" fill="#9a3412">wms.geo.admin.ch (5G)</text>
+    <rect x="260" y="328" width="220" height="26" rx="13" fill="#fff7ed" stroke="#fdba74" stroke-width="1"/>
+    <text x="370" y="345" text-anchor="middle" font-size="11" fill="#9a3412">wms.geo.admin.ch (Glasfaser)</text>
+    <rect x="494" y="328" width="280" height="26" rx="13" fill="#fff7ed" stroke="#fdba74" stroke-width="1"/>
+    <text x="634" y="345" text-anchor="middle" font-size="11" fill="#9a3412">geodesy.geo.admin.ch (WGS84&#x2192;LV95)</text>
+  </g>
+
+  <!-- Arrow 3 -->
+  <path d="M410 366 L410 386" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Step 4: Response -->
+  <g filter="url(#shadow)">
+    <rect x="30" y="390" width="760" height="112" rx="10" fill="#ffffff" stroke="#c7d2fe" stroke-width="1.5"/>
+    <rect x="30" y="390" width="6" height="112" rx="3" fill="#6366f1"/>
+    <text x="56" y="410" font-size="11" font-weight="600" fill="#6366f1">STRUCTURED RESPONSE</text>
+    <rect x="56" y="420" width="720" height="70" rx="6" fill="#f8fafc"/>
+    <text x="68" y="438" font-size="13" fill="#334155" font-weight="600">Schulhaus Leutschenbach</text>
+    <text x="68" y="458" font-size="12" fill="#334155">5G-Abdeckung: </text>
+    <rect x="162" y="446" width="14" height="14" rx="3" fill="#22c55e"/>
+    <text x="182" y="458" font-size="12" fill="#16a34a" font-weight="600">Ja</text>
+    <text x="240" y="458" font-size="12" fill="#334155">Glasfaser (FTTB/FTTH): </text>
+    <rect x="390" y="446" width="14" height="14" rx="3" fill="#22c55e"/>
+    <text x="410" y="458" font-size="12" fill="#16a34a" font-weight="600">Ja</text>
+    <text x="68" y="480" font-size="11" fill="#64748b">Datenquelle: BAKOM Breitbandatlas via geo.admin.ch  |  Koordinaten: 47.4148&#xb0; N, 8.5654&#xb0; E</text>
+  </g>
+</svg>

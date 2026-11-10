@@ -1,0 +1,12 @@
+services:
+  aktools-pro:
+    container_name: aktools-pro
+    image: ghcr.io/tchivs/aktools-pro
+    ports:
+      - 8808:80
+    environment:
+      TZ: Asia/Shanghai
+      TRANSPORT: ${TRANSPORT:-http} # http/sse
+      # OKX_BASE_URL: https://okx.com
+      # BINANCE_BASE_URL: https://www.binance.com
+    restart: always

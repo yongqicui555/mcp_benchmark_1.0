@@ -1,0 +1,121 @@
+{
+  "name": "uploadcheck",
+  "description": "Quality check videos, podcasts, and clips before you upload.",
+  "package": "@drantoniou/uploadcheck-mcp",
+  "binary": "uploadcheck-mcp",
+  "distribution_status": "public_npm_mcp_ready",
+  "current_install": "public_npm_or_github_checkout",
+  "future_npm_install": "npx -y @drantoniou/uploadcheck-mcp is published and ready",
+  "hosted_api_base_url": "https://api.uploadcheck.app",
+  "legacy_render_api_base_url": "https://qcgenie-api.onrender.com",
+  "environment": {
+    "UPLOADCHECK_API_BASE_URL": "https://api.uploadcheck.app",
+    "UPLOADCHECK_API_KEY": "<workspace_api_key>"
+  },
+  "codex_local": {
+    "config_file": "~/.codex/config.toml",
+    "toml": "[mcp_servers.uploadcheck]\ncommand = \"/absolute/path/to/uploadcheck/mcp-server/run-uploadcheck-mcp.sh\"\nargs = []\nstartup_timeout_sec = 60\n\n[mcp_servers.uploadcheck.env]\nUPLOADCHECK_API_BASE_URL = \"https://api.uploadcheck.app\"\nUPLOADCHECK_API_KEY = \"<workspace_api_key>\""
+  },
+  "claude_desktop_local": {
+    "config_file": "claude_desktop_config.json",
+    "json": {
+      "mcpServers": {
+        "uploadcheck": {
+          "command": "node",
+          "args": [
+            "/absolute/path/to/uploadcheck/mcp-server/index.mjs"
+          ],
+          "env": {
+            "UPLOADCHECK_API_BASE_URL": "https://api.uploadcheck.app",
+            "UPLOADCHECK_API_KEY": "<workspace_api_key>"
+          }
+        }
+      }
+    }
+  },
+  "cursor_local": {
+    "config_file": ".cursor/mcp.json",
+    "json": {
+      "mcpServers": {
+        "uploadcheck": {
+          "command": "node",
+          "args": [
+            "/absolute/path/to/uploadcheck/mcp-server/index.mjs"
+          ],
+          "env": {
+            "UPLOADCHECK_API_BASE_URL": "https://api.uploadcheck.app",
+            "UPLOADCHECK_API_KEY": "<workspace_api_key>"
+          }
+        }
+      }
+    }
+  },
+  "claude_desktop": {
+    "config_file": "claude_desktop_config.json",
+    "json": {
+      "mcpServers": {
+        "uploadcheck": {
+          "command": "npx",
+          "args": [
+            "-y",
+            "@drantoniou/uploadcheck-mcp"
+          ],
+          "env": {
+            "UPLOADCHECK_API_BASE_URL": "https://api.uploadcheck.app",
+            "UPLOADCHECK_API_KEY": "<workspace_api_key>"
+          }
+        }
+      }
+    }
+  },
+  "cursor": {
+    "config_file": ".cursor/mcp.json",
+    "json": {
+      "mcpServers": {
+        "uploadcheck": {
+          "command": "npx",
+          "args": [
+            "-y",
+            "@drantoniou/uploadcheck-mcp"
+          ],
+          "env": {
+            "UPLOADCHECK_API_BASE_URL": "https://api.uploadcheck.app",
+            "UPLOADCHECK_API_KEY": "<workspace_api_key>"
+          }
+        }
+      }
+    }
+  },
+  "generic_stdio": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@drantoniou/uploadcheck-mcp"
+    ],
+    "env": {
+      "UPLOADCHECK_API_BASE_URL": "https://api.uploadcheck.app",
+      "UPLOADCHECK_API_KEY": "<workspace_api_key>"
+    }
+  },
+  "recommended_first_calls": [
+    "qc_estimate_cost",
+    "qc_run_local_file",
+    "qc_run_video",
+    "qc_get_report",
+    "qc_get_marker_csv"
+  ],
+  "notes": [
+    "Current public install supports npx -y @drantoniou/uploadcheck-mcp, the public GitHub repo, or an existing local checkout.",
+    "Users need a workspace API key tied to included plan minutes or an operator-created account.",
+    "Included minutes reset monthly and do not roll over.",
+    "Extra checked-minute packs are purchased through Lemon Squeezy; subscription minutes are used first, then purchased minutes.",
+    "Use qc_run_local_file for reachable local videos, podcasts, clips, stills, and audio files.",
+    "Small local files are encoded inline and evaluated through Render temp storage.",
+    "Large local files use signed upload automatically in upload_mode auto.",
+    "Checked minutes are deterministic publish-readiness QC minutes, not bundled deep AI/oracle review.",
+    "Internal launch, unit-economics, and production runbook artifacts are not public MCP tools.",
+    "Npm install readiness is live for @drantoniou/uploadcheck-mcp; users still need a workspace API key."
+  ],
+  "github_repo": "https://github.com/ajantoniou/uploadcheck",
+  "npm_install": "npx -y @drantoniou/uploadcheck-mcp"
+}

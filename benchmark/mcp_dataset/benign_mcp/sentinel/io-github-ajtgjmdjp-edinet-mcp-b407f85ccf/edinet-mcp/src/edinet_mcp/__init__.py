@@ -1,0 +1,86 @@
+"""edinet-mcp: EDINET XBRL parsing library and MCP server for Japanese financial data.
+
+Quick start::
+
+    import asyncio
+    from edinet_mcp import EdinetClient
+
+    async def main():
+        async with EdinetClient() as client:
+            companies = await client.search_companies("トヨタ")
+            stmt = await client.get_financial_statements("E02144", period="2024")
+            print(stmt.income_statement.to_polars())
+
+    asyncio.run(main())
+"""
+
+import logging
+
+from edinet_mcp._diff import DiffResult, LineItemDiff, diff_statements
+from edinet_mcp._metrics import (
+    CashFlowMetrics,
+    EfficiencyMetrics,
+    FinancialMetrics,
+    GrowthMetrics,
+    PeriodComparison,
+    ProfitabilityMetrics,
+    RawValues,
+    StabilityMetrics,
+    calculate_metrics,
+    compare_periods,
+)
+from edinet_mcp._normalize import get_taxonomy_labels, normalize_statement
+from edinet_mcp._screening import screen_companies
+from edinet_mcp._validation import FinancialDataWarning, validate_financial_statement
+from edinet_mcp.client import EdinetAPIError, EdinetClient
+from edinet_mcp.models import (
+    AccountingStandard,
+    Company,
+    DocType,
+    Filing,
+    FinancialStatement,
+    MetricCategory,
+    PeriodLabel,
+    StatementData,
+    StatementType,
+)
+from edinet_mcp.parser import XBRLParser
+
+# Library best practice: attach a NullHandler so importing edinet_mcp never
+# emits logs on its own; applications opt in to handling via stdlib logging.
+logging.getLogger("edinet_mcp").addHandler(logging.NullHandler())
+
+__all__ = [
+    "AccountingStandard",
+    "CashFlowMetrics",
+    "Company",
+    "DiffResult",
+    "DocType",
+    "EdinetAPIError",
+    "EdinetClient",
+    "EfficiencyMetrics",
+    "Filing",
+    "FinancialDataWarning",
+    "FinancialMetrics",
+    "FinancialStatement",
+    "GrowthMetrics",
+    "LineItemDiff",
+    "MetricCategory",
+    "PeriodComparison",
+    "PeriodLabel",
+    "ProfitabilityMetrics",
+    "RawValues",
+    "StabilityMetrics",
+    "StatementData",
+    "StatementType",
+    "XBRLParser",
+    "calculate_metrics",
+    "compare_periods",
+    "diff_statements",
+    "get_taxonomy_labels",
+    "normalize_statement",
+    "screen_companies",
+    "validate_financial_statement",
+]
+
+__version__ = "0.6.6"

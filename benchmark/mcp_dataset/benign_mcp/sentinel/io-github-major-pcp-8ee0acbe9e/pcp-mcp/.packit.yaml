@@ -1,0 +1,37 @@
+specfile_path: python-pcp-mcp.spec
+upstream_package_name: pcp-mcp
+downstream_package_name: python-pcp-mcp
+upstream_project_url: https://github.com/major/pcp-mcp
+upstream_tag_template: v{version}
+
+files_to_sync:
+  - python-pcp-mcp.spec
+  - .packit.yaml
+
+actions:
+  get-current-version:
+    - python3 -c "import tomllib; print(tomllib.load(open('pyproject.toml', 'rb'))['project']['version'])"
+
+jobs:
+  - job: copr_build
+    trigger: pull_request
+    targets:
+      - fedora-all
+    enable_net: false
+
+  - job: propose_downstream
+    trigger: release
+    dist_git_branches:
+      - fedora-rawhide
+      - fedora-branched
+
+  - job: koji_build
+    trigger: commit
+    dist_git_branches:
+      - fedora-rawhide
+      - fedora-branched
+
+  - job: bodhi_update
+    trigger: commit
+    dist_git_branches:
+      - fedora-branched

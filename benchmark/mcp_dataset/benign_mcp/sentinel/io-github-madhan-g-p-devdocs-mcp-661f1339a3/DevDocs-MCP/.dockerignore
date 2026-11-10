@@ -1,0 +1,39 @@
+# Git
+.git
+.gitignore
+
+# NodeJS
+node_modules
+npm-debug.log
+yarn-error.log
+pnpm-debug.log
+
+# Build output
+dist
+*.tsbuildinfo
+
+# VSCode
+.vscode
+
+# Environment
+.env
+.env.local
+.mcpregistry*
+
+# Data and Database (User specific)
+mcp.db
+mcp.db-shm
+mcp.db-wal
+data
+*.db
+
+# Tests
+test
+coverage
+*.spec.ts
+*.test.ts
+
+# OS
+.DS_Store
+Thumbs.db
+

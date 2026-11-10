@@ -1,0 +1,58 @@
+{
+  "name": "@nugehs/aiglare",
+  "version": "0.3.0",
+  "mcpName": "io.github.nugehs/aiglare",
+  "description": "aiglare: audit AI/LLM features in any JS/TS codebase for governance guardrails. Finds where model output reaches users or side-effects without confidence handling, fallbacks, validation, or human-in-the-loop.",
+  "type": "module",
+  "bin": {
+    "aiglare": "src/cli.js",
+    "glare": "src/cli.js"
+  },
+  "files": [
+    "src",
+    "scripts",
+    "CHANGELOG.md",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "start": "node src/cli.js",
+    "mcp": "node src/cli.js mcp",
+    "version:check": "node scripts/check-version.js",
+    "version": "node scripts/sync-server-version.mjs && git add server.json",
+    "test": "node --test test/*.test.js",
+    "quality": "npm run version:check && npm test",
+    "ci": "npm run quality"
+  },
+  "engines": {
+    "node": ">=18.18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nugehs/aiglare.git"
+  },
+  "homepage": "https://github.com/nugehs/aiglare#readme",
+  "bugs": {
+    "url": "https://github.com/nugehs/aiglare/issues"
+  },
+  "keywords": [
+    "ai",
+    "llm",
+    "governance",
+    "guardrails",
+    "lint",
+    "audit",
+    "static-analysis",
+    "ci",
+    "mcp",
+    "mcp-server",
+    "repoctx"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "typescript": "^5.5.4"
+  }
+}

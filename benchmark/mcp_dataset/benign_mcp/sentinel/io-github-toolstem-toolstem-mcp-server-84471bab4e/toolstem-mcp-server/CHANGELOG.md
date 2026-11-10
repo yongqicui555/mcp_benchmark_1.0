@@ -1,0 +1,245 @@
+# Changelog
+
+All notable changes to the Toolstem MCP Server will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [1.2.16] - 2026-06-04
+### Documentation
+- **Hosted endpoint as default path (README update).** The README now leads with the hosted x402 endpoint as the recommended path and moves self-hosting to an Advanced section. Documentation-only change (PR #9, merged); no payment, auth, or x402 logic touched. Republished so the updated README propagates to mcp.so and Glama.
+- Version promoted to 1.2.16 across `package.json`, `server.json` (top-level + `packages[0]`), both versioned locations in `src/index.ts`, and `.well-known/mcp/server-card.json`.
+
+## [1.2.15] - 2026-06-04
+### Security / Billing
+- **Charge events reconciled to the declared Console event.** All three tools now fire the single PPE event `tool-call`. The previous build fired `tool-call-standard` (get_company_metrics) and `tool-call-premium` (compare_companies), which were never declared in the Apify Console Monetization settings — so the platform logged them as "unknown events" and the charges silently failed to attach. PPE event definitions live in the Console, not in `.actor/actor.json`; the code now names only the event the Console actually declares.
+- **Never charge on upstream failure.** Charges are emitted only after `wasUpstreamSuccessful()` confirms the tool produced real data. If every upstream data-provider request fails or returns empty, the run fails with a generic message and no PPE event is fired — callers are never billed for an all-null payload.
+- **Replaced the paywalled batch-quote endpoint.** The upstream provider moved `/batch-quote` behind a higher plan tier (HTTP 402 on the current plan). `getBatchQuote` now fans out to the per-symbol `/quote` endpoint (available on the current plan) with bounded concurrency and merges the results — identical response shape, no caller changes. Fixes `compare_companies` and the internal screener path.
+- Version promoted to 1.2.15 across `package.json`, `server.json` (top-level + `packages[0]`), both versioned locations in `src/index.ts`, and `.well-known/mcp/server-card.json`.
+
+## [1.2.14] - 2026-05-08
+### Security
+- Harden FmpClient diagnostic fields — `_lastHttpBody`, `_lastHttpStatus`, `_lastScreenDiag` are now private
+- Tighten `MCP_AUTH_DISABLED` semantics — only valid for local-only mode; remote-without-auth now requires explicit `I_KNOW_THIS_IS_DANGEROUS=1` plus a periodic warning banner
+
+## [1.2.13] - 2026-05-08
+
+### Security — HTTP mode hardened
+
+HTTP mode (`--http`) now defaults to localhost; remote access requires explicit opt-in and bearer token.
+
+- **Default bind `127.0.0.1`**: HTTP server no longer listens on `0.0.0.0`. Set `ALLOW_REMOTE=1` to bind all interfaces.
+- **Mandatory auth for remote**: When `ALLOW_REMOTE=1`, the server refuses to start unless `MCP_AUTH_TOKEN` is set (or `MCP_AUTH_DISABLED=1` for explicit override).
+- **Bearer-token middleware**: All `/mcp` routes require `Authorization: Bearer <token>` when auth is enabled. Uses `crypto.timingSafeEqual` for constant-time comparison.
+- **Per-IP rate limiting**: `/mcp` is rate-limited to 150 requests/minute per IP via `express-rate-limit`.
+- **Startup banner**: Prints bind address, auth status, and a warning when auth is disabled on a remote-accessible server.
+- `/health` remains unauthenticated for load-balancer and uptime probes (returns no secrets).
+- Added `express-rate-limit` dependency.
+
+Credit: Ryan (responsible disclosure).
+
+## [1.2.12] - 2026-05-04
+
+### Changed — dependency range tightening
+
+Tightened semver ranges in `package.json` so the lowest version satisfying each range is a patched release. No behavior change; resolved versions in `package-lock.json` are unchanged.
+
+- `@modelcontextprotocol/sdk`: `^1.12.0` → `^1.29.0` (clears GHSA-345p-7cg4-v4c7, GHSA-8r9q-7v3j-jr4g, GHSA-w48q-cv73-mx4w false-positive findings)
+- `express`: `^4.21.0` → `^4.22.1`
+- `apify`: `^3.3.0` → `^3.7.0`
+- `zod`: `^3.24.0` → `^3.25.76`
+
+Motivated by the mcp-marketplace.io scanner, which reads `package.json` ranges worst-case (lowest satisfying version) rather than the resolved version, producing flagged findings even though installed versions are fully patched. `npm audit --omit=dev --audit-level=high` reports 0 high/critical.
+
+## [1.2.10] - 2026-05-04
+
+### Added — MCP tool annotations
+
+All three tools (`get_stock_snapshot`, `get_company_metrics`, `compare_companies`) now expose the standard MCP `annotations` block:
+
+- `readOnlyHint: true` — tools never write to external state
+- `destructiveHint: false` — tools never mutate or delete
+- `idempotentHint: true` — same input yields same output across calls
+- `openWorldHint: true` — tools fetch from external upstreams (FMP)
+- `title` — human-readable display label
+
+Motivated by the Anthropic Connectors Directory submission requirement that every submitted tool include `title` plus `readOnlyHint`/`destructiveHint`. Per past directory-rejection analysis, missing annotations account for roughly 30% of rejections. Purely additive metadata; no behavioral change.
+
+## [1.2.9] - 2026-04-29
+
+### Added
+
+- **Three-tier per-result pricing model.** The Apify Actor now routes each tool call to a distinct PPE event name, enabling the Apify Console to charge different dollar amounts by tool:
+
+  | Tool | PPE Event Name | Tier | Price per call |
+  |---|---|---|---|
+  | `get_stock_snapshot` | `tool-call` | Cheap | $0.005 |
+  | `get_company_metrics` | `tool-call-standard` | Standard | $0.05 |
+  | `compare_companies` | `tool-call-premium` | Premium | $0.50 |
+
+  The `tool-call-standard` and `tool-call-premium` event names are **new**. Dollar amounts for these events must be configured in the Apify Console PPE settings before publishing — the code only fires `Actor.charge({ eventName })`; the platform resolves the charge.
+
+- **Rationale.** The previous flat $0.005/call structure was structurally below market and mis-priced by tool complexity. `get_stock_snapshot` is a fast, single-company quote synthesis — cheap is appropriate. `get_company_metrics` fans out to five financial-statement endpoints and computes CAGRs, signal classifications, and health scores — standard tier reflects that effort. `compare_companies` runs DCF and full ratio analysis across 2–5 companies in parallel — premium pricing reflects the compute intensity and the unique value of pre-ranked, cross-company intelligence. This matches the established Apify ecosystem norm: top revenue-generating actors price **per result** ($0.40–$1.50 per 1,000 results) rather than flat per call, capturing value proportional to the work performed and output delivered.
+
+- **No change to default-demo behavior.** Runs with no `input.tool` still skip all PPE charges (probe policy from v1.2.6 is preserved). Both versioned locations in `src/index.ts` (McpServer constructor, `/health` endpoint), version fields in `package.json` and `server.json` (top-level + `packages[0]`), and `.well-known/mcp/server-card.json` are all promoted to 1.2.9.
+
+### Changed
+
+- `src/actor.ts` — `Actor.charge({ eventName: 'tool-call' })` replaced with a `PRICING_TIER` routing block. Log line now includes the event name for auditability.
+- `src/index.ts` — version corrected from drifted `1.2.2` to `1.2.9` in both `McpServer({ version })` and the `/health` response.
+- `package.json`, `server.json` (both `version` and `packages[0].version`) — bumped from `1.2.8` to `1.2.9`.
+- `README.md` — pricing section updated with three-tier table.
+
+## [1.2.8] - 2026-04-28
+
+### Changed
+
+- **README — final scrub of `screen_stocks` references.** Removed leftover mentions in the Architecture directory-tree and the unused `data/universe.ts` line that referenced a v1.3 screener refactor. README now describes only what is shipped today.
+
+## [1.2.7] - 2026-04-28
+
+### Changed
+
+- **Apify Store listing copy refresh.** Updated `.actor/input_schema.json` and `.actor/actor.json` descriptions to front-load "Financial data MCP server for AI agents" and remove references to a tool not currently exposed. Aligns listing copy with the v1.2.6 product surface and matches search-intent keywords on Apify Store.
+- **README — added "Try It Now (30 seconds)" Quick Start.** Three concrete entry paths (Apify Console, Claude Desktop, npm) above the fold to shorten time-to-first-call for evaluators.
+- **README — removed stale `screen_stocks — temporarily disabled` section.** The roadmap line in the hero already signals continued investment in finance tools; the apologetic mid-README block was suppressing perceived recency.
+
+### Fixed
+
+- None (listing-copy + docs only; zero runtime behavior change).
+
+## [1.2.6] - 2026-04-27
+
+### Changed
+
+- **Default demonstration on empty input.** When the actor is invoked with no input (or with input missing the `tool` field), it now runs `get_stock_snapshot('AAPL')` as a default demonstration instead of exiting with an error. This addresses a real conversion leak observed in production: directory health-check probes and first-time evaluators frequently invoke actors with empty input to verify reachability, and the previous behavior (silent exit, no output) made the actor look broken or empty in those probes. The new behavior produces a real, useful result so directory listings and exploratory runs see what the actor actually does. MCP gateway invocations are unaffected — they always pass `tool` explicitly.
+
+### Added
+
+- **Default-demo response cache** (KV store, 6h TTL) so high probe volume does not multiply FMP API consumption (the FMP free tier is 250 calls/day). First default-demo run hits FMP; subsequent probes within 6h are served from cache.
+- **No-charge policy for default-demo runs.** Default demonstrations skip the `tool-call` PPE charge. Probes don't generate revenue, and we shouldn't bill health-check accounts for runs they didn't intend. Real invocations (input with `tool` specified) charge as before.
+
+## [1.2.5] - 2026-04-24
+
+### Fixed
+
+- **Critical:** Actor runs no longer hang until the 120-second container timeout. Restored the `await Actor.exit()` call at the end of the Actor entrypoint, which is required by the Apify SDK v3 when `Actor.init()` has been called (init opens a WebSocket that must be explicitly closed). Without this, every run completed its tool work successfully but the container stayed alive until timeout, causing downstream orchestration (including the pre-publish smoke test) to see runs as `TIMED-OUT`. Regression introduced in commit `fb7d35c` (2026-04-21); detected by the pre-publish smoke test on 2026-04-24.
+
+## [1.2.4] - 2026-04-24
+
+### Fixed
+
+- `compare_companies`: graceful degradation when FMP's `/stable/batch-quote` endpoint returns 402 on the free tier. The tool now falls back to per-symbol `getQuote` calls via the new `withBatchFallback` helper, so a 2–5 symbol comparison completes with a full response instead of failing the whole call.
+
+### Internal
+
+- Introduced reusable `withBatchFallback` helper in `src/services/fallback.ts` for batch → per-item degradation with bounded concurrency. Reserved for reuse by future tools that depend on batch endpoints (SEC Form 4 batches, 13F batch holdings in the upcoming SEC server).
+- `api_calls_made` in the `compare_companies` response now reflects the true network round-trip count in both the batch-succeeded and fallback paths.
+
+## [1.2.3] - 2026-04-23
+
+### Changed
+
+- README H1 and front-matter updated to keyword-forward financial intelligence positioning for MCP directory discoverability.
+- `actor.json` declares `LIMITED_PERMISSIONS` explicitly.
+- Added `server-card.json` for MCP registry distribution.
+
+## [1.2.2] - 2026-04-21
+
+### Removed — `screen_stocks` tool temporarily disabled
+
+v1.2.1 diagnostics confirmed the root cause of `screen_stocks` returning 0 results: FMP's `/stable/batch-quote` endpoint now returns HTTP 402 ("Restricted Endpoint") on the free tier. The diagnostic payload showed every batch request rejected with a subscription-required error regardless of chunk size.
+
+Rather than ship a broken tool, v1.2.2 removes `screen_stocks` from the public surface area:
+
+- Removed tool registration from the MCP server (`src/index.ts`).
+- Removed tool branch from the Apify Actor entry (`src/actor.ts`).
+- Removed `screen_stocks`-specific fields from the Apify input schema (`.actor/input_schema.json`).
+- Supported tools are now: `get_stock_snapshot`, `get_company_metrics`, `compare_companies`.
+
+The underlying source for the screener (`src/tools/screen-stocks.ts`, `src/services/fmp.ts` helpers, and the Russell 1000 universe in `src/data/universe.ts`) is retained in the repository for the v1.3 refactor, but is no longer reachable from any transport.
+
+`screen_stocks` will return in v1.3 built on FMP's free-tier-available `/api/v3/stock-screener` endpoint (server-side filtering, 1 API call instead of 11, supports filters previously stubbed out: `industry`, `beta`, `dividend`, `country`).
+
+### Other
+
+- Removed the v1.2.1 diagnostic plumbing (`_lastScreenDiag`, `_lastHttpStatus`, `_lastHttpBody`, per-chunk `meta.diagnostics`) — retained only within the now-inert `screenStocks` path in `fmp.ts` for v1.3 reference.
+- Updated the HTTP `/health` endpoint and `createServer()` to report version `1.2.2`.
+
+## [1.2.1] - 2026-04-20
+
+### Fixed — v1.2.0 screen_stocks returning 0 results (diagnostic build)
+
+Post-publish QA found `screen_stocks` returns 0 results on the live Apify Actor despite the Russell 1000 universe being present. Apify swallows `console.error` output under `LIMITED_PERMISSIONS`, so root cause was unobservable in logs.
+
+v1.2.1 is a diagnostic release that surfaces the failure point directly in the response body:
+
+- Per-chunk batch-quote stats (`size`, `returned`, `ms`) in `meta.diagnostics.chunks`
+- Last non-OK HTTP status and response body in `meta.diagnostics.last_http_status` / `last_http_body`
+- Switched FMP error logging from `console.error` to `console.log` so Apify captures it
+
+This is a temporary diagnostic build — `meta.diagnostics` will be removed once the batch-quote issue is confirmed and fixed.
+
+## [1.2.0] - 2026-04-20
+
+### Changed — `screen_stocks` now works on FMP's free tier
+
+FMP's `/company-screener` endpoint requires a paid plan (HTTP 402 on free tier), so `screen_stocks` was silently returning zero results for every free-tier user. v1.2.0 replaces the call with a **synthetic screener** that works on the free tier:
+
+- Screens over a fixed **Russell 1000** universe (~1,000 US large/mid-cap stocks, ~93% of US equity market cap) baked into the server at build time.
+- Fetches live quotes for the universe via FMP's free-tier `/batch-quote` endpoint and filters in-memory.
+- Response time: ~2–4s for the full universe, <1s when filtered by sector.
+- Sector names normalized to FMP taxonomy (e.g., `Information Technology` → `Technology`, `Health Care` → `Healthcare`).
+- Results sorted by market cap descending.
+
+### Added
+- **Universe metadata in every `screen_stocks` response**: `meta.universe` surfaces the universe name (`russell-1000`), description, size (1003), and country (US). Agents can now detect scope and caveat their output appropriately.
+- **Unsupported-filter transparency**: `meta.unsupported_filters` lists any filters that were passed but cannot be honored by the free-tier screener. `meta.notes` explains the limitation in plain language.
+- Diagnostic stderr logging in FMP request layer (from superseded 1.1.3 work): non-OK HTTP responses, error-message payloads, fetch exceptions, and empty-body cases log to `console.error` for visibility in Apify Actor logs.
+
+### Removed / Limitations
+The synthetic screener cannot honor these filters on the free tier (they are accepted and surfaced as `unsupported_filters` in the response):
+- `industry` — iShares data has no GICS sub-industry.
+- `beta_min` / `beta_max` — not present in `/batch-quote` payload.
+- `dividend_min` — not present in `/batch-quote` payload.
+- `exchange` — Russell 1000 is always NYSE/NASDAQ.
+- `country` — Russell 1000 is always US (non-US country filters return unsupported).
+
+To use these filters, upgrade to an FMP Starter plan ($19/mo) and revert to the paid `/company-screener` endpoint.
+
+### Docs
+- README updated with universe-scope disclosure and filter support matrix.
+
+## [1.1.2] - 2026-04-20
+
+### Fixed
+- **Critical**: v1.1.1 fix was incomplete — `apify` was added to `dependencies` but left in `optionalDependencies`, so npm still treated it as optional and it was stripped from production builds. Removed the `optionalDependencies` block entirely. Apify Actor runs now start successfully.
+
+## [1.1.1] - 2026-04-20
+
+### Fixed
+- Attempted fix for Apify Actor `ERR_MODULE_NOT_FOUND: apify` startup failure. (Superseded by 1.1.2 — this release was incomplete.)
+
+## [1.1.0] - 2026-04-20
+
+### Added
+- **`screen_stocks` tool** — Screen and filter stocks by sector, market cap, price, beta, volume, dividend yield, exchange, and country. Returns derived `cap_category`, `volatility_category`, and `liquidity_category` signals for every match. All filters optional; configurable limit up to 200.
+- **`compare_companies` tool** — Side-by-side comparison of 2–5 companies across price, valuation (P/E, DCF), profitability (margins, ROE, ROIC), financial health, growth, dividends, and ratings. Auto-computed `rankings` identify leaders in each dimension: `lowest_pe`, `highest_margin`, `strongest_balance_sheet`, `best_growth`, `most_undervalued`, `highest_rated`.
+- FMP client now supports batch quote endpoint (`getBatchQuote`) for efficient multi-symbol price retrieval.
+
+### Changed
+- `.actor/input_schema.json` updated — `symbol` is no longer required at the schema level (each tool validates its own inputs).
+- Apify Actor versioning aligned to `MAJOR.MINOR` format per platform requirements.
+
+### Docs
+- README expanded with full input/output examples and derived-signal documentation for all 4 tools.
+
+## [1.0.0] - 2026-04-17
+
+### Added
+- Initial release.
+- **`get_stock_snapshot` tool** — Comprehensive stock overview combining quote, profile, DCF valuation, and rating into one response. Includes derived `dcf_signal`, `market_cap_readable`, and 52-week distance metrics.
+- **`get_company_metrics` tool** — Deep fundamentals analysis synthesized from 5 financial statement endpoints. Includes `margin_trend`, `health_signal`, `growth_signal`, and pre-computed CAGRs.
+- Stdio and Streamable HTTP transport support.
+- Apify Actor entry point with Pay-Per-Event monetization.
+- Published to npm, MCP Registry, Apify Store, and mcp.so.

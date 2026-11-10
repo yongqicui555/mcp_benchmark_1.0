@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "notevault": {
+      "command": "uv",
+      "args": [
+        "run",
+        "python",
+        "server.py"
+      ],
+      "cwd": ".",
+      "env": {
+        "NOTEVAULT_DATA_DIR": "~/.config/notevault"
+      }
+    }
+  }
+}

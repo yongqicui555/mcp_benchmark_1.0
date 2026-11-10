@@ -1,0 +1,29 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.markmircea/Selenix-MCP-Server",
+  "description": "MCP server for Selenix - enables Claude Desktop integration with the Selenix AI Assistant",
+  "repository": {
+    "url": "https://github.com/markmircea/Selenix-MCP-Server",
+    "source": "github"
+  },
+  "version": "1.0.0",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@selenix/mcp-server",
+      "version": "1.0.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "description": "Your API key for the service",
+          "isRequired": true,
+          "format": "string",
+          "isSecret": true,
+          "name": "YOUR_API_KEY"
+        }
+      ]
+    }
+  ]
+}

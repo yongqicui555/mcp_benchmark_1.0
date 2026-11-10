@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-anthonyjbolo-mcp-fb-publisher-e46035cafc": {
+      "args": [
+        "/app/io-github-anthonyjbolo-mcp-fb-publisher-e46035cafc/mcp-fb-publisher/src/mcp_fb_publisher/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

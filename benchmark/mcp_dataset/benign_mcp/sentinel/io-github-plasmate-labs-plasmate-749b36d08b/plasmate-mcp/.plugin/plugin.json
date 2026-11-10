@@ -1,0 +1,14 @@
+{
+  "name": "plasmate",
+  "version": "0.4.1",
+  "description": "Headless browser MCP server for AI agents. Fetches web pages as a Semantic Object Model (SOM) — structured JSON with typed regions and stable element IDs. 17x average token reduction vs raw HTML.",
+  "author": {
+    "name": "Plasmate Labs",
+    "url": "https://plasmatelabs.com"
+  },
+  "homepage": "https://plasmate.app",
+  "repository": "https://github.com/plasmate-labs/plasmate-mcp",
+  "license": "Apache-2.0",
+  "logo": "https://plasmate.app/logo.png",
+  "keywords": ["browser", "web", "mcp", "agent", "som", "scraping", "html", "fetch"]
+}

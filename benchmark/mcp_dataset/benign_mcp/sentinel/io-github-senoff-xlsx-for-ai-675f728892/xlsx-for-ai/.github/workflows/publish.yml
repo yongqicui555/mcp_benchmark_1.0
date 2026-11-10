@@ -1,0 +1,203 @@
+name: publish
+
+# Publishes xlsx-for-ai to npm. Two trigger modes:
+#
+#   1. workflow_dispatch — fire from any terminal:
+#        gh workflow run publish.yml --ref main \
+#          -f version_bump=patch \
+#          -f dry_run=false
+#      Bumps package.json, commits, tags, pushes, publishes.
+#
+#   2. push of a v* tag — for "tag, then publish":
+#        npm version patch && git push --follow-tags
+#      Just publishes whatever's at the tag; no bump.
+#
+# Setup prereqs (one-time, can't be automated — needs the package owner):
+#   - npm: account 2FA = "Authorization only" (not "Authorization and writes")
+#   - npm: package MFA = automation (`npm access set mfa=automation xlsx-for-ai`)
+#   - npm: granular access token, scope = "Read and Publish" on xlsx-for-ai,
+#          type = automation (the "bypass 2FA" checkbox in the UI)
+#   - GitHub repo: Secrets and variables → Actions → XLSX_NPM = the granular token
+#
+# Without ALL of {account-mode, package-mfa, automation-token}, npm will
+# reject the publish with EOTP even when the token claims to bypass.
+
+on:
+  workflow_dispatch:
+    inputs:
+      version_bump:
+        description: "How to bump the version. Use 'none' to publish current package.json verbatim."
+        required: true
+        type: choice
+        default: patch
+        options:
+          - patch
+          - minor
+          - major
+          - none
+      dry_run:
+        description: "Run npm pack + clean-install verification but skip the actual publish."
+        required: true
+        type: boolean
+        default: false
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write   # needed to commit the version bump + push the tag
+  id-token: write   # for npm provenance (free supply-chain signal)
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          # Need full history so npm version can create a tag without complaints
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Install
+        run: npm ci
+
+      - name: Test
+        run: npm test --if-present
+
+      - name: Configure git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Bump version (workflow_dispatch only)
+        if: github.event_name == 'workflow_dispatch' && inputs.version_bump != 'none'
+        run: |
+          npm version "${{ inputs.version_bump }}" -m "release: %s [skip ci]"
+
+      - name: Read package metadata
+        id: pkg
+        run: |
+          NAME=$(node -p "require('./package.json').name")
+          VERSION=$(node -p "require('./package.json').version")
+          echo "name=$NAME" >> "$GITHUB_OUTPUT"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Publishing $NAME@$VERSION"
+
+      # Normalize dry_run to an unambiguous string output. workflow_dispatch
+      # boolean inputs are reported inconsistently across the inputs vs
+      # github.event.inputs contexts (string vs real boolean, runner-dependent),
+      # so a literal `inputs.dry_run == false` / `== 'false'` compare in an `if:`
+      # is fragile either way. Inside a shell step both a boolean and a string
+      # render identically, so resolve here once and gate on this output.
+      - name: Resolve dry-run flag
+        id: flags
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          DRY_RUN_INPUT: ${{ inputs.dry_run }}
+        run: |
+          if [ "$EVENT_NAME" = "workflow_dispatch" ] && [ "$DRY_RUN_INPUT" = "true" ]; then
+            echo "dry_run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "dry_run=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Guard against republishing existing version
+        run: |
+          if npm view "${{ steps.pkg.outputs.name }}@${{ steps.pkg.outputs.version }}" version 2>/dev/null; then
+            echo "::notice::Version ${{ steps.pkg.outputs.version }} is already published — skipping pack/install/publish steps."
+            echo "ALREADY_PUBLISHED=true" >> "$GITHUB_ENV"
+          else
+            echo "Version ${{ steps.pkg.outputs.version }} not yet published — proceeding."
+            echo "ALREADY_PUBLISHED=false" >> "$GITHUB_ENV"
+          fi
+
+      - name: Pack
+        if: env.ALREADY_PUBLISHED != 'true'
+        run: npm pack
+
+      - name: Clean-install verification (per feedback_pre_publish_clean_install.md)
+        if: env.ALREADY_PUBLISHED != 'true'
+        run: |
+          set -e
+          TARBALL=$(ls ${{ steps.pkg.outputs.name }}-${{ steps.pkg.outputs.version }}.tgz)
+          mkdir -p /tmp/clean-install-test
+          cd /tmp/clean-install-test
+          npm init -y > /dev/null
+          npm install "$GITHUB_WORKSPACE/$TARBALL"
+          npx --no-install xlsx-for-ai --version
+          echo "Clean install verified: tarball installs and CLI runs."
+
+      - name: Publish to npm
+        if: env.ALREADY_PUBLISHED != 'true' && steps.flags.outputs.dry_run == 'false'
+        run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.XLSX_NPM }}
+
+      - name: Push version-bump commit + tag
+        if: github.event_name == 'workflow_dispatch' && inputs.version_bump != 'none' && steps.flags.outputs.dry_run == 'false'
+        run: |
+          git push --follow-tags
+
+      # Keep the Official MCP Registry listing (io.github.senoff/xlsx-for-ai) in
+      # sync on every release. Auth is GitHub Actions OIDC — the id-token:write
+      # permission above lets mcp-publisher mint a token for the io.github.senoff/*
+      # namespace with no stored secret and no interactive login. server.json's
+      # version is force-synced to package.json just before publish so the
+      # registry never drifts behind npm. continue-on-error: a registry hiccup
+      # (or a same-version re-publish rejection) must never fail the npm release.
+      - name: Sync server.json version to package.json
+        if: steps.flags.outputs.dry_run == 'false'
+        run: |
+          node -e "const fs=require('fs');const pkg=require('./package.json');const s=JSON.parse(fs.readFileSync('server.json','utf8'));s.version=pkg.version;s.packages[0].version=pkg.version;fs.writeFileSync('server.json',JSON.stringify(s,null,2)+'\n');"
+          echo "server.json synced to $(node -p "require('./package.json').version")"
+
+      - name: Publish to MCP Registry (OIDC)
+        if: steps.flags.outputs.dry_run == 'false'
+        continue-on-error: true
+        env:
+          # Pinned to a released tag + SRI hash so a republished or
+          # tampered binary fails closed — same integrity-pinning contract
+          # the lockfile/signed-install gates apply to the dep tree, now
+          # extended to the publish-path binary fetch. Bump both together.
+          MCP_PUBLISHER_TAG: v1.7.9
+          MCP_PUBLISHER_SHA256: ab128162b0616090b47cf245afe0a23f3ef08936fdce19074f5ba0a4469281ac
+        run: |
+          set -euo pipefail
+          curl -fsSL --retry 5 --retry-all-errors --retry-delay 2 --max-time 60 -o mcp-publisher.tar.gz \
+            "https://github.com/modelcontextprotocol/registry/releases/download/${MCP_PUBLISHER_TAG}/mcp-publisher_linux_amd64.tar.gz"
+          echo "Verifying mcp-publisher ${MCP_PUBLISHER_TAG} against pinned SHA-256..."
+          echo "${MCP_PUBLISHER_SHA256}  mcp-publisher.tar.gz" | sha256sum -c -
+          tar xzf mcp-publisher.tar.gz mcp-publisher
+          publish_ok=false
+          for attempt in 1 2 3; do
+            if timeout 60s ./mcp-publisher login github-oidc && timeout 60s ./mcp-publisher publish; then
+              publish_ok=true
+              echo "mcp-publisher publish succeeded (attempt $attempt)"
+              break
+            fi
+            echo "mcp-publisher attempt $attempt failed." >&2
+            [ "$attempt" -lt 3 ] && sleep $((attempt * 2))
+          done
+          if [ "$publish_ok" != true ]; then
+            echo "::warning::mcp-publisher failed after 3 attempts (registry sync skipped; npm publish unaffected)"
+            exit 1
+          fi
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "## Publish summary" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "- **Trigger:** ${{ github.event_name }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- **Package:** ${{ steps.pkg.outputs.name }}@${{ steps.pkg.outputs.version }}" >> "$GITHUB_STEP_SUMMARY"
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "- **Bump:** ${{ inputs.version_bump }}" >> "$GITHUB_STEP_SUMMARY"
+            echo "- **Dry run:** ${{ inputs.dry_run }}" >> "$GITHUB_STEP_SUMMARY"
+          fi

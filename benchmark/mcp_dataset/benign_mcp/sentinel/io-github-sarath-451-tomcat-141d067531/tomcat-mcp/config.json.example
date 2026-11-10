@@ -1,0 +1,11 @@
+{
+  "TOMCAT_HOME": "C:\\apache-tomcat-10.x",
+  "BIN_DIR": "C:\\apache-tomcat-10.x\\bin",
+  "LOG_DIR": "C:\\apache-tomcat-10.x\\logs",
+  "WEBAPPS_DIR": "C:\\apache-tomcat-10.x\\webapps",
+  "BACKUP_DIR": "C:\\apache-tomcat-10.x\\backup",
+  "GC_LOG": "C:\\apache-tomcat-10.x\\logs\\gc.log",
+  "HEAP_DUMP_DIR": "C:\\apache-tomcat-10.x\\heapdumps",
+  "PORT": 8080,
+  "ENV": "prod"
+}

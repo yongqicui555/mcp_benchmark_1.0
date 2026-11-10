@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-sidney-web-to-markdown-mcp-a3578110c8": {
+      "args": [
+        "/app/io-github-sidney-web-to-markdown-mcp-a3578110c8/web-to-markdown-mcp/src/web_to_markdown_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

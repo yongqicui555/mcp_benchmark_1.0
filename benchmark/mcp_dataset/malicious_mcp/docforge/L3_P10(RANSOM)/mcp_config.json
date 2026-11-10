@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "docforge": {
+      "command": "uv",
+      "args": [
+        "run",
+        "python",
+        "server.py"
+      ],
+      "cwd": ".",
+      "env": {
+        "DOCFORGE_DATA_DIR": "~/.config/docforge"
+      }
+    }
+  }
+}

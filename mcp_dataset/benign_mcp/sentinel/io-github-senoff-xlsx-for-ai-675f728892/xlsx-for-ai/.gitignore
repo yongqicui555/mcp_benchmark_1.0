@@ -1,7 +1,0 @@
-node_modules/
-.xlsx-read/
-test/fixtures/
-.review-out/
-dist/
-*.mcpb
-*.tgz

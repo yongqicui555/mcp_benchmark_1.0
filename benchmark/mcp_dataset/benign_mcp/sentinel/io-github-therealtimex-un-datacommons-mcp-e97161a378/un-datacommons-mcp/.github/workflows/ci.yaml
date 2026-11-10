@@ -1,0 +1,49 @@
+name: Run CI Checks
+
+on:
+  pull_request:
+    branches:
+      - main
+      - realtimex
+  push:
+    branches:
+      - main
+      - realtimex
+
+jobs:
+  ci-checks:
+    runs-on: ubuntu-latest
+
+    # Run tests on python 3.11 and 3.12
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12"]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install uv
+        run: pip install uv
+
+      - name: Install dependencies
+        # This will install all dependencies from the workspace pyproject.toml
+        run: uv sync
+
+      - name: Check formatting with Ruff
+        # Run from the package directory
+        working-directory: packages/un-datacommons-mcp
+        # The --check flag will fail if the code is not formatted correctly
+        run: uv run ruff format --check
+
+      - name: Lint with Ruff
+        working-directory: packages/un-datacommons-mcp
+        run: uv run ruff check
+
+      - name: Run tests with pytest. Skip eval tests.
+        run: uv run --extra test pytest -k "not eval"

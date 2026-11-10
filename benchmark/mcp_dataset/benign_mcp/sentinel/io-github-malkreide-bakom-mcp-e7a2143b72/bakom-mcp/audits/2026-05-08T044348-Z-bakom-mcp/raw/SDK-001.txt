@@ -1,0 +1,12 @@
+=== lifespan / asynccontextmanager / AsyncExitStack ===
+=== httpx client lifecycle ===
+256:    client: httpx.AsyncClient,
+293:    client: httpx.AsyncClient,
+332:async def _opendata_dataset_info(client: httpx.AsyncClient, dataset_id: str) -> dict[str, Any]:
+456:        async with httpx.AsyncClient() as client:
+524:        async with httpx.AsyncClient() as client:
+600:    async with httpx.AsyncClient() as client:
+725:        async with httpx.AsyncClient() as client:
+799:        async with httpx.AsyncClient() as client:
+929:        async with httpx.AsyncClient() as client:
+1043:        async with httpx.AsyncClient() as client:

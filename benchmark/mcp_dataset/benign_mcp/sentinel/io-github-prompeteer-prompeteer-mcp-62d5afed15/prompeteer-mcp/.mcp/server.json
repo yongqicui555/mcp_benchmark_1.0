@@ -1,0 +1,123 @@
+{
+  "name": "io.github.prompeteer/prompeteer-mcp",
+  "version": "2.0.0",
+  "description": "Generate expert-level AI prompts for 140+ platforms. Score prompts with 16-dimension quality analysis. Save and manage prompts in PromptDrive. Enterprise-grade with OAuth 2.1, rate limiting, and session management.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/prompeteer/prompeteer-mcp"
+  },
+  "homepage": "https://prompeteer.ai",
+  "author": {
+    "name": "Prompeteer",
+    "email": "info@prompeteer.com",
+    "url": "https://prompeteer.ai"
+  },
+  "license": "MIT",
+  "keywords": [
+    "mcp",
+    "prompt-engineering",
+    "ai",
+    "prompt-generator",
+    "prompt-scoring",
+    "promptdrive",
+    "chatgpt",
+    "claude",
+    "gemini",
+    "midjourney"
+  ],
+  "remoteServer": {
+    "transportType": "sse",
+    "url": "https://prompeteer.ai/mcp/sse",
+    "streamableHttpUrl": "https://prompeteer.ai/mcp/",
+    "authentication": {
+      "type": "oauth2",
+      "authorizationUrl": "https://prompeteer.ai/oauth/authorize",
+      "tokenUrl": "https://prompeteer.ai/oauth/token",
+      "registrationUrl": "https://prompeteer.ai/oauth/register",
+      "discoveryUrl": "https://prompeteer.ai/mcp/.well-known/oauth-authorization-server",
+      "scopes": ["mcp:read", "mcp:write", "mcp:generate"],
+      "codeChallengeMethodsSupported": ["S256", "plain"]
+    }
+  },
+  "tools": [
+    {
+      "name": "generate_prompt",
+      "description": "Generate an optimized AI prompt for any of 140+ platforms",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "list_prompts",
+      "description": "List prompts from your PromptDrive library with search and filtering",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_prompt",
+      "description": "Get a specific prompt from your PromptDrive library by ID",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "score_prompt",
+      "description": "Score a prompt across 16 quality dimensions",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "save_to_promptdrive",
+      "description": "Save a prompt to your PromptDrive library for later access",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "openWorldHint": false
+      }
+    }
+  ],
+  "resources": [
+    {
+      "uri": "ui://prompeteer/prompt-viewer",
+      "name": "Prompt Viewer",
+      "mimeType": "text/html;profile=mcp-app"
+    },
+    {
+      "uri": "ui://prompeteer/score-result",
+      "name": "Score Result",
+      "mimeType": "text/html;profile=mcp-app"
+    },
+    {
+      "uri": "ui://prompeteer/generator-wizard",
+      "name": "Generator Wizard",
+      "mimeType": "text/html;profile=mcp-app"
+    },
+    {
+      "uri": "ui://prompeteer/prompt-list",
+      "name": "Prompt Library",
+      "mimeType": "text/html;profile=mcp-app"
+    },
+    {
+      "uri": "ui://prompeteer/prompt-detail",
+      "name": "Prompt Detail",
+      "mimeType": "text/html;profile=mcp-app"
+    },
+    {
+      "uri": "ui://prompeteer/save-confirmation",
+      "name": "Save Confirmation",
+      "mimeType": "text/html;profile=mcp-app"
+    }
+  ],
+  "privacy_policy": "https://prompeteer.ai/privacy",
+  "terms_of_service": "https://prompeteer.ai/terms"
+}

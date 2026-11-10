@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-verygoodplugins-robinhood-mcp-1ef61955bf": {
+      "args": [
+        "/app/io-github-verygoodplugins-robinhood-mcp-1ef61955bf/robinhood-mcp/src/robinhood_mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

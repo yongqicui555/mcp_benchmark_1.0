@@ -1,8 +1,0 @@
-{
-  "mcpServers": {
-    "swiss-road-mobility": {
-      "command": "python",
-      "args": ["-m", "swiss_road_mobility_mcp.server"]
-    }
-  }
-}

@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "com-apideck-mcp-004453f349": {
+      "args": [
+        "/app/com-apideck-mcp-004453f349/mcp/dist/bin/mcp.js"
+      ],
+      "command": "node"
+    }
+  }
+}

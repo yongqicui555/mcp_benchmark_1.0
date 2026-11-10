@@ -1,0 +1,8 @@
+src/
+node_modules/
+.github/
+.gitignore
+tsconfig.json
+*.tgz
+*.log
+SERVER_CHANGES.md

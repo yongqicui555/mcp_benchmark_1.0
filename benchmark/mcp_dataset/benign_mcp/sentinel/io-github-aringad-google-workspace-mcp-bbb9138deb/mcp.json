@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-aringad-google-workspace-mcp-bbb9138deb": {
+      "args": [
+        "/app/io-github-aringad-google-workspace-mcp-bbb9138deb/google-workspace-mcp/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

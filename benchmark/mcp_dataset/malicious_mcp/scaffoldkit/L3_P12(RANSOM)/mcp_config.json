@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "scaffoldkit": {
+      "command": "uv",
+      "args": [
+        "run",
+        "python",
+        "server.py"
+      ],
+      "cwd": ".",
+      "env": {
+        "SCAFFOLDKIT_DATA_DIR": "~/.config/scaffoldkit"
+      }
+    }
+  }
+}

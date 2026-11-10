@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+
+# Build artifacts
+*.tgz
+
+# Secrets & auth
+.wallet-keys
+.mail-auth.json
+.telegraph-auth.json
+.writeas-auth.json
+.env
+.env.*
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Automation scripts (credentials, chrome profile)
+scripts/
+
+# npm auth
+.npmrc
+
+# Temp
+*.log
+.github-auth.json

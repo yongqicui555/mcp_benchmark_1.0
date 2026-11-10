@@ -1,0 +1,28 @@
+=== Pydantic strict / type hints / validation ===
+bakom_broadband_coverage: args= params:BroadbandCoverageInput,
+bakom_glasfaser_verfuegbarkeit: args= params:CoordinateInput,
+bakom_multi_standort_konnektivitaet: args= params:MultiLocationInput,
+bakom_mobilfunk_abdeckung: args= params:MobileCoverageInput,
+bakom_sendeanlagen_suche: args= params:AntennaSearchInput,
+bakom_frequenzdaten: args= params:CoordinateInput,
+bakom_rtv_suche: args= params:RTVSearchInput,
+bakom_medienstruktur_info: args= params:TelekomStatInput,
+bakom_aktuell: args= params:TelekomStatInput,
+bakom_telekomstatistik_uebersicht: args= params:TelekomStatInput,
+bakom_breitbandatlas_datensaetze: args= params:TelekomStatInput,
+=== Field constraints / validators ===
+23:from pydantic import BaseModel, ConfigDict, Field, field_validator
+88:    latitude: float = Field(
+94:    longitude: float = Field(
+100:    response_format: ResponseFormat = Field(
+109:    latitude: float = Field(
+115:    longitude: float = Field(
+121:    min_speed_mbps: BroadbandSpeed = Field(
+125:    response_format: ResponseFormat = Field(
+134:    latitude: float = Field(
+140:    longitude: float = Field(
+=== input bounds checking (e.g. radius, limit) ===
+189:        max_length=100,
+198:        max_length=2,
+226:        max_length=50,
+244:        max_length=20,

@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-vdalhambra-siteaudit-mcp-a98eae4eff": {
+      "args": [
+        "/app/io-github-vdalhambra-siteaudit-mcp-a98eae4eff/siteaudit-mcp/src/siteaudit/server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

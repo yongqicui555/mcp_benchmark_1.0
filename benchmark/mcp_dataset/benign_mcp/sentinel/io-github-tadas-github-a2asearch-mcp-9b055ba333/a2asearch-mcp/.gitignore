@@ -1,0 +1,7 @@
+node_modules/
+.mcp*
+.env
+.env.*
+*.token
+*_token
+

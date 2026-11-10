@@ -1,0 +1,105 @@
+# Dependencies
+node_modules/
+# Note: package-lock.json should be committed for consistent dependencies
+# yarn.lock
+# pnpm-lock.yaml
+
+# Environment variables
+.env
+.env.local
+
+# MCP registry tokens (never commit)
+.mcpregistry_github_token
+.mcpregistry_registry_token
+.env.*.local
+.env.production
+.env.development
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+pnpm-debug.log*
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# TypeScript
+*.tsbuildinfo
+*.tsbuildinfo.*
+
+# Build artifacts (Vercel compiles TypeScript automatically)
+# Note: Keep api/ source files (.ts) but ignore compiled outputs
+# Ignore all compiled JavaScript files in api/ directory
+api/*.js
+api/*.js.map
+api/*.d.ts
+api/*.d.ts.map
+api/**/*.js
+api/**/*.js.map
+api/**/*.d.ts
+api/**/*.d.ts.map
+# But keep TypeScript source files
+!api/*.ts
+!api/**/*.ts
+
+# Vercel
+.vercel/
+.vercelignore
+
+# Development tools
+.specstory/
+.cursorindexingignore
+
+# Testing
+coverage/
+.nyc_output/
+*.lcov
+.jest/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+.cache/
+
+# Misc
+*.pem
+*.key
+*.cert
+.npm
+.eslintcache
+.stylelintcache
+
+# Note: dist/ is NOT ignored because npx needs the compiled files
+# when installing from git repository for MCP server usage
+# However, api/ compiled files ARE ignored since Vercel compiles them automatically
+
+# lib/ directory is NOT ignored - it contains shared client code for Vercel API routes
+# lib/client.ts should be kept in sync with src/client.ts via sync-client script
+
+# public/ directory - empty folder for Vercel (serverless functions don't need it, but Vercel expects it)
+# public/.gitkeep is committed to keep the directory in git
+

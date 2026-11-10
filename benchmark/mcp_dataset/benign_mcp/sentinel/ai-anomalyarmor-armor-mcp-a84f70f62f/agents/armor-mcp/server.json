@@ -1,0 +1,37 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "ai.anomalyarmor/armor-mcp",
+  "title": "AnomalyArmor",
+  "description": "Data observability tools for engineering teams: alerts, freshness, schema drift, lineage, quality.",
+  "version": "0.9.1",
+  "websiteUrl": "https://www.anomalyarmor.ai",
+  "repository": {
+    "url": "https://github.com/anomalyarmor/agents",
+    "source": "github",
+    "subfolder": "armor-mcp"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.anomalyarmor.ai/mcp"
+    }
+  ],
+  "packages": [
+    {
+      "registryType": "pypi",
+      "identifier": "armor-mcp",
+      "version": "0.9.1",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "ARMOR_API_KEY",
+          "description": "AnomalyArmor API key (aa_live_*). Generate at https://app.anomalyarmor.ai/settings/api-keys.",
+          "isSecret": true,
+          "isRequired": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "status": "local_checks_complete_clean_checkout_pending",
+  "version": "1.0.0-rc.1",
+  "baseline_commit": "83bdeb9fa540f62722944f7ad844a8da9a7726d3",
+  "prepared_on": "2026-11-10",
+  "environment": {
+    "python": "3.14.9",
+    "platform": "Windows",
+    "dependency_lock": "uv.lock"
+  },
+  "dataset": {
+    "samples": 1025,
+    "verified_files": 11421,
+    "constructed_servers_parsed": 685,
+    "sample_content_matches_pre_migration_working_tree": true,
+    "sample_code_executed": false
+  },
+  "tests": {
+    "passed": 69,
+    "scope": "Existing controlled tests and initial catalog tests; final independent-copy result follows."
+  },
+  "first_party_source_files_parsed": 92,
+  "baseline_example": {
+    "generated_l0_samples": 5,
+    "sample_code_executed": false,
+    "model_api_called": false
+  },
+  "credential_pattern_scan": {
+    "scope": "High-confidence patterns in indexed text-like files up to 6 MiB; findings require context, not token-validity tests",
+    "scanned_files": 11311,
+    "large_files_skipped": 19,
+    "findings": [
+      {
+        "rule": "private_key_header",
+        "path": "benchmark/mcp_dataset/benign_mcp/sentinel/io-github-microsoft-playwright-mcp-ba31bde2df/playwright-mcp/tests/testserver/key.pem"
+      },
+      {
+        "rule": "slack_token",
+        "path": "benchmark/mcp_dataset/benign_mcp/sentinel/io-github-senoff-xlsx-for-ai-675f728892/xlsx-for-ai/test/v2/friendly-error.test.js"
+      }
+    ],
+    "private_material_tracked": [],
+    "finding_context": {
+      "private_key_header": "Preserved upstream Playwright TLS test-server fixture, not the author API configuration.",
+      "slack_token": "Preserved upstream friendly-error unit-test fixture; not used or validated against a service."
+    }
+  },
+  "not_performed": [
+    "Dynamic execution of final malicious samples",
+    "Model API experiments",
+    "Historical LLM session replay",
+    "Additional per-sample license audits",
+    "Reconstruction of historical Sentinel review records"
+  ]
+}

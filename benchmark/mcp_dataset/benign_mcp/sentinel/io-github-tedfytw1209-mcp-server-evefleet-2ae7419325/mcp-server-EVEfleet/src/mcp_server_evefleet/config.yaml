@@ -1,0 +1,9 @@
+SSO_clientid: "bcc607076aa84f959e73a2284424580c"
+SSO_callback: "http://localhost:8080/callback"
+MONITOR_MARKS:
+  - 'x'
+  - '1'
+  - '2'
+ALT_IDS:
+  - '2113359448'
+  - '2114946432'

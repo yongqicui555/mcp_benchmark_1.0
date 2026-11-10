@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-senoff-xlsx-for-ai-675f728892": {
+      "args": [
+        "/app/io-github-senoff-xlsx-for-ai-675f728892/xlsx-for-ai/index.js"
+      ],
+      "command": "node"
+    }
+  }
+}

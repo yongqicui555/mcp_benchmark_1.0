@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "io-github-ardev-lab-fake-star-audit-a7fb1bee84": {
+      "args": [
+        "/app/io-github-ardev-lab-fake-star-audit-a7fb1bee84/fake-star-audit/mcp_server.py"
+      ],
+      "command": "python"
+    }
+  }
+}

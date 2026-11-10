@@ -1,0 +1,22 @@
+=== ALLOWED_EGRESS_HOSTS ===
+ALLOWED_EGRESS_HOSTS: frozenset[str] = frozenset(
+    {
+        "api3.geo.admin.ch",
+        "wms.geo.admin.ch",
+        "geodesy.geo.admin.ch",
+        "ckan.opendata.swiss",
+        "rtvdb.ofcomnet.ch",
+        "www.bakom.admin.ch",
+    }
+)
+
+--
+    """Outbound-Call an einen nicht in ALLOWED_EGRESS_HOSTS gelisteten Host."""
+
+
+=== _enforce_egress_allowlist hook ===
+60:class EgressNotAllowedError(httpx.RequestError):
+64:async def _enforce_egress_allowlist(request: httpx.Request) -> None:
+73:        raise EgressNotAllowedError(
+97:        event_hooks={"request": [_enforce_egress_allowlist]},
+460:    if isinstance(e, EgressNotAllowedError):
